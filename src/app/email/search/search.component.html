@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutAlign="start space-between" fxLayoutGap="2em">
+  <div fxLayout="row">
+    <form (ngSubmit)="onSubmit()" #searchMailForm="ngForm" class="white frame" id="form-container" fxFlex="50"
+          fxFlex.lt-md="100" fxLayout="column" fxLayoutGap="20px" fxLayoutWrap>
+      <md-input-container class="full-width" dividerColor="primary">
+        <input mdInput placeholder="Ticket ID" type="number" id="tickerId" [(ngModel)]="search.ticketId" name="ticketId"
+               #ticketId="ngModel">
+      </md-input-container>
+      <md-input-container class="full-width" dividerColor="primary">
+        <input mdInput type="email" placeholder="Recipient" id="recipient" [(ngModel)]="search.recipient"
+               name="recipient" #recipient="ngModel">
+      </md-input-container>
+      <md-input-container class="full-width" dividerColor="primary">
+        <input mdInput type="email" placeholder="Sender" id="sender" [(ngModel)]="search.sender" name="sender"
+               #sender="ngModel">
+      </md-input-container>
+      <md-input-container class="full-width" dividerColor="primary">
+        <input mdInput type="string" placeholder="Keywords" id="keywords" [(ngModel)]="search.keywords" name="keywords"
+               #keywords="ngModel">
+      </md-input-container>
+      <div fxLayout="row" fxLayoutGap="15px" fxLayout.lt-md="column" fxLayoutWrap>
+        <ng2-datepicker [options]="SDoptions" [(ngModel)]="startDate" name="startDate"></ng2-datepicker>
+        <ng2-datepicker [options]="EDoptions" [(ngModel)]="endDate" name="endDate"></ng2-datepicker>
+      </div>
+      <button type="submit" md-raised-button [disabled]="!searchMailForm.valid" id="search-btn">Search</button>
+    </form>
+  </div>
+  <ngx-datatable class="material" [rows]="rows" *ngIf="rows" [columns]="columns" [loadingIndicator]="loadingIndicator"
+                 [columnMode]="'force'"></ngx-datatable>
+</div>
+
+
+<style>
+  #form-container {
+    margin-top: 2em;
+    padding: 2em !important;
+
+  }
+
+  #search-btn {
+    width: 20%;
+    margin-top: 2em;
+    background-color: #2196F3;
+    color: white;
+  }
+
+  #data-table {
+    padding: 2em;
+  }
+</style>

@@ -1,0 +1,34 @@
+<!-- nesting level: 2 entry inside the app -->
+<md-sidenav-container style="height: 100vh">
+  <md-sidenav  #sidenav opened = "true" mode="side">
+
+    <md-icon svgSrc="resecLogo.svg" fill="white"></md-icon>
+    <nav>
+      <ul>
+        <li><a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a></li>
+        <li><a routerLink="/user/emails" routerLinkActive="active">Processed Mails</a></li>
+        <li><a routerLink="/user/security" routerLinkActive="active">Security Settings</a></li>
+        <li><a routerLink="/user/account" routerLinkActive="active">Account Settings</a></li>
+      </ul>
+    </nav>
+  </md-sidenav>
+  <div fxLayout="row" fxLayoutAlign="space-between center" id="top-bar" class="frame md-accent">
+    <button id="sidenav-toggler"  md-mini-fab (click)="sidenav.toggle()" ><md-icon>menu</md-icon></button>
+    <p>Adam.S</p>
+  </div>
+  <router-outlet></router-outlet>
+</md-sidenav-container>
+
+
+<style>
+  #top-bar{
+    padding: 1em;
+    background-color: white;
+  }
+  #top-bar >p{
+    margin: 0px;
+    font-weight: 600;
+    /* Rectangle: */
+    color: #333;
+  }
+</style>

@@ -21,6 +21,7 @@ md-radio-button{
   color: #189cd5;
   font-weight: 600;
   font-size: 0.8em;
+  margin-top: 1.7em !important;
 }
 td, th{
   padding: 0.5em;

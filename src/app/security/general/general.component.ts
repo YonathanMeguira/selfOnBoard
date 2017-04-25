@@ -1,12 +1,18 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SecurityService} from '../security.service';
-import {GeneralSettingsComponent, AttachementProcessedWithCdrComponent} from './templates/templates.components';
+import {
+  GeneralSettingsComponent,
+  GeneralSettingsWithCDRComponent,
+  GeneralSettingsWithoutCDRComponent
+} from './templates/templates.components';
+import {MdSnackBar} from '@angular/material';
+
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.css'],
   providers: [SecurityService],
-  entryComponents : [GeneralSettingsComponent, AttachementProcessedWithCdrComponent]
+  entryComponents: [GeneralSettingsComponent, GeneralSettingsWithCDRComponent, GeneralSettingsWithoutCDRComponent]
 })
 
 export class GeneralComponent implements OnInit {
@@ -15,33 +21,28 @@ export class GeneralComponent implements OnInit {
   numberOfMaliciousLinks = 4;
 
   ngOnInit() {
-    console.log('subscribing');
     this.securityService.getSettings().subscribe(
       result => {
-        console.log(result);
         this.mainPolicySettings = result;
-        console.log(this.mainPolicySettings);
       }, error => {
         console.log('an error occurred');
       }
-    )
+    );
   }
 
-  constructor(private securityService: SecurityService) {
+// to do => check if model has changed and if API Call to post was made before changing view
+  constructor(private securityService: SecurityService, private snackBar: MdSnackBar) {
   }
 
+  saveSettings = () => {
+    this.snackBar.open('Changes Successfully saved');
 
-  restoreDefaultCdr = () => {
-    this.mainPolicySettings.AttachementsProcessedLevels.Documents = 2;
-    this.mainPolicySettings.AttachementsProcessedLevels.Images = 2;
-    this.mainPolicySettings.AttachementsProcessedLevels.Presentations = 2;
-    this.mainPolicySettings.AttachementsProcessedLevels.Spreadsheets = 2;
+    this.securityService.saveSettings(this.mainPolicySettings).subscribe(
+      success => {
+        this.snackBar.open('Changes Successfully saved');
+      }, error => {
+        this.snackBar.open('Changes could not be saved');
+      }
+    );
   }
-  restoreDefaultNoCdr = () => {
-    this.mainPolicySettings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
-    this.mainPolicySettings.AttachementsWithoutCdr['Video/Sound'] = 0;
-    this.mainPolicySettings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
-
-  }
-
 }

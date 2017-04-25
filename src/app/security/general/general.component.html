@@ -1,6 +1,18 @@
-
-<div class="container-2" flex="85" flex-gt-lg="85">
-  <general-settings [mainPolicySettings] = "mainPolicySettings"></general-settings>
-  <attachement-processed-with-cdr [mainPolicySettings] = "mainPolicySettings"></attachement-processed-with-cdr>
+<div class="container-2" flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="column">
+  <general-settings [generalSettings]="mainPolicySettings"></general-settings>
+  <general-with-cdr
+    [cdrSettings]="mainPolicySettings.AttachementsProcessedLevels"></general-with-cdr>
+  <general-without-cdr [noCdrSettings]="mainPolicySettings.AttachementsWithoutCdr"></general-without-cdr>
+  <div layout="row" layout-margin layout-align="center center">
+    <button class="save-btn" md-raised-button layout-padding (click)="saveSettings()">SAVE</button>
+  </div>
 </div>
 
+
+<style>
+  .save-btn {
+    background-color: #3D796F;
+    color: white;
+    margin-top: 2em;
+  }
+</style>

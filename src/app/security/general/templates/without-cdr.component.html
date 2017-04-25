@@ -1,0 +1,82 @@
+<div class="white frame margin-top">
+  <div class="title-section" layout-padding>
+    <h4>ATTACHMENTS PROCESSED WITHOUT CDR</h4>
+  </div>
+
+  <div class="content-holder">
+    <table>
+      <thead>
+      <th></th>
+      <th style="width: 35%;">Allow</th>
+      <th style="width: 38%; ">Block</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td layout="column" class="table-row">
+          <p>Videos/Sounds</p>
+          <small>.mp4, .mp3</small>
+        </td>
+        <td colspan="3">
+          <md-slider [(ngModel)]="noCdrSettings['Video/Sound']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="primary">
+          </md-slider>
+        </td>
+      </tr>
+      <tr>
+        <td layout="column" class="table-row">
+          <p>Applications / Scripts</p>
+          <small>.dmg, .exe</small>
+        </td>
+        <td colspan="3">
+          <md-slider [(ngModel)]="noCdrSettings['Applications/Scripts']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="primary">
+          </md-slider>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-row">
+          <p>Unrecognized Files</p>
+        </td>
+        <td colspan="3">
+          <md-slider [(ngModel)]="noCdrSettings['Unrecognized Files']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="primary">
+          </md-slider>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+    <a class="cta" layout-margin (click)="restoreDefaultNoCdr()">Restore default settings</a>
+  </div>
+
+</div>
+
+
+<style>
+  .table-row {
+    margin-right: 1em;
+  }
+
+  .disabled-action {
+    color: #CCCCCC !important;
+    pointer-events: none;
+  }
+</style>

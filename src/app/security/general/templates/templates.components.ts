@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import {Component, DoCheck, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'general-settings',
@@ -6,24 +7,70 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./style.css']
 })
 
-export class GeneralSettingsComponent  {
+export class GeneralSettingsComponent implements OnChanges {
   @Input()
-  mainPolicySettings: any;
-  constructor() { }
+  generalSettings: any;
+
+  constructor() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes['generalSettings'].currentValue);
+  }
 
   restoreDefaultGeneralSettings = () => {
-    this.mainPolicySettings.UseAntiviruses = true;
-    this.mainPolicySettings.HandleLinks = true;
+    this.generalSettings.UseAntiviruses = true;
+    this.generalSettings.HandleLinks = true;
   }
 }
 @Component({
-  selector: 'attachement-processed-with-cdr',
-  templateUrl: './attachement-processed-with-cdr.component.html',
+  selector: 'general-with-cdr',
+  templateUrl: './with-cdr.component.html',
   styleUrls: ['./style.css']
+
 })
-export class AttachementProcessedWithCdrComponent  {
+export class GeneralSettingsWithCDRComponent implements DoCheck {
 
   @Input()
-  mainPolicySettings: any;
-  constructor() { }
+  cdrSettings: any;
+  oldCdr: any = this.cdrSettings;
+  modelHasChanged = false;
+  isUndefined = () => {
+    return isNullOrUndefined(this.oldCdr);
+  }
+  constructor() {
+  }
+
+  ngDoCheck() {
+    if (!(this.isUndefined()) && (this.oldCdr !== this.cdrSettings)){
+      console.log('had changed');
+      console.log(this.isUndefined());
+    }
+  }
+
+  restoreDefaultCdr = () => {
+    this.cdrSettings.Documents = 2;
+    this.cdrSettings.Images = 2;
+    this.cdrSettings.Presentations = 2;
+    this.cdrSettings.Spreadsheets = 2;
+  }
+}
+
+@Component({
+  selector: 'general-without-cdr',
+  templateUrl: './without-cdr.component.html',
+  styleUrls: ['./style.css']
+})
+
+export class GeneralSettingsWithoutCDRComponent {
+  @Input()
+  noCdrSettings: any;
+
+  constructor() {
+  }
+  restoreDefaultNoCdr = () => {
+    this.noCdrSettings['Unrecognized Files'] = 0;
+    this.noCdrSettings['Video/Sound'] = 0;
+    this.noCdrSettings['Applications/Scripts'] = 0;
+  }
 }

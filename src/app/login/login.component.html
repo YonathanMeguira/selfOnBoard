@@ -1,9 +1,7 @@
 <div class="outer" fxLayout="column" fxLayoutAlign="center center" fxFill>
   <h3 *ngIf="wrongId" color="accent">Please enter valid credentials</h3>
   <div class="frame white" style="width: 40%">
-    <div fxLayout="column" fxLayoutWrap class="form-title">
-      <h3>Resec User Console</h3>
-    </div>
+
     <div fxLayout="row" fxLayoutAlign="center center">
       <div [hidden]="submitted" fxFlex="90">
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm" id="form-container" fxLayout="column" fxLayoutGap="20px"

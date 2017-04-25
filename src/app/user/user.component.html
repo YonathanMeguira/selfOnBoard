@@ -1,7 +1,7 @@
 <!-- nesting level: 2 entry inside the app -->
 
 <md-sidenav-container style="height: 100vh">
-  <md-sidenav  #sidenav opened = "true" mode="side">
+  <md-sidenav #sidenav opened="true" mode="side" fxHide.lt-md="true">
 
     <md-icon svgSrc="resecLogo.svg" fill="white"></md-icon>
     <nav>
@@ -13,20 +13,30 @@
       </ul>
     </nav>
   </md-sidenav>
-  <div layout="row" layout-align="space-between center" id="top-bar" class="frame md-accent">
-    <button id="sidenav-toggler"  md-mini-fab (click)="sidenav.toggle()" ><md-icon>menu</md-icon></button>
-    <p>Adam.S</p>
+  <div layout-fill>
+    <div layout="row" layout-align="space-between center" id="top-bar" class="frame">
+      <button id="sidenav-toggler" md-mini-fab (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+      </button>
+      <button md-button md-mini-fab (click)="logout()">
+        <md-icon>exit_to_app</md-icon>
+      </button>
+    </div>
+    <div style="margin: 2em;">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <router-outlet></router-outlet>
 </md-sidenav-container>
 
 
 <style>
-  #top-bar{
+  #top-bar {
     padding: 1em;
     background-color: white;
+
   }
-  #top-bar >p{
+
+  #top-bar > p {
     margin: 0px;
     font-weight: 600;
     /* Rectangle: */

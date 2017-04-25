@@ -1,0 +1,30 @@
+.margin-top{
+  margin-top: 1em;
+}
+
+.item{
+  font-weight: 600;
+  color: #666670;
+
+}
+
+.inner-section{
+  margin-bottom: 1em;
+}
+.bold{
+  font-weight: 700;
+}
+md-radio-button{
+  font-size: 0.8em !important;
+}
+.cta{
+  color: #189cd5;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+td, th{
+  padding: 0.5em;
+}
+th > small{
+  font-weight: 300;
+}

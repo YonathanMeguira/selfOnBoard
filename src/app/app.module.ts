@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -23,6 +22,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DatePickerModule } from 'ng2-datepicker';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CovalentDataTableModule } from '@covalent/core';
+import { CovalentCoreModule } from '@covalent/core';
+import { GeneralSettingsComponent, AttachementProcessedWithCdrComponent } from './security/general/templates/templates.components';
+import { AccountGeneralComponent } from './account/account-general/account-general.component';
 
 @NgModule({
   declarations: [
@@ -36,18 +39,23 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ExceptionComponent,
     GeneralComponent,
     AccountComponent,
-    UserComponent
+    UserComponent,
+    GeneralSettingsComponent,
+    AttachementProcessedWithCdrComponent,
+    AccountGeneralComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    FlexLayoutModule,
     MaterialModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
+    CovalentDataTableModule,
     DatePickerModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    CovalentCoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

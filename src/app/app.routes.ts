@@ -9,6 +9,8 @@ import { SecurityComponent } from './security/security.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmailComponent } from './email/email.component';
 import { AccountComponent } from './account/account.component';
+import { AccountGeneralComponent } from './account/account-general/account-general.component';
+
 import { GeneralComponent } from './security/general/general.component';
 import { ExceptionComponent } from './security/exception/exception.component';
 import { SearchComponent } from './email/search/search.component';
@@ -38,7 +40,11 @@ const appRoutes: Routes = [
           { path: 'browse', component: BrowseComponent }
         ]
       },
-      { path: 'account', component: AccountComponent }
+      { path: 'account', component: AccountComponent,
+        children: [
+          { path: '', redirectTo: 'account', pathMatch: 'full' },
+          { path: 'account', component: AccountGeneralComponent }
+        ]}
     ]
   }
 ];

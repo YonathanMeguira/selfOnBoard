@@ -1,3 +1,6 @@
+@import '/node_modules/@covalent/core/common/platform.css';
+
+
 #sidenav-toggler{
   margin-left: 1em;
   background-color: whitesmoke;
@@ -14,7 +17,7 @@ li > a {
   box-sizing: border-box;
   display: block;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 47px;
   text-decoration: none;
   -webkit-transition: all .3s;

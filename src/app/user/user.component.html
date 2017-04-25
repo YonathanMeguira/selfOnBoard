@@ -1,4 +1,5 @@
 <!-- nesting level: 2 entry inside the app -->
+
 <md-sidenav-container style="height: 100vh">
   <md-sidenav  #sidenav opened = "true" mode="side">
 
@@ -12,7 +13,7 @@
       </ul>
     </nav>
   </md-sidenav>
-  <div fxLayout="row" fxLayoutAlign="space-between center" id="top-bar" class="frame md-accent">
+  <div layout="row" layout-align="space-between center" id="top-bar" class="frame md-accent">
     <button id="sidenav-toggler"  md-mini-fab (click)="sidenav.toggle()" ><md-icon>menu</md-icon></button>
     <p>Adam.S</p>
   </div>

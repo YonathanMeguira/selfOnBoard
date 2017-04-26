@@ -22,4 +22,18 @@ export class SecurityService {
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not save settings'));
   }
+
+  GetPolicyExceptionsSettings(): Observable<any> {
+    const settingsUrl = 'http://' + this.server + ':4580/sob/api/securitySettings/policyExceptions?q=1';
+    return this.http.get(settingsUrl)
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get shared'));
+  }
+  DeletePolicyExceptionSettings(settings): Observable<any> {
+    const deleteSettings = 'http://' + this.server + ':4580/sob/api/securitySettings/deletepolicyexceptions';
+    return this.http.post(deleteSettings, settings)
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not save settings'));
+  }
+
 }

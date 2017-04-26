@@ -22,19 +22,19 @@
           <md-slide-toggle  [(ngModel)]="generalSettings.HandleLinks" aria-label="antivrus"
                             color="primary"></md-slide-toggle>
 
-          <md-radio-group *ngIf=" generalSettings.HandleLinks" [(ngModel)]="generalSettings.linksOperation"
+          <md-radio-group *ngIf=" generalSettings.HandleLinks" [(ngModel)]="generalSettings.SelectedSafeLinksOperation"
                           class="operation-actions" layout="column">
 
-            <md-radio-button value="fixLinks" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.linksOperation =='fixLinks' }">Fix Links </span>to be what it is
+            <md-radio-button value="1" color="primary"><span
+              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='1' }">Fix Links </span>to be what it is
               supposed to be.
             </md-radio-button>
-            <md-radio-button value="testLinks" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.linksOperation =='testLinks' }">Test links </span> via reputation
+            <md-radio-button value="2" color="primary"><span
+              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='2' }">Test links </span> via reputation
               engine i.e google, mcafee
             </md-radio-button>
-            <md-radio-button value="killLinks" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.linksOperation =='killLinks' }">Kill links </span>so that only
+            <md-radio-button value="3" color="primary"><span
+              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='3' }">Kill links </span>so that only
               the
               text is displayed
             </md-radio-button>

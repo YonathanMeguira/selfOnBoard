@@ -31,6 +31,7 @@ import {
   GeneralSettingsWithoutCDRComponent
 } from './security/general/templates/templates.components';
 import {AccountGeneralComponent} from './account/account-general/account-general.component';
+import { ExceptionSettingsComponent, ExistingExceptionsComponent } from './security/exception/templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,9 @@ import {AccountGeneralComponent} from './account/account-general/account-general
     GeneralSettingsComponent,
     GeneralSettingsWithCDRComponent,
     GeneralSettingsWithoutCDRComponent,
-    AccountGeneralComponent
+    AccountGeneralComponent,
+    ExceptionSettingsComponent,
+    ExistingExceptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,7 @@ import {AccountGeneralComponent} from './account/account-general/account-general
     DatePickerModule,
     NgxDatatableModule,
     CovalentCoreModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

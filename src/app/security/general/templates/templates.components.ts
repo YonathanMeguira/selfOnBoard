@@ -4,7 +4,7 @@ import {isNullOrUndefined} from 'util';
 @Component({
   selector: 'general-settings',
   templateUrl: './general-settings.component.html',
-  styleUrls: ['./style.css']
+  styleUrls: ['../general.component.css']
 })
 
 export class GeneralSettingsComponent implements OnChanges {
@@ -26,7 +26,7 @@ export class GeneralSettingsComponent implements OnChanges {
 @Component({
   selector: 'general-with-cdr',
   templateUrl: './with-cdr.component.html',
-  styleUrls: ['./style.css']
+  styleUrls: ['../general.component.css']
 
 })
 export class GeneralSettingsWithCDRComponent implements DoCheck {
@@ -59,7 +59,7 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
 @Component({
   selector: 'general-without-cdr',
   templateUrl: './without-cdr.component.html',
-  styleUrls: ['./style.css']
+  styleUrls: ['../general.component.css']
 })
 
 export class GeneralSettingsWithoutCDRComponent {

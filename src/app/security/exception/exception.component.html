@@ -1,3 +1,11 @@
-<p>
-  exception works!
-</p>
+<div layout="row">
+  <div flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="row" layout-margin>
+    <existing-exceptions flex="30" [departments]="departments"
+                         (onNewDptQuery)="newDptQuery($event)"></existing-exceptions>
+    <exception-settings *ngIf="!noSettingsExist" flex="60" [newDepartment]="newDepartment"
+                        (onCancel)="newDptQuery($event)"
+                        [cdrSettings]="settings.AttachementsProcessedLevels"
+                        [noCdrSettings]="settings.AttachementsWithoutCdr" [noSettingsExist]="noSettingsExist"></exception-settings>
+    <p *ngIf="noSettingsExist">No settings exist yet</p>
+  </div>
+</div>

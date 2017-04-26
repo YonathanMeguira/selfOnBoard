@@ -12,8 +12,10 @@ h1, h2, h3, h4, h5{
   -webkit-margin-after: 0em;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
-  color: #666670;
-
+  color: #666670 !important;
+}
+.light-margin-top{
+  margin-top: 0.4em;
 }
 .frame{
 

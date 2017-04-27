@@ -75,7 +75,14 @@ export class NewExceptionComponent {
   cancelCreation = (cancel: boolean) => {
     this.onCancel.emit(cancel);
   }
-  saveSettings = (newSettings: NewSettingsModel) => {
+  saveSettings = (newSettings: any) => {
+    const users = newSettings.Exceptions;
+    const extractedUsers = [];
+    users.forEach((user) => {
+      extractedUsers.push(user.value);
+    });
+    delete newSettings.Exceptions;
+    newSettings.Exceptions = extractedUsers;
     console.log(newSettings);
     this.onSave.emit(newSettings);
   }

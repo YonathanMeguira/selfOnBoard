@@ -15,7 +15,7 @@ export class ExceptionComponent implements OnInit {
   newDepartment = false;
   settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
   newSettings: NewSettingsModel;
-  noSettingsExist: boolean;
+  noSettingsExist = true;
   departments: any = [
     {'name': 'Accounting Department', 'users': 11},
     {'name': 'Executives', 'users': 8},
@@ -25,9 +25,6 @@ export class ExceptionComponent implements OnInit {
 
   constructor(private securityService: SecurityService) {
     this.loadSettings();
-    this.noSettingsExist =  true ;
-    console.log(this.noSettingsExist);
-    console.log(this.newDepartment);
   };
 
   ngOnInit() {};

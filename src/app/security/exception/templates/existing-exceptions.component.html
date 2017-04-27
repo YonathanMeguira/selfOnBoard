@@ -1,28 +1,18 @@
+
 <div layout="column">
-  <button (click)='askForNewDpt(true)' class="add-btn">+ Add Department</button>
+
   <md-list>
     <md-list-item *ngFor="let department of departments" class="dpt-list">
       <p class="dpt-name" md-line>{{department.name}}</p>
-      <p  md-line>{{department.users}} users</p>
+      <p md-line>{{department.users}} users</p>
     </md-list-item>
   </md-list>
 </div>
 
-
 <style>
-  .add-btn:hover {
-    background-color: #3D796F !important;
-    color: white;
-    border: none;
-  }
-  .add-btn{
-    padding: 1em 0.5em;
-    background-color: transparent;
-    border-radius: 25px;
-    border: solid 2px #F7F8F8;
-    color: #F7F8F8;
-  }
-  .dpt-list:hover{
+
+
+  .dpt-list:hover {
     background-color: white;
   }
 

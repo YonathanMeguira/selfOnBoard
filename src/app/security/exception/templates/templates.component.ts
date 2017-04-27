@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
 
 @Component({
   selector: 'existing-exceptions',
@@ -7,7 +8,6 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class ExistingExceptionsComponent implements OnInit {
   @Input() departments: any;
-  @Output() onNewDptQuery = new EventEmitter<boolean>();
   newDepartment = false;
 
   constructor() {
@@ -15,14 +15,8 @@ export class ExistingExceptionsComponent implements OnInit {
 
   ngOnInit() {
   };
-
-  askForNewDpt = (newDpt: boolean) => {
-    this.onNewDptQuery.emit(newDpt);
-    this.newDepartment = true;
-  }
 }
 ;
-
 
 @Component({
   selector: 'exception-settings',
@@ -30,37 +24,61 @@ export class ExistingExceptionsComponent implements OnInit {
   styleUrls: ['../exception.component.css']
 })
 export class ExceptionSettingsComponent implements OnInit {
-  mainPolicyExceptionsSettings: any;
-  @Input() newDepartment: boolean;
-  @Input() cdrSettings: any;
-  @Input() noCdrSettings: any;
-  @Input() noSettingsExist: boolean;
-  @Output() onCancel = new EventEmitter<boolean>();
 
-  constructor() {};
+  mainPolicyExceptionsSettings: any;
+
+  @Input() settings: ExistingSettingsModel;
+  @Output() onSave = new EventEmitter<any>();
+
+  constructor() {
+  };
 
   ngOnInit() {
   };
 
-  cancelCreation = (cancel: boolean) => {
-    this.onCancel.emit(cancel);
-  };
-  restoreDefaultNoCdr = () => {
-    this.noCdrSettings['Unrecognized Files'] = 0;
-    this.noCdrSettings['Video/Sound'] = 0;
-    this.noCdrSettings['Applications/Scripts'] = 0;
-  };
   restoreDefaultCdr = () => {
-    this.cdrSettings.Documents = 2;
-    this.cdrSettings.Images = 2;
-    this.cdrSettings.Presentations = 2;
-    this.cdrSettings.Spreadsheets = 2;
-  };
+    this.settings.AttachementsProcessedLevels.Documents = 2;
+    this.settings.AttachementsProcessedLevels.Images = 2;
+    this.settings.AttachementsProcessedLevels.Presentations = 2;
+    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
+  }
+  restoreDefaultNoCdr = () => {
+    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
+    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
+    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+  }
 
 }
 ;
 
+@Component({
+  selector: 'new-exception',
+  templateUrl: './new-exception.html',
+  styleUrls: ['../exception.component.css']
+})
 
+export class NewExceptionComponent {
+  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
+  @Output() onCancel = new EventEmitter<any>();
+  @Output() onSave = new EventEmitter<NewSettingsModel>();
 
+  constructor() {
+    this.settings.AttachementsProcessedLevels.Documents = 2;
+    this.settings.AttachementsProcessedLevels.Images = 2;
+    this.settings.AttachementsProcessedLevels.Presentations = 2;
+    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
+    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
+    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
+    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+  };
+
+  cancelCreation = (cancel: boolean) => {
+    this.onCancel.emit(cancel);
+  }
+  saveSettings = (newSettings: NewSettingsModel) => {
+    console.log(newSettings);
+    this.onSave.emit(newSettings);
+  }
+}
 
 

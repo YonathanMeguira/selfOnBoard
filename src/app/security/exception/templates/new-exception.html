@@ -1,3 +1,14 @@
+<div layout="column" class="white frame">
+  <div layout="flex" layout-align="space-between center" layout-margin>
+    <p flex="30">Department Name</p>
+    <input class="bs-input" flex="40" placeholder="Pick a name" [(ngModel)] ="settings.PolicyName"/>
+    <a (click)="cancelCreation(false)" class="cta">Cancel </a>
+  </div>
+  <div layout="row" layout-align="space-between end"  layout-margin>
+    <p flex="30">Department Users</p>
+    <tag-input [(ngModel)]='settings.Exceptions' [maxItems]='100' flex></tag-input>
+  </div>
+</div>
 <div class="white frame margin-top">
   <div class="title-section" layout-padding>
     <h4>ATTACHMENTS PROCESSED WITH CDR</h4>

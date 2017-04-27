@@ -1,10 +1,11 @@
-<div layout="row" flex="100" style="margin-top: 3em;">
-  <button md-button color="primary" (click)='newDptQuery(true)'>+ Add Department</button>
-</div>
-<div layout="column">
-  <div flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="row" layout-margin>
 
-    <existing-exceptions flex="30" [departments]="departments"></existing-exceptions>
+<div layout="column" *ngIf="!dataIsLoading">
+  <div layout="row" flex="100" style="margin-top: 3em;">
+    <button md-button color="primary" (click)='newDptQuery(true)'>+ Add Department</button>
+  </div>
+  <div flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="row" layout-margin >
+
+    <existing-exceptions flex="30" [exceptionsList]="exceptionsList"></existing-exceptions>
     <div *ngIf="!noSettingsExist && !newDepartment">
       <exception-settings flex="60"
                           [settings]="settings"
@@ -16,4 +17,10 @@
     </div>
     <p *ngIf="!newDepartment && noSettingsExist">bummer no settings exist</p>
   </div>
+
+
+</div>
+
+<div layout="column" layout-align="center center" *ngIf="dataIsLoading">
+  <md-spinner></md-spinner>
 </div>

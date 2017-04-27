@@ -20,9 +20,11 @@ import {
 
 } from './security/general/templates/templates.components';
 import {AccountGeneralComponent} from './account/account-general/account-general.component';
-import { ExceptionSettingsComponent, ExistingExceptionsComponent, NewExceptionComponent } from './security/exception/templates/templates.component';
+import { ExceptionSettingsComponent, ExistingExceptionsComponent,
+  NewExceptionComponent } from './security/exception/templates/templates.component';
 // routing
 import {AppRoutingModule} from './app.routes';
+
 // 3rd libraries
 import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -32,6 +34,9 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {CovalentDataTableModule} from '@covalent/core';
 import {CovalentCoreModule} from '@covalent/core';
 import { TagInputModule } from 'ng2-tag-input';
+ // custom pipes
+
+import { DictionaryIteratorPipe } from './shared/pipes';
 
 
 @NgModule({
@@ -53,7 +58,8 @@ import { TagInputModule } from 'ng2-tag-input';
     AccountGeneralComponent,
     ExceptionSettingsComponent,
     ExistingExceptionsComponent,
-    NewExceptionComponent
+    NewExceptionComponent,
+    DictionaryIteratorPipe
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ExceptionSettingsComponent, ExistingExceptionsComponent, NewExceptionComponent} from './templates/templates.component';
+import {
+  ExceptionSettingsComponent,
+  ExistingExceptionsComponent,
+  NewExceptionComponent
+} from './templates/templates.component';
 import {SecurityService} from '../security.service';
-import {ExistingSettingsModel, NewSettingsModel} from '../Models';
 
 @Component({
   selector: 'app-exception',
@@ -13,21 +16,18 @@ import {ExistingSettingsModel, NewSettingsModel} from '../Models';
 
 export class ExceptionComponent implements OnInit {
   newDepartment = false;
+  dataIsLoading: boolean;
   settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
-  newSettings: NewSettingsModel;
+  exceptionsList: Array<any>;
   noSettingsExist = true;
-  departments: any = [
-    {'name': 'Accounting Department', 'users': 11},
-    {'name': 'Executives', 'users': 8},
-    {'name': 'Accounting Department', 'users': 10},
-    {'name': 'Marketing Department', 'users': 5}
-  ];
 
   constructor(private securityService: SecurityService) {
     this.loadSettings();
   };
 
-  ngOnInit() {};
+  ngOnInit() {
+  };
+
   cancelCreation = (cancel: boolean) => {
     this.newDepartment = cancel;
     console.log(this.settings);
@@ -38,6 +38,7 @@ export class ExceptionComponent implements OnInit {
     this.newDepartment = newDpt;
   }
   loadSettings = () => {
+    this.dataIsLoading = true;
     this.securityService.GetPolicyExceptionsSettings().subscribe(
       result => {
         if (Object.keys(result).length === 0 && result.constructor === Object) {
@@ -45,17 +46,27 @@ export class ExceptionComponent implements OnInit {
           console.log(this.noSettingsExist);
         } else {
           this.noSettingsExist = false;
-          this.settings = result;
+          // accessing the first object of the collection
+          this.settings = result[Object.keys(result)[0]];
+          this.exceptionsList = result;
+          console.log(this.exceptionsList);
+          this.dataIsLoading = false;
         }
       }, error => {
         console.log('an error occurred');
-      });
-  };
+        this.dataIsLoading = false;
+      }
+    );
+  }
 
   postNewSettings = (settings: any) => {
     console.log(settings);
     this.securityService.savePolicyExceptionSettings(settings).subscribe(
-      success => {console.log(success); console.log('cool')},
+      success => {
+        console.log(success);
+        console.log('cool');
+        //this.exceptionsList.push(settings);
+      },
       error => console.log(error)
     );
   }

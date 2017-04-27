@@ -7,9 +7,8 @@ import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
   styleUrls: ['../exception.component.css']
 })
 export class ExistingExceptionsComponent implements OnInit {
-  @Input() departments: any;
+  @Input() exceptionsList: any;
   newDepartment = false;
-
   constructor() {
   };
 

@@ -1,44 +1,97 @@
-<div layout="row">
-  <div flex="80" class="white frame" layout-align="center center" layout-margin>
-    <form layout-margin #query="ngForm" layout="column" flex="50" class="search-form" layout-padding>
-      <md-input-container>
-        <input mdInput placeholder="Ticket ID" value="Ticket Id" [(ngModel)]="query.TicketId" name="ticketId"
-               type="number">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Recipient" value="Recipient" [(ngModel)]="query.Recipient" name="recipient"
-               type="email">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Sender" value="Sender" [(ngModel)]="query.Sender" name="sender" type="email">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Keywords" value="Keywords" [(ngModel)]="query.KeyWords" name="keyword"
-               type="text">
-      </md-input-container>
-      <div layout="row">
-        <ng2-datepicker [options]="options" [(ngModel)]="query.StartTime" name="startDate"></ng2-datepicker>
-        <ng2-datepicker [options]="options" [(ngModel)]="query.EndTime" name="endDate"></ng2-datepicker>
+<div class="white frame col-10 container mt-5 p-3">
+  <div class="col-8 container">
+    <div class="form-group row">
+      <label for="ticketId" class="col-2 col-form-label">Ticket ID</label>
+      <div class="col-10">
+        <input class="form-control" type="number" [(ngModel)]="query.TicketId" id="ticketId">
       </div>
-      <select class="form-control" id="filter" style="margin-top: 1em">
-        <option *ngFor="let filter of filters" [value]="filter">{{filter}}</option>
-      </select>
-    </form>
-    <button md-button class="btn-action" (click)="searchMails()">Search</button>
+    </div>
+
+    <div class="form-group row">
+      <label for="recipient" class="col-2 col-form-label">Recipient</label>
+      <div class="col-10">
+        <input class="form-control" type="email" [(ngModel)]="query.Recipient" id="recipient">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="sender" class="col-2 col-form-label">Sender</label>
+      <div class="col-10">
+        <input class="form-control" type="email" [(ngModel)]="query.Sender" id="sender">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="keywords" class="col-2 col-form-label">Keywords</label>
+      <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="query.KeyWords" id="keywords">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Time</label>
+
+      <div class="input-group col-5">
+        <input class="form-control" placeholder="Start Time"
+               name="dp" [(ngModel)]="query.StartTime" ngbDatepicker #start="ngbDatepicker">
+        <div class="input-group-addon" (click)="start.toggle()">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="input-group col-5">
+        <input class="form-control" placeholder="Start Time"
+               name="dp" [(ngModel)]="query.EndTime" ngbDatepicker #end="ngbDatepicker">
+        <div class="input-group-addon" (click)="end.toggle()">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+      <label for="filter" class="col-2 col-form-label">Status</label>
+      <div class="col-10">
+        <select class="form-control" id="filter">
+          <option *ngFor="let filter of filters" [value]="filter">{{filter}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="text-center col mt-5">
+      <button type="button" class="btn btn-success" (click)="searchMails()">Search</button>
+    </div>
   </div>
-</div>
-<div class="white frame" *ngIf="!isEmailEmpty">
-  <td-data-table
-    [data]="emails"
-    [columns]="columns"
-    [selectable]="false"
-    [multiple]="false"
-    [sortable]="false">
-  </td-data-table>
+  <div class="mt-5" *ngIf="!isEmailEmpty">
+    <p class="text-center m-5 bold">{{totalNumberOfMails}} Results</p>
+    <td-data-table
+      [data]="emails"
+      [columns]="columns"
+      [selectable]="false"
+      [multiple]="false"
+      [sortable]="false">
+    </td-data-table>
 
-  <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
-    <span td-paging-bar-label hide-xs>Row per page:</span>
-    {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
-  </td-paging-bar>
-</div>
+    <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
+      <span td-paging-bar-label hide-xs>Row per page:</span>
+      {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+    </td-paging-bar>
+  </div>
 
+  <style>
+
+    .btn-success {
+      font-family: Raleway-SemiBold;
+      font-size: 13px;
+      color: rgba(103, 192, 103, 0.75);
+      letter-spacing: 1px;
+      line-height: 15px;
+      border: 2px solid rgba(103, 192, 103, 0.75);
+      border-radius: 40px;
+      background: transparent;
+      transition: all 0.3s ease 0s;
+    }
+
+    .btn-success:hover {
+      color: #FFF;
+      background: rgba(103, 192, 103, 0.75);
+      border: 2px solid rgba(103, 192, 103, 0.75);
+    }
+
+    /* Boo
+</style>

@@ -1,4 +1,18 @@
 <div class="white frame margin-top">
+  <div class="title-section" layout-padding layout="row" layout-align="space-between center" layout-margin>
+    <h4>{{settings.PolicyName}}</h4>
+    <a (click)="deletePolicy(settings)" class="cta">Delete this department</a>
+  </div>
+  <div layout="row" layout-align="space-between start" layout-margin>
+    <tag-input [(ngModel)]='settings.Exceptions' [errorMessages]="errorMessages" [validators]="validators"
+               [maxItems]='100' flex="70" theme='dark'></tag-input>
+    <a class="cta">Show More</a>
+    <button md-button>+Add Exception</button>
+  </div>
+
+</div>
+
+<div class="white frame">
   <div class="title-section" layout-padding>
     <h4>ATTACHMENTS PROCESSED WITH CDR</h4>
   </div>
@@ -75,7 +89,7 @@
       </tbody>
 
     </table>
-    <a class="cta" layout-margin (click)="restoreDefaultCdr()" >Restore default settings</a>
+    <a class="cta" layout-margin (click)="restoreDefaultCdr()">Restore default settings</a>
 
   </div>
 </div>

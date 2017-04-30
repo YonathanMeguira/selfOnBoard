@@ -1,8 +1,8 @@
-
 <div layout="column">
-
   <md-list>
-    <md-list-item *ngFor="let exception of exceptionsList | DictionaryIteratorPipe" class="dpt-list">
+    <md-list-item *ngFor="let exception of exceptionsList | DictionaryIteratorPipe" class="dpt-list"
+                  (click)="selectDepartment(exception.PolicyName)"
+                  [ngClass]="{'selectedPolicy': isCurrentPolicy(exception.PolicyName)}">
       <p class="dpt-name" md-line>{{exception.PolicyName}}</p>
       <p md-line>{{exception.PolicyId}} users</p>
     </md-list-item>

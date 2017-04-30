@@ -5,8 +5,16 @@
 
 }
 .active{
-  /* Rectangle: */
-  /* Rectangle: */
   background-image: linear-gradient(-180deg, #00E5FF 0%, #0091EA 100%);
   color: white;
+}
+
+.search-form{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.btn-action{
+  margin-top: 3em !important;
+  margin-bottom: 2em !important;
 }

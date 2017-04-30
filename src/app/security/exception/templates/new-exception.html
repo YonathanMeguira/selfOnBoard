@@ -1,12 +1,13 @@
 <div layout="column" class="white frame">
   <div layout="flex" layout-align="space-between center" layout-margin>
     <p flex="30">Department Name</p>
-    <input class="bs-input" flex="40" placeholder="Pick a name" [(ngModel)] ="settings.PolicyName"/>
+    <input class="bs-input" flex="40" placeholder="Pick a name" [(ngModel)]="settings.PolicyName"/>
     <a (click)="cancelCreation(false)" class="cta">Cancel </a>
   </div>
-  <div layout="row" layout-align="space-between end"  layout-margin>
+  <div layout="row" layout-align="space-between end" layout-margin>
     <p flex="30">Department Users</p>
-    <tag-input [(ngModel)]='settings.Exceptions' [maxItems]='100' flex></tag-input>
+    <tag-input [(ngModel)]='settings.Exceptions' [maxItems]='100' flex [errorMessages]="errorMessages"
+               [validators]="validators" theme='dark'></tag-input>
   </div>
 </div>
 <div class="white frame margin-top">
@@ -86,7 +87,7 @@
       </tbody>
 
     </table>
-    <a class="cta" layout-margin (click)="restoreDefaultCdr()" >Restore default settings</a>
+    <a class="cta" layout-margin (click)="restoreDefaultCdr()">Restore default settings</a>
 
   </div>
 </div>

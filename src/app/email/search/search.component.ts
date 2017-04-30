@@ -1,45 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { DatePickerOptions, DateModel } from 'ng2-datepicker';
-import { MailService } from '../email.service';
+import {Component} from '@angular/core';
+import {DatePickerOptions, DateModel} from 'ng2-datepicker';
+import {MailService} from '../email.service';
+import {ITdDataTableColumn} from '@covalent/core';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  styleUrls: ['../email.component.css'],
   providers: [MailService]
 })
-export class SearchComponent  {
-  public search = {} as any;
-  SDoptions: DatePickerOptions;
-  EDoptions: DatePickerOptions;
-  rows: Object[];
-  columns: Object[];
+export class SearchComponent {
+  public query = {} as any;
+  emails: any = [];
+  totalNumberOfMails: number;
+  isEmailEmpty = true;
+  columns: ITdDataTableColumn[] = [
+    { name: 'Ticket ID', label: 'Ticket Id'},
+    { name: 'Reason Blocked', label: 'Reason Blocked'},
+    { name: 'SanitizationDate', label: 'Date'},
+    { name: 'Recipient', label: 'Recipient'},
+    { name: 'Sender', label: 'Sender'},
+    { name: 'Subject', label: 'Subject'},
+    { name: 'Attached Files', label: 'Attached File(s)'},
+
+  ];
+  filters = ['Email With Blocked Attachments', 'All Emails', 'Blocked Emails', 'Emails With Reconstructed Attachments'];
 
   public loadingIndicator = false;
+
   constructor(private mailService: MailService) {
-    this.SDoptions = new DatePickerOptions();
-    this.EDoptions = new DatePickerOptions();
+
   }
 
-  onSubmit() {
-    this.mailService.searchMails(this.search).subscribe(
+  searchMails() {
+    this.mailService.searchMails(this.query).subscribe(
       success => {
         console.log(success);
+        this.emails = success.List;
+        this.totalNumberOfMails = success.Total;
+        this.isEmailEmpty = (this.emails.length > 0) ? false : true;
       },
       error => {
         console.log(error);
       }
     );
-    this.rows = [];
-    this.columns = [
-      { prop: 'Ticket Id' },
-      { prop: 'Reason Blocked' },
-      { prop: 'Date' },
-      { prop: 'Recipient' },
-      { prop: 'Sender' },
-      { prop: 'Subject' },
-      { prop: 'Attached File' }
-    ];
   }
 
 }

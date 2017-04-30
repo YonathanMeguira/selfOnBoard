@@ -20,6 +20,7 @@ export class ExceptionComponent implements OnInit {
   settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
   exceptionsList: Array<any>;
   noSettingsExist = true;
+  allSettings: any;
 
   constructor(private securityService: SecurityService) {
     this.loadSettings();
@@ -28,6 +29,24 @@ export class ExceptionComponent implements OnInit {
   ngOnInit() {
   };
 
+  selectDepartment = (departmentName: string) => {
+    this.settings = this.allSettings[departmentName];
+    console.log(this.settings);
+  }
+  deletePolicy = (policy: any) => {
+    console.log('deleting')
+    this.securityService.deletePolicyExceptionSettings(policy).subscribe(
+      result => {
+        console.log(result);
+        const policyName = policy.PolicyName;
+        delete this.allSettings[policyName];
+        this.settings = this.allSettings[Object.keys(this.allSettings)[0]];
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
   cancelCreation = (cancel: boolean) => {
     this.newDepartment = cancel;
     console.log(this.settings);
@@ -47,6 +66,7 @@ export class ExceptionComponent implements OnInit {
         } else {
           this.noSettingsExist = false;
           // accessing the first object of the collection
+          this.allSettings = result;
           this.settings = result[Object.keys(result)[0]];
           this.exceptionsList = result;
           console.log(this.exceptionsList);
@@ -65,7 +85,10 @@ export class ExceptionComponent implements OnInit {
       success => {
         console.log(success);
         console.log('cool');
-        //this.exceptionsList.push(settings);
+        const policyName = settings.PolicyName;
+        this.allSettings[policyName] = settings;
+        this.newDepartment = false;
+        this.settings = this.allSettings[policyName];
       },
       error => console.log(error)
     );

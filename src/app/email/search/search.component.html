@@ -58,7 +58,8 @@
     </div>
   </div>
   <div class="mt-5" *ngIf="!isEmailEmpty">
-    <p class="text-center m-5 bold">{{totalNumberOfMails}} Results</p>
+    <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results</strong></p>
+    <p class="text-center" (click)="clearResults()">Clear Results</p>
     <td-data-table
       [data]="emails"
       [columns]="columns"

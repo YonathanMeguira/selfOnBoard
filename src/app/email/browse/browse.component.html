@@ -1,3 +1,23 @@
-<p>
-  browse works!
-</p>
+<div class="col-12 bg-white-shadow">
+  <div class="container pt-5 mt-5 mb-5 text-center">
+    <button class="btn btn-primary">Blocked Emails</button>
+    <button class="btn btn-primary">Emails Blocked with Attachments</button>
+    <button class="btn btn-primary">Attachments Processed with CDR</button>
+    <button class="btn btn-primary">All Emails</button>
+  </div>
+  <div class="mt-5" *ngIf="!isEmailEmpty">
+    <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
+    <td-data-table
+      [data]="mails"
+      [columns]="columns"
+      [selectable]="false"
+      [multiple]="false"
+      [sortable]="false">
+    </td-data-table>
+
+    <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
+      <span td-paging-bar-label hide-xs>Row per page:</span>
+      {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+    </td-paging-bar>
+  </div>
+</div>

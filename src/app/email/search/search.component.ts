@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {DatePickerOptions, DateModel} from 'ng2-datepicker';
 import {MailService} from '../email.service';
 import {ITdDataTableColumn} from '@covalent/core';
 
@@ -10,8 +9,12 @@ import {ITdDataTableColumn} from '@covalent/core';
   providers: [MailService]
 })
 export class SearchComponent {
-  public query = {} as any;
   emails: any = [];
+  query: any  = {
+    PageSize: 10,
+    PageIndex: 1,
+    sortOrder: 'Asc',
+  };
   totalNumberOfMails: number;
   isEmailEmpty = true;
   columns: ITdDataTableColumn[] = [
@@ -32,6 +35,7 @@ export class SearchComponent {
 
   }
 
+
   searchMails() {
     this.mailService.searchMails(this.query).subscribe(
       success => {
@@ -45,5 +49,8 @@ export class SearchComponent {
       }
     );
   }
-
+clearResults = () => {
+    this.emails = [];
+    this.isEmailEmpty = true;
+}
 }

@@ -18,4 +18,5 @@ export class MailService {
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not verify login'));
   }
+
 }

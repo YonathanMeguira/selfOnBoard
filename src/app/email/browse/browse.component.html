@@ -7,14 +7,27 @@
   </div>
   <div class="mt-5" *ngIf="!isEmailEmpty">
     <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
-    <td-data-table
-      [data]="mails"
-      [columns]="columns"
-      [selectable]="false"
-      [multiple]="false"
-      [sortable]="false">
-    </td-data-table>
+    <div class="d-flex flex-row-reverse m-5">
 
+      <a (click)="performAction('ReleaseEmailToRecipient')">Release Email To Recipient</a>
+      <a (click)="performAction('ForwardToAdmin')">Forward to admin</a>
+    </div>
+    <td-data-table
+      #dataTable
+      [data]="emails"
+      [columns]="columns"
+      [sortable]="true"
+      [selectable]="true"
+      [sortBy]="query.sortField"
+      [sortOrder]="query.sortOrder"
+      (sortChange)="sort($event)"
+      (rowSelect)="selectMail($event)"
+      (selectAll)="selectAllMails($event)"
+    >
+    </td-data-table>
+    <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+      <h3>No results to display.</h3>
+    </div>
     <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
       <span td-paging-bar-label hide-xs>Row per page:</span>
       {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>

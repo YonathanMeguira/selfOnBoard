@@ -9,7 +9,7 @@
         <small>Anti-malware & anti-virus solutions detecting "known threats".</small>
       </div>
       <md-slide-toggle flex="30" [(ngModel)]="generalSettings.UseAntiviruses" aria-label="antivrus"
-                       color="primary"></md-slide-toggle>
+                       color="accent"></md-slide-toggle>
 
     </div>
     <div layout="row" class="inner-section">
@@ -20,7 +20,7 @@
       <div layout="row" flex>
         <div layout="column">
           <md-slide-toggle  [(ngModel)]="generalSettings.HandleLinks" aria-label="antivrus"
-                            color="primary"></md-slide-toggle>
+                            color="accent"></md-slide-toggle>
 
           <md-radio-group *ngIf=" generalSettings.HandleLinks" [(ngModel)]="generalSettings.SelectedSafeLinksOperation"
                           class="operation-actions" layout="column">

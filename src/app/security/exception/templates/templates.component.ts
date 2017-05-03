@@ -27,6 +27,7 @@ class BaseComponent {
 export class ExistingExceptionsComponent implements OnInit {
   @Input() exceptionsList: any;
   @Input() currentSettings: any;
+  @Input() noSettingsExist: boolean;
   @Output() onSelect = new EventEmitter<any>();
   selectedPolicyName: string;
   validators: any;

@@ -16,7 +16,7 @@ export class AccountGeneralComponent implements OnInit {
   ngOnInit() {
     this.accountService.GetAccountGeneralSettings().subscribe(
       result => {
-        this.AccountGeneralSettings = result.data;
+        this.AccountGeneralSettings = result;
       }
     );
   }

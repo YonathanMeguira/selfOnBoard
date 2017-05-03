@@ -35,6 +35,8 @@ import {CovalentDataTableModule} from '@covalent/core';
 import {CovalentCoreModule} from '@covalent/core';
 import { TagInputModule } from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MdDataTableModule } from 'ng2-md-datatable';
+
 
  // custom pipes
 
@@ -75,8 +77,9 @@ import { DictionaryIteratorPipe } from './shared/pipes';
     DatePickerModule,
     NgxDatatableModule,
     CovalentCoreModule,
+    NgbModule.forRoot(),
     TagInputModule,
-    NgbModule.forRoot()
+    MdDataTableModule
 
   ],
   providers: [],

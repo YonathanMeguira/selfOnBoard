@@ -4,7 +4,7 @@
   </div>
   <div flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="row" layout-margin>
 
-    <existing-exceptions flex="30" [exceptionsList]="exceptionsList" [currentSettings]="settings"
+    <existing-exceptions flex="30" [noSettingsExist] = "noSettingsExist" [exceptionsList]="exceptionsList" [currentSettings]="settings"
                          (onSelect)="selectDepartment($event)"></existing-exceptions>
     <div flex>
       <div *ngIf="!noSettingsExist && !newDepartment">

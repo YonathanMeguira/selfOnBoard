@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MailService} from '../email.service';
+
+
 import {
   ITdDataTableColumn,
   ITdDataTableSortChangeEvent,
@@ -7,6 +9,7 @@ import {
   ITdDataTableSelectEvent,
   ITdDataTableSelectAllEvent
 } from '@covalent/core';
+import {EmailComponent} from '../email.component';
 
 @Component({
   selector: 'app-browse',
@@ -14,20 +17,19 @@ import {
   styleUrls: ['./browse.component.css'],
   providers: [MailService]
 })
-export class BrowseComponent implements OnInit {
+export class BrowseComponent  extends EmailComponent implements OnInit {
   emails: Array<any> = [];
   isEmailEmpty = true;
   totalNumberOfMails: number;
   selectedMails: number[] = [];
   columns: ITdDataTableColumn[] = [
-    {name: 'Ticket ID', label: 'Ticket Id', numeric: true, format: v => v.toFixed(2)},
+    {name: 'Ticket ID', label: 'Ticket Id', numeric: true},
     {name: 'Reason Blocked', label: 'Reason Blocked'},
-    {name: 'SanitizationDate', label: 'Date'},
+    {name: 'SanitizationDate', label: 'Date', format: rawDate => this.convertToDate(rawDate)},
     {name: 'Recipient', label: 'Recipient'},
     {name: 'Sender', label: 'Sender'},
     {name: 'Subject', label: 'Subject'},
     {name: 'Attached Files', label: 'Attached File(s)'},
-
   ];
   query: any = {
     sortField: 'SanitizationDate',
@@ -36,13 +38,12 @@ export class BrowseComponent implements OnInit {
     sortOrder: 'Asc',
     Stage: 'All'
   };
-
   constructor(private _mailService: MailService) {
-  }
-
+    super();
+  };
   ngOnInit() {
     this.BrowseMails();
-  }
+  };
 
   BrowseMails = () => {
     this._mailService.searchMails(this.query).subscribe(
@@ -55,22 +56,20 @@ export class BrowseComponent implements OnInit {
         console.log(error);
       }
     );
-
-  }
-
+  };
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
     console.log(sortEvent);
     this.query.sortField = sortEvent.name;
     this.query.sortOrder = sortEvent.order;
     this.BrowseMails();
-  }
+  };
 
   page(pagingEvent: IPageChangeEvent): void {
     console.log(pagingEvent);
     this.query.PageSize = pagingEvent.pageSize;
     this.query.PageIndex = pagingEvent.page;
     this.BrowseMails();
-  }
+  };
 
   selectMail(selectEvent: ITdDataTableSelectEvent) {
     console.log(selectEvent);
@@ -83,7 +82,6 @@ export class BrowseComponent implements OnInit {
       console.log(this.selectedMails);
     }
   }
-
   selectAllMails(selection: ITdDataTableSelectAllEvent) {
     console.log(selection);
     if (!selection.selected) {
@@ -107,4 +105,19 @@ export class BrowseComponent implements OnInit {
       }
     )
   }
+
+  actionsAvailable = (selectionLength: number) => {
+    if (selectionLength > 0){
+      return true;
+    }else {
+      return false;
+    }
+  };
+
+  filterBy = (filter: string) => {
+    this.query.Stage = filter;
+    console.log(this.query);
+    this.BrowseMails();
+  }
+
 }

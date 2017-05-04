@@ -35,12 +35,12 @@ import {CovalentDataTableModule} from '@covalent/core';
 import {CovalentCoreModule} from '@covalent/core';
 import { TagInputModule } from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MdDataTableModule } from 'ng2-md-datatable';
-
 
  // custom pipes
 
 import { DictionaryIteratorPipe } from './shared/pipes';
+import { NotificationsComponent } from './account/notifications/notifications.component';
+import { BillingComponent } from './account/billing/billing.component';
 
 
 @NgModule({
@@ -63,7 +63,9 @@ import { DictionaryIteratorPipe } from './shared/pipes';
     ExceptionSettingsComponent,
     ExistingExceptionsComponent,
     NewExceptionComponent,
-    DictionaryIteratorPipe
+    DictionaryIteratorPipe,
+    NotificationsComponent,
+    BillingComponent
   ],
   imports: [
     BrowserModule,
@@ -72,15 +74,13 @@ import { DictionaryIteratorPipe } from './shared/pipes';
     AppRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
     CovalentDataTableModule,
+    BrowserAnimationsModule,
+    CovalentCoreModule,
     DatePickerModule,
     NgxDatatableModule,
-    CovalentCoreModule,
     NgbModule.forRoot(),
-    TagInputModule,
-    MdDataTableModule
-
+    TagInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

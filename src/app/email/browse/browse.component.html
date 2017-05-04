@@ -1,16 +1,29 @@
 <div class="col-12 bg-white-shadow">
   <div class="container pt-5 mt-5 mb-5 text-center">
-    <button class="btn btn-primary">Blocked Emails</button>
-    <button class="btn btn-primary">Emails Blocked with Attachments</button>
-    <button class="btn btn-primary">Attachments Processed with CDR</button>
-    <button class="btn btn-primary">All Emails</button>
+    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'Failed'}"
+            (click)="filterBy('Failed')">Blocked Emails
+    </button>
+    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'ContentRemoved'}"
+            (click)="filterBy('ContentRemoved')">Emails Blocked with Attachments
+    </button>
+    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'Modified'}"
+            (click)="filterBy('Modified')">Attachments Processed with CDR
+    </button>
+    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'All'}" (click)="filterBy('All')">
+      All Emails
+    </button>
   </div>
-  <div class="mt-5" *ngIf="!isEmailEmpty">
+  <div class="mt-5 text-center" *ngIf="!isEmailEmpty">
     <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
-    <div class="d-flex flex-row-reverse m-5">
+    <div class="d-flex flex-row-reverse">
 
-      <a (click)="performAction('ReleaseEmailToRecipient')">Release Email To Recipient</a>
-      <a (click)="performAction('ForwardToAdmin')">Forward to admin</a>
+      <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
+              (click)="performAction('ReleaseEmailToRecipient')">Release Email To Recipient
+      </button>
+      <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
+              (click)="performAction('ForwardToAdmin')">
+        Forward to admin
+      </button>
     </div>
     <td-data-table
       #dataTable

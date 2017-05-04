@@ -7,21 +7,18 @@ import {AccountService} from '../account.service';
   providers: [AccountService]
 })
 export class AccountGeneralComponent implements OnInit {
-
-  AccountGeneralSettings: any = {"Admin": {}, "Company": {}}
-
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit() {
     this.accountService.GetAccountGeneralSettings().subscribe(
       result => {
-        this.AccountGeneralSettings = result;
+        console.log(result);
       }
     );
   }
 
-  SaveSettings = () => {
+  /*SaveSettings = () => {
     this.accountService.PostAccountGeneralSettings(this.AccountGeneralSettings)
       .subscribe(response => {
         console.log("all good");
@@ -29,6 +26,6 @@ export class AccountGeneralComponent implements OnInit {
         console.log('could ot save settings');
         console.log(error);
       });
-  }
+  }*/
 
 }

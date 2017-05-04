@@ -1,0 +1,121 @@
+<div class="col-12 ">
+  <div id="endUser" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">END USER NOTIFICATIONS</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="textBold">Blocked Emails</p>
+          <small>We'll send an email in lieu of the email that was meant to be sent, when the email is blocked.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p class="textBold">Blocked Attachments</p>
+          <small>We'll send an email notifying the users that an attachment has been blocked with a reason.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="admin" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">ADMINISTRATOR NOTIFICATIONS</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="textBold">Blocked Emails</p>
+          <small>We'll send an email in lieu of the email that was meant to be sent, when the email is blocked.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="textBold">Blocked Attachments</p>
+          <small>We'll send an email notifying the users that an attachment has been blocked with a reason.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p class="textBold">Weekly Status Reports</p>
+          <small>Once a week, we'll send you a summary of the activity taking place.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="accountOwner" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">ACCOUNT OWNER NOTIFICATIONS</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="textBold">Monthly Invoices</p>
+          <small>Once a month, we will send you an invoice.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p class="textBold">Weekly Status Report</p>
+          <small>Once a week, we'll send you a summary of the activity taking place.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+    </div>
+  </div>
+
+  <div id="emailStamp" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">SECURITY EMAIL STAMP</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <small>To make change to this section, please update your plan here.</small>
+      <div class="row mb-3">
+        <div class="col-6">
+          <p class="textBold">Display Stamp</p>
+          <small>The stamp will appear at the bottom of each email.</small>
+        </div>
+        <md-slide-toggle></md-slide-toggle>
+      </div>
+      <div class="row">
+        <label for="stamp-content" class="col-3 col-form-label textBold">Stamp Content</label>
+        <div class="col-9">
+          <input class="form-control" type="text" id="stamp-content"
+                 placeholder="This email has been secured by ReSec.">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="m-5 d-flex justify-content-center">
+    <button class="w-25 btn btn-action">APPLY</button>
+  </div>
+</div>
+
+
+<style>
+  .section-title {
+    border-bottom: solid 1px #F7F8F8;
+  }
+
+  .textBold {
+    font-weight: 700 !important;
+  }
+
+  p, small, label {
+    color: #666670 !important
+  }
+
+  small {
+    font-weight: 500;
+  }
+</style>

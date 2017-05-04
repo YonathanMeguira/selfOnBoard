@@ -57,43 +57,39 @@
       <button type="button" class="btn btn-success" (click)="searchMails()">Search</button>
     </div>
   </div>
-  <div class="mt-5" *ngIf="!isEmailEmpty">
-    <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results</strong></p>
-    <p class="text-center" (click)="clearResults()">Clear Results</p>
-    <ng2-md-datatable class="table table-responsive">
-      <ng2-md-datatable-header>
-        <ng2-md-datatable-column ><md-checkbox></md-checkbox></ng2-md-datatable-column>
+  <div class="mt-5 text-center" *ngIf="!isEmailEmpty">
+    <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
+    <button md-button (click)="clearResults()">Clear</button>
 
-        <ng2-md-datatable-column sortValue="Ticket ID">Ticket ID</ng2-md-datatable-column>
-        <ng2-md-datatable-column sortValue="Reason Blocked">Reason Blocked</ng2-md-datatable-column>
-        <ng2-md-datatable-column sortValue="SanitizationDate">Date</ng2-md-datatable-column>
-        <ng2-md-datatable-column sortValue="Recipient">Recipient</ng2-md-datatable-column>
-        <ng2-md-datatable-column sortValue="Sender">Sender</ng2-md-datatable-column>
-        <ng2-md-datatable-column sortValue="Subject">Subject</ng2-md-datatable-column>
-        <ng2-md-datatable-column sortValue="Attached Files">Attached File(s)</ng2-md-datatable-column>
-      </ng2-md-datatable-header>
-      <tbody>
-      <ng2-md-datatable-row *ngFor="let email of emails" [selectableValue]="email['Ticket ID']">
-        <td><md-checkbox></md-checkbox></td>
-        <td>{{email['Ticket ID']}}</td>
-        <td>{{email['Reason Blocked']}}</td>
-        <td>{{email['SanitizationDate']}}</td>
-        <td>{{email['Recipient']}}</td>
-        <td>{{email['Sender']}}</td>
-        <td>{{email['Subject']}}</td>
-        <td>{{email['Attached Files']}}</td>
-      </ng2-md-datatable-row>
-      </tbody>
-    </ng2-md-datatable>
+    <div class="d-flex flex-row-reverse">
 
-    <ng2-md-datatable-pagination
-      [currentPage]="1"
-      [itemsPerPage]="5"
-      [itemsCount]="700"
-      [itemsPerPageChoices]="[5,10,20,50]"
-      [itemsPerPageFirstChoice]="10">
-    </ng2-md-datatable-pagination>
-
+      <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
+              (click)="performAction('ReleaseEmailToRecipient')">Release Email To Recipient
+      </button>
+      <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
+              (click)="performAction('ForwardToAdmin')">
+        Forward to admin
+      </button>
+    </div>
+    <td-data-table
+      #dataTable
+      [data]="emails"
+      [columns]="columns"
+      [sortable]="true"
+      [selectable]="true"
+      [sortBy]="query.sortField"
+      [sortOrder]="query.sortOrder"
+      (sortChange)="sort($event)"
+      (rowSelect)="selectMail($event)"
+      (selectAll)="selectAllMails($event)">
+    </td-data-table>
+    <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+      <h3>No results to display.</h3>
+    </div>
+    <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
+      <span td-paging-bar-label hide-xs>Row per page:</span>
+      {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+    </td-paging-bar>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-email',
@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmailComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() {};
+  ngOnInit() {
+  };
+
+  convertToDate = (rawDate: string) => {
+    const date = new Date(rawDate);
+    return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+  }
 
 }

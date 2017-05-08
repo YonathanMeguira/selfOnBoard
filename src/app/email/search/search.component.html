@@ -1,67 +1,11 @@
 <div class="white frame col-10  mt-5 p-3">
-  <div class="col-8 container">
-    <div class="form-group row">
-      <label for="ticketId" class="col-2 col-form-label">Ticket ID</label>
-      <div class="col-10">
-        <input class="form-control" type="number" [(ngModel)]="query.TicketId" id="ticketId">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="recipient" class="col-2 col-form-label">Recipient</label>
-      <div class="col-10">
-        <input class="form-control" type="email" [(ngModel)]="query.Recipient" id="recipient">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="sender" class="col-2 col-form-label">Sender</label>
-      <div class="col-10">
-        <input class="form-control" type="email" [(ngModel)]="query.Sender" id="sender">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="keywords" class="col-2 col-form-label">Keywords</label>
-      <div class="col-10">
-        <input class="form-control" type="text" [(ngModel)]="query.KeyWords" id="keywords">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-2 col-form-label">Time</label>
-
-      <div class="input-group col-5">
-        <input class="form-control" placeholder="Start Time"
-               name="dp" [(ngModel)]="query.StartTime" ngbDatepicker #start="ngbDatepicker">
-        <div class="input-group-addon" (click)="start.toggle()">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="input-group col-5">
-        <input class="form-control" placeholder="Start Time"
-               name="dp" [(ngModel)]="query.EndTime" ngbDatepicker #end="ngbDatepicker">
-        <div class="input-group-addon" (click)="end.toggle()">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="form-group row">
-      <label for="filter" class="col-2 col-form-label">Status</label>
-      <div class="col-10">
-        <select class="form-control" id="filter">
-          <option *ngFor="let filter of filters" [value]="filter">{{filter}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="text-center col mt-5">
-      <button type="button" class="btn btn-success" (click)="searchMails()">Search</button>
-    </div>
+  <div class="row justify-content-center">
+    <h3>Search Emails by Ticket ID</h3>
   </div>
-  <div class="mt-5 text-center" *ngIf="!isEmailEmpty">
-    <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
-    <button md-button (click)="clearResults()">Clear</button>
+  <div class="mt-5 text-center">
+    <p class="text-center m-5" *ngIf="!isEmailEmpty"><strong>{{totalNumberOfMails}} Results </strong></p>
 
-    <div class="d-flex flex-row-reverse">
+    <div class="d-flex flex-row-reverse" *ngIf="!isEmailEmpty">
 
       <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
               (click)="performAction('ReleaseEmailToRecipient')">Release Email To Recipient
@@ -71,47 +15,39 @@
         Forward to admin
       </button>
     </div>
-    <td-data-table
-      #dataTable
-      [data]="emails"
-      [columns]="columns"
-      [sortable]="true"
-      [selectable]="true"
-      [sortBy]="query.sortField"
-      [sortOrder]="query.sortOrder"
-      (sortChange)="sort($event)"
-      (rowSelect)="selectMail($event)"
-      (selectAll)="selectAllMails($event)">
-    </td-data-table>
-    <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
-      <h3>No results to display.</h3>
+    <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here by Ticket ID"
+                   (searchDebounce)="search($event)" flex>
+    </td-search-box>
+    <md-divider></md-divider>
+    <div *ngIf="!isEmailEmpty">
+      <td-data-table
+        #dataTable
+        [data]="emails"
+        [columns]="columns"
+        [sortable]="true"
+        [selectable]="true"
+        [sortBy]="query.sortField"
+        [sortOrder]="query.sortOrder"
+        (sortChange)="sort($event)"
+        (rowSelect)="selectMail($event)"
+        (selectAll)="selectAllMails($event)">
+      </td-data-table>
+      <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
+        <h3>No results to display.</h3>
+      </div>
+      <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
+        <span td-paging-bar-label hide-xs>Row per page:</span>
+        {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+      </td-paging-bar>
     </div>
-    <td-paging-bar #pagingBar [pageSizes]="[5, 10, 15, 20]" [total]="totalNumberOfMails" (change)="page($event)">
-      <span td-paging-bar-label hide-xs>Row per page:</span>
-      {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
-    </td-paging-bar>
+
+    <div *ngIf="pullingData" class="row justify-content-center m-5">
+      <md-spinner></md-spinner>
+    </div>
+    <div *ngIf="noResultFound" class="row justify-content-center m-5">
+      <div class="alert alert-warning" role="alert">
+        <strong>No email matching this ticket ID were found</strong>
+      </div>
+    </div>
   </div>
 </div>
-
-  <style>
-
-    .btn-success {
-      font-family: Raleway-SemiBold;
-      font-size: 13px;
-      color: rgba(103, 192, 103, 0.75);
-      letter-spacing: 1px;
-      line-height: 15px;
-      border: 2px solid rgba(103, 192, 103, 0.75);
-      border-radius: 40px;
-      background: transparent;
-      transition: all 0.3s ease 0s;
-    }
-
-    .btn-success:hover {
-      color: #FFF;
-      background: rgba(103, 192, 103, 0.75);
-      border: 2px solid rgba(103, 192, 103, 0.75);
-    }
-
-    /* Boo
-</style>

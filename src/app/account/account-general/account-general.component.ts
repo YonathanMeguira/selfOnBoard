@@ -40,6 +40,7 @@ export class AccountGeneralComponent implements OnInit {
 
   private dialogRef: MdDialogRef<any>;
   testEmailSent = false;
+  isAdmin = true;
 // scroll down to see class SettingsForm
   settings: SettingsForm = new SettingsForm;
   admin: SettingsForm = new SettingsForm;

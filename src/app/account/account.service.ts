@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpService} from '../shared/token.injector';
 import {Observable} from 'rxjs/Rx';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class AccountService {
 
   public server = localStorage.getItem('serverName');
 
-  constructor(private http: Http) {
+  constructor(private http: HttpService) {
   }
 
   GetAccountBillingSettings(): Observable<any> {

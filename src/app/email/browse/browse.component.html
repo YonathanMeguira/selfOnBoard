@@ -6,12 +6,7 @@
     <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'ContentRemoved'}"
             (click)="filterBy('ContentRemoved')">Emails Blocked with Attachments
     </button>
-    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'Modified'}"
-            (click)="filterBy('Modified')">Attachments Processed with CDR
-    </button>
-    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'All'}" (click)="filterBy('All')">
-      All Emails
-    </button>
+
   </div>
   <div class="mt-5 text-center" *ngIf="!isEmailEmpty">
     <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>

@@ -17,14 +17,12 @@ import {EmailComponent} from '../email.component';
   styleUrls: ['./browse.component.css'],
   providers: [MailService]
 })
-export class BrowseComponent  extends EmailComponent implements OnInit {
+export class BrowseComponent extends EmailComponent implements OnInit {
   emails: Array<any> = [];
   isEmailEmpty = true;
   totalNumberOfMails: number;
   selectedMails: number[] = [];
-  columns: ITdDataTableColumn[] = [
-    {name: 'Ticket ID', label: 'Ticket Id', numeric: true},
-    {name: 'Reason Blocked', label: 'Reason Blocked'},
+  columns: ITdDataTableColumn[] = [{name: 'Reason Blocked', label: 'Reason Blocked'},
     {name: 'SanitizationDate', label: 'Date', format: rawDate => this.convertToDate(rawDate)},
     {name: 'Recipient', label: 'Recipient'},
     {name: 'Sender', label: 'Sender'},
@@ -38,9 +36,11 @@ export class BrowseComponent  extends EmailComponent implements OnInit {
     sortOrder: 'Asc',
     Stage: 'All'
   };
+
   constructor(private _mailService: MailService) {
     super();
   };
+
   ngOnInit() {
     this.BrowseMails();
   };
@@ -57,6 +57,7 @@ export class BrowseComponent  extends EmailComponent implements OnInit {
       }
     );
   };
+
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
     console.log(sortEvent);
     this.query.sortField = sortEvent.name;
@@ -82,6 +83,7 @@ export class BrowseComponent  extends EmailComponent implements OnInit {
       console.log(this.selectedMails);
     }
   }
+
   selectAllMails(selection: ITdDataTableSelectAllEvent) {
     console.log(selection);
     if (!selection.selected) {
@@ -107,9 +109,9 @@ export class BrowseComponent  extends EmailComponent implements OnInit {
   }
 
   actionsAvailable = (selectionLength: number) => {
-    if (selectionLength > 0){
+    if (selectionLength > 0) {
       return true;
-    }else {
+    } else {
       return false;
     }
   };

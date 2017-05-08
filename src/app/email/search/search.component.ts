@@ -16,19 +16,15 @@ import {EmailComponent} from '../email.component';
   styleUrls: ['../email.component.css'],
   providers: [MailService]
 })
-export class SearchComponent extends EmailComponent{
+export class SearchComponent extends EmailComponent {
 
   emails: Array<any> = [];
-  query: any = {
-    sortField: 'SanitizationDate',
-    PageSize: 10,
-    PageIndex: 1,
-    sortOrder: 'Asc',
-  };
+  query: any = {};
   totalNumberOfMails: number;
   selectedMails: number[] = [];
   isEmailEmpty = true;
-  filters = ['Email With Blocked Attachments', 'All Emails', 'Blocked Emails', 'Emails With Reconstructed Attachments'];
+  pullingData = false;
+  noResultFound = false;
   columns: ITdDataTableColumn[] = [
     {name: 'Ticket ID', label: 'Ticket Id', numeric: true},
     {name: 'Reason Blocked', label: 'Reason Blocked'},
@@ -38,40 +34,51 @@ export class SearchComponent extends EmailComponent{
     {name: 'Subject', label: 'Subject'},
     {name: 'Attached Files', label: 'Attached File(s)'},
   ];
+
   constructor(private mailService: MailService) {
     super();
   };
 
-
   searchMails() {
+    this.pullingData = true;
     this.mailService.searchMails(this.query).subscribe(
       success => {
         console.log(success);
         this.emails = success.List;
         this.totalNumberOfMails = success.Total;
         this.isEmailEmpty = (this.emails.length > 0) ? false : true;
+        this.noResultFound = (this.emails.length > 0) ? false : true;
+        this.pullingData = false;
       },
       error => {
         console.log(error);
       }
     );
   }
-  clearResults = () => {
-    this.emails = [];
-    this.isEmailEmpty = true;
+
+  search(searchTerm: number): void {
+    if (searchTerm) {
+      this.query.TicketId = searchTerm;
+      this.searchMails();
+    } else {
+      this.noResultFound = false;
+    }
   }
+
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
     console.log(sortEvent);
     this.query.sortField = sortEvent.name;
     this.query.sortOrder = sortEvent.order;
     this.searchMails();
   };
+
   page(pagingEvent: IPageChangeEvent): void {
     console.log(pagingEvent);
     this.query.PageSize = pagingEvent.pageSize;
     this.query.PageIndex = pagingEvent.page;
     this.searchMails();
   };
+
   selectMail(selectEvent: ITdDataTableSelectEvent) {
     console.log(selectEvent);
     if (selectEvent.selected) {
@@ -83,6 +90,7 @@ export class SearchComponent extends EmailComponent{
       console.log(this.selectedMails);
     }
   };
+
   selectAllMails(selection: ITdDataTableSelectAllEvent) {
     console.log(selection);
     if (!selection.selected) {
@@ -96,6 +104,7 @@ export class SearchComponent extends EmailComponent{
       }
     }
   };
+
   performAction = (action: string) => {
     this.mailService.performAction(this.selectedMails, action).subscribe(
       success => {
@@ -106,9 +115,9 @@ export class SearchComponent extends EmailComponent{
     );
   }
   actionsAvailable = (selectionLength: number) => {
-    if (selectionLength > 0){
+    if (selectionLength > 0) {
       return true;
-    }else {
+    } else {
       return false;
     }
   };

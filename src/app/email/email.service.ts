@@ -3,7 +3,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpService} from '../shared/token.injector';
 import {Observable} from 'rxjs/Rx';
 
 
@@ -11,8 +11,9 @@ import {Observable} from 'rxjs/Rx';
 export class MailService {
 
   server = localStorage.getItem('serverName');
+  token = localStorage.getItem('token');
 
-  constructor(private http: Http) {
+  constructor(private http: HttpService) {
   }
 
   searchMails(query): Observable<any> {

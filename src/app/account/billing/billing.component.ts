@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-billing',
@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./billing.component.css']
 })
 export class BillingComponent implements OnInit {
-  constructor() { }
-  ngOnInit() {};
-
+  constructor() {
+  }
+  ngOnInit() {
+  };
+  users = [139, 140, 141, 142, 143, 144, 145];
+  billing: any  = {};
 }

@@ -19,7 +19,7 @@ import {
   GeneralSettingsWithoutCDRComponent
 
 } from './security/general/templates/templates.components';
-import {AccountGeneralComponent} from './account/account-general/account-general.component';
+import {AccountGeneralComponent, ChangePasswordModalComponent} from './account/account-general/account-general.component';
 import { ExceptionSettingsComponent, ExistingExceptionsComponent,
   NewExceptionComponent } from './security/exception/templates/templates.component';
 // routing
@@ -55,6 +55,7 @@ import { BillingComponent } from './account/billing/billing.component';
     ExceptionComponent,
     GeneralComponent,
     AccountComponent,
+    ChangePasswordModalComponent,
     UserComponent,
     GeneralSettingsComponent,
     GeneralSettingsWithCDRComponent,
@@ -83,6 +84,7 @@ import { BillingComponent } from './account/billing/billing.component';
     TagInputModule
   ],
   providers: [],
+  entryComponents: [ChangePasswordModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

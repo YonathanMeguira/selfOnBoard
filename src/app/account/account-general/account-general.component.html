@@ -1,1 +1,68 @@
-qsdsdG
+<div class="col-12 ">
+  <div id="company" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">COMPANY</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <div class="row mb-3">
+        <p class="textBold-gray col-3">Company Name</p>
+        <p class="textBold col-3">Avocado Partner</p>
+      </div>
+      <div class="row">
+        <p class="textBold-gray col-3">Blocked Attachments</p>
+        <p class="textBold col-3">We'll send an email notifying the users that an attachment has been blocked with a
+          reason.</p>
+        <button class="btn btn-action-inverse h-50" type="button" (click)="sendTestEmail()">Send test email</button>
+        <small *ngIf="testEmailSent">Test email sent, please wait 1-2 min for confirmation.</small>
+      </div>
+    </div>
+  </div>
+
+  <div id="accountOwner" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">ACCOUNT OWNER</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <div class="row mb-3">
+        <p class="textBold-gray col-3">Name</p>
+        <input class="col-3 form-control" [(ngModel)]="settings.name" type="text">
+      </div>
+      <div class="row  mb-3">
+        <p class="textBold-gray col-3">Email</p>
+        <input class="col-3 form-control" type="email" [(ngModel)]="settings.email">
+      </div>
+      <div class="row  mb-3">
+        <p class="textBold-gray col-3">Phone</p>
+        <input class="col-3 form-control" type="number" [(ngModel)]="settings.phone">
+      </div>
+      <div class="row  mb-3">
+        <p class="textBold-gray col-3">Password</p>
+        <input class="col-3 form-control" type="password" [(ngModel)]="settings.password">
+        <button type="button" class="btn btn-link" (click)="openChangePassword()">change</button>
+      </div>
+      <input type="checkbox" [(ngModel)]="isAdmin">
+    </div>
+  </div>
+
+
+  <div *ngIf="!isAdmin" id="isNotAdmin" class="white frame col mb-2">
+    <div class="section-title">
+      <h5 class="pt-3 pb-3 textBold">ADMINISTRATOR</h5>
+    </div>
+    <div class="pt-3 pb-3">
+      <div class="row mb-3">
+        <p class="textBold-gray col-3">Name</p>
+        <input class="col-3 form-control" [(ngModel)]="admin.name" type="text">
+      </div>
+      <div class="row  mb-3">
+        <p class="textBold-gray col-3">Email</p>
+        <input class="col-3 form-control" type="email" [(ngModel)]="admin.email">
+      </div>
+      <div class="row  mb-3">
+        <p class="textBold-gray col-3">Phone</p>
+        <input class="col-3 form-control" type="number" [(ngModel)]="admin.phone">
+      </div>
+    </div>
+  </div>
+
+</div>

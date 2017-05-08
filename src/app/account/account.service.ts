@@ -39,7 +39,7 @@ export class AccountService {
   }
 
   GetAccountGeneralSettings(): Observable<any> {
-    const urlGetAccountGeneralSettings = "http://" + this.server + ":4580/sob/api/GetAccountGeneralSettings";
+    const urlGetAccountGeneralSettings = 'http://' + this.server + ':4580/sob/api/GetAccountGeneralSettings';
     return this.http.get(urlGetAccountGeneralSettings)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account general settings'));

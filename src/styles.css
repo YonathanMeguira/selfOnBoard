@@ -229,3 +229,48 @@ input:-webkit-autofill {
   border: 2px solid #4D766E;
   background: transparent;
 }
+.btn-action-inverse{
+  font-family: Raleway-SemiBold;
+  font-size: 13px;
+  color: #4D766E;
+
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid #4D766E;
+  border-radius: 40px;
+  background: transparent;
+
+  transition: all 0.3s ease 0s;
+}
+.btn-action-inverse:hover{
+  color: white;
+  border: 2px solid #4D766E;
+  background-color: #4D766E;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+

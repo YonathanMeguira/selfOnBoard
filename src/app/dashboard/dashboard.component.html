@@ -1,1 +1,10 @@
-<p> Dashboard in construction</p>
+<div class="container">
+  <div class="row justify-content-end mb-5 mt-5">
+    <button class="btn btn-action">Last 7 Days</button>
+    <button class="btn btn-action">Last 30 Days</button>
+    <button class="btn btn-action">Last 90 Days</button>
+  </div>
+  <div *ngIf="dataHasLoaded">
+      <app-dashboard-top-totals [totals]="totals"></app-dashboard-top-totals>
+  </div>
+</div>

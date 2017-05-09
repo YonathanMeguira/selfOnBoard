@@ -29,15 +29,24 @@ export class LoginComponent implements OnInit {
 
   CheckLogin() {
     this.checkingUser = true;
+    this.wrongId = false;
     this.userService.login(this.user.server, this.user.username, this.user.password)
       .subscribe(
         success => {
           console.log(success);
-          const token = 'Bearer ' + success.AccessToken;
-          localStorage.setItem('token', token);
-          localStorage.setItem('serverName', this.user.server);
-          this.checkingUser = false;
-          this.router.navigate(['/user/dashboard']);
+          if (success.UserRole === 'SelfOnBoard') {
+            const token = 'Bearer ' + success.AccessToken;
+            const isFirstTime = success.UserAdditionalData.IsFirstTime;
+            localStorage.setItem('isFirstTime', isFirstTime);
+            localStorage.setItem('token', token);
+            localStorage.setItem('serverName', this.user.server);
+            this.checkingUser = false;
+            this.router.navigate(['/user/dashboard']);
+          }else{
+            this.wrongId = true;
+            this.submitted = false;
+            this.checkingUser = false;
+          }
         },
         error => {
           console.log(error);

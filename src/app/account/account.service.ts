@@ -51,4 +51,12 @@ export class AccountService {
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not post account general settings'));
   }
+
+  ChangePassword(passwords): Observable<any> {
+    const changePasswordUrl = 'http://' + this.server + ':4580/sob/api/users/changepassword';
+    return this.http.post(changePasswordUrl, passwords)
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not post account general settings'));
+  }
+
 }

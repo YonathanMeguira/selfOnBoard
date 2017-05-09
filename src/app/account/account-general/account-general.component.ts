@@ -4,19 +4,34 @@ import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
 @Component({
   selector: 'change-password-modal-component',
   templateUrl: './changePassword.html',
-  styleUrls: ['./account-general.component.css']
+  styleUrls: ['./account-general.component.css'],
+  providers: [AccountService]
 })
 
 export class ChangePasswordModalComponent {
   resetPassword = false;
   forgotPassword = true;
 
-  constructor(public dialogRef: MdDialogRef<ChangePasswordModalComponent>) {
+  passwordsToSend: any = {};
+
+  constructor(public dialogRef: MdDialogRef<ChangePasswordModalComponent>, private accountService: AccountService) {
   }
 
   switchToForgotPassword = () => {
     this.resetPassword = true;
     this.forgotPassword = false;
+  }
+
+  changePassword = () => {
+    this.accountService.ChangePassword(this.passwordsToSend).subscribe(
+      result => {
+        console.log(result);
+        const newToken = 'Bearer ' + result.AccessToken;
+        localStorage.setItem('token', newToken);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 }
 

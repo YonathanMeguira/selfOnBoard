@@ -17,17 +17,18 @@
   </md-sidenav>
   <div layout-fill style="background-color: #F7F8F8">
 
-    <nav class="navbar sticky-top navbar-inverse bg-white-shadow">
+    <nav class="navbar sticky-top bg-white-shadow">
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
-          <button id="sidenav-toggler" md-mini-fab (click)="sidenav.toggle()">
-            <md-icon>menu</md-icon>
+
+          <button md-mini-fab (click)="sidenav.toggle()">
+            <i class="fa fa-bars" title="Align Center"></i>
           </button>
         </div>
         <div class="nav navbar-nav ml-auto  justify-content-center">
 
-          <button id="sidenav-toggler" md-button md-mini-fab (click)="logout()">
-            <md-icon>exit_to_app</md-icon>
+          <button id="sidenav-toggler"  md-mini-fab (click)="logout()">
+            <i class="fa fa-sign-out" style="color: #0C0E47" title="Align Center"></i>
           </button>
         </div>
       </div>

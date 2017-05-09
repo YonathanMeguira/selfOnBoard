@@ -1,13 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MailService} from '../email.service';
-
-import {
-  ITdDataTableColumn,
-  ITdDataTableSortChangeEvent,
-  IPageChangeEvent,
-  ITdDataTableSelectEvent,
-  ITdDataTableSelectAllEvent
-} from '@covalent/core';
 import {EmailComponent} from '../email.component';
 
 @Component({
@@ -16,35 +8,40 @@ import {EmailComponent} from '../email.component';
   styleUrls: ['../email.component.css'],
   providers: [MailService]
 })
-export class SearchComponent extends EmailComponent {
+export class SearchComponent extends EmailComponent implements OnInit{
 
-  emails: Array<any> = [];
+  emails: any = {};
   query: any = {};
+  isFirstTime;
   totalNumberOfMails: number;
-  selectedMails: number[] = [];
   isEmailEmpty = true;
   pullingData = false;
   noResultFound = false;
-  columns: ITdDataTableColumn[] = [
-    {name: 'Ticket ID', label: 'Ticket Id', numeric: true},
-    {name: 'Reason Blocked', label: 'Reason Blocked'},
-    {name: 'SanitizationDate', label: 'Date', format: rawDate => this.convertToDate(rawDate)},
-    {name: 'Recipient', label: 'Recipient'},
-    {name: 'Sender', label: 'Sender'},
-    {name: 'Subject', label: 'Subject'},
-    {name: 'Attached Files', label: 'Attached File(s)'},
-  ];
+  fakeObject = {
+    'SanitizationId': 34,
+    'SanitizationDate': '05-07-17',
+    'Reason Blocked': 'File not supported',
+    'Recipient': 'jojo@jo.com',
+    'Sender': 'urse@use.co',
+    'Subject': 'urgent',
+    'Attached Files': 'xls'
+  };
 
   constructor(private mailService: MailService) {
     super();
   };
+  ngOnInit() {
+    this.isFirstTime = localStorage.getItem('isFirstTime');
+    console.log(this.isFirstTime);
+  }
 
   searchMails() {
     this.pullingData = true;
     this.mailService.searchMails(this.query).subscribe(
       success => {
         console.log(success);
-        this.emails = success.List;
+        this.emails = success.List[0];
+        //this.emails = this.fakeObject;
         this.totalNumberOfMails = success.Total;
         this.isEmailEmpty = (this.emails.length > 0) ? false : true;
         this.noResultFound = (this.emails.length > 0) ? false : true;
@@ -56,57 +53,9 @@ export class SearchComponent extends EmailComponent {
     );
   }
 
-  search(searchTerm: number): void {
-    if (searchTerm) {
-      this.query.TicketId = searchTerm;
-      this.searchMails();
-    } else {
-      this.noResultFound = false;
-    }
-  }
-
-  sort(sortEvent: ITdDataTableSortChangeEvent): void {
-    console.log(sortEvent);
-    this.query.sortField = sortEvent.name;
-    this.query.sortOrder = sortEvent.order;
-    this.searchMails();
-  };
-
-  page(pagingEvent: IPageChangeEvent): void {
-    console.log(pagingEvent);
-    this.query.PageSize = pagingEvent.pageSize;
-    this.query.PageIndex = pagingEvent.page;
-    this.searchMails();
-  };
-
-  selectMail(selectEvent: ITdDataTableSelectEvent) {
-    console.log(selectEvent);
-    if (selectEvent.selected) {
-      this.selectedMails.push(selectEvent.row.SanitizationId);
-      console.log(this.selectedMails);
-    } else {
-      const idx = this.selectedMails.indexOf(selectEvent.row.SanitizationId);
-      this.selectedMails.splice(idx, 1);
-      console.log(this.selectedMails);
-    }
-  };
-
-  selectAllMails(selection: ITdDataTableSelectAllEvent) {
-    console.log(selection);
-    if (!selection.selected) {
-      this.selectedMails = [];
-      console.log(this.selectedMails);
-    } else {
-      this.selectedMails = [];
-      for (const row of selection.rows) {
-        this.selectedMails.push(row.SanitizationId);
-        console.log(this.selectedMails);
-      }
-    }
-  };
-
-  performAction = (action: string) => {
-    this.mailService.performAction(this.selectedMails, action).subscribe(
+  performAction = (sanitizationId: number, action: string) => {
+    const id = [sanitizationId];
+    this.mailService.performAction(id, action).subscribe(
       success => {
         console.log(success);
       }, error => {
@@ -120,5 +69,8 @@ export class SearchComponent extends EmailComponent {
     } else {
       return false;
     }
-  };
+  }
+  fakeSearch = () => {
+    this.emails = this.fakeObject;
+  }
 }

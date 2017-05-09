@@ -48,6 +48,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DictionaryIteratorPipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent} from './account/billing/billing.component';
+import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/dashboard-templates.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import {BillingComponent} from './account/billing/billing.component';
     NewExceptionComponent,
     DictionaryIteratorPipe,
     NotificationsComponent,
-    BillingComponent
+    BillingComponent,
+    TotalsTopComponent
   ],
   imports: [
     BrowserModule,

@@ -247,7 +247,30 @@ input:-webkit-autofill {
   border: 2px solid #4D766E;
   background-color: #4D766E;
 }
-
+.btn-circle-action {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border: 2px solid #4D766E;
+  background-color: #4D766E;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  color: white;
+  border-radius: 15px;
+}
+.btn-circle-action:hover {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border: 2px solid #4D766E;
+  background-color: transparent;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  color: #4D766E;
+  border-radius: 15px;
+}
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -274,3 +297,23 @@ input:-webkit-autofill {
   border-radius: 35px;
 }
 
+.rounded-neutral{
+  border-radius: 100%;
+}
+.vmiddle{
+vertical-align: center !important
+}
+.vtop{
+  vertical-align:top;
+}
+.vbottom{
+  vertical-align:bottom;
+}
+.bold-gray{
+  font-weight: 600! important;
+  color: #666666;
+}
+.bold-dark-gray{
+  font-weight: 600! important;
+  color: #333;
+}

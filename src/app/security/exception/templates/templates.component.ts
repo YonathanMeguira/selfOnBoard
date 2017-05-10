@@ -89,6 +89,9 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
   deletePolicy = (policy: any) => {
     this.onDelete.emit(policy);
   }
+  restoreDefaultSpecial = () => {
+    console.log('service not ready yet..');
+  }
 
 
 }

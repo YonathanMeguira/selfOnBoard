@@ -12,5 +12,5 @@
   position: relative;
 }
 .title-section{
-  border-bottom:  2px #F7F8F8;
+  border-bottom: solid 1px lightgray !important;
 }

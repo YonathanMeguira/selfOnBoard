@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, RequestOptions, XHRBackend} from '@angular/http';
 import {HttpService} from './shared/token.injector';
+import {DialogsService, ConfirmDialog} from './shared/dialogs.service';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -14,6 +15,7 @@ import {ExceptionComponent} from './security/exception/exception.component';
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
 import {UserComponent} from './user/user.component';
+
 
 import {
   GeneralSettingsComponent,
@@ -31,6 +33,7 @@ import {
 } from './security/exception/templates/templates.component';
 // routing
 import {AppRoutingModule} from './app.routes';
+import {ResponseHandlerService} from './shared/response-handler.service';
 
 // 3rd libraries
 import {MaterialModule} from '@angular/material';
@@ -75,7 +78,8 @@ import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/da
     DictionaryIteratorPipe,
     NotificationsComponent,
     BillingComponent,
-    TotalsTopComponent
+    TotalsTopComponent,
+    ConfirmDialog
   ],
   imports: [
     BrowserModule,
@@ -95,13 +99,13 @@ import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/da
   providers: [{
     provide: HttpService,
     useFactory: httpFactory,
-    deps: [XHRBackend, RequestOptions]
-  }],
-  entryComponents: [ChangePasswordModalComponent],
+    deps: [XHRBackend, RequestOptions, ResponseHandlerService]
+  }, ResponseHandlerService, DialogsService ],
+  entryComponents: [ChangePasswordModalComponent, ConfirmDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-export function httpFactory(backend: XHRBackend, options: RequestOptions) {
-  return new HttpService(backend, options);
+export function httpFactory(backend: XHRBackend, options: RequestOptions, responseHandler: ResponseHandlerService) {
+  return new HttpService(backend, options, responseHandler);
 }

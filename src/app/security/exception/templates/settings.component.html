@@ -1,4 +1,4 @@
-<div class="white frame margin-top">
+<div id="actionCenter" class="white frame margin-top">
   <div class="title-section" layout-padding layout="row" layout-align="space-between center" layout-margin>
     <h4>{{settings.PolicyName}}</h4>
     <a (click)="deletePolicy(settings)" class="cta">Delete this department</a>
@@ -12,161 +12,259 @@
 
 </div>
 
-<div class="white frame">
-  <div class="title-section" layout-padding>
-    <h4>ATTACHMENTS PROCESSED WITH CDR</h4>
+<div id="cdr" class="col-sm-12 white frame mb-5">
+
+  <div class="title-section pt-4 pb-4 col-12">
+    <h4 class="bold-dark-gray">ATTACHMENTS PROCESSED WITH CDR</h4>
   </div>
+  <div class="col-sm-10">
 
-  <div class="content-holder">
-
-    <table>
-      <thead>
-      <th></th>
-      <th class="text-center">
-        Don't Process<br>
-        <small>Not recommended</small>
-      </th>
-      <th class="text-center">
-        High<br>
-        <small>Active content NOT removed</small>
-      </th>
-      <th class="text-center">Highest<br>
-        <small>Active content removed</small>
-      </th>
-      </thead>
-      <tbody>
-      <tr>
-        <td layout="column" class="table-row">
-          <p>Documents</p>
-          <small>.doc, .docx, .pdf, .pages, .gdoc</small>
-        </td>
-        <td colspan="3">
-          <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Documents"
-                     [max]="2"
-                     style="width: 100%"
-                     [min]="0"
-                     [step]="1"
-                     [value]="0"
-                     [vertical]="vertical"
-                     color="primary">
-          </md-slider>
-        </td>
-      </tr>
-      <tr>
-        <td layout="column" class="table-row">
-          <p>Spreadsheets</p>
-          <small>.csv, .xls, .xlsx, .gsheet</small>
-        </td>
-        <td colspan="3">
-          <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
-                     [max]="2"
-                     style="width: 100%"
-                     [min]="0"
-                     [step]="1"
-                     [value]="0"
-                     [vertical]="vertical"
-                     color="primary">
-          </md-slider>
-        </td>
-      </tr>
-      <tr>
-        <td layout="column" class="table-row">
-          <p>Images</p>
-          <small>.png, .jpg, .jpeg, .gif</small>
-        </td>
-        <td colspan="3">
-          <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Images"
-                     [max]="2"
-                     style="width: 100%"
-                     [min]="0"
-                     [step]="1"
-                     [value]="0"
-                     [vertical]="vertical"
-                     color="primary">
-          </md-slider>
-        </td>
-      </tr>
-      </tbody>
-
-    </table>
-    <a class="cta" layout-margin (click)="restoreDefaultCdr()">Restore default settings</a>
+    <div class="col-sm-5 mt-4 mb-4">
+      <small>CDR (Content Disarm and Reconstruction) means that a secure version of the file is created and the email
+        is received seamlessly to the end user.
+      </small>
+    </div>
+    <div class="col-sm-12 pl-0 pt-3 pb-3">
+      <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
+        <div class="row">
+          <div class="col-4 text-center">
+            <h4 class="bold-dark-gray mb-3">Don't Process</h4>
+            <small>Not Recommended</small>
+          </div>
+          <div class="col-4 text-center">
+            <h4 class="bold-dark-gray mb-3">High</h4>
+            <small>Active content NOT removed
+            </small>
+          </div>
+          <div class="col-4 text-center">
+            <h4 class="bold-dark-gray mb-3">Highest</h4>
+            <small>Active content removed</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Documents</p>
+        <small>.doc, .docx, .pdf, .pages
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Documents"
+                   [max]="2"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Spreadsheets</p>
+        <small>.csv, .xls, .xlsx, .gsheet
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+                   [max]="2"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Images</p>
+        <small>.png, .jpeg, .jpg, .gif
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Images"
+                   [max]="2"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Presentations</p>
+        <small>.ppt, .pptx, .keynote, .gslides
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Presentations"
+                   [max]="2"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
 
   </div>
+  <button class="btn btn-link mb-4 mt-4" (click)="restoreDefaultCdr()">Restore Default Settings</button>
 </div>
 
-<div class="white frame margin-top">
-  <div class="title-section" layout-padding>
-    <h4>ATTACHMENTS PROCESSED WITHOUT CDR</h4>
+<div id="noCdr" class="col-sm-12 white frame mb-5">
+
+  <div class="title-section pt-4 pb-4 col-12">
+    <h4 class="bold-dark-gray">ATTACHMENTS PROCESSED WITHOUT CDR</h4>
   </div>
+  <div class="col-sm-10 mt-4">
 
-  <div class="content-holder">
-    <table>
-      <thead  >
-      <th></th>
-      <th style="width: 35%;" class="text-center">Allow</th>
-      <th style="width: 38%; " class="text-center">Block</th>
-      </thead>
-      <tbody>
-      <tr>
-        <td layout="column" class="table-row">
-          <p>Videos/Sounds</p>
-          <small>.mp4, .mp3</small>
-        </td>
-        <td colspan="3">
-          <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Video/Sound']"
-                     [max]="1"
-                     style="width: 100%"
-                     [min]="0"
-                     [step]="1"
-                     [value]="0"
-                     [vertical]="vertical"
-                     color="primary">
-          </md-slider>
-        </td>
-      </tr>
-      <tr>
-        <td layout="column" class="table-row">
-          <p>Applications / Scripts</p>
-          <small>.dmg, .exe</small>
-        </td>
-        <td colspan="3">
-          <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Applications/Scripts']"
-                     [max]="1"
-                     style="width: 100%"
-                     [min]="0"
-                     [step]="1"
-                     [value]="0"
-                     [vertical]="vertical"
-                     color="primary">
-          </md-slider>
-        </td>
-      </tr>
-      <tr>
-        <td class="table-row">
-          <p>Unrecognized Files</p>
-        </td>
-        <td colspan="3">
-          <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Unrecognized Files']"
-                     [max]="1"
-                     style="width: 100%"
-                     [min]="0"
-                     [step]="1"
-                     [value]="0"
-                     [vertical]="vertical"
-                     color="primary">
-          </md-slider>
-        </td>
-      </tr>
-      </tbody>
+    <div class="col-sm-12 pl-0 pt-3 pb-3">
+      <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
+        <div class="row">
+          <div class="col-6 text-left">
+            <h4 class="bold-dark-gray mb-3">Allow</h4>
+          </div>
+          <div class="col-6 text-right">
+            <h4 class="bold-dark-gray mb-3">Block</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Videos/Sound</p>
+        <small>.mp4, mp3
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Video/Sound']"
+                   [max]="1"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Applications/Scripts</p>
+        <small>.exe, .dmg
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Applications/Scripts']"
+                   [max]="1"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Unrecognized Files</p>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Unrecognized Files']"
+                   [max]="1"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
 
-    </table>
-    <a class="cta" layout-margin (click)="restoreDefaultNoCdr()">Restore default settings</a>
+
   </div>
-
+  <button class="btn btn-link mt-4 mb-4" (click)="restoreDefaultNoCdr()">Restore Default Settings</button>
 </div>
+
+<div id="specialAttachments" class="col-sm-12 white frame mb-5">
+
+  <div class="title-section pt-4 pb-4 col-12">
+    <h4 class="bold-dark-gray">SPECIAL ATTACHMENTS</h4>
+  </div>
+  <div class="col-sm-10 mt-4">
+
+    <div class="col-sm-12 pl-0 pt-3 pb-3">
+      <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
+        <div class="row">
+          <div class="col-6 text-left">
+            <h4 class="bold-dark-gray mb-3">Allow</h4>
+          </div>
+          <div class="col-6 text-right">
+            <h4 class="bold-dark-gray mb-3">Block</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Password Protected</p>
+        <small>A secure version of an attachment can't be made when it is password protected
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="other"
+                   [max]="1"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+    <div class="col-sm-12 row mb-5 pr-0">
+      <div class="col-4">
+        <p class="bold-dark-gray">Signed Documents</p>
+        <small>A secure version can be made, the the signature can't remain true.
+        </small>
+      </div>
+      <div class="col-sm-8 ">
+        <md-slider [(ngModel)]="other2"
+                   [max]="1"
+                   style="width: 100%"
+                   [min]="0"
+                   [step]="1"
+                   [value]="0"
+                   [vertical]="vertical"
+                   color="accent">
+        </md-slider>
+      </div>
+    </div>
+
+  </div>
+  <button class="btn btn-link mt-4 mb-4" (click)="restoreDefaultSpecial()">Restore Default Settings</button>
+</div>
+
+
+<!--
+
 <div layout="row" layout-align="center center" style="margin-top: 3em;">
   <button md-raised-button color="primary" (click)="saveSettings(settings)">APPLY</button>
 </div>
+
+-->
 
 
 

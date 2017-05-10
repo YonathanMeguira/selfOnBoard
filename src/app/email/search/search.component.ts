@@ -13,8 +13,8 @@ export class SearchComponent extends EmailComponent implements OnInit{
   emails: any = {};
   query: any = {};
   isFirstTime;
+  noSearchInitiated = true;
   totalNumberOfMails: number;
-  isEmailEmpty = true;
   pullingData = false;
   noResultFound = false;
   fakeObject = {
@@ -31,7 +31,8 @@ export class SearchComponent extends EmailComponent implements OnInit{
     super();
   };
   ngOnInit() {
-    this.isFirstTime = localStorage.getItem('isFirstTime');
+    //this.isFirstTime = (localStorage.getItem('isFirstTime') === 'false') ? false : true;
+    this.isFirstTime = false;
     console.log(this.isFirstTime);
   }
 
@@ -41,11 +42,11 @@ export class SearchComponent extends EmailComponent implements OnInit{
       success => {
         console.log(success);
         this.emails = success.List[0];
-        //this.emails = this.fakeObject;
+       // this.emails.SanitizationDate = new Date(success.List[0].SanitizationDate) || " ";
         this.totalNumberOfMails = success.Total;
-        this.isEmailEmpty = (this.emails.length > 0) ? false : true;
-        this.noResultFound = (this.emails.length > 0) ? false : true;
+        this.noResultFound = (this.totalNumberOfMails > 0) ? false : true;
         this.pullingData = false;
+        this.noSearchInitiated = false;
       },
       error => {
         console.log(error);

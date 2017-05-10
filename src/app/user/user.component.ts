@@ -17,8 +17,5 @@ export class UserComponent implements OnInit {
     // goes to default route which is login
     this.router.navigate(['']);
   }
-clearCache = () => {
-    console.log(localStorage);
-    localStorage.setItem("token", "qsdfbf");
-}
+
 }

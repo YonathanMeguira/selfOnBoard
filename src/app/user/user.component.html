@@ -7,17 +7,21 @@
     <nav>
 
       <ul>
-          <li mdTooltip="Dashboard" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/dashboard" routerLinkActive="active">
-            <i class="fa fa-tachometer fa-2x icon-white" aria-hidden="true"></i>
-          </li>
-        <li mdTooltip="Mails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/emails" routerLinkActive="active">
-          <i class="fa fa-envelope-o fa-2x icon-white" aria-hidden="true"></i>
+        <li mdTooltip="Dashboard" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/dashboard" routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="dashboard"></md-icon>
         </li>
-        <li mdTooltip="Security" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/security" routerLinkActive="active">
-          <i class="fa fa-shield fa-2x icon-white" aria-hidden="true"></i>
+        <li mdTooltip="Mails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/emails"
+            routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="mails"></md-icon>
         </li>
-        <li mdTooltip="Account Settings" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/account" routerLinkActive="active">
-          <i class="fa fa-cog fa-2x icon-white" aria-hidden="true"></i>
+        <li mdTooltip="Security" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/security" routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="security"></md-icon>
+        </li>
+        <li mdTooltip="Account Settings" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/account" routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="settings"></md-icon>
         </li>
       </ul>
 
@@ -28,12 +32,14 @@
     <nav class="navbar sticky-top bg-white-shadow">
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
-          <button md-mini-fab (click)="sidenav.toggle()">
-            <i class="fa fa-bars" title="Align Center"></i>
-          </button>
+          <!-- nav here -->
+          <div layout="row">
+            <a class="sob-page-link"  routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
+            <a class="sob-page-link"  routerLink="account/account" routerLinkActive="page-active">Account</a>
+            <a class="sob-page-link"  routerLink="account/billing" routerLinkActive="page-active">Billing</a>
+          </div>
         </div>
         <div class="nav navbar-nav ml-auto  justify-content-center">
-
           <button id="sidenav-toggler" md-mini-fab (click)="logout()">
             <i class="fa fa-sign-out" style="color: #0C0E47" title="Align Center"></i>
           </button>
@@ -46,19 +52,3 @@
   </div>
 </md-sidenav-container>
 
-
-<style>
-  #top-bar {
-    padding: 1em;
-    background-color: white;
-
-  }
-
-  #top-bar > p {
-    margin: 0px;
-    font-weight: 600;
-    /* Rectangle: */
-    color: #333;
-  }
-
-</style>

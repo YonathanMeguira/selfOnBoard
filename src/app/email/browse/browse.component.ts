@@ -27,7 +27,7 @@ export class BrowseComponent extends EmailComponent implements OnInit {
     {name: 'Recipient', label: 'Recipient'},
     {name: 'Sender', label: 'Sender'},
     {name: 'Subject', label: 'Subject'},
-    {name: 'Attached Files', label: 'Attached File(s)'},
+    {name: 'AttachedFiles', label: 'Attached File(s)'},
   ];
   query: any = {
     sortField: 'SanitizationDate',
@@ -108,13 +108,7 @@ export class BrowseComponent extends EmailComponent implements OnInit {
     )
   }
 
-  actionsAvailable = (selectionLength: number) => {
-    if (selectionLength > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+
 
   filterBy = (filter: string) => {
     this.query.Stage = filter;

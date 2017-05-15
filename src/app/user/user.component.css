@@ -42,3 +42,47 @@ ul {
   display: block;
   position: relative;
 }
+#top-bar {
+  padding: 1em;
+  background-color: white;
+
+}
+
+#top-bar > p {
+  margin: 0px;
+  font-weight: 600;
+  /* Rectangle: */
+  color: #333;
+}
+
+.center-icon {
+  vertical-align: middle !important;
+}
+
+.sob-page-link{
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  font-size: 1.2em !important;
+  color: #757575 !important;
+  font-weight: 600 !important;
+
+}
+.sob-page-link:hover{
+  color: #14123F !important;
+  border-bottom: solid 0px white !important;
+  text-decoration: none !important;
+}
+.page-active{
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  font-size: 1.2em !important;
+  color: #14123F !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}

@@ -18,7 +18,7 @@
           <div class="mt-5 mb-4" *ngIf="!noResultFound">
             <div class="row">
               <p class="bold-gray col-3">Date</p>
-              <p class="bold-dark-gray col">{{emails.SanitizationDate}}</p>
+              <p class="bold-dark-gray col">{{emails.SanitizationDate | date:'medium'}}</p>
             </div>
             <div class="row">
               <p class="bold-gray col-3">Reason</p>

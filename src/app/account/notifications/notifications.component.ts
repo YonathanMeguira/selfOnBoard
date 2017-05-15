@@ -20,7 +20,6 @@ export class NotificationsComponent implements OnInit {
   loadSettings = () => {
     this.accountService.GetAccountNotificationsSettings().subscribe(
       result => {
-        console.log(result);
         this.adminSettings = result;
       },
       error => {

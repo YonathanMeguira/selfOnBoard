@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user.server, this.user.username, this.user.password)
       .subscribe(
         success => {
-          console.log(success);
           if (success.UserRole !== 'SelfOnBoard') {
             this.wrongId = true;
             this.submitted = false;
@@ -49,7 +48,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('serverName', this.user.server);
             this.checkingUser = false;
             if (isFirstTimeBool) {
-              this.router.navigate(['user/firstTime']);
+              this.router.navigate(['user/firstTimeChangePassword']);
             } else {
               this.router.navigate(['/user/dashboard']);
             }
@@ -62,7 +61,5 @@ export class LoginComponent implements OnInit {
           this.checkingUser = false;
         }
       );
-
-    console.log(this.router);
   }
 }

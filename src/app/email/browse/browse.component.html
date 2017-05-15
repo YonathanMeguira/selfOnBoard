@@ -10,28 +10,17 @@
   </div>
   <div class="mt-5 text-center" *ngIf="!isEmailEmpty">
     <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
-    <div class="d-flex flex-row-reverse">
-
-      <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
-              (click)="performAction('ReleaseEmailToRecipient')">Release Email To Recipient
-      </button>
-      <button md-button [disabled]="!actionsAvailable(selectedMails.length)" color="primary"
-              (click)="performAction('ForwardToAdmin')">
-        Forward to admin
-      </button>
-    </div>
     <td-data-table
       #dataTable
       [data]="emails"
       [columns]="columns"
       [sortable]="true"
-      [selectable]="true"
+      [selectable]="false"
       [sortBy]="query.sortField"
       [sortOrder]="query.sortOrder"
       (sortChange)="sort($event)"
       (rowSelect)="selectMail($event)"
-      (selectAll)="selectAllMails($event)"
-    >
+      (selectAll)="selectAllMails($event)">
     </td-data-table>
     <div class="md-padding" *ngIf="!dataTable.hasData" layout="row" layout-align="center center">
       <h3>No results to display.</h3>

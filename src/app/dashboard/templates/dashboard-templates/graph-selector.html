@@ -1,18 +1,18 @@
 <div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-0" style="height: 140px">
-  <div flex="50" class="white frame mt-0" style="height: 100%">
+  <div flex="50" class="white frame mt-0 hvr-glow" style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
-      <h4 flex="60" class="bold light-gray spaced-line">Clean Replica by CDR</h4>
+      <h5 flex="60" class="bold light-gray spaced-line">Clean Replica by CDR</h5>
       <div flex class="section-number">
         <p>{{totals.totalCleanReplicaByCdr}}</p>
         <h3 class="bold">{{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
       </div>
     </div>
   </div>
-  <div flex="50" class="white frame mt-0" style="height: 100%">
+  <div flex="50" class="white frame mt-0 hvr-glow" style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
-      <h4 flex="60" class="bold light-gray spaced-line">Original Attachments OK</h4>
+      <h5 flex="60" class="bold light-gray spaced-line">Original Attachments OK</h5>
       <div flex class="section-number">
         <p>{{totals.totalPassedOk}}</p>
         <h3 class="bold">{{totals.totalPassedOk | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
@@ -21,20 +21,20 @@
   </div>
 </div>
 <div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-3" style="height: 140px">
-  <div flex="50" class="white frame mb-0" style="height: 100%">
+  <div flex="50" class="white frame mb-0 hvr-glow" style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
-      <h4 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Policy</h4>
+      <h5 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Policy</h5>
       <div flex class="section-number">
         <p>{{totals.totalCleanReplicaByCdr}}</p>
         <h3 class="bold">{{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
       </div>
     </div>
   </div>
-  <div flex="50" class="white frame mb-0" style="height: 100%">
+  <div flex="50" class="white frame mb-0 hvr-glow" style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
-      <h4 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Antivirus</h4>
+      <h5 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Antivirus</h5>
       <div flex class="section-number">
         <p>{{totals.TotalBlockedByAntivirus}}</p>
         <h3 class="bold">{{totals.TotalBlockedByAntivirus | GetPercentage : totals.TotalAttachmentProcessed}}</h3>

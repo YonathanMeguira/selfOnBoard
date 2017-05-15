@@ -54,13 +54,18 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent} from './account/billing/billing.component';
+
+
+// dashboard components
 import {
   TotalsTopComponent,
   GraphSelectorComponent,
   GraphComponent,
-  PieChartsComponent
+  PieChartsComponent,
+  EmailSectionComponent
 } from './dashboard/templates/dashboard-templates/dashboard-templates.component';
 import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
+import { NewUserPasswordComponent } from './new-user-password/new-user-password.component';
 
 
 @NgModule({
@@ -68,6 +73,7 @@ import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/firs
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    EmailSectionComponent,
     EmailComponent,
     SearchComponent,
     BrowseComponent,
@@ -94,7 +100,9 @@ import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/firs
     PieChartsComponent,
     ConfirmDialog,
     FirstTimeUserComponent,
-    GetPercentagePipe
+    GetPercentagePipe,
+    NewUserPasswordComponent
+
   ],
   imports: [
     BrowserModule,

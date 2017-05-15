@@ -18,7 +18,7 @@
           </small>
         </td>
         <td colspan="3">
-          <md-slider [(ngModel)]="other1"
+          <md-slider [(ngModel)]="specialAttachmentSettings['Password Protected']"
                      [max]="1"
                      style="width: 100%"
                      [min]="0"
@@ -37,7 +37,7 @@
           </small>
         </td>
         <td colspan="3">
-          <md-slider [(ngModel)]="other2"
+          <md-slider [(ngModel)]="specialAttachmentSettings['Signed Documents']"
                      [max]="1"
                      style="width: 100%"
                      [min]="0"
@@ -48,11 +48,9 @@
           </md-slider>
         </td>
       </tr>
-
       </tbody>
-
     </table>
-    <a class="cta" layout-margin (click)="restoreDefaultNoCdr()">Restore default settings</a>
+    <a class="cta" layout-margin (click)="restoreDefaultSpecial()">Restore default settings</a>
   </div>
 
 </div>

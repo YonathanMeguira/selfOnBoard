@@ -18,13 +18,14 @@ import {MdSnackBar} from '@angular/material';
 
 export class GeneralComponent implements OnInit {
 
-  mainPolicySettings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
+  mainPolicySettings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   numberOfMaliciousLinks = 4;
 
   ngOnInit() {
     this.securityService.getSettings().subscribe(
       result => {
         this.mainPolicySettings = result;
+        console.log(this.mainPolicySettings)
       }, error => {
         console.log('an error occurred');
       }

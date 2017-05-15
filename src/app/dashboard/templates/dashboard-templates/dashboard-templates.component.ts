@@ -6,7 +6,7 @@ import * as _ from "lodash";
   templateUrl: './totals-top.component.html',
   styleUrls: ['./dashboard-templates.component.css']
 })
-export class TotalsTopComponent  {
+export class TotalsTopComponent {
   @Input() totals;
 
   constructor() {
@@ -21,7 +21,7 @@ export class TotalsTopComponent  {
   styleUrls: ['./dashboard-templates.component.css']
 })
 
-export class GraphSelectorComponent  {
+export class GraphSelectorComponent {
   @Input() totals;
   colorScheme: any = {
     domain: ['#1565C0', '#03A9F4', '#FFA726', '#FFCC80'],
@@ -132,6 +132,7 @@ export class GraphComponent implements OnInit {
 
   constructor() {
   }
+
   ngOnInit() {
   }
 }
@@ -143,10 +144,25 @@ export class GraphComponent implements OnInit {
 })
 
 export class PieChartsComponent {
+  view = [500, 400];
   @Input() pieData;
-  mappedData = [];
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+  @Input() colorScheme;
+}
+
+@Component({
+  selector: 'app-email-section',
+  templateUrl: './email-section.html',
+  styleUrls: ['./dashboard-templates.component.css']
+})
+
+export class EmailSectionComponent {
+  @Input() figureColor;
+  @Input() users;
+  userValues: Array<object> = [{'name': 'April', 'value': 20}, {'name': 'May', 'value': 40}, {
+    'name': 'June',
+    'value': 30
+  }, {'name': 'July', 'value': 67}];
+  colorScheme = {domain: ['#ADE1D8']};
 
 }
+

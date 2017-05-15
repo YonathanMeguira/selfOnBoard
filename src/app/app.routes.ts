@@ -2,7 +2,7 @@
  * Created by if_found_call_0586288454 on 24/04/2017 ap. J.-C..
  */
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes, CanActivate} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {SecurityComponent} from './security/security.component';
@@ -17,14 +17,17 @@ import {GeneralComponent} from './security/general/general.component';
 import {ExceptionComponent} from './security/exception/exception.component';
 import {SearchComponent} from './email/search/search.component';
 import {BrowseComponent} from './email/browse/browse.component';
-
+import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
+import {UserIsSobAndHasToken} from './shared/route-activators';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [UserIsSobAndHasToken],
     children: [
+      {path: 'firstTime', component: FirstTimeUserComponent},
       {path: 'dashboard', component: DashboardComponent},
       {
         path: 'security', component: SecurityComponent,

@@ -31,9 +31,9 @@ export class AccountService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get notification settings'));
   }
 
-  PostAccountNotificationsSettings(): Observable<any> {
-    const urlPostAccountNotificationsSettings = "http://" + this.server + ":4580/sob/api/PostAccountNotificationsSettings";
-    return this.http.post(urlPostAccountNotificationsSettings, {})
+  PostAccountNotificationsSettings(newSettings): Observable<any> {
+    const urlPostAccountNotificationsSettings = 'http://' + this.server + ':4580/sob/api/PostAccountNotificationsSettings';
+    return this.http.post(urlPostAccountNotificationsSettings, newSettings)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get notification settings'));
   }
@@ -46,7 +46,7 @@ export class AccountService {
   }
 
   PostAccountGeneralSettings(settings): Observable<any> {
-    const urlPostAccountGeneralSettings = "http://" + this.server + ":4580/sob/api/PostAccountGeneralSettings";
+    const urlPostAccountGeneralSettings = 'http://' + this.server + ':4580/sob/api/PostAccountGeneralSettings';
     return this.http.post(urlPostAccountGeneralSettings, settings)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not post account general settings'));

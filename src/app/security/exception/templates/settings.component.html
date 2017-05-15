@@ -1,3 +1,4 @@
+<div layout="column">
 <div id="actionCenter" class="white frame margin-top">
   <div class="title-section" layout-padding layout="row" layout-align="space-between center" layout-margin>
     <h4>{{settings.PolicyName}}</h4>
@@ -131,10 +132,10 @@
       <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
         <div class="row">
           <div class="col-6 text-left">
-            <h4 class="bold-dark-gray mb-3">Allow</h4>
+            <h4 class="bold-dark-gray mb-3">Block</h4>
           </div>
           <div class="col-6 text-right">
-            <h4 class="bold-dark-gray mb-3">Block</h4>
+            <h4 class="bold-dark-gray mb-3">Allow</h4>
           </div>
         </div>
       </div>
@@ -208,10 +209,10 @@
       <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
         <div class="row">
           <div class="col-6 text-left">
-            <h4 class="bold-dark-gray mb-3">Allow</h4>
+            <h4 class="bold-dark-gray mb-3">Block</h4>
           </div>
           <div class="col-6 text-right">
-            <h4 class="bold-dark-gray mb-3">Block</h4>
+            <h4 class="bold-dark-gray mb-3">Allow</h4>
           </div>
         </div>
       </div>
@@ -256,7 +257,11 @@
   </div>
   <button class="btn btn-link mt-4 mb-4" (click)="restoreDefaultSpecial()">Restore Default Settings</button>
 </div>
+<div layout="row" layout-align="center center" class="mt-5 mb-5">
+  <button class="btn btn-action" (click)="saveSettings(settings)">APPLY</button>
+</div>
 
+</div>
 
 <!--
 

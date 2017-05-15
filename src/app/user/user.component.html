@@ -1,16 +1,24 @@
 <!-- nesting level: 2 entry inside the app -->
 
 <md-sidenav-container style="height: 100vh">
-  <md-sidenav #sidenav opened="true" mode="side" fxHide.lt-md="true">
+  <md-sidenav #sidenav opened="true" mode="side" style="width: auto !important">
 
     <md-icon svgSrc="resecLogo.svg" fill="white"></md-icon>
     <nav>
 
       <ul>
-        <li><a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a></li>
-        <li><a routerLink="/user/emails" routerLinkActive="active">Processed Mails</a></li>
-        <li><a routerLink="/user/security" routerLinkActive="active">Security Settings</a></li>
-        <li><a routerLink="/user/account" routerLinkActive="active">Account Settings</a></li>
+          <li mdTooltip="Dashboard" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/dashboard" routerLinkActive="active">
+            <i class="fa fa-tachometer fa-2x icon-white" aria-hidden="true"></i>
+          </li>
+        <li mdTooltip="Mails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/emails" routerLinkActive="active">
+          <i class="fa fa-envelope-o fa-2x icon-white" aria-hidden="true"></i>
+        </li>
+        <li mdTooltip="Security" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/security" routerLinkActive="active">
+          <i class="fa fa-shield fa-2x icon-white" aria-hidden="true"></i>
+        </li>
+        <li mdTooltip="Account Settings" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/account" routerLinkActive="active">
+          <i class="fa fa-cog fa-2x icon-white" aria-hidden="true"></i>
+        </li>
       </ul>
 
     </nav>
@@ -26,7 +34,7 @@
         </div>
         <div class="nav navbar-nav ml-auto  justify-content-center">
 
-          <button id="sidenav-toggler"  md-mini-fab (click)="logout()">
+          <button id="sidenav-toggler" md-mini-fab (click)="logout()">
             <i class="fa fa-sign-out" style="color: #0C0E47" title="Align Center"></i>
           </button>
         </div>
@@ -52,4 +60,5 @@
     /* Rectangle: */
     color: #333;
   }
+
 </style>

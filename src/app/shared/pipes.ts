@@ -9,3 +9,11 @@ export class DictionaryIteratorPipe implements PipeTransform {
     return Object.keys(value).map(key => value[key]);
   }
 }
+
+@Pipe({name: 'GetPercentage'})
+export class GetPercentagePipe implements PipeTransform {
+  transform(value: number, total: number, args: number[]): any {
+    if (!value) {return value};
+    return (value / total) * 100 + ' %';
+  }
+}

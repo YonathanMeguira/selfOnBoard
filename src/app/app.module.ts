@@ -20,7 +20,8 @@ import {UserComponent} from './user/user.component';
 import {
   GeneralSettingsComponent,
   GeneralSettingsWithCDRComponent,
-  GeneralSettingsWithoutCDRComponent
+  GeneralSettingsWithoutCDRComponent,
+  SpecialAttachmentsComponent
 
 } from './security/general/templates/templates.components';
 import {
@@ -31,10 +32,11 @@ import {
   ExceptionSettingsComponent, ExistingExceptionsComponent,
   NewExceptionComponent
 } from './security/exception/templates/templates.component';
+
 // routing
 import {AppRoutingModule} from './app.routes';
 import {ResponseHandlerService} from './shared/response-handler.service';
-
+import {UserIsSobAndHasToken} from './shared/route-activators';
 // 3rd libraries
 import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -45,13 +47,20 @@ import {CovalentDataTableModule} from '@covalent/core';
 import {CovalentCoreModule} from '@covalent/core';
 import {TagInputModule} from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 // custom pipes
 
-import {DictionaryIteratorPipe} from './shared/pipes';
+import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent} from './account/billing/billing.component';
-import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/dashboard-templates.component';
+import {
+  TotalsTopComponent,
+  GraphSelectorComponent,
+  GraphComponent,
+  PieChartsComponent
+} from './dashboard/templates/dashboard-templates/dashboard-templates.component';
+import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
 
 
 @NgModule({
@@ -70,6 +79,7 @@ import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/da
     UserComponent,
     GeneralSettingsComponent,
     GeneralSettingsWithCDRComponent,
+    SpecialAttachmentsComponent,
     GeneralSettingsWithoutCDRComponent,
     AccountGeneralComponent,
     ExceptionSettingsComponent,
@@ -79,7 +89,12 @@ import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/da
     NotificationsComponent,
     BillingComponent,
     TotalsTopComponent,
-    ConfirmDialog
+    GraphSelectorComponent,
+    GraphComponent,
+    PieChartsComponent,
+    ConfirmDialog,
+    FirstTimeUserComponent,
+    GetPercentagePipe
   ],
   imports: [
     BrowserModule,
@@ -94,13 +109,15 @@ import { TotalsTopComponent } from './dashboard/templates/dashboard-templates/da
     DatePickerModule,
     NgxDatatableModule,
     NgbModule.forRoot(),
-    TagInputModule
+    TagInputModule,
+    NgxChartsModule
   ],
-  providers: [{
-    provide: HttpService,
-    useFactory: httpFactory,
-    deps: [XHRBackend, RequestOptions, ResponseHandlerService]
-  }, ResponseHandlerService, DialogsService ],
+  providers: [
+    {
+      provide: HttpService,
+      useFactory: httpFactory,
+      deps: [XHRBackend, RequestOptions, ResponseHandlerService]
+    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog],
   bootstrap: [AppComponent]
 })

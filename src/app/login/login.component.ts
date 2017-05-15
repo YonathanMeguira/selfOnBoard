@@ -34,18 +34,25 @@ export class LoginComponent implements OnInit {
       .subscribe(
         success => {
           console.log(success);
-          if (success.UserRole === 'SelfOnBoard') {
+          if (success.UserRole !== 'SelfOnBoard') {
+            this.wrongId = true;
+            this.submitted = false;
+            this.checkingUser = false;
+          } else {
+            localStorage.setItem('userRole', success.UserRole);
             const token = 'Bearer ' + success.AccessToken;
             const isFirstTime = success.UserAdditionalData.IsFirstTime;
+            // Local storage only accepts string and not booleans, thus i convert this value to boolean to decide where to send user
+            const isFirstTimeBool = (success.UserAdditionalData.IsFirstTime === 'true') ? true : false;
             localStorage.setItem('isFirstTime', isFirstTime);
             localStorage.setItem('token', token);
             localStorage.setItem('serverName', this.user.server);
             this.checkingUser = false;
-            this.router.navigate(['/user/dashboard']);
-          }else{
-            this.wrongId = true;
-            this.submitted = false;
-            this.checkingUser = false;
+            if (isFirstTimeBool) {
+              this.router.navigate(['user/firstTime']);
+            } else {
+              this.router.navigate(['/user/dashboard']);
+            }
           }
         },
         error => {

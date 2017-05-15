@@ -42,7 +42,7 @@ export class HttpService extends Http {
         // if not authenticated => token has gone;
 
         console.log(self);
-        this.responseHandler.Handle401();
+        this.responseHandler.handle401Error();
         console.log(res);
       }
       return Observable.throw(res);

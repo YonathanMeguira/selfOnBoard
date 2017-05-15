@@ -7,7 +7,7 @@ export class ResponseHandlerService {
   constructor(private router: Router, private dialogs: DialogsService) {
   }
 
-  Handle401 = () => {
+  handle401Error = () => {
     console.log('navigating back to login');
     this.dialogs.Logout('Session Expired', 'Your session has expired, you will be logged out in ').subscribe(
       res => {

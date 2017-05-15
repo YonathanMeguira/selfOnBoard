@@ -7,6 +7,7 @@ class BaseComponent {
   errorMessages = {
     'mustbeEmail': 'Please enter valid email addresses'
   };
+
   isEmail(control: FormControl) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(control.value)) {
@@ -16,7 +17,8 @@ class BaseComponent {
     }
     return null;
   };
-};
+}
+;
 
 
 @Component({
@@ -32,11 +34,14 @@ export class ExistingExceptionsComponent implements OnInit {
   selectedPolicyName: string;
   validators: any;
   errorMessages: any;
+
   constructor() {
   };
+
   ngOnInit() {
   }
   ;
+
   selectDepartment = (departmentName: string) => {
     this.selectedPolicyName = departmentName;
     this.onSelect.emit(departmentName);
@@ -44,9 +49,9 @@ export class ExistingExceptionsComponent implements OnInit {
 
   isCurrentPolicy = (selectedPolicy: string) => {
     let isCurrentPolicy = false;
-    if (selectedPolicy === this.currentSettings.PolicyName){
+    if (selectedPolicy === this.currentSettings.PolicyName) {
       isCurrentPolicy = true
-    }else {
+    } else {
       isCurrentPolicy = false;
     }
     return isCurrentPolicy;
@@ -92,7 +97,20 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
   restoreDefaultSpecial = () => {
     console.log('service not ready yet..');
   }
-
+  saveSettings = (settings: any) => {
+    const users = settings.Exceptions;
+    console.log(settings);
+    const extractedUsers = [];
+    users.forEach((user) => {
+      if (user !== null && typeof user === 'object') {
+        extractedUsers.push(user.value);
+      } else {
+        extractedUsers.push(user);
+      }
+    });
+    settings.Exceptions = extractedUsers;
+    this.onSave.emit(settings);
+  }
 
 }
 ;
@@ -103,7 +121,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
   styleUrls: ['../exception.component.css']
 })
 
-export class NewExceptionComponent extends BaseComponent{
+export class NewExceptionComponent extends BaseComponent {
   settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<NewSettingsModel>();

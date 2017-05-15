@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
+import {AccountService} from '../account.service';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.css'],
+  providers: [AccountService]
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor() { }
+  adminSettings: any = {};
 
-  ngOnInit() {
+  constructor(private accountService: AccountService) {
   }
 
+  ngOnInit() {
+    this.loadSettings();
+  }
+
+  loadSettings = () => {
+    this.accountService.GetAccountNotificationsSettings().subscribe(
+      result => {
+        console.log(result);
+        this.adminSettings = result;
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+
+  postSettings = () => {
+    this.accountService.PostAccountNotificationsSettings(this.adminSettings).subscribe(
+      result => {console.log(result)},
+      error => {console.log(error)}
+    );
+  }
 }

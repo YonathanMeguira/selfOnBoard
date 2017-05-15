@@ -313,7 +313,45 @@ vertical-align: center !important
   font-weight: 600! important;
   color: #666666;
 }
+.light-gray{
+  font-weight: 500! important;
+  color: #666666;
+}
 .bold-dark-gray{
   font-weight: 600! important;
   color: #333;
+}
+.title-section{
+  border-bottom: solid 1px lightgray !important;
+}
+.internal-link{
+  font-weight: 600;
+  color: dodgerblue !important;
+  cursor: pointer;
+  cursor: hand;
+}
+button:focus {outline:0 !important;}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+.vertical-stretch {
+  display: flex;
+  align-items: stretch;
+}
+.underlined-purple{
+  padding-bottom: 0.3rem;
+  border-bottom: solid 2px #9A1796;
+}
+.icon-white{
+  color: white;
+}
+
+.bold{
+  font-weight: 600 !important;
+}
+
+.light-gray{
+  color: #999999 !important;
 }

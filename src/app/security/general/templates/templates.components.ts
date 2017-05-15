@@ -74,3 +74,23 @@ export class GeneralSettingsWithoutCDRComponent {
     this.noCdrSettings['Applications/Scripts'] = 0;
   }
 }
+
+
+@Component({
+  selector: 'app-special-attachments',
+  templateUrl: './special-attachements.html',
+  styleUrls: ['../general.component.css']
+})
+
+export class SpecialAttachmentsComponent {
+  @Input()
+  noCdrSettings: any;
+
+  constructor() {
+  }
+  restoreDefaultNoCdr = () => {
+    this.noCdrSettings['Unrecognized Files'] = 0;
+    this.noCdrSettings['Video/Sound'] = 0;
+    this.noCdrSettings['Applications/Scripts'] = 0;
+  }
+}

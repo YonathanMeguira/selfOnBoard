@@ -6,7 +6,7 @@ import {Injectable, Component} from '@angular/core';
   selector: 'confirm-dialog',
   template: `
     <p class="text-center bold-dark-gray">{{ title }}</p>
-    <p class="text-center">{{ message }} <strong>{{time}} seconds</strong></p>
+    <p class="text-center">{{ message }}</p>
     <div class="text-center mt-4 mb-4">
       <button type="button" class=" btn btn-danger"
               (click)="dialogRef.close(true)">Logout

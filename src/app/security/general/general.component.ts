@@ -3,7 +3,8 @@ import {SecurityService} from '../security.service';
 import {
   GeneralSettingsComponent,
   GeneralSettingsWithCDRComponent,
-  GeneralSettingsWithoutCDRComponent
+  GeneralSettingsWithoutCDRComponent,
+  SpecialAttachmentsComponent
 } from './templates/templates.components';
 import {MdSnackBar} from '@angular/material';
 
@@ -12,7 +13,7 @@ import {MdSnackBar} from '@angular/material';
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.css'],
   providers: [SecurityService],
-  entryComponents: [GeneralSettingsComponent, GeneralSettingsWithCDRComponent, GeneralSettingsWithoutCDRComponent]
+  entryComponents: [GeneralSettingsComponent, GeneralSettingsWithCDRComponent, GeneralSettingsWithoutCDRComponent, SpecialAttachmentsComponent]
 })
 
 export class GeneralComponent implements OnInit {

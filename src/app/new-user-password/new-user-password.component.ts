@@ -19,7 +19,7 @@ export class NewUserPasswordComponent {
 
   changePassword = () => {
     this.accountService.ChangePassword(this.passwords).subscribe(
-      result => this.router.navigate(['user/dashboard']),
+      result => this.router.navigate(['user/firstTime']),
       error => console.log(error)
     );
   }

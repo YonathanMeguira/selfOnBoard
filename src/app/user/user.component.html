@@ -2,10 +2,12 @@
 
 <md-sidenav-container style="height: 100vh">
   <md-sidenav #sidenav opened="true" mode="side" style="width: auto !important">
-
-    <md-icon svgSrc="resecLogo.svg" fill="white"></md-icon>
+    <ul style="height: 10%" class="mt-5">
+      <li mdTooltipPosition="right" class="text-center mt-5 pt-3 pb-3 mb-3 noHoverEffect">
+        <md-icon class="center-icon" svgIcon="resecLogo"></md-icon>
+      </li>
+    </ul>
     <nav>
-
       <ul>
         <li mdTooltip="Dashboard" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
             routerLink="/user/dashboard" routerLinkActive="active">
@@ -33,16 +35,34 @@
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
           <!-- nav here -->
-          <div layout="row">
-            <a class="sob-page-link"  routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
-            <a class="sob-page-link"  routerLink="account/account" routerLinkActive="page-active">Account</a>
-            <a class="sob-page-link"  routerLink="account/billing" routerLinkActive="page-active">Billing</a>
+          <div layout="row" *ngIf="testRoute('account')">
+            <a class="sob-page-link" routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
+            <a class="sob-page-link" routerLink="account/account" routerLinkActive="page-active">Account</a>
+            <a class="sob-page-link" routerLink="account/billing" routerLinkActive="page-active">Billing</a>
+          </div>
+          <div layout="row" *ngIf="testRoute('emails')">
+            <a class="sob-page-link" routerLink="emails/search" routerLinkActive="page-active">Search</a>
+            <a class="sob-page-link" routerLink="emails/browse" routerLinkActive="page-active">Browse</a>
+          </div>
+          <div layout="row" *ngIf="testRoute('security')">
+            <a class="sob-page-link" routerLink="security/general" routerLinkActive="page-active">General</a>
+            <a class="sob-page-link" routerLink="security/exceptions" routerLinkActive="page-active">Exception</a>
           </div>
         </div>
         <div class="nav navbar-nav ml-auto  justify-content-center">
-          <button id="sidenav-toggler" md-mini-fab (click)="logout()">
-            <i class="fa fa-sign-out" style="color: #0C0E47" title="Align Center"></i>
-          </button>
+          <div class="dropdown">
+            <button class="btn  dropdown-toggle"
+                    type="button" id="dropdownMenu1"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+              {{username}}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a class="sob-menu-item" (click)="openChangePassword()">Change Password</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a class="sob-menu-item" (click)="logout()">Logout</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -51,4 +71,5 @@
     </div>
   </div>
 </md-sidenav-container>
+
 

@@ -14,7 +14,7 @@ import {SecurityComponent} from './security/security.component';
 import {ExceptionComponent} from './security/exception/exception.component';
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
-import {UserComponent} from './user/user.component';
+import {UserComponent, UserChangePasswordComponent} from './user/user.component';
 
 
 import {
@@ -82,6 +82,7 @@ import { NewUserPasswordComponent } from './new-user-password/new-user-password.
     GeneralComponent,
     AccountComponent,
     ChangePasswordModalComponent,
+    UserChangePasswordComponent,
     UserComponent,
     GeneralSettingsComponent,
     GeneralSettingsWithCDRComponent,
@@ -126,7 +127,7 @@ import { NewUserPasswordComponent } from './new-user-password/new-user-password.
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions, ResponseHandlerService]
     }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken],
-  entryComponents: [ChangePasswordModalComponent, ConfirmDialog],
+  entryComponents: [ChangePasswordModalComponent, ConfirmDialog, UserChangePasswordComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

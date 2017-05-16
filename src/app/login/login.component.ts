@@ -46,8 +46,9 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('isFirstTime', isFirstTime);
             localStorage.setItem('token', token);
             localStorage.setItem('serverName', this.user.server);
+            localStorage.setItem('username', this.user.username);
             this.checkingUser = false;
-            if (isFirstTimeBool) {
+            if (!isFirstTimeBool) {
               this.router.navigate(['user/firstTimeChangePassword']);
             } else {
               this.router.navigate(['/user/dashboard']);

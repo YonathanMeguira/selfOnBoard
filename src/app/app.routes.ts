@@ -34,26 +34,26 @@ const appRoutes: Routes = [
       {
         path: 'security', component: SecurityComponent,
         children: [
-          {path: '', redirectTo: 'general', pathMatch: 'full', data: {parent: 'security'}},
-          {path: 'general', component: GeneralComponent, data: {parent: 'security'}},
-          {path: 'exceptions', component: ExceptionComponent, data: {parent: 'security'}}
+          {path: '', redirectTo: 'general', pathMatch: 'full'},
+          {path: 'general', component: GeneralComponent},
+          {path: 'exceptions', component: ExceptionComponent}
         ]
       },
       {
         path: 'emails', component: EmailComponent,
         children: [
-          {path: '', redirectTo: 'search', pathMatch: 'full', data: {parent: 'emails'}},
-          {path: 'search', component: SearchComponent, data: {parent: 'emails'}},
-          {path: 'browse', component: BrowseComponent, data: {parent: 'emails'}}
+          {path: '', redirectTo: 'search', pathMatch: 'full'},
+          {path: 'search', component: SearchComponent},
+          {path: 'browse', component: BrowseComponent}
         ]
       },
       {
         path: 'account', component: AccountComponent,
         children: [
-          {path: '', redirectTo: 'notifications', pathMatch: 'full', data: {parent: 'account'}},
-          {path: 'account', component: AccountGeneralComponent, data: {parent: 'account'}},
-          {path: 'notifications', component: NotificationsComponent, data: {parent: 'account'}},
-          {path: 'billing', component: BillingComponent, data: {parent: 'account'}},
+          {path: '', redirectTo: 'notifications', pathMatch: 'full'},
+          {path: 'account', component: AccountGeneralComponent},
+          {path: 'notifications', component: NotificationsComponent},
+          {path: 'billing', component: BillingComponent},
         ]
       }
     ]

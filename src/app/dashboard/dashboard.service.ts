@@ -27,5 +27,10 @@ export class DashboardService {
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the fake data for senders'));
   }
-
+  GetFeed(): Observable<any> {
+    const feedUrl = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=aeaf2ce8b9984429bbe0d8ea1a0a92fc';
+    return this.http.get(feedUrl)
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the news feed'));
+  }
 }

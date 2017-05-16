@@ -5,7 +5,8 @@ import {
   GraphSelectorComponent,
   GraphComponent,
   PieChartsComponent,
-  EmailSectionComponent
+  EmailSectionComponent,
+  NewsFeedComponent
 } from './templates/dashboard-templates/dashboard-templates.component';
 import _ from 'lodash';
 
@@ -15,13 +16,14 @@ import _ from 'lodash';
   styleUrls: ['./dashboard.component.css'],
   providers: [DashboardService],
   entryComponents: [TotalsTopComponent, GraphSelectorComponent,
-    GraphComponent, PieChartsComponent, EmailSectionComponent]
+    GraphComponent, PieChartsComponent, EmailSectionComponent, NewsFeedComponent]
 })
 export class DashboardComponent implements OnInit {
 
   totals: any = {};
   dataHasLoaded = false;
   allData: any = {};
+  feeds: Array<any>;
   pieData: any = {};
   randomUsers: Array<any>;
   displayingSenders = false;
@@ -33,10 +35,12 @@ export class DashboardComponent implements OnInit {
   figureColor = this.cdrFigureColor;
 
 
-  constructor(private dashboardService: DashboardService) {};
+  constructor(private dashboardService: DashboardService) {
+  };
 
   ngOnInit() {
     this.loadData();
+    this.GetFeed();
     this.GetRandomRecipients();
   };
 
@@ -94,6 +98,16 @@ export class DashboardComponent implements OnInit {
     this.displayingRecipients = false;
     this.dashboardService.GetRandomSenders().subscribe(
       result => this.randomUsers = result,
+      error => console.log(error)
+    );
+  }
+  GetFeed = () => {
+    this.dashboardService.GetFeed().subscribe(
+      feed => {
+        const slicedArray = feed.articles.slice(0, 4);
+        this.feeds = slicedArray;
+        console.log(this.feeds);
+      },
       error => console.log(error)
     );
   }

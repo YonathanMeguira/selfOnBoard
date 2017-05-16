@@ -166,3 +166,12 @@ export class EmailSectionComponent {
 
 }
 
+@Component({
+  selector: 'app-dashboard-news-feed',
+  templateUrl: './news.html',
+  styleUrls: ['./dashboard-templates.component.css']
+})
+
+export class NewsFeedComponent {
+  @Input() feeds;
+}

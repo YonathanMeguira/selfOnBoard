@@ -53,7 +53,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
-import {BillingComponent} from './account/billing/billing.component';
+import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
 
 
 // dashboard components
@@ -62,10 +62,13 @@ import {
   GraphSelectorComponent,
   GraphComponent,
   PieChartsComponent,
-  EmailSectionComponent
+  EmailSectionComponent,
+  NewsFeedComponent
 } from './dashboard/templates/dashboard-templates/dashboard-templates.component';
 import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
-import { NewUserPasswordComponent } from './new-user-password/new-user-password.component';
+import {NewUserPasswordComponent} from './new-user-password/new-user-password.component';
+
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -77,10 +80,12 @@ import { NewUserPasswordComponent } from './new-user-password/new-user-password.
     EmailComponent,
     SearchComponent,
     BrowseComponent,
+    NewsFeedComponent,
     SecurityComponent,
     ExceptionComponent,
     GeneralComponent,
     AccountComponent,
+    UpdatePlanComponent,
     ChangePasswordModalComponent,
     UserChangePasswordComponent,
     UserComponent,
@@ -126,8 +131,11 @@ import { NewUserPasswordComponent } from './new-user-password/new-user-password.
       provide: HttpService,
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions, ResponseHandlerService]
-    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken],
-  entryComponents: [ChangePasswordModalComponent, ConfirmDialog, UserChangePasswordComponent],
+    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
+  entryComponents: [ChangePasswordModalComponent, ConfirmDialog,
+    UserChangePasswordComponent, UpdatePlanComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

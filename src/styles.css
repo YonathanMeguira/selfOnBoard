@@ -269,6 +269,40 @@ input:-webkit-autofill {
   background-color: #F7AE2B;
   transition: all 0.3s ease 0s;
 }
+.btn-upgrade-selected {
+  font-family: "Roboto Slab";
+  font-size: 13px;
+  color: white;
+  letter-spacing: 1px;
+  font-weigth: 600;
+  line-height: 15px;
+  border-radius: 40px;
+  background-color: #7C4C95;
+  transition: all 0.3s ease 0s;
+}
+.btn-upgrade-unselected{
+  font-family: "Roboto Slab";
+  font-size: 13px;
+  color: #666666;
+  letter-spacing: 1px;
+  font-weigth: 600;
+  line-height: 15px;
+  border-radius: 40px;
+  border: solid 1px #666666;
+  background-color: white;
+  transition: all 0.3s ease 0s;
+}
+.btn-upgrade-unselected:hover{
+  font-family: "Roboto Slab";
+  font-size: 13px;
+  color: white;
+  letter-spacing: 1px;
+  font-weigth: 600;
+  line-height: 15px;
+  border-radius: 40px;
+  background-color: #7C4C95;
+  transition: all 0.3s ease 0s;
+}
 .btn-neutral-yellow-hvr{
   font-family: "Roboto Slab";
   font-size: 13px;

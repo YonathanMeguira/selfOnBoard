@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
-import * as _ from "lodash";
+import * as _ from 'lodash';
+import * as d3 from 'd3';
 
 @Component({
   selector: 'app-dashboard-top-totals',
@@ -42,8 +43,7 @@ export class GraphSelectorComponent {
 
 export class GraphComponent implements OnInit {
   @Input() GraphObject;
-  multi: any =
-    [
+  multi: any = [
       {
         'name': 'Clean Replica by CDR',
         'series': [
@@ -113,6 +113,7 @@ export class GraphComponent implements OnInit {
         ]
       }
     ];
+  curving: any;
   view: any[] = [700, 400];
   showXAxis = true;
   showYAxis = false;
@@ -129,8 +130,10 @@ export class GraphComponent implements OnInit {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
   };
   // lie, area
-
   constructor() {
+    console.log(d3);
+    this.curving = d3.curveCardinal;
+    console.log(this.curving);
   }
 
   ngOnInit() {

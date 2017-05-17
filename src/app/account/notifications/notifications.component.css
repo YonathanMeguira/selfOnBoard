@@ -4,6 +4,7 @@
 
 .textBold {
   font-weight: 700 !important;
+  font-size: 16px !important;
 }
 
 p, small, label {

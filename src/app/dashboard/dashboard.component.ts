@@ -11,6 +11,7 @@ import {
 import {Store} from "@ngrx/store";
 import {AppStore} from "app/store/app-store";
 import {DashboardActions} from "../store/actions/dashboard.actions";
+import {Observable} from "../../../node_modules/rxjs/Observable";
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,7 @@ import {DashboardActions} from "../store/actions/dashboard.actions";
 export class DashboardComponent implements OnInit {
   graphData: any;
   currGraphData: any;
-
+  getDashboardData: any;
   totals: any = {};
   dataHasLoaded = false;
   allData: any = {};
@@ -151,19 +152,6 @@ export class DashboardComponent implements OnInit {
     this.GetRandomRecipients();
     this.store.dispatch(this.dashboardActions.loadDashboardData());
   };
-
-
-  dictionaryToObject = (dictionary: any) => {
-    const arr = [];
-    _.each(dictionary, (value, key) => {
-      const newObject = {
-        'name': key,
-        'value': value
-      };
-      arr.push(newObject);
-    });
-    return arr;
-  }
 
   getCollectionSum = (collection: any) => {
     let sum = 0;

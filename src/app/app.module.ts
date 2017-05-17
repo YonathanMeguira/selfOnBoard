@@ -144,7 +144,7 @@ import {DashboardService} from "./dashboard/dashboard.service";
       provide: HttpService,
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions, ResponseHandlerService]
-    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken,DashboardService, DashboardActions
+    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken,DashboardService, DashboardActions,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog,

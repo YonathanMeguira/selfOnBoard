@@ -1,15 +1,10 @@
 <div class="col-12 bg-white-shadow">
-  <div class="container pt-5 mt-5 mb-5 text-center">
-    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'Failed'}"
-            (click)="filterBy('Failed')">Blocked Emails
-    </button>
-    <button class="btn btn-primary" [ngClass]="{'btn-primary-active': query.Stage === 'ContentRemoved'}"
-            (click)="filterBy('ContentRemoved')">Emails Blocked with Attachments
-    </button>
 
-  </div>
   <div class="mt-5 text-center" *ngIf="!isEmailEmpty">
-    <p class="text-center m-5"><strong>{{totalNumberOfMails}} Results </strong></p>
+    <div class="title-section pt-4 pb-4">
+      <p class="section-header pl-0">BLOCKED EMAILS & ATTACHMENTS</p>
+    </div>
+    <p class="mail-result mt-5 mb-5">{{totalNumberOfMails}} Emails</p>
     <td-data-table
       #dataTable
       [data]="emails"
@@ -31,3 +26,15 @@
     </td-paging-bar>
   </div>
 </div>
+
+
+<style>
+  .mail-result{
+    font-size: 18px;
+    color: #666666;
+    font-family: 'RobotoSlab-Light', 'Roboto Slab Light', 'Roboto Slab' !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    text-align: left !important;
+  }
+</style>

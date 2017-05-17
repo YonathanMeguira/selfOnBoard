@@ -36,16 +36,16 @@
         <div class="nav navbar-nav mr-auto  justify-content-center">
           <!-- nav here -->
           <div layout="row" *ngIf="testRoute('account')">
-            <a class="sob-page-link" routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
-            <a class="sob-page-link" routerLink="account/account" routerLinkActive="page-active">Account</a>
-            <a class="sob-page-link" routerLink="account/billing" routerLinkActive="page-active">Billing</a>
+            <a class="sob-page-link ml-3 mr-3" routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
+            <a class="sob-page-link ml-2 mr-4" routerLink="account/account" routerLinkActive="page-active">Account</a>
+            <a class="sob-page-link ml-2" routerLink="account/billing" routerLinkActive="page-active">Billing</a>
           </div>
           <div layout="row" *ngIf="testRoute('emails')">
-            <a class="sob-page-link" routerLink="emails/search" routerLinkActive="page-active">Search</a>
+            <a class="sob-page-link ml-3 mr-3" routerLink="emails/search" routerLinkActive="page-active">Search</a>
             <a class="sob-page-link" routerLink="emails/browse" routerLinkActive="page-active">Browse</a>
           </div>
           <div layout="row" *ngIf="testRoute('security')">
-            <a class="sob-page-link" routerLink="security/general" routerLinkActive="page-active">General</a>
+            <a class="sob-page-link ml-3 mr-3" routerLink="security/general" routerLinkActive="page-active">General</a>
             <a class="sob-page-link" routerLink="security/exceptions" routerLinkActive="page-active">Exception</a>
           </div>
         </div>

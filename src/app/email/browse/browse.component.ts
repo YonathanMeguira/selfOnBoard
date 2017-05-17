@@ -22,11 +22,10 @@ export class BrowseComponent extends EmailComponent implements OnInit {
   isEmailEmpty = true;
   totalNumberOfMails: number;
   selectedMails: number[] = [];
-  columns: ITdDataTableColumn[] = [{name: 'Reason Blocked', label: 'Reason Blocked'},
+  columns: ITdDataTableColumn[] = [
     {name: 'SanitizationDate', label: 'Date', format: rawDate => this.convertToDate(rawDate)},
+    {name: 'Reason', label: 'Reason Blocked'},
     {name: 'Recipient', label: 'Recipient'},
-    {name: 'Sender', label: 'Sender'},
-    {name: 'Subject', label: 'Subject'},
     {name: 'AttachedFiles', label: 'Attached File(s)'},
   ];
   query: any = {
@@ -107,8 +106,6 @@ export class BrowseComponent extends EmailComponent implements OnInit {
       }
     )
   }
-
-
 
   filterBy = (filter: string) => {
     this.query.Stage = filter;

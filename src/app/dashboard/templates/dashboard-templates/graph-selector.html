@@ -1,4 +1,4 @@
-<div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-0" style="height: 140px">
+<!--<div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-0" style="height: 110px">
   <div flex="50" class="white frame mt-0 hvr-glow " style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
@@ -20,21 +20,21 @@
     </div>
   </div>
 </div>
-<div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-3" style="height: 140px">
+<div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-3" style="height: 110px">
   <div flex="50" class="white frame mb-0 hvr-glow" style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
       <h5 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Policy</h5>
       <div flex class="section-number">
         <p>{{totals.totalCleanReplicaByCdr}}</p>
-        <h3 class="bold">{{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
+        <p class="selector-totals">{{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}} <span class="percentage">%</span></p>
       </div>
     </div>
   </div>
   <div flex="50" class="white frame mb-0 hvr-glow" style="height: 100%">
     <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
          style="height: 100%; vertical-align: middle">
-      <h5 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Antivirus</h5>
+      <p flex="60" class="graph-selector-title">Attachment Blocked by Antivirus</p>
       <div flex class="section-number">
         <p>{{totals.TotalBlockedByAntivirus}}</p>
         <h3 class="bold">{{totals.TotalBlockedByAntivirus | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
@@ -42,5 +42,57 @@
     </div>
   </div>
 </div>
+-->
+
+<div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 graph-selector-line">
+  <div flex="50" class="white frame graph-selector-box mr-3 pl-3 pr-3" layout-align="space-between center" layout="row">
+    <div style="height: 67%" layout="row">
+      <p class="graph-selector-title" flex="40">Clean Replica by CDR</p>
+      <div flex="60" layout="column">
+        <p class="total-top">{{totals.totalCleanReplicaByCdr}}</p>
+        <p class="selector-totals">
+          {{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}
+          <span class="percentage">%</span></p>
+      </div>
+    </div>
+  </div>
+  <div flex="50" class="white frame" layout-align="space-between center" layout="row">
+    <p class="graph-selector-title" flex="50">Clean Replica by CDR</p>
+    <div flex="50" layout="column">
+      <p>{{totals.totalCleanReplicaByCdr}}</p>
+      <p class="selector-totals">
+        {{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}
+        <span class="percentage">%</span></p>
+    </div>
+  </div>
+</div>
 
 
+<style>
+  .graph-selector-line {
+    height: 110px !important;
+  }
+
+  .total-top {
+    font-size: 16px;
+  }
+
+  .selector-totals {
+    font-size: 40px !important;
+  }
+
+  .percentage {
+    font-size: 26px !important;
+  }
+
+  .graph-selector-box {
+    height: 100%;
+  }
+
+  .graph-selector-title {
+    font-size: 14px !important;
+    color: #999999 !important;
+    line-height: 1.7 !important;
+    font-weight: 600 !important;
+  }
+</style>

@@ -21,7 +21,7 @@ thead > .td-data-table-row {
   border-bottom: solid 1px #666666 !important;
 }
 .td-data-table-column > .md-caption{
-  font-weight: 500 !important;
+  font-weight: 00 !important;
   color: #333333 !important;
   font-size: 13px !important;
 }
@@ -29,9 +29,7 @@ thead > .td-data-table-row {
 thead > .td-data-table-row:hover {
   background-color: transparent !important;
 }
-.navbar{
-  border-radius: 0px !important;
-}
+
 .td-data-table-row {
   border-bottom: none !important;
 }
@@ -60,7 +58,9 @@ h1, h2, h3, h4, h5, p {
 
 .sob-input {
   border: transparent;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2),
+  0 0px 0px 0 rgba(0, 0, 0, .14),
+  0 0px 0px 0 rgba(0, 0, 0, .12);
   transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
   will-change: box-shadow;
   display: block;
@@ -298,7 +298,7 @@ input:-webkit-autofill {
   font-size: 13px;
   color: white;
   letter-spacing: 1px;
-  font-weigth: 600;
+  font-weigth: 600 !important;
   line-height: 15px;
   border-radius: 40px;
   background-color: #7C4C95;
@@ -375,7 +375,7 @@ input:-webkit-autofill {
   border-radius: 40px;
   background-color: #F7AE2B;
   transition: all 0.3s ease 0s;
-  border: none;
+  border: solid 1px #F7AE2B;
 }
 
 .btn-action:hover {
@@ -388,7 +388,6 @@ input:-webkit-autofill {
   font-family: "Roboto Slab";
   font-size: 13px;
   color: #4D766E;
-
   letter-spacing: 1px;
   line-height: 15px;
   border: 2px solid #4D766E;
@@ -400,11 +399,13 @@ input:-webkit-autofill {
 
 .btn-action-yellow-big {
   font-family: "Roboto Slab";
-  font-size: 13px;
+  font-size: 14px;
   padding: 0.8em 2.3em !important;
-  color: #666666;
+  color: #27272A;
   letter-spacing: 1px;
   line-height: 15px;
+  padding-left: 1em;
+  padding-right: 1em;
   border-radius: 40px;
   background: rgba(247, 174, 43, 1);
   transition: all 0.3s ease 0s;
@@ -544,6 +545,7 @@ button:focus {
 
 .underlined-purple {
   padding-bottom: 0.3rem;
+
   border-bottom: solid 2px #9A1796;
 }
 

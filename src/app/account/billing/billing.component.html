@@ -1,22 +1,22 @@
 <div class=" col-12">
   <div id="company" class="white frame col mb-2">
-    <div class="section-title" layout="row" layout-align="space-between center" layout-padding>
-      <h5 class="textBold pl-0" flex="70">PLAN</h5>
+    <div class="section-title pt-3 pb-3" layout="row" layout-align="space-between center">
+      <p class="section-header pl-0" flex="70">PLAN</p>
       <div flex layout="row" layout-align="end center">
         <button class="btn btn-purple" (click)="openUpgradePlan()">Upgrade My Plan</button>
         <button class="btn btn-neutral-yellow-hvr">Cancel Plan</button>
       </div>
     </div>
-    <div class="pt-3 pb-3">
-      <div class="row mb-3">
+    <div class="pt-3 pb-5">
+      <div class="row mb-4 mt-4">
         <p class="textBold-gray col-3">Name</p>
         <p class="textBold col-3">ReSecSMB</p>
       </div>
-      <div class="row mb-3">
+      <div class="row mt-5">
         <p class="textBold-gray col-3">Fee</p>
         <p class="textBold col-3">$1.99/user/Month</p>
       </div>
-      <div class="row">
+      <div class="row mt-5 pb-5">
         <p class="textBold-gray col-3">Users</p>
         <div class="col-3">
           <md-select placeholder="Number of Users" floatPlaceholder="never">
@@ -30,36 +30,36 @@
   </div>
 
 
-  <div id="billingDetails" class="white frame col mb-2">
-    <div class="section-title">
-      <h5 class="pt-5 pb-3 textBold">BILLING DETAILS</h5>
+  <div id="billingDetails" class="white frame col mb-2 pb-5">
+    <div class="section-title pt-3 pb-3">
+      <p class="section-header pl-0">BILLING DETAILS</p>
     </div>
     <div class="pt-3 pb-3">
-      <div class="form-group row">
+      <div class="form-group row mt-4">
         <label for="name" class="textBold-gray col-3 col-form-label">Company Name</label>
         <div class="col-5">
-          <input class="form-control" type="text" [(ngModel)]="billing.name" id="name">
+          <input class="sob-input col-12" type="text" [(ngModel)]="billing.name" id="name">
         </div>
       </div>
       <div class="form-group row">
         <label for="number" class="textBold-gray col-3 col-form-label">Company Number</label>
         <div class="col-5">
-          <input class="form-control" type="number" [(ngModel)]="billing.number" id="number">
+          <input class="sob-input col-12" type="number" [(ngModel)]="billing.number" id="number">
         </div>
       </div>
       <div class="form-group row">
         <label for="address" class="textBold-gray col-3 col-form-label">Billing Address</label>
         <div class="col-5">
-          <input class="form-control" type="text" [(ngModel)]="billing.address" id="address">
+          <input class="sob-input col-12" type="text" [(ngModel)]="billing.address" id="address">
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row pb-5">
         <label for="ccNumber" class="textBold-gray col-3 col-form-label">Payment</label>
         <div class="col-3">
-          <input class="form-control" type="number" [(ngModel)]="billing.ccNumber" id="ccNumber">
+          <input class="sob-input col-12" type="number" [(ngModel)]="billing.ccNumber" id="ccNumber">
         </div>
         <div class="col-2">
-          <input class="form-control" type="Month" [(ngModel)]="billing.ccExp" id="address">
+          <input class="sob-input col-12" type="Month" [(ngModel)]="billing.ccExp" id="address">
         </div>
       </div>
     </div>
@@ -67,6 +67,6 @@
 
 
   <div class="row justify-content-center mt-5">
-    <button class="btn btn-action">APPLY</button>
+    <button class="btn btn-action-yellow-big hvr-glow">APPLY</button>
   </div>
 </div>

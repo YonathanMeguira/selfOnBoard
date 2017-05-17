@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
   GetFeed = () => {
     this.dashboardService.GetFeed().subscribe(
       feed => {
-        const slicedArray = feed.articles.slice(0, 4);
+        const slicedArray = feed.articles.slice(0, 3);
         this.feeds = slicedArray;
         console.log(this.feeds);
       },

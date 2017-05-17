@@ -24,7 +24,7 @@ export class BrowseComponent extends EmailComponent implements OnInit {
   selectedMails: number[] = [];
   columns: ITdDataTableColumn[] = [
     {name: 'SanitizationDate', label: 'Date', format: rawDate => this.convertToDate(rawDate)},
-    {name: 'Reason', label: 'Reason Blocked'},
+    {name: 'Reason Blocked', label: 'Reason'},
     {name: 'Recipient', label: 'Recipient'},
     {name: 'AttachedFiles', label: 'Attached File(s)'},
   ];

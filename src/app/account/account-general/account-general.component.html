@@ -2,18 +2,21 @@
 
   <div id="company" class="white frame col mb-2">
     <div class="section-title">
-      <h5 class="pt-3 pb-3 textBold">COMPANY</h5>
+      <p class="pt-4 pb-4 section-header">COMPANY</p>
     </div>
-    <div class="pt-3 pb-3">
-      <div class="row mb-3">
+    <div class="pt-4 pb-3">
+      <div class="row mb-4">
         <p class="textBold-gray col-3">Company Name</p>
-        <p class="textBold col-3">Avocado Partner</p>
+        <p class="textBold col-3">ReSec</p>
       </div>
-      <div class="row">
-        <p class="textBold-gray col-3">Blocked Attachments</p>
-        <p class="textBold col-3">We'll send an email notifying the users that an attachment has been blocked with a
-          reason.</p>
-        <button class="btn btn-action-inverse h-50" type="button" (click)="sendTestEmail()">Send test email</button>
+      <div class="row mb-4">
+        <p class="textBold-gray col-3">Domain</p>
+        <p class="textBold col-3">resec.co</p>
+      </div>
+      <div class="row mb-4">
+        <p class="textBold-gray col-3">MX Record</p>
+        <p class="textBold col-3">SECUREMAIL.RE-SEC.COM</p>
+        <button class="btn btn-neutral-yellow-hvr" type="button" (click)="sendTestEmail()">Send Test Email</button>
         <small *ngIf="testEmailSent">Test email sent, please wait 1-2 min for confirmation.</small>
       </div>
     </div>
@@ -21,52 +24,55 @@
 
   <div id="accountOwner" class="white frame col mb-2">
     <div class="section-title">
-      <h5 class="pt-3 pb-3 textBold">ACCOUNT OWNER</h5>
+      <p class="pt-4 pb-4 section-header">ACCOUNT OWNER</p>
     </div>
-    <div class="pt-3 pb-3">
-      <div class="row mb-3">
+    <div class="pt-4 pb-3 mt-3">
+      <div class="row mb-4">
         <p class="textBold-gray col-3">Name</p>
-        <input class="col-3 form-control" [(ngModel)]="settings.name" type="text">
+        <input class="col-3 sob-input " [(ngModel)]="settings.name" type="text">
       </div>
-      <div class="row  mb-3">
+      <div class="row  mb-4">
         <p class="textBold-gray col-3">Email</p>
-        <input class="col-3 form-control" type="email" [(ngModel)]="settings.email">
+        <input class="col-3 sob-input " type="email" [(ngModel)]="settings.email">
       </div>
-      <div class="row  mb-3">
+      <div class="row  mb-4">
         <p class="textBold-gray col-3">Phone</p>
-        <input class="col-3 form-control" type="number" [(ngModel)]="settings.phone">
+        <input class="col-3 sob-input " type="number" [(ngModel)]="settings.phone">
       </div>
-      <div class="row  mb-3">
+      <div class="row  mb-4">
         <p class="textBold-gray col-3">Password</p>
-        <input class="col-3 form-control" type="password" [(ngModel)]="settings.password">
+        <input class="col-3 sob-input " type="password" [(ngModel)]="settings.password">
         <button type="button" class="btn btn-link" (click)="openChangePassword()">change</button>
       </div>
-      <label class="checkbox-inline"> <input type="checkbox" [(ngModel)]="isAdmin">I am the administrator</label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" [(ngModel)]="isAdmin">I am the administrator</label>
+
     </div>
   </div>
 
   <div *ngIf="!isAdmin" id="isNotAdmin" class="white frame col mb-2">
     <div class="section-title">
-      <h5 class="pt-3 pb-3 textBold">ADMINISTRATOR</h5>
+      <p class="pt-3 pb-3 section-header">ADMINISTRATOR</p>
     </div>
-    <div class="pt-3 pb-3">
-      <div class="row mb-3">
+    <div class="pt-4 pb-5 mt-3 mb-5">
+      <div class="row mb-4">
         <p class="textBold-gray col-3">Name</p>
-        <input class="col-3 form-control" [(ngModel)]="admin.name" type="text">
+        <input class="col-3 sob-input" [(ngModel)]="admin.name" type="text">
       </div>
-      <div class="row  mb-3">
+      <div class="row  mb-4">
         <p class="textBold-gray col-3">Email</p>
-        <input class="col-3 form-control" type="email" [(ngModel)]="admin.email">
+        <input class="col-3 sob-input" type="email" [(ngModel)]="admin.email">
       </div>
-      <div class="row  mb-3">
+      <div class="row  pb-5">
         <p class="textBold-gray col-3">Phone</p>
-        <input class="col-3 form-control" type="number" [(ngModel)]="admin.phone">
+        <input class="col-3 sob-input" type="number" [(ngModel)]="admin.phone">
       </div>
     </div>
   </div>
 
-  <div class="row justify-content-center mt-5">
-    <button class="btn btn-action">APPLY</button>
+  <div class="row justify-content-center mt-5 pt-4">
+    <button class="btn btn-action-yellow-big hvr-glow">APPLY</button>
   </div>
 
 </div>

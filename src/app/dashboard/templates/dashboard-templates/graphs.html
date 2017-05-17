@@ -1,7 +1,7 @@
 <div class="white frame" style="height: 300px">
   <ngx-charts-line-chart
     [scheme]="colorScheme"
-    [results]="multi"
+    [results]="graphData"
     [gradient]="gradient"
     [xAxis]="showXAxis"
     [yAxis]="showYAxis"
@@ -13,5 +13,6 @@
     [yAxisLabel]="yAxisLabel"
     [schemeType]='schemeType'
     [autoScale]="true">
+    [curve]="curves['Cardinal']"
   </ngx-charts-line-chart>
 </div>

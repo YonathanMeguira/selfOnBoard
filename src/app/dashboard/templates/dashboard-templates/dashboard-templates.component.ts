@@ -1,5 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import * as _ from "lodash";
+import {GraphLine} from "../../dashboard.component";
+
 
 @Component({
   selector: 'app-dashboard-top-totals',
@@ -11,7 +13,6 @@ export class TotalsTopComponent  {
 
   constructor() {
   }
-
 }
 
 
@@ -23,13 +24,21 @@ export class TotalsTopComponent  {
 
 export class GraphSelectorComponent  {
   @Input() totals;
+  @Output() onGraphChanged = new EventEmitter<any>();
+
   colorScheme: any = {
     domain: ['#1565C0', '#03A9F4', '#FFA726', '#FFCC80'],
   };
 
-  constructor() {
+  changeTheCurrentLine(event){
+    console.log(event);
+    if (arguments[1]) {
+      this.onGraphChanged.emit(arguments[1]);
+    }
   }
 
+  constructor() {
+  }
 }
 
 
@@ -42,77 +51,7 @@ export class GraphSelectorComponent  {
 
 export class GraphComponent implements OnInit {
   @Input() GraphObject;
-  multi: any =
-    [
-      {
-        'name': 'Clean Replica by CDR',
-        'series': [
-          {
-            'name': 'April',
-            'value': 41
-          },
-          {
-            'name': 'May',
-            'value': 54
-          },
-          {
-            'name': 'June',
-            'value': 60
-          }
-        ]
-      },
-      {
-        'name': 'Original Attachment OK',
-        'series': [
-          {
-            'name': 'April',
-            'value': 70
-          },
-          {
-            'name': 'May',
-            'value': 20
-          },
-          {
-            'name': 'June',
-            'value': 13
-          },
-        ]
-      },
-      {
-        'name': 'Attachment Blocked By CDR',
-        'series': [
-          {
-            'name': 'April',
-            'value': 30
-          },
-          {
-            'name': 'May',
-            'value': 45
-          },
-          {
-            'name': 'June',
-            'value': 90
-          },
-        ]
-      },
-      {
-        'name': 'Attachment Blocked By Antivirus',
-        'series': [
-          {
-            'name': 'April',
-            'value': 23
-          },
-          {
-            'name': 'May',
-            'value': 15
-          },
-          {
-            'name': 'June',
-            'value': 34
-          },
-        ]
-      }
-    ];
+  @Input() graphData: any;
   view: any[] = [700, 400];
   showXAxis = true;
   showYAxis = false;

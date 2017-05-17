@@ -4,16 +4,17 @@
     <button class="btn btn-action">Last 30 Days</button>
     <button class="btn btn-action">Last 90 Days</button>
   </div>
+
   <div *ngIf="dataHasLoaded">
     <app-dashboard-top-totals [totals]="totals"></app-dashboard-top-totals>
     <div>
       <div class="mt-5 ml-0 mr-0" layout="row" layout-md="column" layout-sm="column" layout-margin
            layout-align="space-between start">
         <div flex-lg="45" flex-gt-lg="40" flex-md="100" flex-sm="100" flex-xs="100" class="ml-0">
-          <app-dashboard-graph-selector [totals]="totals"></app-dashboard-graph-selector>
+          <app-dashboard-graph-selector [totals]="totals" (onGraphChanged)="selectedGraphChanged($event)"></app-dashboard-graph-selector>
         </div>
         <div flex>
-          <app-dashboard-graph [GraphObject]='GraphObject'></app-dashboard-graph>
+          <app-dashboard-graph [graphData]='graphData' (onSelect)="selectDepartment($event)"></app-dashboard-graph>
         </div>
       </div>
     </div>

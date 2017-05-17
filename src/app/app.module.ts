@@ -15,7 +15,9 @@ import {ExceptionComponent} from './security/exception/exception.component';
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
 import {UserComponent} from './user/user.component';
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import {
   GeneralSettingsComponent,
@@ -48,6 +50,7 @@ import {CovalentCoreModule} from '@covalent/core';
 import {TagInputModule} from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { default as reducer } from './store/app-store';
 
 // custom pipes
 
@@ -61,6 +64,9 @@ import {
   PieChartsComponent
 } from './dashboard/templates/dashboard-templates/dashboard-templates.component';
 import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
+import {DashboardEffects} from "./store/effects/dashboard.effects";
+import {DashboardActions} from "./store/actions/dashboard.actions";
+import {DashboardService} from "./dashboard/dashboard.service";
 
 
 @NgModule({
@@ -110,14 +116,19 @@ import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/firs
     NgxDatatableModule,
     NgbModule.forRoot(),
     TagInputModule,
-    NgxChartsModule
+    NgxChartsModule,
+    StoreModule.provideStore(reducer),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 20
+    }),
+    EffectsModule.run(DashboardEffects),
   ],
   providers: [
     {
       provide: HttpService,
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions, ResponseHandlerService]
-    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken],
+    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken, DashboardService, DashboardActions],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog],
   bootstrap: [AppComponent]
 })

@@ -14,7 +14,8 @@ import {SecurityComponent} from './security/security.component';
 import {ExceptionComponent} from './security/exception/exception.component';
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
-import {UserComponent} from './user/user.component';
+import {UserComponent, UserChangePasswordComponent} from './user/user.component';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -56,14 +57,23 @@ import { default as reducer } from './store/app-store';
 
 import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
-import {BillingComponent} from './account/billing/billing.component';
+import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
+
+
+// dashboard components
 import {
   TotalsTopComponent,
   GraphSelectorComponent,
   GraphComponent,
-  PieChartsComponent
+  PieChartsComponent,
+  EmailSectionComponent,
+  NewsFeedComponent
 } from './dashboard/templates/dashboard-templates/dashboard-templates.component';
 import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
+import {NewUserPasswordComponent} from './new-user-password/new-user-password.component';
+
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+
 import {DashboardEffects} from "./store/effects/dashboard.effects";
 import {DashboardActions} from "./store/actions/dashboard.actions";
 import {DashboardService} from "./dashboard/dashboard.service";
@@ -74,14 +84,18 @@ import {DashboardService} from "./dashboard/dashboard.service";
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    EmailSectionComponent,
     EmailComponent,
     SearchComponent,
     BrowseComponent,
+    NewsFeedComponent,
     SecurityComponent,
     ExceptionComponent,
     GeneralComponent,
     AccountComponent,
+    UpdatePlanComponent,
     ChangePasswordModalComponent,
+    UserChangePasswordComponent,
     UserComponent,
     GeneralSettingsComponent,
     GeneralSettingsWithCDRComponent,
@@ -100,7 +114,9 @@ import {DashboardService} from "./dashboard/dashboard.service";
     PieChartsComponent,
     ConfirmDialog,
     FirstTimeUserComponent,
-    GetPercentagePipe
+    GetPercentagePipe,
+    NewUserPasswordComponent
+
   ],
   imports: [
     BrowserModule,
@@ -128,8 +144,11 @@ import {DashboardService} from "./dashboard/dashboard.service";
       provide: HttpService,
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions, ResponseHandlerService]
-    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken, DashboardService, DashboardActions],
-  entryComponents: [ChangePasswordModalComponent, ConfirmDialog],
+    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken,DashboardService, DashboardActions
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
+  entryComponents: [ChangePasswordModalComponent, ConfirmDialog,
+    UserChangePasswordComponent, UpdatePlanComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

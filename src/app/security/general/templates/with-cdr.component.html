@@ -1,6 +1,6 @@
 <div class="white frame margin-top">
   <div class="title-section" layout-padding>
-    <h4>ATTACHMENTS PROCESSED WITH CDR</h4>
+    <h4 class="sob-title">ATTACHMENTS PROCESSED WITH CDR</h4>
   </div>
 
   <div class="content-holder">
@@ -22,8 +22,8 @@
       </thead>
       <tbody>
       <tr>
-        <td layout="column" class="table-row">
-          <p>Documents</p>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Documents</p>
           <small>.doc, .docx, .pdf, .pages, .gdoc</small>
         </td>
         <td colspan="3">
@@ -39,8 +39,8 @@
         </td>
       </tr>
       <tr>
-        <td layout="column" class="table-row">
-          <p>Spreadsheets</p>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Spreadsheets</p>
           <small>.csv, .xls, .xlsx, .gsheet</small>
         </td>
         <td colspan="3">
@@ -56,12 +56,30 @@
         </td>
       </tr>
       <tr>
-        <td layout="column" class="table-row">
-          <p>Images</p>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Images</p>
           <small>.png, .jpg, .jpeg, .gif</small>
         </td>
         <td colspan="3">
           <md-slider [(ngModel)]="cdrSettings.Images"
+                     [max]="2"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="accent">
+          </md-slider>
+        </td>
+      </tr>
+      <tr>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Presentations</p>
+          <small>.ppt, .pptx, .keynote, .gslides
+          </small>
+        </td>
+        <td colspan="3">
+          <md-slider [(ngModel)]="cdrSettings.Presentations"
                      [max]="2"
                      style="width: 100%"
                      [min]="0"
@@ -82,9 +100,7 @@
 
 
 <style>
-  .table-row {
-    margin-right: 1em;
-  }
+
   .disabled-action{
     color: #CCCCCC !important;
     pointer-events: none;

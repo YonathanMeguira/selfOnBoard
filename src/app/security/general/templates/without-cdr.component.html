@@ -1,19 +1,19 @@
 <div class="white frame margin-top">
   <div class="title-section" layout-padding>
-    <h4>ATTACHMENTS PROCESSED WITHOUT CDR</h4>
+    <h4 class="sob-title">ATTACHMENTS PROCESSED WITHOUT CDR</h4>
   </div>
 
   <div class="content-holder">
     <table>
       <thead>
       <th></th>
-      <th style="width: 35%;">Allow</th>
-      <th style="width: 38%; " class="text-right">Block</th>
+      <th style="width: 35%;">Block</th>
+      <th style="width: 38%; " class="text-right">Allow</th>
       </thead>
       <tbody>
       <tr>
-        <td layout="column" class="table-row">
-          <p>Videos/Sounds</p>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Videos/Sounds</p>
           <small>.mp4, .mp3</small>
         </td>
         <td colspan="3">
@@ -29,8 +29,8 @@
         </td>
       </tr>
       <tr>
-        <td layout="column" class="table-row">
-          <p>Applications / Scripts</p>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Applications / Scripts</p>
           <small>.dmg, .exe</small>
         </td>
         <td colspan="3">
@@ -46,8 +46,8 @@
         </td>
       </tr>
       <tr>
-        <td class="table-row">
-          <p>Unrecognized Files</p>
+        <td class="sob-table-security-td">
+          <p class="sob-category-title">Unrecognized Files</p>
         </td>
         <td colspan="3">
           <md-slider [(ngModel)]="noCdrSettings['Unrecognized Files']"

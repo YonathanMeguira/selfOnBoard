@@ -1,18 +1,17 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import * as _ from "lodash";
-import {GraphLine} from "../../dashboard.component";
-
+import * as d3 from 'd3';
 
 @Component({
   selector: 'app-dashboard-top-totals',
   templateUrl: './totals-top.component.html',
   styleUrls: ['./dashboard-templates.component.css']
 })
-export class TotalsTopComponent  {
+export class TotalsTopComponent {
   @Input() totals;
 
   constructor() {
   }
+
 }
 
 
@@ -22,7 +21,7 @@ export class TotalsTopComponent  {
   styleUrls: ['./dashboard-templates.component.css']
 })
 
-export class GraphSelectorComponent  {
+export class GraphSelectorComponent {
   @Input() totals;
   @Output() onGraphChanged = new EventEmitter<any>();
 
@@ -39,6 +38,7 @@ export class GraphSelectorComponent  {
 
   constructor() {
   }
+
 }
 
 
@@ -52,6 +52,7 @@ export class GraphSelectorComponent  {
 export class GraphComponent implements OnInit {
   @Input() GraphObject;
   @Input() graphData: any;
+  curving: any;
   view: any[] = [700, 400];
   showXAxis = true;
   showYAxis = false;
@@ -68,9 +69,12 @@ export class GraphComponent implements OnInit {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
   };
   // lie, area
-
   constructor() {
+    console.log(d3);
+    this.curving = d3.curveCardinal;
+    console.log(this.curving);
   }
+
   ngOnInit() {
   }
 }
@@ -82,10 +86,34 @@ export class GraphComponent implements OnInit {
 })
 
 export class PieChartsComponent {
+  view = [500, 400];
   @Input() pieData;
-  mappedData = [];
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+  @Input() colorScheme;
+}
 
+@Component({
+  selector: 'app-email-section',
+  templateUrl: './email-section.html',
+  styleUrls: ['./dashboard-templates.component.css']
+})
+
+export class EmailSectionComponent {
+  @Input() figureColor;
+  @Input() users;
+  userValues: Array<object> = [{'name': 'April', 'value': 20}, {'name': 'May', 'value': 40}, {
+    'name': 'June',
+    'value': 30
+  }, {'name': 'July', 'value': 67}];
+  colorScheme = {domain: ['#ADE1D8']};
+
+}
+
+@Component({
+  selector: 'app-dashboard-news-feed',
+  templateUrl: './news.html',
+  styleUrls: ['./dashboard-templates.component.css']
+})
+
+export class NewsFeedComponent {
+  @Input() feeds;
 }

@@ -29,6 +29,9 @@ li > a {
 li:hover{
   background-color: #342B62;
 }
+.noHoverEffect:hover{
+  background-color: transparent !important;
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -41,4 +44,70 @@ ul {
   will-change: box-shadow;
   display: block;
   position: relative;
+}
+#top-bar {
+  padding: 1em;
+  background-color: white;
+
+}
+
+#top-bar > p {
+  margin: 0px;
+  font-weight: 600;
+  /* Rectangle: */
+  color: #333;
+}
+
+.center-icon {
+  vertical-align: middle !important;
+}
+
+.sob-page-link{
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  font-size: 16px !important;
+  color: #757575 !important;
+  font-weight: 600 !important;
+
+}
+.sob-page-link:hover{
+  color: #14123F !important;
+  border-bottom: solid 0px white !important;
+  text-decoration: none !important;
+}
+.page-active{
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  font-size: 1.2em !important;
+  color: #14123F !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+#dropdownMenu1 {
+  background-color: transparent;
+  color: #666666;
+  font-weight: 600;
+}
+
+#dropdownMenu1:hover {
+  background-color: rgba(228, 228, 228, 1);
+  border-color: solid 1px #666666 !important;
+}
+
+.sob-menu-item {
+  color: #666666 !important;
+}
+
+.sob-menu-item:hover {
+  color: rgb(0, 153, 255) !important;
+}
+
+#dropdownMenu1:focus {
+  outline: 0 !important;
 }

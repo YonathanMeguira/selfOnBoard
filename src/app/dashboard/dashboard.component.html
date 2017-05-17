@@ -1,15 +1,16 @@
 <div class="col-12">
   <div class="row justify-content-end mb-5 mt-5">
-    <button class="btn btn-action">Last 7 Days</button>
-    <button class="btn btn-action">Last 30 Days</button>
-    <button class="btn btn-action">Last 90 Days</button>
+    <button class="btn btn-transparent hvr-glow">Last 7 Days</button>
+    <button class="btn btn-transparent hvr-glow">Last 30 Days</button>
+    <button class="btn btn-transparent hvr-glow">Last 90 Days</button>
   </div>
-
   <div *ngIf="dataHasLoaded">
     <app-dashboard-top-totals [totals]="totals"></app-dashboard-top-totals>
     <div>
       <div class="mt-5 ml-0 mr-0" layout="row" layout-md="column" layout-sm="column" layout-margin
            layout-align="space-between start">
+        <div flex-lg="45" flex-gt-lg="40" flex-md="100" flex-sm="100" flex-xs="100" class="ml-0" >
+          <app-dashboard-graph-selector [totals]="totals"></app-dashboard-graph-selector>
         <div flex-lg="45" flex-gt-lg="40" flex-md="100" flex-sm="100" flex-xs="100" class="ml-0">
           <app-dashboard-graph-selector [totals]="totals" (onGraphChanged)="selectedGraphChanged($event)"></app-dashboard-graph-selector>
         </div>
@@ -18,10 +19,11 @@
         </div>
       </div>
     </div>
-    <div class="mt-5" layout="row" layout-align="space-between start" layout-margin>
-      <app-dashboard-pie-charts [pieData] = "pieData" flex="50"></app-dashboard-pie-charts>
-      <p flex>else</p>
+    <div class="mt-5 ml-0 mr-0" layout="row" layout-align="space-between start" layout-margin>
+      <app-dashboard-pie-charts [pieData] = 'pieData' [colorScheme] = 'colorScheme' flex="50"></app-dashboard-pie-charts>
+      <app-email-section flex [figureColor] = 'figureColor' [users] = 'randomUsers'></app-email-section>
     </div>
+    <app-dashboard-news-feed [feeds]="feeds"></app-dashboard-news-feed>
   </div>
 </div>
 

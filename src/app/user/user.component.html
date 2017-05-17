@@ -2,22 +2,28 @@
 
 <md-sidenav-container style="height: 100vh">
   <md-sidenav #sidenav opened="true" mode="side" style="width: auto !important">
-
-    <md-icon svgSrc="resecLogo.svg" fill="white"></md-icon>
+    <ul style="height: 10%" class="mt-5">
+      <li mdTooltipPosition="right" class="text-center mt-5 pt-3 pb-3 mb-3 noHoverEffect">
+        <md-icon class="center-icon" svgIcon="resecLogo"></md-icon>
+      </li>
+    </ul>
     <nav>
-
       <ul>
-          <li mdTooltip="Dashboard" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/dashboard" routerLinkActive="active">
-            <i class="fa fa-tachometer fa-2x icon-white" aria-hidden="true"></i>
-          </li>
-        <li mdTooltip="Mails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/emails" routerLinkActive="active">
-          <i class="fa fa-envelope-o fa-2x icon-white" aria-hidden="true"></i>
+        <li mdTooltip="Dashboard" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/dashboard" routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="dashboard"></md-icon>
         </li>
-        <li mdTooltip="Security" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/security" routerLinkActive="active">
-          <i class="fa fa-shield fa-2x icon-white" aria-hidden="true"></i>
+        <li mdTooltip="Mails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/emails"
+            routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="mails"></md-icon>
         </li>
-        <li mdTooltip="Account Settings" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/account" routerLinkActive="active">
-          <i class="fa fa-cog fa-2x icon-white" aria-hidden="true"></i>
+        <li mdTooltip="Security" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/security" routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="security"></md-icon>
+        </li>
+        <li mdTooltip="Account Settings" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/account" routerLinkActive="active">
+          <md-icon class="center-icon" svgIcon="settings"></md-icon>
         </li>
       </ul>
 
@@ -28,19 +34,39 @@
     <nav class="navbar sticky-top bg-white-shadow">
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
-          <button md-mini-fab (click)="sidenav.toggle()">
-            <i class="fa fa-bars" title="Align Center"></i>
-          </button>
+          <!-- nav here -->
+          <div layout="row" *ngIf="testRoute('account')">
+            <a class="sob-page-link ml-3 mr-3" routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
+            <a class="sob-page-link ml-2 mr-4" routerLink="account/account" routerLinkActive="page-active">Account</a>
+            <a class="sob-page-link ml-2" routerLink="account/billing" routerLinkActive="page-active">Billing</a>
+          </div>
+          <div layout="row" *ngIf="testRoute('emails')">
+            <a class="sob-page-link ml-3 mr-3" routerLink="emails/search" routerLinkActive="page-active">Search</a>
+            <a class="sob-page-link" routerLink="emails/browse" routerLinkActive="page-active">Browse</a>
+          </div>
+          <div layout="row" *ngIf="testRoute('security')">
+            <a class="sob-page-link ml-3 mr-3" routerLink="security/general" routerLinkActive="page-active">General</a>
+            <a class="sob-page-link" routerLink="security/exceptions" routerLinkActive="page-active">Exception</a>
+          </div>
         </div>
         <div class="nav navbar-nav ml-auto  justify-content-center">
-
-          <button id="sidenav-toggler" md-mini-fab (click)="logout()">
-            <i class="fa fa-sign-out" style="color: #0C0E47" title="Align Center"></i>
-          </button>
+          <div class="dropdown">
+            <button class="btn  dropdown-toggle"
+                    type="button" id="dropdownMenu1"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+              {{username}}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a class="sob-menu-item" (click)="openChangePassword()">Change Password</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a class="sob-menu-item" (click)="logout()">Logout</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
-    <div style="margin: 2em; ">
+    <div id="userAppContainer">
       <router-outlet></router-outlet>
     </div>
   </div>
@@ -48,17 +74,7 @@
 
 
 <style>
-  #top-bar {
-    padding: 1em;
-    background-color: white;
-
+  #userAppContainer{
+    margin: 2em 8.125%;
   }
-
-  #top-bar > p {
-    margin: 0px;
-    font-weight: 600;
-    /* Rectangle: */
-    color: #333;
-  }
-
 </style>

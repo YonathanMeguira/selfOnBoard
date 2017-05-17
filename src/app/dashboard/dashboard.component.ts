@@ -4,7 +4,9 @@ import {
   TotalsTopComponent,
   GraphSelectorComponent,
   GraphComponent,
-  PieChartsComponent
+  PieChartsComponent,
+  EmailSectionComponent,
+  NewsFeedComponent
 } from './templates/dashboard-templates/dashboard-templates.component';
 import {Store} from "@ngrx/store";
 import {AppStore} from "app/store/app-store";
@@ -14,17 +16,27 @@ import {DashboardActions} from "../store/actions/dashboard.actions";
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  // providers: [DashboardService,Store],
-  entryComponents: [TotalsTopComponent, GraphSelectorComponent, GraphComponent, PieChartsComponent]
+  providers: [DashboardService],
+  entryComponents: [TotalsTopComponent, GraphSelectorComponent,
+    GraphComponent, PieChartsComponent, EmailSectionComponent, NewsFeedComponent]
 })
 export class DashboardComponent implements OnInit {
-  graphData: any;//GraphLine[];//{ 'name': string; 'series': { 'name': string; 'value': number; }[]; }[];
-  currGraphData: any;//GraphLine[];//{ 'name': string; 'series': { 'name': string; 'value': number; }[]; }[];
+  graphData: any;
+  currGraphData: any;
+
   totals: any = {};
   dataHasLoaded = false;
   allData: any = {};
+  feeds: Array<any>;
   pieData: any = {};
-  getDashboardData: any;
+  randomUsers: Array<any>;
+  displayingSenders = false;
+  displayingRecipients = true;
+  cdrGradient: Array<string> = ['#1A237E', '#1D2A87', '#203291', '#233A9B', '#2642A5', '#2A4AAF', '#2D52B9',
+    '#305AC3', '#3362CD', '#376AD7', '#3A72E1', '#3D7AEB', '#4082F5', '#448AFF'];
+  colorScheme = {domain: this.cdrGradient};
+  cdrFigureColor = '#ADE1D8';
+  figureColor = this.cdrFigureColor;
 
   private cleanReplica: any;
   private attachmentOk: any;
@@ -126,12 +138,67 @@ export class DashboardComponent implements OnInit {
           ];
 
         this.graphData = this.currGraphData;
-       // GraphComponent.Multi =
+        // GraphComponent.Multi =
       },
       error => {
         console.log(error);
       });
   };
+
+
+  ngOnInit() {
+    this.GetFeed();
+    this.GetRandomRecipients();
+    this.store.dispatch(this.dashboardActions.loadDashboardData());
+  };
+
+
+  dictionaryToObject = (dictionary: any) => {
+    const arr = [];
+    _.each(dictionary, (value, key) => {
+      const newObject = {
+        'name': key,
+        'value': value
+      };
+      arr.push(newObject);
+    });
+    return arr;
+  }
+
+  getCollectionSum = (collection: any) => {
+    let sum = 0;
+    for (var key in collection) {
+      sum = sum + collection[key];
+    }
+    return sum;
+  }
+
+  GetRandomRecipients = () => {
+    this.displayingSenders = false;
+    this.displayingRecipients = true;
+    this.dashboardService.GetRandomRecipients().subscribe(
+      result => this.randomUsers = result,
+      error => console.log(error)
+    );
+  }
+  GetRandomSenders = () => {
+    this.displayingSenders = true;
+    this.displayingRecipients = false;
+    this.dashboardService.GetRandomSenders().subscribe(
+      result => this.randomUsers = result,
+      error => console.log(error)
+    );
+  }
+  GetFeed = () => {
+    this.dashboardService.GetFeed().subscribe(
+      feed => {
+        const slicedArray = feed.articles.slice(0, 4);
+        this.feeds = slicedArray;
+        console.log(this.feeds);
+      },
+      error => console.log(error)
+    );
+  }
 
   selectedGraphChanged(event){
     if (this.graphData !== this.currGraphData){
@@ -154,32 +221,4 @@ export class DashboardComponent implements OnInit {
         break;
     }
   }
-
-  ngOnInit() {
-    this.store.dispatch(this.dashboardActions.loadDashboardData());
-  };
-
-  // loadData = () => {
-  //   this.dashboardService.getDashboardData().subscribe(
-  //
-  //   );
-  // };
-
-  getCollectionSum = (collection: any) => {
-    let sum = 0;
-    for (var key in collection) {
-      sum = sum + collection[key];
-    }
-    return sum;
-  }
-}
-
-export class Series {
-  name: string;
-  value: number;
-}
-
-export class GraphLine {
-  name: string;
-  series: Series[];
 }

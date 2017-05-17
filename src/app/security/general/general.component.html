@@ -3,17 +3,11 @@
   <general-with-cdr
     [cdrSettings]="mainPolicySettings.AttachementsProcessedLevels"></general-with-cdr>
   <general-without-cdr [noCdrSettings]="mainPolicySettings.AttachementsWithoutCdr"></general-without-cdr>
-  <app-special-attachments></app-special-attachments>
-  <div layout="row" layout-margin layout-align="center center">
-    <button class="save-btn" md-raised-button layout-padding (click)="saveSettings()">APPLY</button>
+  <app-special-attachments
+    [specialAttachmentSettings]="mainPolicySettings.SpecialAttachments"></app-special-attachments>
+  <div layout="row" layout-margin layout-align="center center" class="mt-5">
+    <button class="btn btn-action-yellow-big hvr-glow"  layout-padding (click)="saveSettings()">APPLY</button>
   </div>
 </div>
 
 
-<style>
-  .save-btn {
-    background-color: #3D796F;
-    color: white;
-    margin-top: 2em;
-  }
-</style>

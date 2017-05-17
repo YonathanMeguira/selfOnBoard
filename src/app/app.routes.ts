@@ -4,6 +4,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes, CanActivate} from '@angular/router';
 import {LoginComponent} from './login/login.component';
+import {NewUserPasswordComponent} from './new-user-password/new-user-password.component';
 import {UserComponent} from './user/user.component';
 import {SecurityComponent} from './security/security.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
     component: UserComponent,
     canActivate: [UserIsSobAndHasToken],
     children: [
+      {path: 'firstTimeChangePassword', component: NewUserPasswordComponent},
       {path: 'firstTime', component: FirstTimeUserComponent},
       {path: 'dashboard', component: DashboardComponent},
       {
@@ -52,7 +54,6 @@ const appRoutes: Routes = [
           {path: 'account', component: AccountGeneralComponent},
           {path: 'notifications', component: NotificationsComponent},
           {path: 'billing', component: BillingComponent},
-
         ]
       }
     ]
@@ -62,7 +63,6 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
   exports: [RouterModule]
-
 })
 export class AppRoutingModule {
 }

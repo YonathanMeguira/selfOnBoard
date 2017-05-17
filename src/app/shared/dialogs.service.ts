@@ -8,7 +8,7 @@ import {Injectable, Component} from '@angular/core';
     <p class="text-center bold-dark-gray">{{ title }}</p>
     <p class="text-center">{{ message }}</p>
     <div class="text-center mt-4 mb-4">
-      <button type="button" class=" btn btn-danger"
+      <button type="button" class=" btn btn-action"
               (click)="dialogRef.close(true)">Logout
       </button>
     </div>

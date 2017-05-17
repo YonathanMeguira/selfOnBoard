@@ -38,11 +38,12 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
   isUndefined = () => {
     return isNullOrUndefined(this.oldCdr);
   }
+
   constructor() {
   }
 
   ngDoCheck() {
-    if (!(this.isUndefined()) && (this.oldCdr !== this.cdrSettings)){
+    if (!(this.isUndefined()) && (this.oldCdr !== this.cdrSettings)) {
       console.log('had changed');
       console.log(this.isUndefined());
     }
@@ -68,6 +69,7 @@ export class GeneralSettingsWithoutCDRComponent {
 
   constructor() {
   }
+
   restoreDefaultNoCdr = () => {
     this.noCdrSettings['Unrecognized Files'] = 0;
     this.noCdrSettings['Video/Sound'] = 0;
@@ -84,13 +86,13 @@ export class GeneralSettingsWithoutCDRComponent {
 
 export class SpecialAttachmentsComponent {
   @Input()
-  noCdrSettings: any;
+  @Input() specialAttachmentSettings: any;
 
   constructor() {
   }
-  restoreDefaultNoCdr = () => {
-    this.noCdrSettings['Unrecognized Files'] = 0;
-    this.noCdrSettings['Video/Sound'] = 0;
-    this.noCdrSettings['Applications/Scripts'] = 0;
+
+  restoreDefaultSpecial = () => {
+    this.specialAttachmentSettings['Password Protected'] = 0;
+    this.specialAttachmentSettings['Signed Documents'] = 0;
   }
 }

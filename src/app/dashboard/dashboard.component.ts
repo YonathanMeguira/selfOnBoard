@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {DashboardService} from 'app/dashboard/dashboard.service';
 import _ from 'lodash';
-
 import {
   TotalsTopComponent,
   GraphSelectorComponent,
@@ -35,12 +34,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   randomUsers: Array<any>;
   displayingSenders = false;
   displayingRecipients = true;
-  cdrGradient: Array<string> = ['#1A237E', '#1D2A87', '#203291', '#233A9B', '#2642A5', '#2A4AAF', '#2D52B9',
-    '#305AC3', '#3362CD', '#376AD7', '#3A72E1', '#3D7AEB', '#4082F5', '#448AFF'];
-  colorScheme = {domain: this.cdrGradient};
-  cdrFigureColor = '#ADE1D8';
-  figureColor = this.cdrFigureColor;
-
+  colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
+  pieChartTitle = 'Clean Replica By CDR';
+  emailScoreColor = '#8BBFEF';
   private cleanReplica: any;
   private attachmentOk: any;
   private blockedByCDR: any;
@@ -54,8 +50,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (!res || res.length === 0) {
           return;
         }
-
-
         this.allData = res;
         this.totals.TotalEmailsProcessed = res.TotalEmailsProcessed;
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
@@ -164,7 +158,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       };
       arr.push(newObject);
     });
-    return arr;
+    return arr.slice(0, 5);
   }
 
   getCollectionSum = (collection: any) => {
@@ -203,29 +197,42 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   selectedGraphChanged(event) {
-    if (this.graphData !== this.currGraphData) {
-      this.graphData = this.currGraphData;
-      return;
-    }
-
     switch (event) {
       case 'totals.totalCleanReplicaByCdr':
         this.graphData = [this.cleanReplica];
+        this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
+        this.pieChartTitle = 'Clean Replica By CDR';
+        this.pieData = this.dictionaryToObject(this.allData.TotalProcessedByCdr);
         break;
       case 'totals.attachmentOk':
         this.graphData = [this.attachmentOk];
+        this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
+        this.pieChartTitle = 'Original Attachment OK';
+        this.pieData = this.dictionaryToObject(this.allData.TotalPassed);
         break;
       case 'totals.blockedByCDR':
         this.graphData = [this.blockedByCDR];
+        this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
+        this.pieChartTitle = 'Attachment Blocked by Policy';
+        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy);
         break;
       case 'totals.attachmentBlockedByAntivirus':
         this.graphData = [this.attachmentBlockedByAntivirus];
+        this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
+        this.pieChartTitle = 'Attachment Blocked By Antivirus';
+        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus);
         break;
     }
   }
-  ngOnDestroy(){
-    if (this.getDashboardData){
+  showAllGraphs = (event) => {
+    this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
+    this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};
+    this.pieChartTitle = 'Total Passed Files';
+  };
+  ngOnDestroy() {
+    if (this.getDashboardData) {
       this.getDashboardData.unsubscribe();
     }
   }
+
 }

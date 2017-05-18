@@ -8,12 +8,14 @@ import * as d3 from 'd3';
 })
 export class TotalsTopComponent {
   @Input() totals;
+  @Output() onTotalSelected = new EventEmitter<any>();
+  constructor() {}
 
-  constructor() {
+  displayTotals = (event) => {
+    console.log(event);
+    this.onTotalSelected.emit(event);
   }
-
 }
-
 
 @Component({
   selector: 'app-dashboard-graph-selector',
@@ -28,19 +30,14 @@ export class GraphSelectorComponent {
   colorScheme: any = {
     domain: ['#1565C0', '#03A9F4', '#FFA726', '#FFCC80'],
   };
-
   changeTheCurrentLine(event){
-    console.log(event);
     if (arguments[1]) {
       this.onGraphChanged.emit(arguments[1]);
-    }
+    };
   }
-
   constructor() {
-  }
-
+  };
 }
-
 
 @Component({
   selector: 'app-dashboard-graph',
@@ -48,14 +45,13 @@ export class GraphSelectorComponent {
   styleUrls: ['./dashboard-templates.component.css']
 })
 
-
 export class GraphComponent implements OnInit {
   @Input() graphData: any;
   curving: any;
-  view: any[] = [700, 400];
+  view: any[] = [667, 229];
   showXAxis = true;
   showYAxis = false;
-  gradient = true;
+  gradient = false;
   showLegend = false;
   showXAxisLabel = true;
   xAxisLabel = '';
@@ -63,7 +59,6 @@ export class GraphComponent implements OnInit {
   yAxisLabel = 'Month';
   showGridLines = false;
   schemeType = 'linear';
-
   colorScheme = {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
   };
@@ -85,8 +80,9 @@ export class GraphComponent implements OnInit {
 })
 
 export class PieChartsComponent {
-  view = [500, 400];
+  view = [400, 300];
   @Input() pieData;
+  @Input() title: string;
   @Input() colorScheme;
 }
 
@@ -99,12 +95,12 @@ export class PieChartsComponent {
 export class EmailSectionComponent {
   @Input() figureColor;
   @Input() users;
+  @Input() title: string;
+  @Input() scoreColor: string;
   userValues: Array<object> = [{'name': 'April', 'value': 20}, {'name': 'May', 'value': 40}, {
     'name': 'June',
     'value': 30
   }, {'name': 'July', 'value': 67}];
-  colorScheme = {domain: ['#ADE1D8']};
-
 }
 
 @Component({

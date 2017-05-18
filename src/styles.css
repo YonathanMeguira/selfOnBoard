@@ -1,7 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 @import '/node_modules/@covalent/core/common/platform.css';
+.chart-legend .legend-labels{
+  background-color: white !important;
+  line-height: 100% !important;
+  width: 100px !important;
+  margin-left: -2em !important;
+}
 
+.chart-legend .legend-title-text{
+  display: none !important;
+}
 .title-section {
   border-bottom: solid 1px #E5E5E5 !important;
 }
@@ -64,6 +73,9 @@ h1, h2, h3, h4, h5, p {
   transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
   will-change: box-shadow;
   display: block;
+  font-size: 14px;
+  color: #999999;
+  font-style: normal;
   line-height: 15px;
   height: 2.2em;
   position: relative;
@@ -545,8 +557,8 @@ button:focus {
 
 .underlined-purple {
   padding-bottom: 0.3rem;
-
   border-bottom: solid 2px #9A1796;
+  font-size: 40px;
 }
 
 .icon-white {

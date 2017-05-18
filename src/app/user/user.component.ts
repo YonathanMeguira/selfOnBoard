@@ -42,6 +42,7 @@ export class UserComponent {
               private activatedRoute: ActivatedRoute,
               public dialog: MdDialog) {
 
+
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;

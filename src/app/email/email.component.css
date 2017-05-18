@@ -18,3 +18,17 @@
   margin-top: 3em !important;
   margin-bottom: 2em !important;
 }
+.search-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0px 16px;
+  background-color: #F7AE2B;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.search-container{
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}

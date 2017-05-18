@@ -1,54 +1,11 @@
-<!--<div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-0" style="height: 110px">
-  <div flex="50" class="white frame mt-0 hvr-glow " style="height: 100%">
-    <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
-         style="height: 100%; vertical-align: middle">
-      <h5 flex="60" class="bold light-gray spaced-line">Clean Replica by CDR</h5>
-      <div flex class="section-number">
-        <p>{{totals.totalCleanReplicaByCdr}}</p>
-        <h3 class="bold">{{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
-      </div>
-    </div>
-  </div>
-  <div flex="50" class="white frame mt-0 hvr-glow" style="height: 100%">
-    <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
-         style="height: 100%; vertical-align: middle">
-      <h5 flex="60" class="bold light-gray spaced-line">Original Attachments OK</h5>
-      <div flex class="section-number">
-        <p>{{totals.totalPassedOk}}</p>
-        <h3 class="bold">{{totals.totalPassedOk | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
-      </div>
-    </div>
-  </div>
-</div>
-<div layout="row" layout-align="space-between center" layout-margin class="ml-0 mt-3" style="height: 110px">
-  <div flex="50" class="white frame mb-0 hvr-glow" style="height: 100%">
-    <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
-         style="height: 100%; vertical-align: middle">
-      <h5 flex="60" class="bold light-gray spaced-line">Attachment Blocked by Policy</h5>
-      <div flex class="section-number">
-        <p>{{totals.totalCleanReplicaByCdr}}</p>
-        <p class="selector-totals">{{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}} <span class="percentage">%</span></p>
-      </div>
-    </div>
-  </div>
-  <div flex="50" class="white frame mb-0 hvr-glow" style="height: 100%">
-    <div layout="row" layout-align="space-between center" class="ml-0" layout-padding
-         style="height: 100%; vertical-align: middle">
-      <p flex="60" class="graph-selector-title">Attachment Blocked by Antivirus</p>
-      <div flex class="section-number">
-        <p>{{totals.TotalBlockedByAntivirus}}</p>
-        <h3 class="bold">{{totals.TotalBlockedByAntivirus | GetPercentage : totals.TotalAttachmentProcessed}}</h3>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
 <div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 graph-selector-line">
-  <div flex="50" class="white frame graph-selector-box mr-3 pl-3 pr-3" layout-align="space-between center" layout="row">
-    <div style="height: 67%" layout="row">
-      <p class="graph-selector-title" flex="40">Clean Replica by CDR</p>
-      <div flex="60" layout="column">
+  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.totalCleanReplicaByCdr')" class="white frame graph-selector-box mr-3">
+    <div layout="row" layout-align="end start"  flex="100">
+      <div id="triangle-blue"></div>
+    </div>
+    <div style="height: 67%" layout="row" layout-align="space-between center" class="pl-3 pr-3">
+      <p class="graph-selector-title" flex="50">Clean <br>Replica by CDR</p>
+      <div flex="50" layout="column">
         <p class="total-top">{{totals.totalCleanReplicaByCdr}}</p>
         <p class="selector-totals">
           {{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}
@@ -56,43 +13,76 @@
       </div>
     </div>
   </div>
-  <div flex="50" class="white frame" layout-align="space-between center" layout="row">
-    <p class="graph-selector-title" flex="50">Clean Replica by CDR</p>
-    <div flex="50" layout="column">
-      <p>{{totals.totalCleanReplicaByCdr}}</p>
-      <p class="selector-totals">
-        {{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}
-        <span class="percentage">%</span></p>
+  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box  " layout-align="space-between center">
+    <div layout="row" layout-align="end start"  flex="100">
+      <div id="triangle-green"></div>
+    </div>
+    <div style="height: 67%" layout="row" class="pl-3 pr-3">
+      <p class="graph-selector-title" flex="50">Original Attachment OK</p>
+      <div flex="50" layout="column">
+        <p class="total-top">{{totals.totalPassedOk}}</p>
+        <p class="selector-totals">
+          {{totals.totalPassedOk | GetPercentage : totals.TotalAttachmentProcessed}}
+          <span class="percentage">%</span></p>
+      </div>
     </div>
   </div>
 </div>
 
+<div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 mt-3 graph-selector-line">
+  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.blockedByCDR')" class="white frame graph-selector-box mr-3" layout-align="space-between center">
+    <div layout="row" layout-align="end start"  flex="100">
+      <div id="triangle-yellow"></div>
+    </div>
+    <div style="height: 67%" layout="row" class="pl-3 pr-3">
+      <p class="graph-selector-title" flex="50">Attachment Blocked by Policy</p>
+      <div flex="50" layout="column">
+        <p class="total-top">{{totals.BlockedByPolicy}}</p>
+        <p class="selector-totals">
+          {{totals.BlockedByPolicy | GetPercentage : totals.TotalAttachmentProcessed}}
+          <span class="percentage">%</span></p>
+      </div>
+    </div>
+  </div>
+  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentBlockedByAntivirus')" class="white frame graph-selector-box" layout-align="space-between center">
+    <div layout="row" layout-align="end start" flex="100">
+      <div id="triangle-orange"></div>
+    </div>
+    <div style="height: 67%" layout="row" class="p-3">
+      <p class="graph-selector-title" flex="50">Attachment Blocked by Antivirus</p>
+      <div flex="50" layout="column">
+        <p class="total-top">{{totals.TotalBlockedByAntivirus}}</p>
+        <p class="selector-totals">
+          {{totals.TotalBlockedByAntivirus | GetPercentage : totals.TotalAttachmentProcessed}}
+          <span class="percentage">%</span></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
-  .graph-selector-line {
-    height: 110px !important;
+  #triangle-blue {
+    width: 0;
+    height: 0;
+    border-top: 20px solid #A5CDED;
+    border-left: 20px solid transparent;
   }
-
-  .total-top {
-    font-size: 16px;
+  #triangle-green {
+    width: 0;
+    height: 0;
+    border-top: 20px solid #A4DCD2;
+    border-left: 20px solid transparent;
   }
-
-  .selector-totals {
-    font-size: 40px !important;
+  #triangle-yellow {
+    width: 0;
+    height: 0;
+    border-top: 20px solid #F7D399;
+    border-left: 20px solid transparent;
   }
-
-  .percentage {
-    font-size: 26px !important;
-  }
-
-  .graph-selector-box {
-    height: 100%;
-  }
-
-  .graph-selector-title {
-    font-size: 14px !important;
-    color: #999999 !important;
-    line-height: 1.7;
-    font-weight: 600 !important;
+  #triangle-orange {
+    width: 0;
+    height: 0;
+    border-top: 20px solid #F5AF91;
+    border-left: 20px solid transparent;
   }
 </style>

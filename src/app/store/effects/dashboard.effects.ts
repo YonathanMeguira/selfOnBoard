@@ -24,7 +24,5 @@ export class DashboardEffects {
   loadDashboardGraph$ = this.actions$
     .ofType(DashboardActions.LOAD_DASHBOARD_GRAPH)
     .switchMap(() => this.svc.getDashboardData())
-    .map((categories: DashboardGraph) => this.categoryActions.loadDashboardGraphSuccess(categories))
-
-
+    .map((categories: DashboardGraph) => this.categoryActions.loadDashboardGraphSuccess(categories));
 }

@@ -38,18 +38,32 @@ export class AccountService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get notification settings'));
   }
 
-  GetAccountGeneralSettings(): Observable<any> {
+  getAccountGeneralSettings(): Observable<any> {
     const urlGetAccountGeneralSettings = 'http://' + this.server + ':4580/sob/api/GetAccountGeneralSettings';
     return this.http.get(urlGetAccountGeneralSettings)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account general settings'));
   }
 
-  PostAccountGeneralSettings(settings): Observable<any> {
+  postAccountGeneralSettings(settings): Observable<any> {
     const urlPostAccountGeneralSettings = 'http://' + this.server + ':4580/sob/api/PostAccountGeneralSettings';
     return this.http.post(urlPostAccountGeneralSettings, settings)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not post account general settings'));
+  }
+
+  getBillingData(subscriptionId:string): Observable<any> {
+    const urlGetSubscriptionInfo = 'http://' + this.server + ':4580/sob/api/stripe/subscriptionInfo';
+    return this.http.get(urlGetSubscriptionInfo,{search: subscriptionId})
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account billing settings'));
+  }
+
+  updateBillingData(updatedPlan:string): Observable<any> {
+    const urlGetSubscriptionInfo = 'http://' + this.server + ':4580/sob/api/stripe/subscriptionInfo';
+    return this.http.get(urlGetSubscriptionInfo,{search: subscriptionId})
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account billing settings'));
   }
 
   ChangePassword(passwords): Observable<any> {

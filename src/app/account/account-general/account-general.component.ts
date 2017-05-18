@@ -20,7 +20,7 @@ export class ChangePasswordModalComponent {
   switchToForgotPassword = () => {
     this.resetPassword = true;
     this.forgotPassword = false;
-  }
+  };
 
   changePassword = () => {
     this.accountService.ChangePassword(this.passwordsToSend).subscribe(
@@ -35,14 +35,18 @@ export class ChangePasswordModalComponent {
   }
 }
 
-
-class SettingsForm {
+class AccountOwnerData {
   name: string;
   phone: number;
   email: string;
   password?: string;
+};
+
+class CompanyData{
+  name: string;
+  domain: string;
+  mxRecord: string;
 }
-;
 
 @Component({
   selector: 'app-account-general',
@@ -51,22 +55,44 @@ class SettingsForm {
   providers: [AccountService],
   entryComponents: [ChangePasswordModalComponent]
 })
+
 export class AccountGeneralComponent implements OnInit {
 
   private dialogRef: MdDialogRef<any>;
   testEmailSent = false;
   isAdmin = true;
 // scroll down to see class SettingsForm
-  settings: SettingsForm = new SettingsForm;
-  admin: SettingsForm = new SettingsForm;
+  accountOwnerData: AccountOwnerData = new AccountOwnerData;
+  adminData: AccountOwnerData = new AccountOwnerData;
+  companyData : CompanyData = new CompanyData;
+  currentAccount : any;
 
   constructor(private accountService: AccountService, public dialog: MdDialog) {
   }
 
   ngOnInit() {
-    this.accountService.GetAccountGeneralSettings().subscribe(
+    this.accountService.getAccountGeneralSettings().subscribe(
       result => {
-        console.log(result);
+       if (result == null){
+          return;
+        }
+
+        // account data
+        this.accountOwnerData.phone = result.AccountOwnerPhone;
+        this.accountOwnerData.email = result.AccountOwnerEmail;
+        this.accountOwnerData.name = result.AccountOwnerName;
+
+        // admin data
+        this.adminData.phone = result.AccountAdminPhone;
+        this.adminData.email = result.AccountAdminEmail;
+        this.adminData.name = result.AccountAdminName;
+
+        // company data
+        this.companyData.name = result.CompanyName;
+        this.companyData.domain = result.ComapnyDomain;
+        this.companyData.mxRecord = result.MxRecord;
+
+
       }, error => {
         console.log(error);
       }
@@ -85,6 +111,26 @@ export class AccountGeneralComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
+  }
+
+  saveAccountData(){
+    // add validation on data if needed
+    var blobDataToSend = {
+      AccountOwnerPhone : this.accountOwnerData.phone,
+      AccountOwnerEmail : this.accountOwnerData.email,
+      AccountOwnerName : this.accountOwnerData.name,
+      AccountAdminPhone : this.adminData.phone,
+      AccountAdminEmail : this.adminData.email,
+      AccountAdminName : this.adminData.name
+    };
+
+    this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(()=>
+      {
+
+      }
+      ,
+      error => console.log(error)
+    );
   }
 }
 

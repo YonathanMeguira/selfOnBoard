@@ -8,7 +8,8 @@ export class DashboardService {
 
   constructor(private http: HttpService) {
   }
-  GetDashboardData(): Observable<any> {
+
+  getDashboardData(): Observable<any> {
     const dashboardUrl = 'http://' + this.server + ':4580/sob/api/dashboard';
     return this.http.get(dashboardUrl)
       .map((res) => res.json())

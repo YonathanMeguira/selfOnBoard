@@ -1,61 +1,61 @@
 <div>
   <div *ngIf="!isFirstTime" class="mb-5 mt-5">
-    <p>Your current plan allows for 7 days of email archiving. If you need more, upgrade here.</p>
-    <div class="white frame pt-5 pb-5">
-      <div class="col-6">
-        <div class="row">
-          <p class="col-sm-3 bold-gray">Ticket ID</p>
-          <div class="col-sm-7">
-            <input type="text" class="form-control" [(ngModel)]="query.ticketId" placeholder="Ticket ID">
-          </div>
-          <button class="btn btn-circle-action" (click)="searchMails()" [disabled]="!query.ticketId">
-            <i class="fa fa-search" aria-hidden="true"></i>
+    <p class="mb-3">Your current plan allows for 7 days of email archiving. If you need more, upgrade here.</p>
+    <div class="white frame">
+      <div class="col-8 pl-0">
+        <div layout="row" class="search-container" layout-align="start center">
+          <input type="text" class="sob-input" flex="70" [(ngModel)]="query.ticketId" placeholder="Ticket ID">
+          <button class="btn search-btn" (click)="searchMails()" [disabled]="!query.ticketId">
+            <i class="fa fa-chevron-right" aria-hidden="true" style="font-size: 18px"></i>
           </button>
         </div>
 
+
         <!-- search result section -->
-        <div *ngIf="!noResultFound && !noSearchInitiated">
-          <div class="mt-5 mb-4" *ngIf="!noResultFound">
-            <div class="row">
-              <p class="bold-gray col-3">Date</p>
-              <p class="bold-dark-gray col">{{emails.SanitizationDate | date:'medium'}}</p>
+        <div class="pl-5 pb-5">
+          <div *ngIf="!noResultFound && !noSearchInitiated">
+            <div class="mt-5 mb-4" *ngIf="!noResultFound">
+              <div class="row">
+                <p class="bold-gray col-3">Date</p>
+                <p class="bold-dark-gray col">{{emails.SanitizationDate | date:'medium'}}</p>
+              </div>
+              <div class="row">
+                <p class="bold-gray col-3">Reason</p>
+                <p class="bold-dark-gray col">{{emails['Reason Blocked']}}</p>
+              </div>
+              <div class="row">
+                <p class="bold-gray col-3">Recipient</p>
+                <p class="bold-dark-gray col">{{emails.Recipient}}</p>
+              </div>
+              <div class="row">
+                <p class="bold-gray col-3">Sender</p>
+                <p class="bold-dark-gray col">{{emails.Sender}}</p>
+              </div>
+              <div class="row">
+                <p class="bold-gray col-3">Subject</p>
+                <p class="bold-dark-gray col">{{emails.Subject}}</p>
+              </div>
+              <div class="row">
+                <p class="bold-gray col-3">Attached Files</p>
+                <p class="bold-dark-gray col">.{{emails['Attached Files']}}</p>
+              </div>
             </div>
-            <div class="row">
-              <p class="bold-gray col-3">Reason</p>
-              <p class="bold-dark-gray col">{{emails['Reason Blocked']}}</p>
-            </div>
-            <div class="row">
-              <p class="bold-gray col-3">Recipient</p>
-              <p class="bold-dark-gray col">{{emails.Recipient}}</p>
-            </div>
-            <div class="row">
-              <p class="bold-gray col-3">Sender</p>
-              <p class="bold-dark-gray col">{{emails.Sender}}</p>
-            </div>
-            <div class="row">
-              <p class="bold-gray col-3">Subject</p>
-              <p class="bold-dark-gray col">{{emails.Subject}}</p>
-            </div>
-            <div class="row">
-              <p class="bold-gray col-3">Attached Files</p>
-              <p class="bold-dark-gray col">.{{emails['Attached Files']}}</p>
+
+            <div class="row mb-5">
+              <button class="btn btn-action-inverse"
+                      (click)="performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')">Release to Recipient
+              </button>
+              <button class="btn btn-action-inverse" (click)="performAction(emails.SanitizationId, 'ForwardToAdmin')">
+                Forward To Admin
+              </button>
             </div>
           </div>
-
-          <div class="row mb-5">
-            <button class="btn btn-action-inverse"
-                    (click)="performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')">Release to Recipient
-            </button>
-            <button class="btn btn-action-inverse" (click)="performAction(emails.SanitizationId, 'ForwardToAdmin')">
-              Forward To Admin
-            </button>
+          <div *ngIf="noResultFound && !noSearchInitiated" class="mt-5 alert alert-warning">
+            <p>no result found</p>
           </div>
         </div>
-        <div *ngIf="noResultFound && !noSearchInitiated" class="mt-5 alert alert-warning">
-          <p>no result found</p>
-        </div>
-
       </div>
+
     </div>
   </div>
   <div *ngIf="isFirstTime" class="col text-center white frame">
@@ -68,3 +68,8 @@
     </div>
   </div>
 </div>
+
+
+<style>
+
+</style>

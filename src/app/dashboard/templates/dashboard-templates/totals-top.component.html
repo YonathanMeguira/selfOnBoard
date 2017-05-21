@@ -1,9 +1,11 @@
 <div class="row mb-5">
   <div class="col-6">
     <div class="col-12 white frame p-5">
-      <div class="row vertical-align">
-        <h4 class="col-6 bold-dark-gray">Total Emails Processed</h4>
-        <h1 class="col-3 bold-dark-gray">{{totals.TotalEmailsProcessed}}</h1>
+      <div class="row vertical-align ">
+
+        <h4 class="col-7 dashboard-top-titles">Total Emails Processed</h4>
+        <h1 class="col-5 dashboard-top-figure">{{totals.TotalEmailsProcessed}}</h1>
+
       </div>
     </div>
   </div>
@@ -11,17 +13,28 @@
   <div class="col-6">
     <div class="col-12 white frame p-5">
       <div class="row vertical-align">
-        <h4 class="col-6 bold-dark-gray">Total URLs Processed</h4>
-        <h1 class="col-3 bold-dark-gray">{{totals.TotalUrls}}</h1>
+        <h4 class="col-7 dashboard-top-titles">Total URLs Processed</h4>
+        <h1 class="col-5 dashboard-top-figure">{{totals.TotalUrls}}</h1>
       </div>
     </div>
   </div>
 </div>
-<div class="col-12 white frame p-5 ">
-  <div class="row  vertical-align justify-content-center">
-    <h4 class="mr-3 bold-dark-gray">Total Attachments Processed</h4>
-    <h1 class="ml-3 bold-dark-gray underlined-purple">{{totals.TotalAttachmentProcessed}}</h1>
+<div class="col-12 white frame pr-0 " (click)="displayTotals('showTotals')">
+  <div layout="row" layout-align="end end" flex="100">
+    <div id="triangle-purple"></div>
+  </div>
+  <div layout="row" layout-align="center center" class="pb-5 pt-3">
+    <h4 class="dashboard-top-titles mr-3">Total Attachments Processed</h4>
+    <h1 class=" bold-dark-gray underlined-purple ml-3">{{totals.TotalAttachmentProcessed}}</h1>
   </div>
 </div>
 
 
+<style>
+  #triangle-purple {
+    width: 0;
+    height: 0;
+    border-top: 20px solid #9A1796;
+    border-left: 20px solid transparent;
+  }
+</style>

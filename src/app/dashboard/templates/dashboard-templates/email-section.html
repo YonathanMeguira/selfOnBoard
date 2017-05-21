@@ -1,8 +1,8 @@
-<div class="white frame hvr-glow" style="height: 400px">
+<div class="white frame " style="height: 400px">
   <div layout="column" class="p-3">
     <div layout="row" id="top-section" layout-align="space-between center">
       <div layout="column" flex="60">
-        <p class="bold light-gray">Clean Replica Delivered by CDR</p>
+        <p class="bold light-gray">{{title}}</p>
         <p>Top End Users</p>
       </div>
       <div layout="row">
@@ -15,7 +15,7 @@
       <md-list>
         <md-list-item *ngFor='let user of users'>
           <p md-line class="bold-dark-gray">{{user.name}}</p>
-          <p [style.color]="figureColor" class="bold mb-0">{{user.score}}</p>
+          <p [style.color]="scoreColor" class="bold mb-0">{{user.score}}</p>
         </md-list-item>
       </md-list>
     </div>

@@ -1,8 +1,8 @@
-<div class="white frame" style="height: 229px">
   <ngx-charts-line-chart
+    [view]="view"
     [scheme]="colorScheme"
     [results]="graphData"
-    [gradient]="gradient"
+    [gradient]="false"
     [xAxis]="showXAxis"
     [yAxis]="showYAxis"
     [legend]="showLegend"
@@ -15,4 +15,4 @@
     [autoScale]="false"
     [curve]="curving">
   </ngx-charts-line-chart>
-</div>
+

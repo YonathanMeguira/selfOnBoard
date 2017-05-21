@@ -9,8 +9,8 @@ export class DashboardService {
   constructor(private http: HttpService) {
   }
 
-  getDashboardData(): Observable<any> {
-    const dashboardUrl = 'http://' + this.server + ':4580/sob/api/dashboard';
+  getDashboardData(timeFrame: number): Observable<any> {
+    const dashboardUrl = 'http://' + this.server + ':4580/sob/api/dashboard?timeFrame=' + timeFrame;
     return this.http.get(dashboardUrl)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not retrieve the  dashboard data'));
@@ -22,12 +22,14 @@ export class DashboardService {
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the fake data for senders'));
   }
+
   GetRandomRecipients(): Observable<any> {
     const randomRecipients = 'https://api.myjson.com/bins/seuvd';
     return this.http.get(randomRecipients)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the fake data for senders'));
   }
+
   GetFeed(): Observable<any> {
     const feedUrl = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=aeaf2ce8b9984429bbe0d8ea1a0a92fc';
     return this.http.get(feedUrl)

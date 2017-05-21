@@ -54,16 +54,16 @@ export class AccountService {
 
   getBillingData(subscriptionId:string): Observable<any> {
     const urlGetSubscriptionInfo = 'http://' + this.server + ':4580/sob/api/stripe/subscriptionInfo';
-    return this.http.get(urlGetSubscriptionInfo,{search: subscriptionId})
+    return this.http.get(urlGetSubscriptionInfo,{search: {subscriptionId:subscriptionId}})
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account billing settings'));
   }
 
-  updateBillingData(updatedPlan:string): Observable<any> {
-    const urlGetSubscriptionInfo = 'http://' + this.server + ':4580/sob/api/stripe/subscriptionInfo';
-    return this.http.get(urlGetSubscriptionInfo,{search: subscriptionId})
+  updateBillingData(subscriptionId, updatedPlan:string): Observable<any> {
+    const urlGetSubscriptionInfo = 'http://' + this.server + ':4580/sob/api/stripe/updatePlan?subscriptionId=' + subscriptionId +'&planId=' + updatedPlan;
+   return this.http.post(urlGetSubscriptionInfo,{subscriptionId})
       .map((res) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account billing settings'));
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not update account billing settings'));
   }
 
   ChangePassword(passwords): Observable<any> {

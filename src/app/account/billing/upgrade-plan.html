@@ -12,7 +12,7 @@
         <div layout="column" layout-align="center center" layout-margin>
           <!--<button #standardBtn class="btn btn-upgrade-selected" (click)="selected($event)">Standard</button>-->
           <button #standardBtn [ngClass]="getCSSClasses('Standard')" (click)="selected($event)" id="Standard">Standard</button>
-          <small>$1.99/User/Month</small>
+          <small>$0.99/User/Month</small>
         </div>
         <div layout="column" layout-align="center center" layout-margin>
           <!--<button #professionalBtn class="btn btn-upgrade-unselected" (click)="selected($event)">Professional</button>-->
@@ -22,12 +22,13 @@
         <div layout="column" layout-align="center center" layout-margin>
           <!--<button #premiumBtn class="btn btn-upgrade-unselected" (click)="selected($event)">Premium</button>-->
           <button #premiumBtn [class]="getCSSClasses('Premium')" (click)="selected($event)" id="Premium">Premium</button>
-          <small>$1.99/User/Month</small>
+          <small>$2.99/User/Month</small>
         </div>
       </div>
     </div>
     <div class="row justify-content-center mt-5 pt-4">
-      <button class="btn btn-action-yellow-big hvr-glow" (click)="saveAccountPlan()" [disabled]="isButtonDisabled()">UPDATE MY PLAN</button>
+      <button class="btn btn-action-yellow-big hvr-glow" (click)="saveAccountPlan()">UPDATE MY PLAN</button>
+      <!--<button class="btn btn-action-yellow-big hvr-glow" (click)="saveAccountPlan()" [disabled]="isButtonDisabled()">UPDATE MY PLAN</button>-->
     </div>
   </div>
 </div>

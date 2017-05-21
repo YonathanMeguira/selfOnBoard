@@ -39,30 +39,30 @@
       <div class="form-group row mt-4">
         <label for="name" class="textBold-gray col-3 col-form-label">Company Name</label>
         <div class="col-5">
-          <input class="sob-input col-12" type="text" [(ngModel)]="billing.name" id="name">
+          <input class="sob-input col-12" type="text" [(ngModel)]="billingData.companyName" id="name">
         </div>
       </div>
       <div class="form-group row">
         <label for="number" class="textBold-gray col-3 col-form-label">Company Number</label>
         <div class="col-5">
-          <input class="sob-input col-12" type="number" [(ngModel)]="billing.number" id="number">
+          <input class="sob-input col-12" type="number" [(ngModel)]="billingData.companyNumber" id="number">
         </div>
       </div>
-      <div class="form-group row">
-        <label for="address" class="textBold-gray col-3 col-form-label">Billing Address</label>
-        <div class="col-5">
-          <input class="sob-input col-12" type="text" [(ngModel)]="billing.address" id="address">
-        </div>
-      </div>
-      <div class="form-group row pb-5">
-        <label for="ccNumber" class="textBold-gray col-3 col-form-label">Payment</label>
-        <div class="col-3">
-          <input class="sob-input col-12" type="number" [(ngModel)]="billing.ccNumber" id="ccNumber">
-        </div>
-        <div class="col-2">
-          <input class="sob-input col-12" type="Month" [(ngModel)]="billing.ccExp" id="address">
-        </div>
-      </div>
+      <!--<div class="form-group row" [hidden]="true">-->
+        <!--<label for="address" class="textBold-gray col-3 col-form-label">Billing Address</label>-->
+        <!--<div class="col-5">-->
+          <!--<input class="sob-input col-12" type="text" [(ngModel)]="billing.address" id="address">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row pb-5" [hidden]="true">-->
+        <!--<label for="ccNumber" class="textBold-gray col-3 col-form-label">Payment</label>-->
+        <!--<div class="col-3">-->
+          <!--<input class="sob-input col-12" type="number" [(ngModel)]="billing.ccNumber" id="ccNumber">-->
+        <!--</div>-->
+        <!--<div class="col-2">-->
+          <!--<input class="sob-input col-12" type="Month" [(ngModel)]="billing.ccExp" id="address">-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 

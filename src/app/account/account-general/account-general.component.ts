@@ -73,9 +73,11 @@ export class AccountGeneralComponent implements OnInit {
   ngOnInit() {
     this.accountService.getAccountGeneralSettings().subscribe(
       result => {
-       if (result == null){
+        if (result == null){
           return;
         }
+
+        this.currentAccount = result;
 
         // account data
         this.accountOwnerData.phone = result.AccountOwnerPhone;
@@ -115,18 +117,19 @@ export class AccountGeneralComponent implements OnInit {
 
   saveAccountData(){
     // add validation on data if needed
-    var blobDataToSend = {
-      AccountOwnerPhone : this.accountOwnerData.phone,
-      AccountOwnerEmail : this.accountOwnerData.email,
-      AccountOwnerName : this.accountOwnerData.name,
-      AccountAdminPhone : this.adminData.phone,
-      AccountAdminEmail : this.adminData.email,
-      AccountAdminName : this.adminData.name
-    };
 
-    this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(()=>
-      {
+    var blobDataToSend = this.currentAccount;
 
+    // update the form data
+    blobDataToSend.AccountOwnerPhone = this.accountOwnerData.phone;
+    blobDataToSend. AccountOwnerEmail = this.accountOwnerData.email;
+    blobDataToSend.AccountOwnerName = this.accountOwnerData.name;
+    blobDataToSend.AccountAdminPhone = this.adminData.phone;
+    blobDataToSend.AccountAdminEmail = this.adminData.email;
+    blobDataToSend.AccountAdminName = this.adminData.name;
+
+    this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(()=> {
+      // TODO:: show success dialog
       }
       ,
       error => console.log(error)

@@ -2,21 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {ElementRef,Renderer2, ViewChild} from '@angular/core';
 import {AccountService} from "../account.service";
-// @ViewChild('someVar') el:ElementRef;
-//
-// constructor(private rd: Renderer2) {}
-//
-// ngAfterViewInit() {
-//   console.log(this.rd);
-//   this.el.nativeElement.focus();      //<<<=====same as oldest way
-// }
-
-
 
 @Component({
   selector: 'app-user-update-plan',
   templateUrl: './upgrade-plan.html',
-  styleUrls: ['./billing.component.css']
+  styleUrls: ['./billing.component.css'],
+  providers: [AccountService]
 })
 
 export class UpdatePlanComponent {
@@ -26,59 +17,28 @@ export class UpdatePlanComponent {
   forgotPassword = false;
   currentRd : Renderer2;
   config:any;
-  //selected:"btn btn-upgrade-selected"
+  private stripeSubscriptionToken: any;
 
-  //   {
-  //   std :"btn btn-upgrade-selected" ,
-  //   pro:"btn btn-upgrade-selected",
-  //   pre:"btn btn-upgrade-selected"
-  // };
-
-  // @ViewChild('standardBtn') stdBtn:ElementRef;
-  // @ViewChild('professionalBtn') proBtn:ElementRef;
-  // @ViewChild('premiumBtn') preBtn:ElementRef;
   constructor(public dialogRef: MdDialogRef<UpdatePlanComponent>, private rd: Renderer2, private accountService: AccountService) {
     this.currentRd = rd;
     this.config = this.dialogRef._containerInstance.dialogConfig.data;
     this.currentPlan = this.config.accountData.CurrentPlan;
-   // this.clearSelections();
-
-    // switch(this.currentPlan){
-    //   case 'Standard':
-    //     this.updateSelection(this.stdBtn);
-    //     break;
-    //   case 'Professional':
-    //     this.updateSelection(this.proBtn);
-    //     break;
-    //   case 'Premium':
-    //     this.updateSelection(this.preBtn);
-    //     break;
-    // }
+    this.selectedPlan = this.currentPlan;
+    this.stripeSubscriptionToken = this.config.accountData.StripeSubscriptionToken
   };
 
-  // clearSelections(){
-  //   this.preBtn.nativeElement.class ="btn btn-upgrade-unselected";
-  //   this.proBtn.nativeElement.class ="btn btn-upgrade-unselected";
-  //   this.stdBtn.nativeElement.class ="btn btn-upgrade-unselected";
-  // }
-
-  // updateSelection(element:ElementRef){
-  //   element.nativeElement.class = "class='btn btn-purple'";
-  // }
 
   selected(event:any){
-    this.selectedPlan = event;
     console.log(event);
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var value = idAttr.nodeValue;
-
     this.selectedPlan = value;
     console.log(target);
   }
 
   getCSSClasses(str:string){
-    if (str === this.currentPlan){
+    if (str.toLocaleLowerCase() === this.selectedPlan.toLocaleLowerCase()){
       return "btn btn-upgrade-selected"
     }
     return "btn btn-upgrade-unselected";
@@ -89,13 +49,26 @@ export class UpdatePlanComponent {
   }
 
   saveAccountPlan(){
-    this.accountService.updateBillingData(this.selectedPlan).subscribe(()=>{
+    //return;
+    this.accountService.updateBillingData(this.stripeSubscriptionToken, this.selectedPlan.toLocaleLowerCase()).subscribe(()=>{
+        var blobDataToSend = this.config.accountData;
 
-    },
-    error => {
-      // TODO:: throw error message to user.
-      console.log(error)
-    });
+        blobDataToSend.CurrentPlan = this.selectedPlan.toLocaleLowerCase();
+
+        // update the server with new plan
+        // TODO:: check with the server if he can update this data atomiclly by him self
+        this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(()=>  {
+          }
+          ,
+          error => console.log(error)
+        );
+        this.dialogRef.close(true);
+        // update the blob
+      },
+      error => {
+        // TODO:: throw error message to user.
+        console.log(error)
+      });
   }
 }
 
@@ -103,6 +76,8 @@ class BillingData{
   numOfUsers:string;
   fee:string;
   planName:string;
+  companyName:string;
+  companyNumber:string;
 }
 
 
@@ -119,9 +94,9 @@ export class BillingComponent implements OnInit {
   accountData: any;
   private dialogRef: MdDialogRef<any>;
   users = [139, 140, 141, 142, 143, 144, 145];
-  billingData: BillingData;
+  billingData: BillingData = new BillingData();
 
-  constructor(public dialog: MdDialog, private accountService: AccountService) {
+  constructor(public dialog: MdDialog, public accountService: AccountService) {
 
   }
 
@@ -133,6 +108,8 @@ export class BillingComponent implements OnInit {
         }
 
         this.accountData = result;
+        this.billingData.companyName = this.accountData.CompanyName;
+        this.billingData.companyNumber = this.accountData.CompanyNumber;
 
         if (!this.accountData.StripeSubscriptionToken){
           return;
@@ -148,15 +125,18 @@ export class BillingComponent implements OnInit {
             this.billingData.fee = billingResult.FeeDesc;
             this.billingData.numOfUsers = billingResult.UsersQuantity;
             this.billingData.planName = billingResult.PlanName;
-          });
+          }),
+          (error) =>{
+            console.log(error)};
       });
   };
 
   openUpgradePlan() {
     this.dialogRef = this.dialog.open(UpdatePlanComponent, {width: '50%', data:{accountData:this.accountData,billingData:this.billingData}});
-
-    // if (dialogResult == null) {
-    //   return;
-    // }
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result == true)
+        this.ngOnInit();
+    });
   };
 }

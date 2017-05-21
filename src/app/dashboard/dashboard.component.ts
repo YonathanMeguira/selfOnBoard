@@ -45,10 +45,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private blockedByCDR: any;
   private attachmentBlockedByAntivirus: any;
   timeFrame = 7;
+
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {
 
     this.getDashboardData = store.select(s => s.dashboardData).subscribe(
+      // this.dashboardService.getDashboardData(this.timeFrame).subscribe(
       res => {
         if (!res || res.length === 0) {
           return;
@@ -144,11 +146,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       error => {
         console.log(error);
       });
+    // now actually calling for the store
+    this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   ngOnInit() {
     this.GetFeed();
-    this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+    //
     this.GetRandomRecipients();
   };
 
@@ -236,6 +240,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         break;
     }
   }
+
   showAllGraphs = (event) => {
     this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
     this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};
@@ -244,11 +249,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     };
     this.pieChartTitle = 'Total Passed Files';
   };
+
   ngOnDestroy() {
     if (this.getDashboardData) {
       this.getDashboardData.unsubscribe();
     }
   }
+
 // TopTenCleanCdrReplicaRecipients
   // TopTenCleanCdrReplicaSenders
 }

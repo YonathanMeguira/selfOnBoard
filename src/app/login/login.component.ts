@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from 'app/shared/users.service';
 import {Router} from '@angular/router';
+import {MdIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
   public submitted = false;
   public checkingUser = false;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, sanitizer: DomSanitizer, iconReg: MdIconRegistry) {
+    iconReg.addSvgIcon('resecLoginLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/resecLogoLogin.svg'));
   }
 
   ngOnInit() {

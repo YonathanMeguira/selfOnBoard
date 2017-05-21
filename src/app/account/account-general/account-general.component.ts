@@ -91,7 +91,7 @@ export class AccountGeneralComponent implements OnInit {
 
         // company data
         this.companyData.name = result.CompanyName;
-        this.companyData.domain = result.ComapnyDomain;
+        this.companyData.domain = result.CompanyDomain;
         this.companyData.mxRecord = result.MxRecord;
 
 

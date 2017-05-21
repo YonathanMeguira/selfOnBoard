@@ -101,6 +101,10 @@ export class BillingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadBillingData();
+  };
+
+  private loadBillingData() {
     this.accountService.getAccountGeneralSettings().subscribe(
       result => {
         if (result == null) {
@@ -111,7 +115,7 @@ export class BillingComponent implements OnInit {
         this.billingData.companyName = this.accountData.CompanyName;
         this.billingData.companyNumber = this.accountData.CompanyNumber;
 
-        if (!this.accountData.StripeSubscriptionToken){
+        if (!this.accountData.StripeSubscriptionToken) {
           return;
         }
 
@@ -126,17 +130,18 @@ export class BillingComponent implements OnInit {
             this.billingData.numOfUsers = billingResult.UsersQuantity;
             this.billingData.planName = billingResult.PlanName;
           }),
-          (error) =>{
-            console.log(error)};
+          (error) => {
+            console.log(error)
+          };
       });
-  };
+  }
 
   openUpgradePlan() {
     this.dialogRef = this.dialog.open(UpdatePlanComponent, {width: '50%', data:{accountData:this.accountData,billingData:this.billingData}});
     this.dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result == true)
-        this.ngOnInit();
+        this.loadBillingData();
     });
   };
 }

@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private attachmentOk: any;
   private blockedByCDR: any;
   private attachmentBlockedByAntivirus: any;
-
+  timeFrame = 7;
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {
 
@@ -145,9 +145,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.GetFeed();
-    this.store.dispatch(this.dashboardActions.loadDashboardData());
+    this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
     this.GetRandomRecipients();
   };
+
+  changeTimeFrame = (newTime: number) => {
+    this.timeFrame = newTime;
+    this.store.dispatch(this.dashboardActions.loadDashboardData(newTime));
+  }
 
   dictionaryToObject = (dictionary: any) => {
     const arr = [];

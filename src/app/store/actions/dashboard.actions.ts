@@ -10,9 +10,10 @@ import {DashboardGraph} from "../../model/dashboard-graph";
 @Injectable()
 export class DashboardActions {
   static LOAD_DASHBOARD_DATA: 'LOAD_DASHBOARD_DATA';
-  loadDashboardData(): Action {
+  loadDashboardData(timeFrame: number): Action {
     return {
-      type: DashboardActions.LOAD_DASHBOARD_DATA
+      type: DashboardActions.LOAD_DASHBOARD_DATA,
+      payload: timeFrame
     };
   }
 

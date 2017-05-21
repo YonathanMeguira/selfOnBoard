@@ -1,8 +1,8 @@
 <div class="col-12">
   <div class="row justify-content-end mb-5 mt-5">
-    <button class="btn btn-transparent hvr-glow">Last 7 Days</button>
-    <button class="btn btn-transparent hvr-glow">Last 30 Days</button>
-    <button class="btn btn-transparent hvr-glow">Last 90 Days</button>
+    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(7)">Last 7 Days</button>
+    <button class="btn btn-transparent hvr-glow"  (click)="changeTimeFrame(30)">Last 30 Days</button>
+    <button class="btn btn-transparent hvr-glow"  (click)="changeTimeFrame(90)">Last 90 Days</button>
   </div>
   <div *ngIf="dataHasLoaded">
     <app-dashboard-top-totals [totals]="totals" (onTotalSelected) = 'showAllGraphs($event)'></app-dashboard-top-totals>

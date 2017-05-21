@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Effect, Actions} from '@ngrx/effects';
-
 import {AppStore} from '../app-store';
 import {DashboardActions} from '../actions';
 import {DashboardGraph} from '../../model';
@@ -17,12 +16,12 @@ export class DashboardEffects {
   @Effect()
   loadDashboardData$ = this.actions$
     .ofType(DashboardActions.LOAD_DASHBOARD_DATA)
-    .switchMap(() => this.svc.getDashboardData())
+    .switchMap((action) => this.svc.getDashboardData(action.payload))
     .map((dashboardData: any) => this.categoryActions.loadDashboardDataSuccess(dashboardData));
 
   @Effect()
   loadDashboardGraph$ = this.actions$
     .ofType(DashboardActions.LOAD_DASHBOARD_GRAPH)
-    .switchMap(() => this.svc.getDashboardData())
+    .switchMap((action) => this.svc.getDashboardData(action.payload))
     .map((categories: DashboardGraph) => this.categoryActions.loadDashboardGraphSuccess(categories));
 }

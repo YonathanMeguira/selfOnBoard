@@ -27,6 +27,17 @@ export class LoginComponent implements OnInit {
     this.CheckLogin();
   }
 
+  checkState() {
+    const servername = localStorage.getItem('serverName');
+    const token = localStorage.getItem('token');
+    console.log('here it is ', servername);
+    console.log('token', token)
+    if (servername && token.length > 14) {
+      return true;
+    }
+    return false;
+  }
+
   CheckLogin() {
     this.checkingUser = true;
     this.wrongId = false;
@@ -38,6 +49,7 @@ export class LoginComponent implements OnInit {
             this.submitted = false;
             this.checkingUser = false;
           } else {
+            localStorage.setItem('serverName', this.user.server);
             localStorage.setItem('userRole', success.UserRole);
             const token = 'Bearer ' + success.AccessToken;
             const isFirstTime = success.UserAdditionalData.IsFirstTime;
@@ -45,13 +57,15 @@ export class LoginComponent implements OnInit {
             const isFirstTimeBool = (success.UserAdditionalData.IsFirstTime === 'true') ? true : false;
             localStorage.setItem('isFirstTime', isFirstTime);
             localStorage.setItem('token', token);
-            localStorage.setItem('serverName', this.user.server);
             localStorage.setItem('username', this.user.username);
             this.checkingUser = false;
-            if (isFirstTimeBool) {
-              this.router.navigate(['user/firstTimeChangePassword']);
-            } else {
-              this.router.navigate(['/user/dashboard']);
+            // is local storage has above values then go into the next code
+            if (this.checkState()) {
+              if (isFirstTimeBool) {
+                this.router.navigate(['user/firstTimeChangePassword']);
+              } else {
+                this.router.navigate(['/user/dashboard']);
+              }
             }
           }
         },
@@ -61,6 +75,7 @@ export class LoginComponent implements OnInit {
           this.submitted = false;
           this.checkingUser = false;
         }
-      );
+      )
+    ;
   }
 }

@@ -64,8 +64,8 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
 })
 
 export class GeneralSettingsWithoutCDRComponent {
-  @Input()
-  noCdrSettings: any;
+  @Input() noCdrSettings: any;
+  @Input() specialAttachmentSettings: any;
 
   constructor() {
   }
@@ -73,6 +73,7 @@ export class GeneralSettingsWithoutCDRComponent {
   restoreDefaultNoCdr = () => {
     this.noCdrSettings['Unrecognized Files'] = 0;
     this.noCdrSettings['Video/Sound'] = 0;
+    this.specialAttachmentSettings['Password Protected'] = 0;
     this.noCdrSettings['Applications/Scripts'] = 0;
   }
 }
@@ -85,14 +86,8 @@ export class GeneralSettingsWithoutCDRComponent {
 })
 
 export class SpecialAttachmentsComponent {
-  @Input()
-  @Input() specialAttachmentSettings: any;
 
   constructor() {
   }
 
-  restoreDefaultSpecial = () => {
-    this.specialAttachmentSettings['Password Protected'] = 0;
-    this.specialAttachmentSettings['Signed Documents'] = 0;
-  }
 }

@@ -61,6 +61,23 @@
           </md-slider>
         </td>
       </tr>
+      <tr>
+        <td layout="column" class="sob-table-security-td">
+          <p class="sob-category-title">Password Protected</p>
+          <small>A secure version of  an attachment can't be made when it is password protected.</small>
+        </td>
+        <td colspan="3">
+          <md-slider [(ngModel)]="specialAttachmentSettings['Password Protected']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="accent">
+          </md-slider>
+        </td>
+      </tr>
       </tbody>
 
     </table>

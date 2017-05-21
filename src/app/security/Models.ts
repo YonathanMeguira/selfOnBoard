@@ -20,6 +20,7 @@ export class NewSettingsModel {
 export class ExistingSettingsModel {
   AttachementsProcessedLevels: Cdr;
   AttachementsWithoutCdr: any;
+  SpecialAttachments: any;
   PolicyName: string;
   Exceptions?: Array<string>;
   PolicyId?: number;

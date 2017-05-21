@@ -192,31 +192,6 @@
         </md-slider>
       </div>
     </div>
-
-
-  </div>
-  <button class="btn btn-link mt-4 mb-4" (click)="restoreDefaultNoCdr()">Restore Default Settings</button>
-</div>
-
-<div id="specialAttachments" class="col-sm-12 white frame mb-5">
-
-  <div class="title-section pt-4 pb-4 col-12">
-    <h4 class="bold-dark-gray">SPECIAL ATTACHMENTS</h4>
-  </div>
-  <div class="col-sm-12 mt-4">
-
-    <div class="col-sm-12 pl-0 pt-3 pb-3">
-      <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
-        <div class="row">
-          <div class="col-6 text-left">
-            <h4 class="bold-dark-gray mb-3">Block</h4>
-          </div>
-          <div class="col-6 text-right">
-            <h4 class="bold-dark-gray mb-3">Allow</h4>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="col-sm-12 row mb-5 pr-0">
       <div class="col-4">
         <p class="bold-dark-gray">Password Protected</p>
@@ -224,25 +199,7 @@
         </small>
       </div>
       <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="other"
-                   [max]="1"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Signed Documents</p>
-        <small>A secure version can be made, the the signature can't remain true.
-        </small>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="other2"
+        <md-slider [(ngModel)]="settings.SpecialAttachments['Password Protected']"
                    [max]="1"
                    style="width: 100%"
                    [min]="0"
@@ -255,10 +212,11 @@
     </div>
 
   </div>
-  <button class="btn btn-link mt-4 mb-4" (click)="restoreDefaultSpecial()">Restore Default Settings</button>
+  <button class="btn btn-link mt-4 mb-4" (click)="restoreDefaultNoCdr()">Restore Default Settings</button>
 </div>
+
 <div layout="row" layout-align="center center" class="mt-5 mb-5">
-  <button class="btn btn-action" (click)="saveSettings(settings)">APPLY</button>
+  <button class="btn btn-action-yellow-big hvr-glow" (click)="saveSettings(settings)">APPLY</button>
 </div>
 
 </div>

@@ -48,6 +48,7 @@ export class GraphSelectorComponent {
 export class GraphComponent implements OnInit {
   @Input() graphData: any;
   curving: any;
+  @Input() graphColor: string;
   view: any[] = [667, 229];
   showXAxis = true;
   showYAxis = false;
@@ -58,7 +59,7 @@ export class GraphComponent implements OnInit {
   showYAxisLabel = false;
   yAxisLabel = 'Month';
   showGridLines = false;
-  schemeType = 'linear';
+  schemeType = 'ordinal';
   colorScheme = {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
   };
@@ -96,7 +97,7 @@ export class EmailSectionComponent {
   @Input() figureColor;
   @Input() users;
   @Input() title: string;
-  @Input() scoreColor: string;
+  @Input() emailScoreColor: string;
   userValues: Array<object> = [{'name': 'April', 'value': 20}, {'name': 'May', 'value': 40}, {
     'name': 'June',
     'value': 30

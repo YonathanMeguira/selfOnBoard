@@ -6,16 +6,16 @@
         <p>Top End Users</p>
       </div>
       <div layout="row">
-        <button class="btn btn-primary">Recipients</button>
-        <button class="btn btn-primary">Senders</button>
+        <button class="btn btn-transparent">Recipients</button>
+        <button class="btn btn-transparent">Senders</button>
       </div>
     </div>
     <div id="emails" layout="column" layout-align="start center"
          style="overflow: auto;  height: 310px" layout-margin>
       <md-list>
         <md-list-item *ngFor='let user of users'>
-          <p md-line class="bold-dark-gray">{{user.name}}</p>
-          <p [style.color]="scoreColor" class="bold mb-0">{{user.score}}</p>
+          <p md-line style="color: #666666; font-size: 13px">{{user.name}}</p>
+          <p [ngStyle]="{ 'color': emailScoreColor }" >{{user.score}}</p>
         </md-list-item>
       </md-list>
     </div>

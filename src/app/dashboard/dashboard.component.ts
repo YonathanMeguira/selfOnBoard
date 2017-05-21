@@ -35,6 +35,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   displayingSenders = false;
   displayingRecipients = true;
   colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
+  graphColor = {
+    domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
+  };
   pieChartTitle = 'Clean Replica By CDR';
   emailScoreColor = '#8BBFEF';
   private cleanReplica: any;
@@ -206,17 +209,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
       case 'totals.totalCleanReplicaByCdr':
         this.graphData = [this.cleanReplica];
         this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
+        this.graphColor = {domain: ['#326491']};
         this.pieChartTitle = 'Clean Replica By CDR';
         this.pieData = this.dictionaryToObject(this.allData.TotalProcessedByCdr);
         break;
       case 'totals.attachmentOk':
         this.graphData = [this.attachmentOk];
         this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
+        this.graphColor = {domain: ['#33796C']};
         this.pieChartTitle = 'Original Attachment OK';
         this.pieData = this.dictionaryToObject(this.allData.TotalPassed);
         break;
       case 'totals.blockedByCDR':
         this.graphData = [this.blockedByCDR];
+        this.graphColor = {domain: ['#C98F20']};
         this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
         this.pieChartTitle = 'Attachment Blocked by Policy';
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy);
@@ -224,6 +230,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       case 'totals.attachmentBlockedByAntivirus':
         this.graphData = [this.attachmentBlockedByAntivirus];
         this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
+        this.graphColor = {domain: ['#994110']};
         this.pieChartTitle = 'Attachment Blocked By Antivirus';
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus);
         break;
@@ -232,6 +239,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   showAllGraphs = (event) => {
     this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
     this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};
+    this.graphColor = {
+      domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
+    };
     this.pieChartTitle = 'Total Passed Files';
   };
   ngOnDestroy() {
@@ -239,5 +249,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.getDashboardData.unsubscribe();
     }
   }
-
+// TopTenCleanCdrReplicaRecipients
+  // TopTenCleanCdrReplicaSenders
 }

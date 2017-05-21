@@ -30,7 +30,7 @@ th > small{
   font-weight: 300;
 }
 .sob-table-security-td{
-  max-width: 200px !important;
+  width: 250px !important;
 }
 table{
   width: 65% !important;

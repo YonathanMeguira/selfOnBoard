@@ -7,7 +7,10 @@
   width: 100px !important;
   margin-left: -2em !important;
 }
-
+@font-face {
+  font-family: 'sobRoboto'; /*a name to be used later*/
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto_slab/robotoslab-regular-webfont.ttf')
+}
 .chart-legend .legend-title-text{
   display: none !important;
 }
@@ -335,7 +338,10 @@ input:-webkit-autofill {
   letter-spacing: 1px;
   font-weigth: 600;
   line-height: 15px;
+  width: 140px;
+  height: 40px;
   border-radius: 40px;
+  font-weight: 600;
   background-color: #7C4C95;
   transition: all 0.3s ease 0s;
 }
@@ -347,6 +353,9 @@ input:-webkit-autofill {
   letter-spacing: 1px;
   font-weigth: 600;
   line-height: 15px;
+  width: 140px;
+  height: 40px;
+  font-weight: 600;
   border-radius: 40px;
   border: solid 1px #666666;
   background-color: white;
@@ -429,7 +438,7 @@ input:-webkit-autofill {
   font-size: 13px;
   font-weight: 600;
   color: #999999;
-  border: solid 1px #999999;
+  border: solid 1px #E4E4E4;
   letter-spacing: 1px;
   line-height: 15px;
   border-radius: 40px;

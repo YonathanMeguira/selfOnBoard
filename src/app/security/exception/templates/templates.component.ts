@@ -90,6 +90,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
     this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
     this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
     this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+    this.settings.SpecialAttachments['Password Protected'] = 0;
   };
   deletePolicy = (policy: any) => {
     this.onDelete.emit(policy);
@@ -122,7 +123,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
 })
 
 export class NewExceptionComponent extends BaseComponent {
-  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
+  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<NewSettingsModel>();
 
@@ -135,6 +136,7 @@ export class NewExceptionComponent extends BaseComponent {
     this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
     this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
     this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+    this.settings.SpecialAttachments['Password Protected'] = 0;
   };
 
   cancelCreation = (cancel: boolean) => {

@@ -1,34 +1,69 @@
 <div layout="row" layout-align="start center">
-  <div layout="column" flex="80" layout-align="center center">
+  <div layout="column" flex="100" layout-align="center center" class="pl-4 pb-4 pr-4">
     <div class="section-border">
       <div layout="row" layout-align="end center">
         <button class="btn btn-circle" md-dialog-close>x</button>
       </div>
       <h3 class="text-center bold-dark-gray mt-4 mb-4">ReSecureMail Plan Update</h3>
     </div>
-    <div layout="column">
-      <p>Your current plan.</p>
-      <div layout="row" layout-align="space-between start">
-        <div layout="column" layout-align="center center" layout-margin>
+    <div layout="column" id="plan-container" class="mt-4">
+      <p class="mb-3">Your current plan.</p>
+      <div layout="row" layout-align="space-between start" class="ml-0 mr-0">
+        <div layout="column" layout-align="center center" flex="33" layout-margin>
           <!--<button #standardBtn class="btn btn-upgrade-selected" (click)="selected($event)">Standard</button>-->
-          <button #standardBtn [ngClass]="getCSSClasses('Standard')" (click)="selected($event)" id="Standard">Standard</button>
-          <small>$0.99/User/Month</small>
+          <button #standardBtn  (click)="selected($event)" id="Standard" [ngClass]="getCSSClasses('Standard')">Standard</button>
+          <small class="mt-4">$0.99/User/Month</small>
         </div>
-        <div layout="column" layout-align="center center" layout-margin>
+        <div layout="column" layout-align="center center" flex="33" layout-margin>
           <!--<button #professionalBtn class="btn btn-upgrade-unselected" (click)="selected($event)">Professional</button>-->
-          <button #professionalBtn [class]="getCSSClasses('Professional')" (click)="selected($event)" id="Professional">Professional</button>
-          <small>$1.99/User/Month</small>
+          <button #professionalBtn  (click)="selected($event)" id="Professional" [ngClass]="getCSSClasses('Professional')">Professional</button>
+          <small class="mt-4">$1.99/User/Month</small>
         </div>
-        <div layout="column" layout-align="center center" layout-margin>
+        <div layout="column" layout-align="center center" flex="33" layout-margin>
           <!--<button #premiumBtn class="btn btn-upgrade-unselected" (click)="selected($event)">Premium</button>-->
-          <button #premiumBtn [class]="getCSSClasses('Premium')" (click)="selected($event)" id="Premium">Premium</button>
-          <small>$2.99/User/Month</small>
+          <button #premiumBtn (click)="selected($event)" id="Premium" [ngClass]="getCSSClasses('Premium')">Premium</button>
+          <small class="mt-4">$2.99/User/Month</small>
         </div>
+      </div>
+    </div>
+    <div class="mt-5" layout="row" layout-align="space-between start">
+      <div flex="33" layout-align="start start" class="plan-list">
+        <ul>
+          <li>Unlimited end users</li>
+          <li>Single company policy</li>
+          <li>Full file blocking functionality</li>
+          <li>Single antivirus engine</li>
+          <li>Reconstruction of Word, Excel, Powerpoint, PDF, Visio & Images</li>
+          <li>2 day original archiving</li>
+        </ul>
+      </div>
+      <div flex="33" layout-align="start start"  class="plan-list">
+        <ul>
+          <li>Unlimited end users</li>
+          <li>Up to 5 company policies</li>
+          <li>Full file blocking functionality</li>
+          <li>3 antivirus engines</li>
+          <li>Reconstruction of Word, Excel, Powerpoint, PDF, Visio & Images</li>
+          <li>7 day original archiving</li>
+          <li>Customizable end user notifications</li>
+        </ul>
+      </div>
+      <div flex="33" layout-align="start start"  class="plan-list">
+        <ul>
+          <li>Unlimited end users</li>
+          <li>Unlimited company policies</li>
+          <li>Full file blocking functionality</li>
+          <li>5 antivirus engines</li>
+          <li>Reconstruction of Word, Excel, Powerpoint, PDF, Visio & Images</li>
+          <li>30 day original archiving</li>
+          <li>Customizable end user notifications</li>
+          <li>Self-serve end-user portal</li>
+          <li>Full AD integration</li>
+        </ul>
       </div>
     </div>
     <div class="row justify-content-center mt-5 pt-4">
       <button class="btn btn-action-yellow-big hvr-glow" (click)="saveAccountPlan()">UPDATE MY PLAN</button>
-      <!--<button class="btn btn-action-yellow-big hvr-glow" (click)="saveAccountPlan()" [disabled]="isButtonDisabled()">UPDATE MY PLAN</button>-->
     </div>
   </div>
 </div>
@@ -36,6 +71,15 @@
 
 <style>
   .section-border {
-    border-bottom: solid 1px lightsteelblue;
+    border-bottom: solid 1px #B3B3B3;
+    width: 100%;
   }
+  #plan-container{
+    width: 100%;
+  }
+  .plan-list > ul {
+    font-size: 13px !important;
+    color: #666666 !important;
+  }
+
 </style>

@@ -15,7 +15,7 @@
           </app-dashboard-graph-selector>
         </div>
         <div class="mr-0 mt-0 ml-3 white frame">
-          <app-dashboard-graph [graphData]='graphData'></app-dashboard-graph>
+          <app-dashboard-graph [graphData]='graphData' [graphColor]="graphColor"></app-dashboard-graph>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
                                 [title]='pieChartTitle'></app-dashboard-pie-charts>
       <app-email-section flex [figureColor]='figureColor' [users]='randomUsers'
                          [title]='pieChartTitle'
-                         [scoreColor]='emailScoreColor'></app-email-section>
+                         [emailScoreColor]='emailScoreColor'></app-email-section>
     </div>
     <app-dashboard-news-feed [feeds]="feeds"></app-dashboard-news-feed>
   </div>

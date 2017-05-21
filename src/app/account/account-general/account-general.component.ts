@@ -60,7 +60,7 @@ export class AccountGeneralComponent implements OnInit {
 
   private dialogRef: MdDialogRef<any>;
   testEmailSent = false;
-  isAdmin = true;
+  isAdmin = false;
 // scroll down to see class SettingsForm
   accountOwnerData: AccountOwnerData = new AccountOwnerData;
   adminData: AccountOwnerData = new AccountOwnerData;
@@ -94,7 +94,7 @@ export class AccountGeneralComponent implements OnInit {
         this.companyData.domain = result.CompanyDomain;
         this.companyData.mxRecord = result.MxRecord;
 
-
+        this.isAdmin = result.AccountOwnerIsAdmin;
       }, error => {
         console.log(error);
       }

@@ -45,8 +45,22 @@ export class AccountService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account general settings'));
   }
 
+  getAccountGeneralSettingsWithServerAddress(serverAddress:string): Observable<any> {
+    const urlGetAccountGeneralSettings = 'http://' + serverAddress + ':4580/sob/api/GetAccountGeneralSettings';
+    return this.http.get(urlGetAccountGeneralSettings)
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get account general settings'));
+  }
+
   postAccountGeneralSettings(settings): Observable<any> {
     const urlPostAccountGeneralSettings = 'http://' + this.server + ':4580/sob/api/PostAccountGeneralSettings';
+    return this.http.post(urlPostAccountGeneralSettings, settings)
+      .map((res) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not post account general settings'));
+  }
+
+  postAccountGeneralSettingsWithServerAddress(serverAddress, settings): Observable<any> {
+    const urlPostAccountGeneralSettings = 'http://' + serverAddress + ':4580/sob/api/PostAccountGeneralSettings';
     return this.http.post(urlPostAccountGeneralSettings, settings)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not post account general settings'));

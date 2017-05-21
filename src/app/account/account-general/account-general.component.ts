@@ -122,7 +122,7 @@ export class AccountGeneralComponent implements OnInit {
 
     // update the form data
     blobDataToSend.AccountOwnerPhone = this.accountOwnerData.phone;
-    blobDataToSend. AccountOwnerEmail = this.accountOwnerData.email;
+    blobDataToSend.AccountOwnerEmail = this.accountOwnerData.email;
     blobDataToSend.AccountOwnerName = this.accountOwnerData.name;
     blobDataToSend.AccountAdminPhone = this.adminData.phone;
     blobDataToSend.AccountAdminEmail = this.adminData.email;

@@ -10,7 +10,8 @@ export class DashboardService {
   }
 
   getDashboardData(timeFrame: number): Observable<any> {
-    const dashboardUrl = 'http://' + this.server + ':4580/sob/api/dashboard?timeFrame=' + timeFrame;
+    const servername = localStorage.getItem('serverName');
+    const dashboardUrl = 'http://' + servername + ':4580/sob/api/dashboard?timeFrame=' + timeFrame;
     return this.http.get(dashboardUrl)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not retrieve the  dashboard data'));

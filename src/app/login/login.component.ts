@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   onSubmit() {
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   CheckLogin() {
+    console.log(localStorage)
     this.checkingUser = true;
     this.wrongId = false;
     this.userService.login(this.user.server, this.user.username, this.user.password)
@@ -64,6 +66,7 @@ export class LoginComponent implements OnInit {
               if (isFirstTimeBool) {
                 this.router.navigate(['user/firstTimeChangePassword']);
               } else {
+                console.log(localStorage);
                 this.router.navigate(['/user/dashboard']);
               }
             }

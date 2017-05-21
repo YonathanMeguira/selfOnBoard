@@ -11,6 +11,9 @@
   font-family: 'sobRoboto'; /*a name to be used later*/
   src: url('https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto_slab/robotoslab-regular-webfont.ttf')
 }
+input, label{
+  font-family: 'Roboto Slab', serif !important;
+}
 .chart-legend .legend-title-text{
   display: none !important;
 }
@@ -557,6 +560,12 @@ button:focus {
 .vertical-align {
   display: flex;
   align-items: center;
+}
+.link-btn {
+  color: #169BD5 !important;
+  margin-top: 2em !important;
+  font-size: 12px !important;
+  pointer: cursor !important;
 }
 
 .vertical-stretch {

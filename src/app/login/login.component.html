@@ -12,7 +12,7 @@
             <label [hidden]="server.valid || server.pristine" class="wrong-input">Server is required</label>
           </md-input-container>
           <md-input-container class="full-width" dividerColor="primary">
-            <input mdInput type="text" placeholder="UserName" id="username" required [(ngModel)]="user.username"
+            <input mdInput type="text" placeholder="Username" id="username" required [(ngModel)]="user.username"
                    name="username" #username="ngModel">
             <label [hidden]="username.valid || username.pristine" class="wrong-input">Username is required</label>
           </md-input-container>
@@ -21,7 +21,7 @@
                    name="password" #password="ngModel">
             <label [hidden]="password.valid || password.pristine" class="wrong-input">Password is incorrect</label>
           </md-input-container>
-          <button type="submit" md-raised-button [disabled]="!loginForm.valid" color="primary">Submit</button>
+          <button type="submit" md-raised-button [disabled]="!loginForm.valid" color="primary">Sign in</button>
         </form>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center">
@@ -30,3 +30,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  input {
+    font
+  }
+</style>

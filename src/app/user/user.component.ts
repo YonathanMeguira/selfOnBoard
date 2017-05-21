@@ -26,8 +26,8 @@ export class UserChangePasswordComponent {
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
+  templateUrl: './user.component.html?v=${new Date().getTime()',
+  styleUrls: ['./user.component.css?v=${new Date().getTime()'],
   entryComponents: [UserChangePasswordComponent]
 })
 

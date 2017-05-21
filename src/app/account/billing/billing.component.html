@@ -20,11 +20,7 @@
       <div class="row mt-5 pb-5">
         <p class="textBold-gray col-3">Users</p>
         <div class="col-3">
-          <md-select placeholder="Number of Users" floatPlaceholder="never">
-            <md-option *ngFor="let user of users" [value]="user">
-              {{ user }}
-            </md-option>
-          </md-select>
+          <input class="sob-input col-12" type="number" [(ngModel)]="billingData.numOfUsers">
         </div>
       </div>
     </div>
@@ -43,17 +39,18 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="number" class="textBold-gray col-3 col-form-label">Company Number</label>
-        <div class="col-5">
-          <input class="sob-input col-12" type="number" [(ngModel)]="billingData.companyNumber" id="number">
-        </div>
+      <label for="address" class="textBold-gray col-3 col-form-label">Billing Address</label>
+      <div class="col-5">
+      <input class="sob-input col-12" type="text" [(ngModel)]="billingData.address" id="address">
       </div>
-      <!--<div class="form-group row" [hidden]="true">-->
-        <!--<label for="address" class="textBold-gray col-3 col-form-label">Billing Address</label>-->
+      </div>
+      <!--<div class="form-group row">-->
+        <!--<label for="number" class="textBold-gray col-3 col-form-label">Company Number</label>-->
         <!--<div class="col-5">-->
-          <!--<input class="sob-input col-12" type="text" [(ngModel)]="billing.address" id="address">-->
+          <!--<input class="sob-input col-12" type="number" [(ngModel)]="billingData.companyNumber" id="number">-->
         <!--</div>-->
       <!--</div>-->
+
       <!--<div class="form-group row pb-5" [hidden]="true">-->
         <!--<label for="ccNumber" class="textBold-gray col-3 col-form-label">Payment</label>-->
         <!--<div class="col-3">-->
@@ -68,6 +65,6 @@
 
 
   <div class="row justify-content-center mt-5">
-    <button class="btn btn-action-yellow-big hvr-glow">APPLY</button>
+    <button class="btn btn-action-yellow-big hvr-glow" (click)="saveAccountData()">APPLY</button>
   </div>
 </div>

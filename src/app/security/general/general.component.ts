@@ -25,7 +25,7 @@ export class GeneralComponent implements OnInit {
     this.securityService.getSettings().subscribe(
       result => {
         this.mainPolicySettings = result;
-        console.log(this.mainPolicySettings)
+        console.log(this.mainPolicySettings);
       }, error => {
         console.log('an error occurred');
       }
@@ -37,13 +37,14 @@ export class GeneralComponent implements OnInit {
   }
 
   saveSettings = () => {
-    this.snackBar.open('Changes Successfully saved');
-
+    for (const setting in this.mainPolicySettings.AttachementsProcessedLevels) {
+      this.mainPolicySettings.AttachementsProcessedLevels[setting] = this.mainPolicySettings.AttachementsProcessedLevels['Documents'];
+    }
     this.securityService.saveSettings(this.mainPolicySettings).subscribe(
       success => {
-        this.snackBar.open('Changes Successfully saved');
+        alert('changes successfully saved');
       }, error => {
-        this.snackBar.open('Changes could not be saved');
+        console.log('error');
       }
     );
   }

@@ -139,6 +139,11 @@ export class BillingComponent implements OnInit {
   }
 
   openUpgradePlan() {
+    // the upgrade window should not be opened if the StripeToken
+    if (!this.accountData.StripeSubscriptionToken){
+        return;
+    }
+
     this.dialogRef = this.dialog.open(UpdatePlanComponent, {
       width: '50%',
       data: {accountData: this.accountData, billingData: this.billingData}

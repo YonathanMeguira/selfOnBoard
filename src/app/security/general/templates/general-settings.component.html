@@ -7,7 +7,7 @@
     <div layout="row" class="inner-section">
       <div flex="40">
         <h4 class="item">Hyperlinks</h4>
-        <small> this includes links in the body of an email and in any documents attached.</small>
+        <small>This includes links in the body of an email and in any documents attached.</small>
       </div>
       <div layout="row" flex>
         <div layout="column">
@@ -17,16 +17,16 @@
           <md-radio-group *ngIf=" generalSettings.HandleLinks" [(ngModel)]="generalSettings.SelectedSafeLinksOperation"
                           class="operation-actions" layout="column">
 
+            <!--<md-radio-button value="1" color="primary"><span-->
+              <!--[ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='1' }">Fix hyperlinks </span>to be what it is-->
+              <!--supposed to be.-->
+            <!--</md-radio-button>-->
             <md-radio-button value="1" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='1' }">Fix Links </span>to be what it is
-              supposed to be.
-            </md-radio-button>
-            <md-radio-button value="2" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='2' }">Test links </span> via reputation
+              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='2' }">Test hyperlinks </span> via reputation
               engine i.e google, mcafee
             </md-radio-button>
-            <md-radio-button value="3" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='3' }">Kill links </span>so that only
+            <md-radio-button value="2" color="primary"><span
+              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='3' }">Kill hyperlinks </span>so that only
               the
               text is displayed
             </md-radio-button>

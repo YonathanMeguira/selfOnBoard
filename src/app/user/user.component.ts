@@ -3,23 +3,39 @@ import {Router, NavigationEnd, ActivatedRoute, Event} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
+import {AccountService} from "../account/account.service";
 
 @Component({
   selector: 'app-user-change-password',
   templateUrl: './changePassword.html',
+  providers: [AccountService],
   styleUrls: ['./user.component.css']
 })
 
 export class UserChangePasswordComponent {
   changePassword = true;
   forgotPassword = false;
+  passwordsToSend: any = {};
 
-  constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>) {
+  constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>, private accountService: AccountService) {
   }
 
   switchToForgotPassword = () => {
     this.changePassword = false;
     this.forgotPassword = true;
+  }
+
+  applyChangePassword() {
+    this.accountService.ChangePassword(this.passwordsToSend).subscribe(
+      result => {
+        console.log(result);
+        const newToken = 'Bearer ' + result.AccessToken;
+        localStorage.setItem('token', newToken);
+        this.dialogRef.close();
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 }
 

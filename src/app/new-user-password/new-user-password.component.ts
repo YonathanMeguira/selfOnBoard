@@ -13,14 +13,30 @@ export class NewUserPasswordComponent {
     NewPassword: '',
     ConfirmNewPassword: ''
   };
+  private currentAccount: any;
 
   constructor(private accountService: AccountService, private router: Router) {
-  };
+    this.accountService.getAccountGeneralSettings().subscribe(
+      result => {
+        if (result == null){
+          return;
+        }
+
+        this.currentAccount = result;
+      });
+  }
 
   changePassword = () => {
+    var thisObject = this;
     this.accountService.ChangePassword(this.passwords).subscribe(
-      result => this.router.navigate(['user/firstTime']),
-      error => console.log(error)
-    );
+      result => {
+        var updatedBlob = thisObject.currentAccount;
+        updatedBlob.IsFirstLogin = false;
+        thisObject.accountService.postAccountGeneralSettings(updatedBlob).subscribe(()=> {
+            this.router.navigate(['user/dashboard'])
+          },
+          (error) => console.log(error))}
+          ),
+      (error) => console.log(error);
   }
 }

@@ -1,7 +1,7 @@
 <div class="outer" fxLayout="column" fxLayoutAlign="center center" fxFill>
   <h3 *ngIf="wrongId" color="accent">Please enter valid credentials</h3>
   <div class="frame white" style="width: 40%">
-    <div layout-margin layout="row" layout-align="center center" class="mt-5">
+    <div layout-margin layout="row" layout-align="center center" class="mt-5 mb-2">
       <md-icon style="height:60px; width: auto" svgIcon="resecLoginLogo"></md-icon>
     </div>
     <div fxLayout="row" fxLayoutAlign="center center">
@@ -23,7 +23,7 @@
                    name="password" #password="ngModel">
             <label [hidden]="password.valid || password.pristine" class="wrong-input">Password is incorrect</label>
           </md-input-container>
-          <button type="submit" md-raised-button [disabled]="!loginForm.valid" color="primary">Sign in</button>
+          <button type="submit"  [disabled]="!loginForm.valid" class="btn btn-action-yellow-big hvr-glow">Sign in</button>
         </form>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center">
@@ -34,7 +34,8 @@
 </div>
 
 <style>
-  input {
-    font
+  #login-btn{
+    background-color: purple;
+    color: white;
   }
 </style>

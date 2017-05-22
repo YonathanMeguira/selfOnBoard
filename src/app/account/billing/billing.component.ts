@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
-import {ElementRef,Renderer2, ViewChild} from '@angular/core';
-import {AccountService} from "../account.service";
+import {Renderer2} from '@angular/core';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-user-update-plan',
@@ -15,8 +15,8 @@ export class UpdatePlanComponent {
   currentPlan: string;
   changePassword = true;
   forgotPassword = false;
-  currentRd : Renderer2;
-  config:any;
+  currentRd: Renderer2;
+  config: any;
   private stripeSubscriptionToken: any;
 
   constructor(public dialogRef: MdDialogRef<UpdatePlanComponent>, private rd: Renderer2, private accountService: AccountService) {
@@ -28,36 +28,36 @@ export class UpdatePlanComponent {
   };
 
 
-  selected(event:any){
+  selected(event: any) {
     console.log(event);
-    var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
+    let target = event.target || event.srcElement || event.currentTarget;
+    let idAttr = target.attributes.id;
+    let value = idAttr.nodeValue;
     this.selectedPlan = value;
     console.log(target);
   }
 
-  getCSSClasses(str:string){
-    if (str.toLocaleLowerCase() === this.selectedPlan.toLocaleLowerCase()){
-      return "btn btn-upgrade-selected"
+  getCSSClasses(str: string) {
+    if (str.toLocaleLowerCase() === this.selectedPlan.toLocaleLowerCase()) {
+      return "btn btn-upgrade-selected";
     }
     return "btn btn-upgrade-unselected";
   }
 
-  isButtonDisabled(){
+  isButtonDisabled() {
     return this.selectedPlan !== this.currentPlan;
   }
 
-  saveAccountPlan(){
+  saveAccountPlan() {
     //return;
-    this.accountService.updateBillingData(this.stripeSubscriptionToken, this.selectedPlan.toLocaleLowerCase()).subscribe(()=>{
-        var blobDataToSend = this.config.accountData;
+    this.accountService.updateBillingData(this.stripeSubscriptionToken, this.selectedPlan.toLocaleLowerCase()).subscribe(() => {
+        let blobDataToSend = this.config.accountData;
 
         blobDataToSend.CurrentPlan = this.selectedPlan.toLocaleLowerCase();
 
         // update the server with new plan
         // TODO:: check with the server if he can update this data atomiclly by him self
-        this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(()=>  {
+        this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(() => {
           }
           ,
           error => console.log(error)
@@ -72,15 +72,14 @@ export class UpdatePlanComponent {
   }
 }
 
-class BillingData{
-  numOfUsers:string;
-  fee:string;
-  planName:string;
-  companyName:string;
-  companyNumber:string;
+class BillingData {
+  numOfUsers: string;
+  fee: string;
+  planName: string;
+  companyName: string;
+  companyNumber: string;
   address: string;
 }
-
 
 
 @Component({
@@ -128,7 +127,6 @@ export class BillingComponent implements OnInit {
             if (billingResult == null) {
               return;
             }
-
             this.billingData.fee = billingResult.FeeDesc;
             this.billingData.numOfUsers = billingResult.UsersQuantity;
             this.billingData.planName = billingResult.PlanName;
@@ -141,7 +139,10 @@ export class BillingComponent implements OnInit {
   }
 
   openUpgradePlan() {
-    this.dialogRef = this.dialog.open(UpdatePlanComponent, {width: '50%', data:{accountData:this.accountData,billingData:this.billingData}});
+    this.dialogRef = this.dialog.open(UpdatePlanComponent, {
+      width: '50%',
+      data: {accountData: this.accountData, billingData: this.billingData}
+    });
     this.dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result == true)
@@ -149,7 +150,7 @@ export class BillingComponent implements OnInit {
     });
   };
 
-  saveAccountData(){
+  saveAccountData() {
     // add validation on data if needed
 
     var blobDataToSend = this.accountData;
@@ -162,10 +163,10 @@ export class BillingComponent implements OnInit {
     if (+this.currentNumberOfUsers !== newNumOfUsers && newNumOfUsers >= 0)
 
     // update stripe with new users number
-    this.accountService.updateUsersNumber(this.accountData.StripeSubscriptionToken,this.billingData.numOfUsers).subscribe(()=> {
-    });
+      this.accountService.updateUsersNumber(this.accountData.StripeSubscriptionToken, this.billingData.numOfUsers).subscribe(() => {
+      });
 
-    this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(()=> {
+    this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(() => {
         // TODO:: show success dialog
 
       }

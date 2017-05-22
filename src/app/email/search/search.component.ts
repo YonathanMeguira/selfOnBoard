@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MailService} from '../email.service';
 import {EmailComponent} from '../email.component';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -17,7 +18,6 @@ export class SearchComponent extends EmailComponent implements OnInit{
   totalNumberOfMails: number;
   pullingData = false;
   noResultFound = false;
-
 
   constructor(private mailService: MailService) {
     super();

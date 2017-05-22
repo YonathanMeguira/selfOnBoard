@@ -1,16 +1,14 @@
 <div>
   <div *ngIf="!isFirstTime" class="mb-5 mt-5">
-    <p class="mb-3">Your current plan allows for 7 days of email archiving. If you need more, upgrade here.</p>
     <div class="white frame">
       <div class="col-8 pl-0">
         <div layout="row" class="search-container" layout-align="start center">
-          <input type="text" class="sob-input" flex="70" [(ngModel)]="query.ticketId" placeholder="Ticket ID">
+          <label class="mr-5 mb-0 search-label" >Ticket ID</label>
+          <input type="text" class="sob-input" flex="50" [(ngModel)]="query.ticketId">
           <button class="btn search-btn" (click)="searchMails()" [disabled]="!query.ticketId">
             <i class="fa fa-chevron-right" aria-hidden="true" style="font-size: 18px"></i>
           </button>
         </div>
-
-
         <!-- search result section -->
         <div class="pl-5 pb-5">
           <div *ngIf="!noResultFound && !noSearchInitiated">
@@ -71,5 +69,8 @@
 
 
 <style>
-
+.search-label{
+  font-weight: 500;
+  color: #666666;
+}
 </style>

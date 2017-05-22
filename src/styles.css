@@ -11,6 +11,20 @@
   font-family: 'sobRoboto'; /*a name to be used later*/
   src: url('https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto_slab/robotoslab-regular-webfont.ttf')
 }
+
+#coming-soon {
+  background: #FFFFFF;
+  height: 100%;
+  border: 1px solid #666666;
+  color: #666666;
+  border-radius: 18px;
+}
+
+#coming-soon > p {
+  color: #666666;
+  font-size: 18px;
+  text-align: center;
+}
 input, label{
   font-family: 'Roboto Slab', serif !important;
 }

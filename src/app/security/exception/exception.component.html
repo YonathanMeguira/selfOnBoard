@@ -16,7 +16,7 @@
       <div *ngIf="newDepartment">
         <new-exception (onCancel)="cancelCreation($event)" (onSave)="postNewSettings($event)"></new-exception>
       </div>
-      <p *ngIf="!newDepartment && noSettingsExist">bummer no settings exist</p>
+      <p *ngIf="!newDepartment && noSettingsExist">No setting currently exist</p>
     </div>
   </div>
 

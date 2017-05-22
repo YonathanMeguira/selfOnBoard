@@ -25,6 +25,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.clear();
+    // console.log(window.location.href);
+    const windowUrl = window.location.href.split("?s=")[1];
+    this.user.server = windowUrl;
+    console.log(windowUrl);
   }
 
   onSubmit() {

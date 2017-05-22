@@ -14,3 +14,7 @@ p, small, label {
 small {
   font-weight: 500;
 }
+
+.coming-soon-notification > p {
+  padding: 0.4em;
+}

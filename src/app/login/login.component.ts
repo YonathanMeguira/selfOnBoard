@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from 'app/shared/users.service';
 import {Router} from '@angular/router';
-import {AccountService} from "app/account/account.service";
 import {MdIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AccountService} from "app/account/account.service";
 
 @Component({
   selector: 'app-login',
@@ -79,11 +79,7 @@ export class LoginComponent implements OnInit {
 
                 if (this.checkState()) {
                   if (isFistLogin) {
-                    var updatedBlob = this.currentAccount;
-                    updatedBlob.IsFirstLogin = false;
-                    this.accountService.postAccountGeneralSettingsWithServerAddress(this.user.server,updatedBlob).subscribe(()=> {
-                      this.router.navigate(['user/firstTimeChangePassword']);
-                    },()=>{this.router.navigate(['/user/dashboard'])});
+                    this.router.navigate(['user/firstTimeChangePassword']);
                   } else {
                     console.log(localStorage);
                     this.router.navigate(['/user/dashboard']);

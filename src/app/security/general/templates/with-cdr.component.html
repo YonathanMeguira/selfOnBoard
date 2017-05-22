@@ -4,25 +4,26 @@
   </div>
 
   <div class="content-holder">
+    <p style="width: 35%;font-size: 12px">CDR (Content Disarm and Reconstruction) means that a secure version of the
+      file is created and the email is received seamlessly to the end user.</p>
     <table>
       <thead>
       <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+      <th class="text-center">High<br>
+        <small>Active content &<br> macros NOT removed</small>
+      </th>
+      <th class="text-center">Highest<br>
+        <small>Active content &<br> macros removed</small>
+      </th>
       </thead>
       <tbody>
       <tr>
-
         <td layout="column" class="sob-table-security-td">
           <p>Applied to documents, spreadsheets, images
             and presentations</p>
         </td>
-        <td class="text-center">
-          High<br>
-          Active content & macros NOT removed
-        </td>
-        <td colspan="3">
+
+        <td colspan="2">
           <md-slider [(ngModel)]="cdrSettings.Documents"
                      [max]="1"
                      style="width: 100%"
@@ -33,101 +34,17 @@
                      color="accent">
           </md-slider>
         </td>
-        <td class="text-center">
-          Highest<br>
-          Active content & macros removed
-        </td>
+
       </tr>
       </tbody>
     </table>
-    <!-- <table>
-       <thead>
-       <th></th>
-       <th class="text-center">
-         Don't Process<br>
-         <small>Not recommended</small>
-       </th>
-       <th class="text-center">
-         High<br>
-         <small>Active content NOT removed</small>
-       </th>
-       <th class="text-center">Highest<br>
-         <small>Active content removed</small>
-       </th>
-       </thead>
-       <tbody>
-       <tr>
-         <td layout="column" class="sob-table-security-td">
-           <p class="sob-category-title">Documents</p>
-           <small>.doc, .docx, .pdf, .pages, .gdoc</small>
-         </td>
-         <td colspan="3">
-           <md-slider [(ngModel)]="cdrSettings.Documents"
-                      [max]="2"
-                      style="width: 100%"
-                      [min]="0"
-                      [step]="1"
-                      [value]="0"
-                      [vertical]="vertical"
-                      color="accent">
-           </md-slider>
-         </td>
-       </tr>
-       <tr>
-         <td layout="column" class="sob-table-security-td">
-           <p class="sob-category-title">Spreadsheets</p>
-           <small>.csv, .xls, .xlsx, .gsheet</small>
-         </td>
-         <td colspan="3">
-           <md-slider [(ngModel)]="cdrSettings.Spreadsheets"
-                      [max]="2"
-                      style="width: 100%"
-                      [min]="0"
-                      [step]="1"
-                      [value]="0"
-                      [vertical]="vertical"
-                      color="accent">
-           </md-slider>
-         </td>
-       </tr>
-       <tr>
-         <td layout="column" class="sob-table-security-td">
-           <p class="sob-category-title">Images</p>
-           <small>.png, .jpg, .jpeg, .gif</small>
-         </td>
-         <td colspan="3">
-           <md-slider [(ngModel)]="cdrSettings.Images"
-                      [max]="2"
-                      style="width: 100%"
-                      [min]="0"
-                      [step]="1"
-                      [value]="0"
-                      [vertical]="vertical"
-                      color="accent">
-           </md-slider>
-         </td>
-       </tr>
-       <tr>
-         <td layout="column" class="sob-table-security-td">
-           <p class="sob-category-title">Presentations</p>
-           <small>.ppt, .pptx, .keynote, .gslides
-           </small>
-         </td>
-         <td colspan="3">
-           <md-slider [(ngModel)]="cdrSettings.Presentations"
-                      [max]="2"
-                      style="width: 100%"
-                      [min]="0"
-                      [step]="1"
-                      [value]="0"
-                      [vertical]="vertical"
-                      color="accent">
-           </md-slider>
-         </td>
-       </tr>
-       </tbody>
 
-     </table>-->
+    <!-- <table>
+
+    cdrSettings.Presentations
+    cdrSettings.Documents
+    cdrSettings.Spreadsheets
+       -->
 
 
     <a class="link-btn" role="button" layout-margin (click)="restoreDefaultCdr()">Restore default settings</a>

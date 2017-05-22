@@ -7,15 +7,15 @@
     <div class="pt-4 pb-3">
       <div class="row mb-4">
         <p class="textBold-gray col-3">Company Name</p>
-        <p class="textBold col-3">{{companyData.name}}</p>
+        <p class="bold-gray col-3">{{companyData.name}}</p>
       </div>
       <div class="row mb-4">
         <p class="textBold-gray col-3">Domain</p>
-        <p class="textBold col-3">{{companyData.domain}}</p>
+        <p class="bold-gray col-3">{{companyData.domain}}</p>
       </div>
       <div class="row mb-4">
         <p class="textBold-gray col-3">MX Record</p>
-        <p class="textBold col-3">{{companyData.mxRecord}}</p>
+        <p class="bold-gray col-3">{{companyData.mxRecord}}</p>
         <button class="btn btn-neutral-yellow-hvr" type="button" (click)="sendTestEmail()">Send Test Email</button>
         <small *ngIf="testEmailSent">Test email sent, please wait 1-2 min for confirmation.</small>
       </div>
@@ -29,19 +29,19 @@
     <div class="pt-4 pb-3 mt-3">
       <div class="row mb-4">
         <p class="textBold-gray col-3">Name</p>
-        <input class="col-3 sob-input " [(ngModel)]="accountOwnerData.name" type="text">
+        <input class="col-3 sob-input bold-gray" [(ngModel)]="accountOwnerData.name" type="text">
       </div>
       <div class="row  mb-4">
         <p class="textBold-gray col-3">Email</p>
-        <input class="col-3 sob-input " type="email" [(ngModel)]="accountOwnerData.email">
+        <input class="col-3 sob-input bold-gray" type="email" [(ngModel)]="accountOwnerData.email">
       </div>
       <div class="row  mb-4">
         <p class="textBold-gray col-3">Phone</p>
-        <input class="col-3 sob-input " type="number" [(ngModel)]="accountOwnerData.phone">
+        <input class="col-3 sob-input bold-gray" type="number" [(ngModel)]="accountOwnerData.phone">
       </div>
       <div class="row  mb-4" [hidden]="true">
         <p class="textBold-gray col-3">Password</p>
-        <input class="col-3 sob-input " type="password" [(ngModel)]="accountOwnerData.password">
+        <input class="col-3 sob-input bold-gray" type="password" [(ngModel)]="accountOwnerData.password">
         <button type="button" class="btn btn-link" (click)="openChangePassword()">change</button>
       </div>
 
@@ -58,15 +58,15 @@
     <div class="pt-4 pb-5 mt-3 mb-5">
       <div class="row mb-4">
         <p class="textBold-gray col-3">Name</p>
-        <input class="col-3 sob-input" [(ngModel)]="adminData.name" type="text">
+        <input class="col-3 sob-input bold-gray" [(ngModel)]="adminData.name" type="text">
       </div>
       <div class="row  mb-4">
         <p class="textBold-gray col-3">Email</p>
-        <input class="col-3 sob-input" type="email" [(ngModel)]="adminData.email">
+        <input class="col-3 sob-input bold-gray" type="email" [(ngModel)]="adminData.email">
       </div>
       <div class="row  pb-5">
         <p class="textBold-gray col-3">Phone</p>
-        <input class="col-3 sob-input" type="number" [(ngModel)]="adminData.phone">
+        <input class="col-3 sob-input bold-gray" type="number" [(ngModel)]="adminData.phone">
       </div>
     </div>
   </div>

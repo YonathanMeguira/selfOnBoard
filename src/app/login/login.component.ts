@@ -18,17 +18,19 @@ export class LoginComponent implements OnInit {
   public submitted = false;
   public checkingUser = false;
   private currentAccount: any;
-
+  public urlHasServer: boolean;
   constructor(private userService: UserService, private accountService: AccountService, private router: Router, sanitizer: DomSanitizer, iconReg: MdIconRegistry) {
     iconReg.addSvgIcon('resecLoginLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/resecLogoLogin.svg'));
   }
-
+  checkServerInUrl(){
+    const serverInUrl = window.location.href.split("?s=")[1];
+    this.urlHasServer = (serverInUrl) ? true : false;
+    this.user.server = (this.urlHasServer) ? serverInUrl : '';
+  }
   ngOnInit() {
     localStorage.clear();
     // console.log(window.location.href);
-    const windowUrl = window.location.href.split("?s=")[1];
-    this.user.server = windowUrl;
-    console.log(windowUrl);
+    this.checkServerInUrl();
   }
 
   onSubmit() {
@@ -106,4 +108,5 @@ export class LoginComponent implements OnInit {
       )
     ;
   }
+
 }

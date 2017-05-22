@@ -8,7 +8,7 @@
       <div [hidden]="submitted" fxFlex="90">
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm" id="form-container" fxLayout="column" fxLayoutGap="20px"
               fxLayoutWrap>
-          <md-input-container class="full-width" dividerColor="primary">
+          <md-input-container class="full-width" dividerColor="primary" *ngIf="!urlHasServer">
             <input mdInput placeholder="Server" type="text" id="server" required [(ngModel)]="user.server" name="server"
                    #server="ngModel">
             <label [hidden]="server.valid || server.pristine" class="wrong-input">Server is required</label>

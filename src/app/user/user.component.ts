@@ -66,7 +66,6 @@ export class UserComponent {
       const user = localStorage.getItem('username');
       if (user) {
         this.username = user.charAt(0).toUpperCase() + user.slice(1);
-        console.log(this.username);
       }
     });
 

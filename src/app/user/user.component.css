@@ -70,8 +70,6 @@ ul {
   line-height: 1.25;
   font-size: 16px !important;
   color: #757575 !important;
-  font-weight: 600 !important;
-
 }
 .sob-page-link:hover{
   color: #14123F !important;
@@ -86,7 +84,6 @@ ul {
   line-height: 1.25;
   font-size: 1.2em !important;
   color: #14123F !important;
-  font-weight: 600 !important;
   text-decoration: none !important;
 }
 #dropdownMenu1 {

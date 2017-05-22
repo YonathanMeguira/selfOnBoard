@@ -4,12 +4,12 @@
   </div>
   <div class="content-holder">
 
-    <div layout="row" class="inner-section">
+    <div layout="row" class="inner-section" layout-align="space-between end">
       <div flex="40">
-        <h4 class="item">Hyperlinks</h4>
+        <h4 class="item mb-4">Hyperlinks</h4>
         <small>This includes links in the body of an email and in any documents attached.</small>
       </div>
-      <div layout="row" flex>
+      <div layout="row" flex class="ml-3">
         <div layout="column">
           <md-slide-toggle  [(ngModel)]="generalSettings.HandleLinks" aria-label="antivrus"
                             color="accent"></md-slide-toggle>

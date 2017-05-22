@@ -5,17 +5,20 @@
     </div>
     <div style="height: 67%" layout="row" layout-align="space-between center" class="pl-3 pr-3">
       <p class="graph-selector-title" flex="50">Clean <br>Replica by CDR</p>
-      <div flex="50" layout="column">
+      <!--<div flex="50" layout="column">
         <p class="total-top">{{totals.totalCleanReplicaByCdr}}</p>
         <p class="selector-totals">
           {{totals.totalCleanReplicaByCdr | GetPercentage : totals.TotalAttachmentProcessed}}
           <span class="percentage">%</span></p>
-      </div>
+      </div>-->
+      <div id="coming-soon"></div>
     </div>
   </div>
   <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box  " layout-align="space-between center">
     <div layout="row" layout-align="end start"  flex="100">
-      <div id="triangle-green"></div>
+      <div id="triangle-green">
+        <p style="color: #666; font-size: 13px">Coming Soon</p>
+      </div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
       <p class="graph-selector-title" flex="50">Original Attachment OK</p>
@@ -84,5 +87,11 @@
     height: 0;
     border-top: 20px solid #F5AF91;
     border-left: 20px solid transparent;
+  }
+  #coming-soon{
+    background: #FFFFFF;
+    border: 1px solid #666666;
+    color: #666666;
+    border-radius: 18px;
   }
 </style>

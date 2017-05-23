@@ -65,9 +65,7 @@ export class GraphComponent implements OnInit {
   };
   // lie, area
   constructor() {
-    console.log(d3);
     this.curving = d3.curveCardinal;
-    console.log(this.curving);
   }
 
   ngOnInit() {

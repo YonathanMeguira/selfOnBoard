@@ -19,14 +19,18 @@ export class LoginComponent implements OnInit {
   public checkingUser = false;
   private currentAccount: any;
   public urlHasServer: boolean;
+
   constructor(private userService: UserService, private accountService: AccountService, private router: Router, sanitizer: DomSanitizer, iconReg: MdIconRegistry) {
     iconReg.addSvgIcon('resecLoginLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/resecLogoLogin.svg'));
   }
-  checkServerInUrl(){
+
+  checkServerInUrl() {
     const serverInUrl = window.location.href.split("?s=")[1];
     this.urlHasServer = (serverInUrl) ? true : false;
+    localStorage.setItem('urlHasServer', this.urlHasServer.toString());
     this.user.server = (this.urlHasServer) ? serverInUrl : '';
   }
+
   ngOnInit() {
     localStorage.clear();
     // console.log(window.location.href);
@@ -50,7 +54,6 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    console.log(localStorage)
     this.checkingUser = true;
     this.wrongId = false;
     this.userService.login(this.user.server, this.user.username, this.user.password)
@@ -65,24 +68,17 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userRole', success.UserRole);
             const token = 'Bearer ' + success.AccessToken;
             const isFirstTime = success.UserAdditionalData.IsFirstTime;
-
             localStorage.setItem('token', token);
             localStorage.setItem('username', this.user.username);
             this.checkingUser = false;
-
-            // is local storage has above values then go into the next code
-            // Local storage only accepts string and not booleans, thus i convert this value to boolean to decide where to send user
-            //const isFirstTimeBool = (success.UserAdditionalData.IsFirstTime === 'true') ? true : false;
             this.accountService.getAccountGeneralSettingsWithServerAddress(this.user.server).subscribe(
               result => {
-                if (result == null){
+                if (result == null) {
                   return;
                 }
-
                 this.currentAccount = result;
                 let isFistLogin = result.IsFirstLogin;
                 localStorage.setItem('isFirstTime', isFirstTime);
-
                 if (this.checkState()) {
                   if (isFistLogin) {
                     this.router.navigate(['user/firstTimeChangePassword']);
@@ -94,9 +90,6 @@ export class LoginComponent implements OnInit {
               }, error => {
                 console.log(error);
               });
-
-
-
           }
         },
         error => {

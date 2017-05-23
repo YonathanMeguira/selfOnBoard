@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../shared/token.injector';
 import {Observable} from 'rxjs/Rx';
+import {Http, RequestOptions} from '@angular/http';
 
 @Injectable()
 export class DashboardService {
   server = localStorage.getItem('serverName');
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private regularHttp: Http) {
   }
 
   getDashboardData(timeFrame: number): Observable<any> {
@@ -17,13 +18,6 @@ export class DashboardService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not retrieve the  dashboard data'));
   }
 
-  GetRandomSenders(): Observable<any> {
-    const randomSenders = 'https://api.myjson.com/bins/11ccy1';
-    return this.http.get(randomSenders)
-      .map((res) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the fake data for senders'));
-  }
-
   GetRandomRecipients(): Observable<any> {
     const randomRecipients = 'https://api.myjson.com/bins/seuvd';
     return this.http.get(randomRecipients)
@@ -32,9 +26,9 @@ export class DashboardService {
   }
 
   GetFeed(): Observable<any> {
-    const feedUrl = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=aeaf2ce8b9984429bbe0d8ea1a0a92fc';
-    return this.http.get(feedUrl)
+    const feedUrl = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=aeaf2ce8b9984429bbe0d8ea1a0a92fc&category=technology'
+    return this.regularHttp.get(feedUrl)
       .map((res) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the news feed'));
+      .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the news'));
   }
 }

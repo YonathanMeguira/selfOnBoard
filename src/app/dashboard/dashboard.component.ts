@@ -58,7 +58,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.allData = res;
         this.totals.TotalEmailsProcessed = res.TotalEmailsProcessed;
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
-        console.log(this.pieData);
         this.totals.TotalUrls = res.TotalUrls;
         this.totals.totalCleanReplicaByCdr = this.getCollectionSum(res.TotalProcessedByCdr);
         this.totals.TotalAttachmentProcessed = res.TotalAttachmentProcessed;
@@ -152,7 +151,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.GetFeed();
-    //
     this.GetRandomRecipients();
   };
 
@@ -189,20 +187,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       error => console.log(error)
     );
   }
-  GetRandomSenders = () => {
-    this.displayingSenders = true;
-    this.displayingRecipients = false;
-    this.dashboardService.GetRandomSenders().subscribe(
-      result => this.randomUsers = result,
-      error => console.log(error)
-    );
-  }
+
   GetFeed = () => {
-    this.dashboardService.GetFeed().subscribe(
+      this.dashboardService.GetFeed().subscribe(
       feed => {
+        console.log(feed);
         const slicedArray = feed.articles.slice(0, 3);
         this.feeds = slicedArray;
-        console.log(this.feeds);
+         console.log(this.feeds);
       },
       error => console.log(error)
     );
@@ -256,6 +248,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-// TopTenCleanCdrReplicaRecipients
-  // TopTenCleanCdrReplicaSenders
 }

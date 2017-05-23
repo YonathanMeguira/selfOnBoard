@@ -22,7 +22,8 @@ import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/firs
 import {UserIsSobAndHasToken} from './shared/route-activators';
 
 const appRoutes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {
     path: 'user',
     component: UserComponent,

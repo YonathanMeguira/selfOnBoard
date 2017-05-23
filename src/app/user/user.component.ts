@@ -50,6 +50,7 @@ export class UserChangePasswordComponent {
 export class UserComponent {
   currentUrl: string;
   username: string;
+  servername: string;
   private dialogRef: MdDialogRef<any>;
 
   constructor(private router: Router,
@@ -58,7 +59,7 @@ export class UserComponent {
               private activatedRoute: ActivatedRoute,
               public dialog: MdDialog) {
 
-
+    this.servername = localStorage.getItem('serverName');
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
@@ -78,10 +79,20 @@ export class UserComponent {
 
   }
 
+  defineUserOrigin() {
+    let hasLoggedWithParamInUrl: boolean;
+    const lsValue = localStorage.getItem('urlHasServer');
+    hasLoggedWithParamInUrl = (lsValue === 'true') ? true : false;
+    return hasLoggedWithParamInUrl;
+  }
+
   logout = () => {
+    if (this.defineUserOrigin) {
+      this.router.navigate(['login'], {queryParams: {s: this.servername}});
+    } else {
+      this.router.navigate(['login']);
+    };
     localStorage.clear();
-    // goes to default route which is login
-    this.router.navigate(['']);
   };
 
   testRoute = (parent: string) => {

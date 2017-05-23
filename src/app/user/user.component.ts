@@ -87,7 +87,7 @@ export class UserComponent {
   }
 
   logout = () => {
-    if (this.defineUserOrigin) {
+    if (this.defineUserOrigin()) {
       this.router.navigate(['login'], {queryParams: {s: this.servername}});
     } else {
       this.router.navigate(['login']);

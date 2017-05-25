@@ -9,7 +9,9 @@ import * as d3 from 'd3';
 export class TotalsTopComponent {
   @Input() totals;
   @Output() onTotalSelected = new EventEmitter<any>();
-  constructor() {}
+
+  constructor() {
+  }
 
   displayTotals = (event) => {
     console.log(event);
@@ -30,11 +32,14 @@ export class GraphSelectorComponent {
   colorScheme: any = {
     domain: ['#1565C0', '#03A9F4', '#FFA726', '#FFCC80'],
   };
-  changeTheCurrentLine(event){
+
+  changeTheCurrentLine(event) {
     if (arguments[1]) {
       this.onGraphChanged.emit(arguments[1]);
-    };
+    }
+    ;
   }
+
   constructor() {
   };
 }
@@ -49,7 +54,7 @@ export class GraphComponent implements OnInit {
   @Input() graphData: any;
   curving: any;
   @Input() graphColor: string;
-  view: any[] = [667, 229];
+  // view: any[] = [100%, 229];
   showXAxis = true;
   showYAxis = false;
   gradient = false;
@@ -58,7 +63,7 @@ export class GraphComponent implements OnInit {
   xAxisLabel = '';
   showYAxisLabel = false;
   yAxisLabel = 'Month';
-  showGridLines = false;
+  showGridLines = true;
   schemeType = 'ordinal';
   colorScheme = {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']

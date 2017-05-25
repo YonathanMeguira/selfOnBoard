@@ -27,11 +27,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currGraphData: any;
   getDashboardData: any;
   totals: any = {};
-  dataHasLoaded: boolean = false;
+  dataHasLoaded = false;
   allData: any = {};
   feeds: Array<any>;
   pieData: any = {};
   randomUsers: Array<any>;
+  senders: Array<string>;
+  recipients: Array<string>;
   displayingSenders = false;
   displayingRecipients = true;
   colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
@@ -63,6 +65,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.totals.totalPassedOk = this.getCollectionSum(res.TotalPassed);
         this.totals.BlockedByPolicy = this.getCollectionSum(res.TotalBlockedByPolicy);
         this.totals.TotalBlockedByAntivirus = this.getCollectionSum(res.TotalBlockedByAntivirus);
+        this.recipients = res.TopTenCleanCdrReplicaRecipients;
+        this.senders = res.TopTenCleanCdrReplicaSenders;
         this.dataHasLoaded = true;
         // this.store.dispatch(this.dashboardActions.loadDashboardData());
         this.cleanReplica = {
@@ -151,7 +155,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.GetFeed();
     //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
-    this.GetRandomRecipients();
   };
 
   changeTimeFrame = (newTime: number) => {
@@ -180,14 +183,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return sum;
   }
 
-  GetRandomRecipients = () => {
-    this.displayingSenders = false;
-    this.displayingRecipients = true;
-    this.dashboardService.GetRandomRecipients().subscribe(
-      result => this.randomUsers = result,
-      error => console.log(error)
-    );
-  }
 
   generateThreeDifferentRandomNumbers() {
     let arr = [];

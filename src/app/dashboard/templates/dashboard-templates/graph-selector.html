@@ -1,11 +1,11 @@
 <div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 graph-selector-line">
   <div flex="50" (click)="changeTheCurrentLine($event, 'totals.totalCleanReplicaByCdr')"
-       class="white frame graph-selector-box mr-3">
+       class="white frame graph-selector-box mr-3 hvr-glow">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-blue"></div>
     </div>
     <div style="height: 67%" layout="row" layout-align="space-between center" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Clean <br>Replica by CDR</p>
+      <p class="graph-selector-title" flex="50">Clean <br>Replica<br> by CDR</p>
       <!--<div flex="50" layout="column">
         <p class="total-top">{{totals.totalCleanReplicaByCdr}}</p>
         <p class="selector-totals">
@@ -13,18 +13,18 @@
           <span class="percentage">%</span></p>
       </div>-->
       <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming Soon</p>
+        <p>Coming <br> Soon</p>
       </div>
     </div>
   </div>
-  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box  "
+  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box hvr-glow "
        layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-green">
       </div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Original Attachment OK</p>
+      <p class="graph-selector-title" flex="50">Original<br> Attachment<br> OK</p>
       <!--<div flex="50" layout="column">
         <p class="total-top">{{totals.totalPassedOk}}</p>
         <p class="selector-totals">
@@ -32,7 +32,7 @@
           <span class="percentage">%</span></p>
       </div>-->
       <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming Soon</p>
+        <p>Coming<br> Soon</p>
       </div>
     </div>
   </div>
@@ -40,12 +40,12 @@
 
 <div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 mt-3 graph-selector-line">
   <div flex="50" (click)="changeTheCurrentLine($event, 'totals.blockedByCDR')"
-       class="white frame graph-selector-box mr-3" layout-align="space-between center">
+       class="white frame graph-selector-box mr-3 hvr-glow" layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-yellow"></div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Attachment Blocked by Policy</p>
+      <p class="graph-selector-title" flex="50">Attachment<br> Blocked <br>by Policy</p>
       <!--<div flex="50" layout="column">
         <p class="total-top">{{totals.BlockedByPolicy}}</p>
         <p class="selector-totals">
@@ -53,17 +53,17 @@
           <span class="percentage">%</span></p>
       </div>-->
       <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming Soon</p>
+        <p>Coming <br>Soon</p>
       </div>
     </div>
   </div>
   <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentBlockedByAntivirus')"
-       class="white frame graph-selector-box" layout-align="space-between center">
+       class="white frame graph-selector-box hvr-glow" layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-orange"></div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Attachment Blocked by Antivirus</p>
+      <p class="graph-selector-title" flex="50">Attachment<br> Blocked <br>by Antivirus</p>
       <!--<div flex="50" layout="column">
         <p class="total-top">{{totals.TotalBlockedByAntivirus}}</p>
         <p class="selector-totals">
@@ -71,7 +71,7 @@
           <span class="percentage">%</span></p>
       </div>-->
       <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming Soon</p>
+        <p>Coming<br> Soon</p>
       </div>
     </div>
   </div>

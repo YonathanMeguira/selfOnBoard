@@ -12,58 +12,6 @@
   src: url('https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto_slab/robotoslab-regular-webfont.ttf')
 }
 
-
-
-
-.spinner {
-  width: 40px;
-  height: 40px;
-
-  position: relative;
-  margin: 100px auto;
-}
-
-.double-bounce1, .double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #2196F3;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
-}
-
-.double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-@-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes sk-bounce {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-    }
-}
-
-
-
-
-
-
-
-
 .td-loading-wrapper.td-overlay  .td-loading{
   background: rgba(255,255,255,0.63);
 }
@@ -667,14 +615,14 @@ button:focus {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   /*box-shadow: 0 0 1px transparent;*/
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.6s;
+  transition-duration: 0.6s;
   -webkit-transition-property: box-shadow;
   transition-property: box-shadow;
 }
 
 .hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {

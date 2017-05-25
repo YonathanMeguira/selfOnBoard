@@ -1,9 +1,9 @@
 <!-- nesting level: 2 entry inside the app -->
 
 <md-sidenav-container style="height: 100vh">
-  <md-sidenav #sidenav opened="true" mode="side" style="width: auto !important">
-    <ul style="height: 10%" class="mt-5">
-      <li mdTooltipPosition="right" class="text-center mt-5 pt-3 pb-3 mb-3 noHoverEffect">
+  <md-sidenav #sidenav opened="true"  id="smb-sidenav" mode="side" style="width: 60px !important; min-width: unset">
+    <ul style="height: 15%">
+      <li mdTooltipPosition="right" class="text-center mt-3 pt-3 pb-3 mb-3 noHoverEffect">
         <md-icon class="center-icon" svgIcon="resecLogo"></md-icon>
       </li>
     </ul>
@@ -27,12 +27,10 @@
           <md-icon class="center-icon" svgIcon="settings"></md-icon>
         </li>
       </ul>
-
     </nav>
   </md-sidenav>
   <div layout-fill style="background-color: #F7F8F8">
     <md-progress-bar *ngIf="showLoader" mode="query"></md-progress-bar>
-
     <nav class="navbar sticky-top bg-white-shadow mb-0">
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
@@ -83,5 +81,4 @@
     margin: 0 7%;
     padding: 2em 0;
   }
-
 </style>

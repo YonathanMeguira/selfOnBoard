@@ -1,9 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Router, NavigationEnd, ActivatedRoute, Event} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
 import {AccountService} from "../account/account.service";
+import {HTTPStateService} from '../shared/custom-http';
+import { Subscription }   from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'app-user-change-password',
@@ -17,7 +20,9 @@ export class UserChangePasswordComponent {
   forgotPassword = false;
   passwordsToSend: any = {};
 
-  constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>, private accountService: AccountService) {
+  constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>,
+              private accountService: AccountService) {
+
   }
 
   switchToForgotPassword = () => {
@@ -48,16 +53,24 @@ export class UserChangePasswordComponent {
 })
 
 export class UserComponent {
-  currentUrl: string;
-  username: string;
-  servername: string;
+  private currentUrl: string;
+  private username: string;
+  private servername: string;
+  showLoader = false;
+  getStateSubscription: Subscription;
   private dialogRef: MdDialogRef<any>;
 
   constructor(private router: Router,
               iconReg: MdIconRegistry,
               sanitizer: DomSanitizer,
               private activatedRoute: ActivatedRoute,
-              public dialog: MdDialog) {
+              public dialog: MdDialog,
+              private httpState: HTTPStateService) {
+
+    this.getStateSubscription = this.httpState.getCallInTheProcess$.subscribe(
+      state => {
+        this.showLoader = state;
+      });
 
     this.servername = localStorage.getItem('serverName');
     this.router.events.subscribe((event: Event) => {
@@ -91,7 +104,8 @@ export class UserComponent {
       this.router.navigate(['login'], {queryParams: {s: this.servername}});
     } else {
       this.router.navigate(['login']);
-    };
+    }
+    ;
     localStorage.clear();
   };
 
@@ -104,6 +118,10 @@ export class UserComponent {
   openChangePassword() {
     this.dialogRef = this.dialog.open(UserChangePasswordComponent, {width: '40%'});
   };
+
+  ngOnDestroy(){
+    this.getStateSubscription.unsubscribe();
+  }
 }
 
 

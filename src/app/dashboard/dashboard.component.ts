@@ -188,13 +188,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
+  generateThreeDifferentRandomNumbers() {
+    let arr = [];
+    while (arr.length < 3) {
+      const randomnumber = Math.ceil(Math.random() * 10);
+      if (arr.indexOf(randomnumber) > -1) continue;
+      arr[arr.length] = randomnumber;
+    }
+    return arr;
+  }
+
+  makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>) : Array<any> {
+    const randomFeeds = [];
+    const randomNumbers = this.generateThreeDifferentRandomNumbers();
+    for (const i of randomNumbers){
+      console.log(i);
+      randomFeeds.push(arrayOfFeeds[i]);
+    };
+    console.log(arrayOfFeeds);
+    return randomFeeds;
+  }
+
   GetFeed = () => {
-      this.dashboardService.GetFeed().subscribe(
-      feed => {
-        console.log(feed);
-        const slicedArray = feed.articles.slice(0, 3);
-        this.feeds = slicedArray;
-         console.log(this.feeds);
+    this.dashboardService.GetFeed().subscribe(
+      res => {
+        const feed = res.response.results;
+        this.feeds = this.makeArrayOfRandomFeeds(feed);
+        console.log(this.feeds);
       },
       error => console.log(error)
     );

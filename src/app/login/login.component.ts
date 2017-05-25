@@ -36,12 +36,10 @@ export class LoginComponent implements OnInit {
     // console.log(window.location.href);
     this.checkServerInUrl();
   }
-
   onSubmit() {
     this.submitted = true;
     this.checkLogin();
   }
-
   checkState() {
     const servername = localStorage.getItem('serverName');
     const token = localStorage.getItem('token');
@@ -52,7 +50,6 @@ export class LoginComponent implements OnInit {
     }
     return false;
   }
-
   checkLogin() {
     this.checkingUser = true;
     this.wrongId = false;
@@ -101,5 +98,4 @@ export class LoginComponent implements OnInit {
       )
     ;
   }
-
 }

@@ -1,18 +1,20 @@
 @import '/node_modules/@covalent/core/common/platform.css';
 
-
-#sidenav-toggler{
+#sidenav-toggler {
   margin-left: 1em;
   background-color: whitesmoke;
 }
-md-sidenav{
+
+md-sidenav {
   background-color: #0C0E47;
   width: 240px;
 }
-li{
+
+li {
   display: list-item;
   text-align: left;
 }
+
 li > a {
   box-sizing: border-box;
   display: block;
@@ -26,25 +28,30 @@ li > a {
   position: relative;
   color: white;
 }
-li:hover{
+
+li:hover {
   background-color: #342B62;
 }
-.noHoverEffect:hover{
+
+.noHoverEffect:hover {
   background-color: transparent !important;
 }
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.active{
+
+.active {
   background-color: #342B62;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
   will-change: box-shadow;
   display: block;
   position: relative;
 }
+
 #top-bar {
   padding: 1em;
   background-color: white;
@@ -62,7 +69,7 @@ ul {
   vertical-align: middle !important;
 }
 
-.sob-page-link{
+.sob-page-link {
   position: relative;
   display: block;
   padding: .5rem .75rem;
@@ -71,12 +78,14 @@ ul {
   font-size: 16px !important;
   color: #757575 !important;
 }
-.sob-page-link:hover{
+
+.sob-page-link:hover {
   color: #14123F !important;
   border-bottom: solid 0px white !important;
   text-decoration: none !important;
 }
-.page-active{
+
+.page-active {
   position: relative;
   display: block;
   padding: .5rem .75rem;
@@ -86,6 +95,7 @@ ul {
   color: #14123F !important;
   text-decoration: none !important;
 }
+
 #dropdownMenu1 {
   background-color: transparent;
   color: #666666;
@@ -107,4 +117,35 @@ ul {
 
 #dropdownMenu1:focus {
   outline: 0 !important;
+}
+
+.loader {
+  color: #fff;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 30vh;
+  opacity: 0.8;
+}
+.loader span {
+  display: inline-block;
+  -webkit-animation: pulse 0.4s alternate infinite ease-in-out;
+  animation: pulse 0.4s alternate infinite ease-in-out;
+}
+.loader span:nth-child(odd) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+@-webkit-keyframes pulse {
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+@keyframes pulse {
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
 }

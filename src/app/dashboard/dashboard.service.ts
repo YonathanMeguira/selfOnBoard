@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpService} from '../shared/token.injector';
+import {HttpService} from '../shared/custom-http';
 import {Observable} from 'rxjs/Rx';
 import {Http, RequestOptions} from '@angular/http';
 
@@ -26,7 +26,7 @@ export class DashboardService {
   }
 
   GetFeed(): Observable<any> {
-    const feedUrl = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=aeaf2ce8b9984429bbe0d8ea1a0a92fc&category=technology'
+    const feedUrl = 'http://content.guardianapis.com/search?show-fields=all&q=cybersecurity&api-key=d9837304-6676-41b2-ad98-9e89fe52dd5d'
     return this.regularHttp.get(feedUrl)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the news'));

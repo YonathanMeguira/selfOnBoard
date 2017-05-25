@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, RequestOptions, XHRBackend} from '@angular/http';
-import {HttpService} from './shared/token.injector';
+import {HttpService, HTTPStateService} from './shared/custom-http';
 import {DialogsService, ConfirmDialog} from './shared/dialogs.service';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -16,9 +16,9 @@ import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
 import {UserComponent, UserChangePasswordComponent} from './user/user.component';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {
   GeneralSettingsComponent,
@@ -51,7 +51,7 @@ import {CovalentCoreModule} from '@covalent/core';
 import {TagInputModule} from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import { default as reducer } from './store/app-store';
+import {default as reducer} from './store/app-store';
 
 // custom pipes
 
@@ -74,9 +74,9 @@ import {NewUserPasswordComponent} from './new-user-password/new-user-password.co
 
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
-import {DashboardEffects} from "./store/effects/dashboard.effects";
-import {DashboardActions} from "./store/actions/dashboard.actions";
-import {DashboardService} from "./dashboard/dashboard.service";
+import {DashboardEffects} from './store/effects/dashboard.effects';
+import {DashboardActions} from './store/actions/dashboard.actions';
+import {DashboardService} from './dashboard/dashboard.service';
 
 
 @NgModule({
@@ -143,8 +143,10 @@ import {DashboardService} from "./dashboard/dashboard.service";
     {
       provide: HttpService,
       useFactory: httpFactory,
-      deps: [XHRBackend, RequestOptions, ResponseHandlerService]
-    }, ResponseHandlerService, DialogsService, UserIsSobAndHasToken,DashboardService, DashboardActions,
+      deps: [XHRBackend, RequestOptions, ResponseHandlerService, HTTPStateService]
+    }, ResponseHandlerService, DialogsService,
+    UserIsSobAndHasToken, DashboardService,
+    HTTPStateService, DashboardActions,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog,
@@ -153,6 +155,8 @@ import {DashboardService} from "./dashboard/dashboard.service";
 })
 export class AppModule {
 }
-export function httpFactory(backend: XHRBackend, options: RequestOptions, responseHandler: ResponseHandlerService) {
-  return new HttpService(backend, options, responseHandler);
+export function httpFactory(backend: XHRBackend, options: RequestOptions,
+                            responseHandler: ResponseHandlerService,
+                            httpState: HTTPStateService) {
+  return new HttpService(backend, options, responseHandler, httpState);
 }

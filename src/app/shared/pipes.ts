@@ -10,7 +10,7 @@ export class DictionaryIteratorPipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'GetPercentage'})
+@Pipe({name: 'getPercentage'})
 export class GetPercentagePipe implements PipeTransform {
   transform(value: number, total: number, args: number[]): any {
     if (!value) {return value};

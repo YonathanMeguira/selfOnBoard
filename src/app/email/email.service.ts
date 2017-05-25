@@ -3,7 +3,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {HttpService} from '../shared/token.injector';
+import {HttpService} from '../shared/custom-http';
 import {Observable} from 'rxjs/Rx';
 
 

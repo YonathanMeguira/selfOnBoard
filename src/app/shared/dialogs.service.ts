@@ -18,7 +18,6 @@ export class ConfirmDialog {
 
   public title: string;
   public message: string;
-  public time: number;
 
   constructor(public dialogRef: MdDialogRef<ConfirmDialog>) {
   }

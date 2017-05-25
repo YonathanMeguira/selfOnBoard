@@ -1,11 +1,12 @@
 import {Component, OnDestroy} from '@angular/core';
-import {Router, NavigationEnd, ActivatedRoute, Event} from '@angular/router';
+import {Router, NavigationEnd, Event} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
-import {AccountService} from "../account/account.service";
+import {AccountService} from '../account/account.service';
 import {HTTPStateService} from '../shared/custom-http';
-import { Subscription }   from 'rxjs/Subscription';
+import {Subscription} from 'rxjs/Subscription';
+import {TdLoadingService} from '@covalent/core';
 
 
 @Component({
@@ -57,19 +58,37 @@ export class UserComponent {
   private username: string;
   private servername: string;
   showLoader = false;
+  showPostLoader = false;
+  overlayStarSyntax = false;
   getStateSubscription: Subscription;
+  postStateSubscription: Subscription;
   private dialogRef: MdDialogRef<any>;
-
+  togglePostSpinner(): void {
+    if (this.showPostLoader) {
+      console.log('subscribing to post')
+      this._loadingService.register('overlayStarSyntax');
+    } else {
+      console.log('resolving from post')
+      this._loadingService.resolve('overlayStarSyntax');
+    }
+    this.overlayStarSyntax = !this.overlayStarSyntax;
+  }
   constructor(private router: Router,
               iconReg: MdIconRegistry,
               sanitizer: DomSanitizer,
-              private activatedRoute: ActivatedRoute,
               public dialog: MdDialog,
-              private httpState: HTTPStateService) {
+              private httpState: HTTPStateService,
+              private _loadingService: TdLoadingService) {
 
-    this.getStateSubscription = this.httpState.getCallInTheProcess$.subscribe(
+    this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
         this.showLoader = state;
+      });
+
+    this.postStateSubscription = this.httpState.postProtocolState$.subscribe(
+      state => {
+        this.showPostLoader = state;
+        this.togglePostSpinner();
       });
 
     this.servername = localStorage.getItem('serverName');
@@ -119,8 +138,9 @@ export class UserComponent {
     this.dialogRef = this.dialog.open(UserChangePasswordComponent, {width: '40%'});
   };
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.getStateSubscription.unsubscribe();
+    this.postStateSubscription.unsubscribe();
   }
 }
 

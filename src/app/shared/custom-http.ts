@@ -10,12 +10,20 @@ import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class HTTPStateService {
-  private getCallInTheProcessSource = new Subject<boolean>();
-  getCallInTheProcess$ = this.getCallInTheProcessSource.asObservable();
+  private getProtocolStateSource = new Subject<boolean>();
+  private postProtocolStateSource = new Subject<boolean>();
+  getProtocolState$ = this.getProtocolStateSource.asObservable();
+  postProtocolState$ = this.postProtocolStateSource.asObservable();
+
   setGetState(inProcess: boolean) {
-    this.getCallInTheProcessSource.next(inProcess);
+    this.getProtocolStateSource.next(inProcess);
   }
-};
+
+  setPostState(inProcess: boolean) {
+    this.postProtocolStateSource.next(inProcess);
+  }
+}
+;
 
 @Injectable()
 export class HttpService extends Http {
@@ -29,43 +37,38 @@ export class HttpService extends Http {
     super(backend, options);
     const token = localStorage.getItem('token'); // your custom token getter function here
     options.headers.set('Authorization', token);
-    this.subscription = httpState.getCallInTheProcess$.subscribe(
+    this.subscription = httpState.getProtocolState$.subscribe(
       state => {
         this.GetCallInProcess = state;
       }
     );
   }
 
-  private showLoader(): void {
+  private showGetLoader(): void {
     this.httpState.setGetState(true);
   }
 
   // methods to intercept get calls
-  private onEnd() {
-    this.hideLoader();
-    this.httpState.setGetState(false);
-  };
-
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
     return Observable.throw(error);
   }
 
   private onSuccess(res: Response): Response {
     return res;
-    // make something special when it has finished retrieving the values
+    // make something special for each retrieved value
   }
 
   private onError(error: any): void {
     console.log(error);
-    // make something special when finished loading
+    // make something special on error
   }
 
-  private hideLoader(): void {
-    console.log('Hide loader');
+  private hideGetLoader(): void {
+    this.httpState.setGetState(false);
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
-    this.showLoader();
+    this.showGetLoader();
     return super.get(url, options)
       .catch(this.onCatch)
       .do((res: Response) => {
@@ -74,9 +77,34 @@ export class HttpService extends Http {
         this.onError(error);
       })
       .finally(() => {
-        this.onEnd();
+        this.hideGetLoader();
       });
   }
+
+  private showPostLoader() {
+    console.log('begining');
+    this.httpState.setPostState(true);
+  }
+
+  private hidePostLoader() {
+    console.log('finished');
+    this.httpState.setPostState(false);
+  }
+
+  post(url: string, data: any, options?: RequestOptionsArgs): Observable<Response> {
+    this.showPostLoader();
+    return super.post(url, data, options)
+      .catch(this.onCatch)
+      .do((res: Response) => {
+        this.onSuccess(res);
+      }, (error: any) => {
+        this.onError(error);
+      })
+      .finally(() => {
+        this.hidePostLoader();
+      });
+  }
+
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
     const token = localStorage.getItem('token');

@@ -13,7 +13,8 @@
             routerLink="/user/dashboard" routerLinkActive="active">
           <md-icon class="center-icon" svgIcon="dashboard"></md-icon>
         </li>
-        <li mdTooltip="Processed Emails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3" routerLink="/user/emails"
+        <li mdTooltip="Processed Emails" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
+            routerLink="/user/emails"
             routerLinkActive="active">
           <md-icon class="center-icon" svgIcon="mails"></md-icon>
         </li>
@@ -32,7 +33,7 @@
   <div layout-fill style="background-color: #F7F8F8">
     <md-progress-bar *ngIf="showLoader" mode="query"></md-progress-bar>
 
-    <nav class="navbar sticky-top bg-white-shadow">
+    <nav class="navbar sticky-top bg-white-shadow mb-0">
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
           <!-- nav here -->
@@ -46,7 +47,8 @@
             <a class="sob-page-link" routerLink="emails/browse" routerLinkActive="page-active">Browse</a>
           </div>
           <div layout="row" *ngIf="testRoute('security')">
-            <a class="sob-page-link ml-3 mr-3" routerLink="security/general" routerLinkActive="page-active">Company Policy</a>
+            <a class="sob-page-link ml-3 mr-3" routerLink="security/general" routerLinkActive="page-active">Company
+              Policy</a>
             <a class="sob-page-link" routerLink="security/exceptions" routerLinkActive="page-active">Exceptions</a>
           </div>
         </div>
@@ -67,15 +69,19 @@
         </div>
       </div>
     </nav>
-    <div id="userAppContainer">
-      <router-outlet></router-outlet>
+    <div *tdLoading="'overlayStarSyntax'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'accent'">
+      <div id="userAppContainer">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </md-sidenav-container>
 
 
 <style>
-  #userAppContainer{
-    margin: 2em 7%;
+  #userAppContainer {
+    margin: 0 7%;
+    padding: 2em 0;
   }
+
 </style>

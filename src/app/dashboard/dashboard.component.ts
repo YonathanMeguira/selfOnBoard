@@ -160,9 +160,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   dictionaryToObject = (dictionary: any) => {
-    if (!dictionary){
-      return;
-    }
+
     const arr = [];
     _.each(dictionary, (value, key) => {
       const newObject = {
@@ -194,7 +192,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   generateThreeDifferentRandomNumbers() {
     let arr = [];
     while (arr.length < 3) {
-      const randomnumber = Math.ceil(Math.random() * 10);
+      const randomnumber = Math.ceil(Math.random() * 9);
       if (arr.indexOf(randomnumber) > -1) continue;
       arr[arr.length] = randomnumber;
     }
@@ -207,8 +205,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     for (const i of randomNumbers) {
       console.log(i);
       randomFeeds.push(arrayOfFeeds[i]);
-    }
-    ;
+    };
     console.log(arrayOfFeeds);
     return randomFeeds;
   }

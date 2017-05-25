@@ -43,9 +43,9 @@ export class GeneralComponent implements OnInit {
     }
     this.securityService.saveSettings(this.mainPolicySettings).subscribe(
       success => {
-        alert('changes successfully saved');
+        console.log(success);
       }, error => {
-        console.log('error');
+        console.log(error);
       }
     );
   }

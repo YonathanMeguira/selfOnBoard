@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currGraphData: any;
   getDashboardData: any;
   totals: any = {};
-  dataHasLoaded = false;
+  dataHasLoaded: boolean = false;
   allData: any = {};
   feeds: Array<any>;
   pieData: any = {};
@@ -48,11 +48,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {
-
-    this.getDashboardData = store.select(s => s.dashboardData).subscribe(
-      // this.dashboardService.getDashboardData(this.timeFrame).subscribe(
+     this.getDashboardData = store.select(s => s.dashboardData).subscribe(
+    // this.dashboardService.getDashboardData(this.timeFrame).subscribe(
       res => {
-        if (!res || res.length === 0) {
+        if (!res) {
           return;
         }
         this.allData = res;
@@ -146,11 +145,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.log(error);
       });
     // now actually calling for the store
-    this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+     this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   ngOnInit() {
     this.GetFeed();
+    //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
     this.GetRandomRecipients();
   };
 
@@ -160,6 +160,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   dictionaryToObject = (dictionary: any) => {
+
     const arr = [];
     _.each(dictionary, (value, key) => {
       const newObject = {
@@ -191,17 +192,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   generateThreeDifferentRandomNumbers() {
     let arr = [];
     while (arr.length < 3) {
-      const randomnumber = Math.ceil(Math.random() * 10);
+      const randomnumber = Math.ceil(Math.random() * 9);
       if (arr.indexOf(randomnumber) > -1) continue;
       arr[arr.length] = randomnumber;
     }
     return arr;
   }
 
-  makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>) : Array<any> {
+  makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
     const randomFeeds = [];
     const randomNumbers = this.generateThreeDifferentRandomNumbers();
-    for (const i of randomNumbers){
+    for (const i of randomNumbers) {
       console.log(i);
       randomFeeds.push(arrayOfFeeds[i]);
     };

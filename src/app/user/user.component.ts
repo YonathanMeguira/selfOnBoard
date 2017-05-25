@@ -62,6 +62,8 @@ export class UserComponent {
   overlayStarSyntax = false;
   getStateSubscription: Subscription;
   postStateSubscription: Subscription;
+  // TODO:: change the value from the service
+  isStripeUser = false;
   private dialogRef: MdDialogRef<any>;
   togglePostSpinner(): void {
     if (this.showPostLoader) {

@@ -68,11 +68,11 @@ export class HttpService extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
-    this.showGetLoader();
+  //  this.showGetLoader();
     return super.get(url, options)
       .catch(this.onCatch)
       .do((res: Response) => {
-        this.onSuccess(res);
+       this.onSuccess(res);
       }, (error: any) => {
         this.onError(error);
       })

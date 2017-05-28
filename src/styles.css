@@ -19,14 +19,14 @@
 #coming-soon {
   background: #FFFFFF;
   height: 100%;
-  border: 1px solid #666666;
-  color: #666666;
-  border-radius: 18px;
+  border: 1px solid #979797;
+  border-radius: 25px;
 }
 
 #coming-soon > p {
-  color: #666666;
-  font-size: 18px;
+  color: #404040;
+  font-size: 16px;
+  font-weight: 300 !important;
   text-align: center;
 }
 input, label{

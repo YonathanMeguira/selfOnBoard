@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     const servername = localStorage.getItem('serverName');
     const token = localStorage.getItem('token');
     console.log('here it is ', servername);
-    console.log('token', token)
+    console.log('token', token);
     if (servername && token.length > 14) {
       return true;
     }

@@ -20,11 +20,12 @@ export class GeneralComponent implements OnInit {
 
   mainPolicySettings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   numberOfMaliciousLinks = 4;
-
+coucou = false;
   ngOnInit() {
     this.securityService.getSettings().subscribe(
       result => {
         this.mainPolicySettings = result;
+        this.coucou = true
         console.log(this.mainPolicySettings);
       }, error => {
         console.log('an error occurred');

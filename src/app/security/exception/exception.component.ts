@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {
   ExceptionSettingsComponent,
   ExistingExceptionsComponent,
@@ -16,32 +16,54 @@ import {SecurityService} from '../security.service';
 
 export class ExceptionComponent implements OnInit {
   newDepartment = false;
-  dataIsLoading: boolean;
+  dataIsLoading = true;
+  public coucou = false;
   settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
   exceptionsList: any = {};
   noSettingsExist = true;
 
-  constructor(private securityService: SecurityService) {
-    this.loadSettings();
+  constructor(private securityService: SecurityService, private detectorRef: ChangeDetectorRef) {
+    this.securityService.GetPolicyExceptionsSettings().subscribe(
+      (result) => {
+        if (Object.keys(result).length === 0 && result.constructor === Object) {
+          this.noSettingsExist = true;
+        } else {
+          this.noSettingsExist = false;
+          this.settings = result[Object.keys(result)[0]];
+          this.exceptionsList = result;
+          console.log(this.exceptionsList);
+          console.log('result are not empty');
+        }
+      }, (error) => {
+        console.log('an error occurred');
+      },
+      () => {
+        this.dataIsLoading = false;
+        this.detectorRef.detectChanges();
+      }
+    );
   };
 
-  ngOnInit() {
+  public ngOnInit() {
   };
 
+  loadSettings = () => {
+    console.log(this.dataIsLoading);
+  }
   selectDepartment = (departmentName: string) => {
     this.settings = this.exceptionsList[departmentName];
     console.log(this.settings);
   }
   deletePolicy = (policy: any) => {
-    console.log('deleting')
+    console.log('deleting');
     this.securityService.deletePolicyExceptionSettings(policy).subscribe(
       result => {
         console.log(result);
         const policyName = policy.PolicyName;
         delete this.exceptionsList[policyName];
-        if (Object.keys(this.exceptionsList).length === 0){
+        if (Object.keys(this.exceptionsList).length === 0) {
           this.noSettingsExist = true;
-        }else {
+        } else {
           this.settings = this.exceptionsList[Object.keys(this.exceptionsList)[0]];
         }
       },
@@ -59,27 +81,6 @@ export class ExceptionComponent implements OnInit {
   newDptQuery = (newDpt: boolean) => {
     this.newDepartment = newDpt;
   }
-  loadSettings = () => {
-    this.dataIsLoading = true;
-    this.securityService.GetPolicyExceptionsSettings().subscribe(
-      result => {
-        if (Object.keys(result).length === 0 && result.constructor === Object) {
-          this.noSettingsExist = true;
-          this.dataIsLoading = false;
-        } else {
-          this.noSettingsExist = false;
-          this.settings = result[Object.keys(result)[0]];
-          this.exceptionsList = result;
-          console.log(this.exceptionsList);
-          this.dataIsLoading = false;
-        }
-      }, error => {
-        console.log('an error occurred');
-        this.dataIsLoading = false;
-      }
-    );
-  }
-
   postNewSettings = (settings: any) => {
     console.log(settings);
     this.securityService.savePolicyExceptionSettings(settings).subscribe(

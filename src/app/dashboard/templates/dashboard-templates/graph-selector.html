@@ -1,6 +1,6 @@
 <div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 graph-selector-line">
-  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.totalCleanReplicaByCdr')"
-       class="white frame graph-selector-box mr-3 hvr-glow">
+  <div  (click)="changeTheCurrentLine($event, 'totals.totalCleanReplicaByCdr')"
+       class="white frame graph-selector-box mr-3 hvr-glow graph-id">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-blue"></div>
     </div>
@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box hvr-glow "
+  <div  (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box hvr-glow graph-id"
        layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-green">
@@ -39,8 +39,8 @@
 </div>
 
 <div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 mt-3 graph-selector-line">
-  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.blockedByCDR')"
-       class="white frame graph-selector-box mr-3 hvr-glow" layout-align="space-between center">
+  <div  (click)="changeTheCurrentLine($event, 'totals.blockedByCDR')"
+       class="white frame graph-selector-box mr-3 hvr-glow graph-id" layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-yellow"></div>
     </div>
@@ -57,8 +57,8 @@
       </div>
     </div>
   </div>
-  <div flex="50" (click)="changeTheCurrentLine($event, 'totals.attachmentBlockedByAntivirus')"
-       class="white frame graph-selector-box hvr-glow" layout-align="space-between center">
+  <div  (click)="changeTheCurrentLine($event, 'totals.attachmentBlockedByAntivirus')"
+       class="white frame graph-selector-box hvr-glow graph-id" layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-orange"></div>
     </div>
@@ -104,6 +104,9 @@
     height: 0;
     border-top: 20px solid #F5AF91;
     border-left: 20px solid transparent;
+  }
+  .graph-id{
+    width: 196px !important;
   }
 
 

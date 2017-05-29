@@ -13,8 +13,7 @@ import {TdLoadingService} from '@covalent/core';
   selector: 'app-user-change-password',
   templateUrl: './changePassword.html',
   providers: [AccountService],
-  styleUrls: ['./user.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./user.component.css']
 })
 
 export class UserChangePasswordComponent {
@@ -146,7 +145,3 @@ export class UserComponent {
     this.postStateSubscription.unsubscribe();
   }
 }
-
-
-
-

@@ -57,9 +57,7 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
 @Component({
   selector: 'general-without-cdr',
   templateUrl: './without-cdr.component.html',
-  styleUrls: ['../general.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  styleUrls: ['../general.component.css']
 })
 
 export class GeneralSettingsWithoutCDRComponent {

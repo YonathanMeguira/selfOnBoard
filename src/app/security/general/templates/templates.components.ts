@@ -14,12 +14,6 @@ export class GeneralSettingsComponent {
   constructor(private changeDetection: ChangeDetectorRef) {
   }
 
-
-  restoreDefaultGeneralSettings = () => {
-    this.generalSettings.UseAntiviruses = true;
-    this.generalSettings.HandleLinks = true;
-    // this.changeDetection.detectChanges();
-  }
 }
 @Component({
   selector: 'general-with-cdr',
@@ -46,12 +40,6 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
     }
   }
 
-  restoreDefaultCdr = () => {
-    this.cdrSettings.Documents = 2;
-    this.cdrSettings.Images = 2;
-    this.cdrSettings.Presentations = 2;
-    this.cdrSettings.Spreadsheets = 2;
-  }
 }
 
 @Component({
@@ -66,13 +54,6 @@ export class GeneralSettingsWithoutCDRComponent {
   defaultNoCdr = {'Unrecognized Files': 0, 'Video/Sound': 0, 'Applications/Scripts': 0};
 
   constructor() {
-  }
-
-  restoreDefaultNoCdr = () => {
-    this.noCdrSettings = this.defaultNoCdr;
-    this.specialAttachmentSettings['Password Protected'] = 0;
-    // this.noCdrSettings['Applications/Scripts'] = 0;
-    console.log(this.noCdrSettings);
   }
 }
 

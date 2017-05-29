@@ -35,9 +35,7 @@ export class GeneralComponent implements OnInit{
   constructor(private securityService: SecurityService, private changeDetection: ChangeDetectorRef) {
   }
   resetToDefaultValues(){
-    console.log('resettings');
     this.mainPolicySettings = this.defaultValues;
-    this.changeDetection.detectChanges();
   }
   saveSettings = () => {
     // setting all values on cdr to be the same

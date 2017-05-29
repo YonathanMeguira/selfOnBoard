@@ -149,12 +149,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.log(error);
       });
     // now actually calling for the store
-     this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+   //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   ngOnInit() {
-  //  this.GetFeed();
-    //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+   this.GetFeed();
+     this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   changeTimeFrame = (newTime: number) => {

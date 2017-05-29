@@ -76,6 +76,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
+import { HelpComponent } from './help/help.component';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import {DashboardService} from './dashboard/dashboard.service';
     ConfirmDialog,
     FirstTimeUserComponent,
     GetPercentagePipe,
-    NewUserPasswordComponent
+    NewUserPasswordComponent,
+    HelpComponent
 
   ],
   imports: [

@@ -4,7 +4,7 @@
     <h4>{{settings.PolicyName}}</h4>
     <a (click)="deletePolicy(settings)" class="cta">Delete this department</a>
   </div>
-  <div layout="row" layout-align="space-between center" layout-margin class="m-5">
+  <div layout="row" layout-align="space-between center" layout-margin class="mt-5 mb-5 ml-2 mr-3">
     <tag-input [(ngModel)]='settings.Exceptions' [errorMessages]="errorMessages" [validators]="validators"
                [maxItems]='100' flex="80" theme='bootstrap' placeholder='Enter Emails'></tag-input>
 <div>

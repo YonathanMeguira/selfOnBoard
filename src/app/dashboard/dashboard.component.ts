@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {
      this.getDashboardData = store.select(s => s.dashboardData).subscribe(
-    // this.dashboardService.getDashboardData(this.timeFrame).subscribe(
+  //   this.dashboardService.getDashboardData(this.timeFrame).subscribe(
       res => {
         if (!res) {
           return;
@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit() {
-    this.GetFeed();
+  //  this.GetFeed();
     //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
@@ -259,7 +259,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
 
   ngOnDestroy() {
-    if (this.getDashboardData) {
+     if (this.getDashboardData) {
       this.getDashboardData.unsubscribe();
     }
   }

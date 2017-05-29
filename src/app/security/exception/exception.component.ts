@@ -14,15 +14,17 @@ import {SecurityService} from '../security.service';
   providers: [SecurityService]
 })
 
-export class ExceptionComponent implements OnInit {
+export class ExceptionComponent {
   newDepartment = false;
   dataIsLoading = true;
-  public coucou = false;
   settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
   exceptionsList: any = {};
   noSettingsExist = true;
 
   constructor(private securityService: SecurityService, private detectorRef: ChangeDetectorRef) {
+    this.loadSettings();
+  };
+  loadSettings = () => {
     this.securityService.GetPolicyExceptionsSettings().subscribe(
       (result) => {
         if (Object.keys(result).length === 0 && result.constructor === Object) {
@@ -42,13 +44,6 @@ export class ExceptionComponent implements OnInit {
         this.detectorRef.detectChanges();
       }
     );
-  };
-
-  public ngOnInit() {
-  };
-
-  loadSettings = () => {
-    console.log(this.dataIsLoading);
   }
   selectDepartment = (departmentName: string) => {
     this.settings = this.exceptionsList[departmentName];

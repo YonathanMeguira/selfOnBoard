@@ -1,10 +1,10 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {Router, NavigationEnd, Event} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
 import {AccountService} from '../account/account.service';
-import {HTTPStateService} from '../shared/custom-http';
+ import {HTTPStateService} from '../shared/custom-http';
 import {Subscription} from 'rxjs/Subscription';
 import {TdLoadingService} from '@covalent/core';
 
@@ -13,7 +13,8 @@ import {TdLoadingService} from '@covalent/core';
   selector: 'app-user-change-password',
   templateUrl: './changePassword.html',
   providers: [AccountService],
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class UserChangePasswordComponent {
@@ -71,7 +72,7 @@ export class UserComponent {
       this._loadingService.register('overlayStarSyntax');
     } else {
       console.log('resolving from post')
-      this._loadingService.resolve('overlayStarSyntax');
+     this._loadingService.resolve('overlayStarSyntax');
     }
     this.overlayStarSyntax = !this.overlayStarSyntax;
   }
@@ -79,8 +80,8 @@ export class UserComponent {
               iconReg: MdIconRegistry,
               sanitizer: DomSanitizer,
               public dialog: MdDialog,
-              private httpState: HTTPStateService,
-              private _loadingService: TdLoadingService) {
+             private httpState: HTTPStateService,
+             private _loadingService: TdLoadingService ) {
 
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
@@ -145,6 +146,7 @@ export class UserComponent {
     this.postStateSubscription.unsubscribe();
   }
 }
+
 
 
 

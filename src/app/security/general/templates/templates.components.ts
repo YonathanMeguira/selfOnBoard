@@ -1,4 +1,4 @@
-import {Component, DoCheck, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, DoCheck, Input, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 
 @Component({
@@ -7,20 +7,18 @@ import {isNullOrUndefined} from 'util';
   styleUrls: ['../general.component.css']
 })
 
-export class GeneralSettingsComponent implements OnChanges {
+export class GeneralSettingsComponent {
   @Input()
   generalSettings: any;
 
-  constructor() {
+  constructor(private changeDetection: ChangeDetectorRef) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes['generalSettings'].currentValue);
-  }
 
   restoreDefaultGeneralSettings = () => {
     this.generalSettings.UseAntiviruses = true;
     this.generalSettings.HandleLinks = true;
+    // this.changeDetection.detectChanges();
   }
 }
 @Component({
@@ -34,7 +32,6 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
   @Input()
   cdrSettings: any;
   oldCdr: any = this.cdrSettings;
-  modelHasChanged = false;
   isUndefined = () => {
     return isNullOrUndefined(this.oldCdr);
   }
@@ -60,21 +57,24 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
 @Component({
   selector: 'general-without-cdr',
   templateUrl: './without-cdr.component.html',
-  styleUrls: ['../general.component.css']
+  styleUrls: ['../general.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 
 export class GeneralSettingsWithoutCDRComponent {
   @Input() noCdrSettings: any;
   @Input() specialAttachmentSettings: any;
+  defaultNoCdr = {'Unrecognized Files': 0, 'Video/Sound': 0, 'Applications/Scripts': 0};
 
   constructor() {
   }
 
   restoreDefaultNoCdr = () => {
-    this.noCdrSettings['Unrecognized Files'] = 0;
-    this.noCdrSettings['Video/Sound'] = 0;
+    this.noCdrSettings = this.defaultNoCdr;
     this.specialAttachmentSettings['Password Protected'] = 0;
-    this.noCdrSettings['Applications/Scripts'] = 0;
+    // this.noCdrSettings['Applications/Scripts'] = 0;
+    console.log(this.noCdrSettings);
   }
 }
 

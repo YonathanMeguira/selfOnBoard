@@ -59,7 +59,6 @@ import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
 
-
 // dashboard components
 import {
   TotalsTopComponent,
@@ -160,3 +159,4 @@ export function httpFactory(backend: XHRBackend, options: RequestOptions,
                             httpState: HTTPStateService) {
   return new HttpService(backend, options, responseHandler, httpState);
 }
+

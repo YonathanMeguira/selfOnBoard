@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {SecurityService} from '../security.service';
 import {
   GeneralSettingsComponent,
@@ -6,7 +6,6 @@ import {
   GeneralSettingsWithoutCDRComponent,
   SpecialAttachmentsComponent
 } from './templates/templates.components';
-import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-general',
@@ -16,27 +15,30 @@ import {MdSnackBar} from '@angular/material';
   entryComponents: [GeneralSettingsComponent, GeneralSettingsWithCDRComponent, GeneralSettingsWithoutCDRComponent, SpecialAttachmentsComponent]
 })
 
-export class GeneralComponent implements OnInit {
+export class GeneralComponent implements OnInit{
 
   mainPolicySettings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   numberOfMaliciousLinks = 4;
-coucou = false;
+  defaultValues: any;
+
   ngOnInit() {
     this.securityService.getSettings().subscribe(
       result => {
         this.mainPolicySettings = result;
-        this.coucou = true
+        this.defaultValues = result;
         console.log(this.mainPolicySettings);
       }, error => {
         console.log('an error occurred');
       }
     );
   }
-
-// to do => check if model has changed and if API Call to post was made before changing view
-  constructor(private securityService: SecurityService, private snackBar: MdSnackBar) {
+  constructor(private securityService: SecurityService, private changeDetection: ChangeDetectorRef) {
   }
-
+  resetToDefaultValues(){
+    console.log('resettings');
+    this.mainPolicySettings = this.defaultValues;
+    this.changeDetection.detectChanges();
+  }
   saveSettings = () => {
     // setting all values on cdr to be the same
     for (const setting in this.mainPolicySettings.AttachementsProcessedLevels) {
@@ -50,4 +52,6 @@ coucou = false;
       }
     );
   }
+
+
 }

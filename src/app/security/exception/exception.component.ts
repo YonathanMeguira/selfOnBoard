@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {
   ExceptionSettingsComponent,
   ExistingExceptionsComponent,
@@ -21,7 +21,7 @@ export class ExceptionComponent {
   exceptionsList: any = {};
   noSettingsExist = true;
 
-  constructor(private securityService: SecurityService, private detectorRef: ChangeDetectorRef) {
+  constructor(private securityService: SecurityService) {
     this.loadSettings();
   };
   loadSettings = () => {
@@ -41,7 +41,6 @@ export class ExceptionComponent {
       },
       () => {
         this.dataIsLoading = false;
-        this.detectorRef.detectChanges();
       }
     );
   }

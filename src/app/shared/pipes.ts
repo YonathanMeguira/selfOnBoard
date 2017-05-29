@@ -13,7 +13,7 @@ export class DictionaryIteratorPipe implements PipeTransform {
 @Pipe({name: 'getPercentage'})
 export class GetPercentagePipe implements PipeTransform {
   transform(value: number, total: number, args: number[]): any {
-    if (!value) {return value};
+    if (!value || total < 1) {return value};
     return Math.round((value / total) * 100);
   }
 }

@@ -5,16 +5,14 @@
       <div id="triangle-blue"></div>
     </div>
     <div style="height: 67%" layout="row" layout-align="space-between center" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Clean <br>Replica<br> by CDR</p>
-      <!--<div flex="50" layout="column">
-        <p class="total-top">{{totals.totalCleanReplicaByCdr}}</p>
+      <p class="graph-selector-title" flex="55">Clean <br>Replica<br> by CDR</p>
+      <div flex="45" layout="column">
+        <p class="total-top">{{totals.TotalModified.TotalResult}}</p>
         <p class="selector-totals">
-          {{totals.totalCleanReplicaByCdr | getPercentage : totals.TotalAttachmentProcessed}}
+          {{totals.TotalModified.TotalResult | getPercentage : totals.TotalAttachmentProcessed}}
           <span class="percentage">%</span></p>
-      </div>-->
-      <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming <br> Soon</p>
       </div>
+
     </div>
   </div>
   <div  (click)="changeTheCurrentLine($event, 'totals.attachmentOk')" class="white frame graph-selector-box hvr-glow graph-id"
@@ -24,37 +22,33 @@
       </div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Original<br> Attachment<br> OK</p>
-      <!--<div flex="50" layout="column">
-        <p class="total-top">{{totals.totalPassedOk}}</p>
+      <p class="graph-selector-title" flex="55">Original<br> Attachment<br> OK</p>
+      <div flex="45" layout="column">
+        <p class="total-top">{{totals.TotalPassed.TotalResult}}</p>
         <p class="selector-totals">
-          {{totals.totalPassedOk | getPercentage : totals.TotalAttachmentProcessed}}
+          {{totals.TotalPassed.TotalResult | getPercentage : totals.TotalAttachmentProcessed}}
           <span class="percentage">%</span></p>
-      </div>-->
-      <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming<br> Soon</p>
       </div>
+
     </div>
   </div>
 </div>
 
 <div layout="row" flex="100" layout-align="space-between start" class="ml-0 mr-0 mt-3 graph-selector-line">
-  <div  (click)="changeTheCurrentLine($event, 'totals.blockedByCDR')"
+  <div  (click)="changeTheCurrentLine($event, 'totals.blockedByPolicy')"
        class="white frame graph-selector-box mr-3 hvr-glow graph-id" layout-align="space-between center">
     <div layout="row" layout-align="end start" flex="100">
       <div id="triangle-yellow"></div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Attachment<br> Blocked <br>by Policy</p>
-      <!--<div flex="50" layout="column">
-        <p class="total-top">{{totals.BlockedByPolicy}}</p>
+      <p class="graph-selector-title" flex="55">Attachment<br> Blocked <br>by Policy</p>
+      <div flex="45" layout="column">
+        <p class="total-top">{{totals.TotalBlockedByPolicy.TotalResult}}</p>
         <p class="selector-totals">
-          {{totals.BlockedByPolicy | getPercentage : totals.TotalAttachmentProcessed}}
+          {{totals.TotalBlockedByPolicy.TotalResult | getPercentage : totals.TotalAttachmentProcessed}}
           <span class="percentage">%</span></p>
-      </div>-->
-      <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming <br>Soon</p>
       </div>
+
     </div>
   </div>
   <div  (click)="changeTheCurrentLine($event, 'totals.attachmentBlockedByAntivirus')"
@@ -63,16 +57,14 @@
       <div id="triangle-orange"></div>
     </div>
     <div style="height: 67%" layout="row" class="pl-3 pr-3">
-      <p class="graph-selector-title" flex="50">Attachment<br> Blocked <br>by Antivirus</p>
-      <!--<div flex="50" layout="column">
-        <p class="total-top">{{totals.TotalBlockedByAntivirus}}</p>
+      <p class="graph-selector-title" flex="55">Attachment<br> Blocked <br>by Antivirus</p>
+      <div flex="45" layout="column">
+        <p class="total-top">{{totals.TotalBlockedByAntivirus.TotalResult}}</p>
         <p class="selector-totals">
-          {{totals.TotalBlockedByAntivirus | getPercentage : totals.TotalAttachmentProcessed}}
+          {{totals.TotalBlockedByAntivirus.TotalResult | getPercentage : totals.TotalAttachmentProcessed}}
           <span class="percentage">%</span></p>
-      </div>-->
-      <div id="coming-soon" flex="50" layout="column" layout-align="center center">
-        <p>Coming<br> Soon</p>
       </div>
+
     </div>
   </div>
 </div>

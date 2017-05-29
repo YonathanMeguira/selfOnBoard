@@ -50,24 +50,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {
-     this.getDashboardData = store.select(s => s.dashboardData).subscribe(
-  //   this.dashboardService.getDashboardData(this.timeFrame).subscribe(
+    // this.getDashboardData = store.select(s => s.dashboardData).subscribe(
+    this.dashboardService.getDashboardData(this.timeFrame).subscribe(
       res => {
         if (!res) {
           return;
         }
         this.allData = res;
+        console.log(this.allData);
         this.totals.TotalEmailsProcessed = res.TotalEmailsProcessed;
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
         this.totals.TotalUrls = res.TotalUrls;
-        this.totals.totalCleanReplicaByCdr = this.getCollectionSum(res.TotalProcessedByCdr);
         this.totals.TotalAttachmentProcessed = res.TotalAttachmentProcessed;
-        this.totals.totalPassedOk = this.getCollectionSum(res.TotalPassed);
-        this.totals.BlockedByPolicy = this.getCollectionSum(res.TotalBlockedByPolicy);
-        this.totals.TotalBlockedByAntivirus = this.getCollectionSum(res.TotalBlockedByAntivirus);
         this.recipients = res.TopTenCleanCdrReplicaRecipients;
         this.senders = res.TopTenCleanCdrReplicaSenders;
-        this.dataHasLoaded = true;
         // this.store.dispatch(this.dashboardActions.loadDashboardData());
         this.cleanReplica = {
           'name': 'Clean Replica by CDR',
@@ -147,14 +143,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log(error);
+      },
+      () => {
+        console.log('data has finished loaded')
+        this.dataHasLoaded = true;
       });
     // now actually calling for the store
-   //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+    //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   ngOnInit() {
-   this.GetFeed();
-     this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+    this.GetFeed();
+    // this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   changeTimeFrame = (newTime: number) => {
@@ -174,16 +174,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     return arr.slice(0, 5);
   }
-
-  getCollectionSum = (collection: any) => {
-    let sum = 0;
-    for (const key in collection) {
-      sum = sum + collection[key];
-    }
-    return sum;
-  }
-
-
   generateThreeDifferentRandomNumbers() {
     let arr = [];
     while (arr.length < 3) {
@@ -193,18 +183,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return arr;
   }
-
   makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
     const randomFeeds = [];
     const randomNumbers = this.generateThreeDifferentRandomNumbers();
     for (const i of randomNumbers) {
       console.log(i);
       randomFeeds.push(arrayOfFeeds[i]);
-    };
+    }
+    ;
     console.log(arrayOfFeeds);
     return randomFeeds;
   }
-
   GetFeed = () => {
     this.dashboardService.GetFeed().subscribe(
       res => {
@@ -215,7 +204,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       error => console.log(error)
     );
   }
-
   selectedGraphChanged(event) {
     switch (event) {
       case 'totals.totalCleanReplicaByCdr':
@@ -223,28 +211,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
         this.graphColor = {domain: ['#326491']};
         this.pieChartTitle = 'Clean Replica By CDR';
-        this.pieData = this.dictionaryToObject(this.allData.TotalProcessedByCdr);
+        this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
         break;
       case 'totals.attachmentOk':
         this.graphData = [this.attachmentOk];
         this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
         this.graphColor = {domain: ['#33796C']};
         this.pieChartTitle = 'Original Attachment OK';
-        this.pieData = this.dictionaryToObject(this.allData.TotalPassed);
+        this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
         break;
-      case 'totals.blockedByCDR':
+      case 'totals.blockedByPolicy':
         this.graphData = [this.blockedByCDR];
         this.graphColor = {domain: ['#C98F20']};
         this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
         this.pieChartTitle = 'Attachment Blocked by Policy';
-        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy);
+        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
         break;
       case 'totals.attachmentBlockedByAntivirus':
         this.graphData = [this.attachmentBlockedByAntivirus];
         this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
         this.graphColor = {domain: ['#994110']};
         this.pieChartTitle = 'Attachment Blocked By Antivirus';
-        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus);
+        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
         break;
     }
   }
@@ -259,7 +247,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
 
   ngOnDestroy() {
-     if (this.getDashboardData) {
+    if (this.getDashboardData) {
       this.getDashboardData.unsubscribe();
     }
   }

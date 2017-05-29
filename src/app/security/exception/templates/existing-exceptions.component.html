@@ -1,7 +1,6 @@
-here is the value from template{{dataIsLoading}}
 
 <div layout="column">
-  <md-list *ngIf="!noSettingsExist">
+  <md-list *ngIf="!noSettingsExist" class="pt-0">
     <md-list-item *ngFor="let exception of exceptionsList | DictionaryIteratorPipe" class="dpt-list"
                   (click)="selectDepartment(exception.PolicyName)"
                   [ngClass]="{'selectedPolicy': isCurrentPolicy(exception.PolicyName)}">

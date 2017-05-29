@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
-import {FormControl} from '@angular/forms'
+import {FormControl} from '@angular/forms';
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -26,7 +26,7 @@ class BaseComponent {
   templateUrl: './existing-exceptions.component.html',
   styleUrls: ['../exception.component.css']
 })
-export class ExistingExceptionsComponent implements OnInit {
+export class ExistingExceptionsComponent {
   @Input() exceptionsList: any;
   @Input() currentSettings: any;
   @Input() noSettingsExist: boolean;
@@ -38,19 +38,16 @@ export class ExistingExceptionsComponent implements OnInit {
   constructor() {
   };
 
-  ngOnInit() {
-  }
-  ;
 
   selectDepartment = (departmentName: string) => {
     this.selectedPolicyName = departmentName;
     this.onSelect.emit(departmentName);
-  };
+  }
 
   isCurrentPolicy = (selectedPolicy: string) => {
     let isCurrentPolicy = false;
     if (selectedPolicy === this.currentSettings.PolicyName) {
-      isCurrentPolicy = true
+      isCurrentPolicy = true;
     } else {
       isCurrentPolicy = false;
     }
@@ -64,39 +61,31 @@ export class ExistingExceptionsComponent implements OnInit {
   templateUrl: './settings.component.html',
   styleUrls: ['../exception.component.css']
 })
-export class ExceptionSettingsComponent extends BaseComponent implements OnInit {
+export class ExceptionSettingsComponent extends BaseComponent {
 
   mainPolicyExceptionsSettings: any;
 
   @Input() settings: ExistingSettingsModel;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
+  fileSelectMsg = 'No file selected yet.';
+  fileUploadMsg = 'No file uploaded yet.';
 
   constructor() {
     super();
-
   };
-
-  ngOnInit() {
-  };
-
-  restoreDefaultCdr = () => {
-    this.settings.AttachementsProcessedLevels.Documents = 2;
-    this.settings.AttachementsProcessedLevels.Images = 2;
-    this.settings.AttachementsProcessedLevels.Presentations = 2;
-    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
+  uploadMultipleEvent(file: File): void {
+    console.log(file);
+    console.log('inside upload');
+    this.fileUploadMsg = file.name;
   }
-  restoreDefaultNoCdr = () => {
-    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
-    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
-    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
-    this.settings.SpecialAttachments['Password Protected'] = 0;
-  };
+  selectMultipleEvent(event){
+    console.log('inside multiple event');
+    console.log(event);
+  }
+
   deletePolicy = (policy: any) => {
     this.onDelete.emit(policy);
-  }
-  restoreDefaultSpecial = () => {
-    console.log('service not ready yet..');
   }
   saveSettings = (settings: any) => {
     const users = settings.Exceptions;

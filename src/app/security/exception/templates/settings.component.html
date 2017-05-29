@@ -4,16 +4,27 @@
     <h4>{{settings.PolicyName}}</h4>
     <a (click)="deletePolicy(settings)" class="cta">Delete this department</a>
   </div>
-  <div layout="row" layout-align="space-between start" layout-margin>
+  <div layout="row" layout-align="space-between center" layout-margin class="m-5">
     <tag-input [(ngModel)]='settings.Exceptions' [errorMessages]="errorMessages" [validators]="validators"
-               [maxItems]='100' flex="70" theme='dark'></tag-input>
-    <a class="cta">Show More</a>
-    <button md-button>+Add Exception</button>
+               [maxItems]='100' flex="80" theme='bootstrap' placeholder='Enter Emails'></tag-input>
+<div>
+  <td-file-upload #fileMultipleUpload (select)="selectMultipleEvent($event)"
+                  (upload)="uploadMultipleEvent($event)" (cancel)="cancelMultipleEvent()"
+                  accept=".csv" defaultColor="accent" activeColor="warn" cancelColor="primary">
+    <md-icon>file_upload</md-icon>
+    <span>
+    {{ fileMultipleUpload.files?.name || fileMultipleUpload.files?.length }} <span *ngIf="fileMultipleUpload.files?.length">files selected</span>
+  </span>
+    <ng-template td-file-input-label>
+      <md-icon>attach_file</md-icon><span>Upload Users(.csv)</span>
+    </ng-template>
+  </td-file-upload>
+</div>
   </div>
 
 </div>
 
-<div id="cdr" class="col-sm-12 white frame mb-5">
+<div id="cdr" class="col-sm-12 white frame mb-5 mt-5">
 
   <div class="title-section pt-4 pb-4 col-12">
     <h4 class="bold-dark-gray">ATTACHMENTS PROCESSED WITH CDR</h4>

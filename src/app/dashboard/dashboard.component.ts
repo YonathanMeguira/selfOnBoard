@@ -70,15 +70,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
           'series': [
             {
               'name': 'April',
-              'value': 41
+              'value': 100
             },
             {
               'name': 'May',
-              'value': 54
+              'value': 20
             },
             {
               'name': 'June',
-              'value': 60
+              'value': 90
             }
           ]
         };
@@ -87,11 +87,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           'series': [
             {
               'name': 'April',
-              'value': 70
+              'value': 10
             },
             {
               'name': 'May',
-              'value': 20
+              'value': 100
             },
             {
               'name': 'June',
@@ -104,15 +104,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
           'series': [
             {
               'name': 'April',
-              'value': 30
+              'value': 50
             },
             {
               'name': 'May',
-              'value': 45
+              'value': 120
             },
             {
               'name': 'June',
-              'value': 90
+              'value': 20
             },
           ]
         };
@@ -125,11 +125,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             },
             {
               'name': 'May',
-              'value': 15
+              'value': 140
             },
             {
               'name': 'June',
-              'value': 34
+              'value': 10
             },
           ]
         };
@@ -151,17 +151,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // now actually calling for the store
     //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
-
   ngOnInit() {
     this.GetFeed();
     // this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
-
   changeTimeFrame = (newTime: number) => {
     this.timeFrame = newTime;
     this.store.dispatch(this.dashboardActions.loadDashboardData(newTime));
   }
-
   dictionaryToObject = (dictionary: any) => {
 
     const arr = [];
@@ -236,7 +233,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         break;
     }
   }
-
   showAllGraphs = (event) => {
     this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
     this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};

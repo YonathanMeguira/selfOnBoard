@@ -54,7 +54,7 @@ export class GraphComponent implements OnInit {
   @Input() graphData: any;
   curving: any;
   @Input() graphColor: string;
-  // view: any[] = [100%, 229];
+  view: any[];
   showXAxis = true;
   showYAxis = false;
   gradient = false;
@@ -71,6 +71,7 @@ export class GraphComponent implements OnInit {
   // lie, area
   constructor() {
     this.curving = d3.curveCardinal;
+    this.view = undefined;
   }
 
   ngOnInit() {

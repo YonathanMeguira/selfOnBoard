@@ -67,7 +67,7 @@ export class UserComponent {
   private dialogRef: MdDialogRef<any>;
   togglePostSpinner(): void {
     if (this.showPostLoader) {
-      console.log('subscribing to post')
+      console.log('subscribing to post');
       this._loadingService.register('overlayStarSyntax');
     } else {
       console.log('resolving from post')

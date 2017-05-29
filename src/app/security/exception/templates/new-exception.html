@@ -6,8 +6,8 @@
   </div>
   <div layout="row" layout-align="space-between end" layout-margin>
     <p flex="30">Department Users</p>
-    <tag-input [(ngModel)]='settings.Exceptions' [maxItems]='100' flex [errorMessages]="errorMessages"
-               [validators]="validators" theme='dark'></tag-input>
+    <tag-input [(ngModel)]='settings.Exceptions' [errorMessages]="errorMessages" [validators]="validators"
+               [maxItems]='100' flex="90" theme='bootstrap' placeholder='Enter Emails'></tag-input>
   </div>
 </div>
 <div layout="column" class="mt-3">

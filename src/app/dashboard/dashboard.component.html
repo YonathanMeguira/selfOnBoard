@@ -1,8 +1,14 @@
 <div class="col-12">
   <div class="row justify-content-end mb-5 mt-5">
-    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(7)">Last 7 Days</button>
-    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(30)">Last 30 Days</button>
-    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(90)">Last 90 Days</button>
+    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(7)"
+            [ngClass]="{'selectedTimeFrame': timeFrame==7}">Last 7 Days
+    </button>
+    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(30)"
+            [ngClass]="{'selectedTimeFrame': timeFrame==30}">Last 30 Days
+    </button>
+    <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(90)"
+            [ngClass]="{'selectedTimeFrame': timeFrame==90}">Last 90 Days
+    </button>
   </div>
   <div *ngIf="dataHasLoaded">
     <app-dashboard-top-totals [totals]="totals" (onTotalSelected)='showAllGraphs($event)'></app-dashboard-top-totals>
@@ -31,7 +37,12 @@
     </div>
   </div>
 </div>
-
+<style>
+  .selectedTimeFrame {
+    background-color: white !important;
+    color: #333333;
+  }
+</style>
 <!--
 <style>
   @media screen and (min-width: 1000px) and (max-width: 1150px) {

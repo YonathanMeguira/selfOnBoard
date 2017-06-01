@@ -4,11 +4,11 @@
   </div>
   <div flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="row" layout-margin>
 
-    <existing-exceptions flex="30" [noSettingsExist] = "noSettingsExist" [exceptionsList]="exceptionsList" [currentSettings]="settings"
+    <existing-exceptions id="exception-list" [noSettingsExist] = "noSettingsExist" [exceptionsList]="exceptionsList" [currentSettings]="settings"
                          (onSelect)="selectDepartment($event)"></existing-exceptions>
-    <div flex>
+    <div flex class="mt-0">
       <div *ngIf="!noSettingsExist && !newDepartment">
-        <exception-settings flex="60"
+        <exception-settings flex
                             [settings]="settings"
                             (onSave)='postNewSettings($event)' (onDelete)='deletePolicy($event)'>
         </exception-settings>

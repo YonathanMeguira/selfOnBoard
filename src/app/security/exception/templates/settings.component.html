@@ -1,244 +1,263 @@
 <div layout="column">
-<div id="actionCenter" class="white frame margin-top">
-  <div class="title-section" layout-padding layout="row" layout-align="space-between center" layout-margin>
-    <h4>{{settings.PolicyName}}</h4>
-    <a (click)="deletePolicy(settings)" class="cta">Delete this department</a>
-  </div>
-  <div layout="row" layout-align="space-between center" layout-margin class="mt-5 mb-5 ml-2 mr-3">
-    <tag-input [(ngModel)]='settings.Exceptions' [errorMessages]="errorMessages" [validators]="validators"
-               [maxItems]='100' flex="80" theme='bootstrap' placeholder='Enter Emails'></tag-input>
-<div>
-  <td-file-upload #fileMultipleUpload (select)="selectMultipleEvent($event)"
-                  (upload)="uploadMultipleEvent($event)" (cancel)="cancelMultipleEvent()"
-                  accept=".csv" defaultColor="accent" activeColor="warn" cancelColor="primary">
-    <md-icon>file_upload</md-icon>
-    <span>
-    {{ fileMultipleUpload.files?.name || fileMultipleUpload.files?.length }} <span *ngIf="fileMultipleUpload.files?.length">files selected</span>
-  </span>
-    <ng-template td-file-input-label>
-      <md-icon>attach_file</md-icon><span>Upload Users(.csv)</span>
-    </ng-template>
-  </td-file-upload>
-</div>
-  </div>
-
-</div>
-
-<div id="cdr" class="col-sm-12 white frame mb-5 mt-5">
-
-  <div class="title-section pt-4 pb-4 col-12">
-    <h4 class="bold-dark-gray">ATTACHMENTS PROCESSED WITH CDR</h4>
-  </div>
-  <div class="col-sm-12">
-
-    <div class="col-sm-10 mt-4 mb-4">
-      <small>CDR (Content Disarm and Reconstruction) means that a secure version of the file is created and the email
-        is received seamlessly to the end user.
-      </small>
+  <div id="actionCenter" class="white frame margin-top">
+    <div class="title-section" layout-padding layout="row" layout-align="space-between start" layout-margin>
+      <h4>{{settings.PolicyName}}</h4>
+      <p class="inner-link" (click)="deletePolicy(settings)">Delete this department</p>
     </div>
-    <div class="col-sm-12 pl-0 pt-3 pb-3">
-      <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
-        <div class="row">
-          <div class="col-4 text-center">
-            <h4 class="bold-dark-gray mb-3">Don't Process</h4>
-            <small>Not Recommended</small>
+
+    <div layout="row" layout-align="space-between start" layout-margin class="mt-5 mb-5 ml-2 mr-3">
+      <div layout="column" layout-align="start space-between " flex="80">
+        <div *ngIf="addingUsers" layout="row" layout-align="space-between start" flex="80" class="mb-4">
+          <p class="mini-heading" flex="30">Department Users </p>
+          <div layout="column" flex>
+          <textarea [(ngModel)] = "addedUsers" class="custom-textarea" rows="7"
+                    placeholder="Copy and past email addresses separated by a comma (,)"></textarea>
+            <div layout="row" layout-align="space-between center" class="mt-3">
+              <p class="inner-link fs-11">Upload .csv</p>
+              <p>4 users</p>
+            </div>
           </div>
-          <div class="col-4 text-center">
-            <h4 class="bold-dark-gray mb-3">High</h4>
-            <small>Active content NOT removed
-            </small>
+        </div>
+        <div layout="row" layout-align="space-between start" flex="80">
+          <tag-input [(ngModel)]='users' [errorMessages]="errorMessages" [validators]="validators"
+                     flex="80" theme='minimal' placeholder='Enter Emails'></tag-input>
+          <p class="inner-link" (click)='displayRemainingItems(settings.Exceptions)'
+             *ngIf="moreItemsToDisplay(settings.Exceptions)">
+            see {{settings.Exceptions | RemainingItems: numberOfMaxItems}} more</p>
+          <p class="inner-link" (click)='displayLessItems(settings.Exceptions)'
+             *ngIf="!moreItemsToDisplay(settings.Exceptions)">
+            see less</p>
+        </div>
+      </div>
+      <button class="btn btn-neutral-yellow-hvr" flex="15" (click)="addUsers(true)" *ngIf="!addingUsers">+Add users
+      </button>
+      <button class="btn btn-action" flex="15" (click)="addUsers(false)" *ngIf="addingUsers">Done</button>
+
+    </div>
+
+  </div>
+
+
+  <div class="white frame">
+    <div class="title-section" layout-padding>
+      <h4 class="sob-title">ATTACHMENTS PROCESSED WITH CDR</h4>
+    </div>
+    <div class="content-holder pb-42px" layout="row">
+      <div layout="column" flex="90">
+        <div id="explanation">
+          <p class="fs-13">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the
+            file is created and the email is received seamlessly to the end user.</p>
+        </div>
+        <div layout="row" layout-align="space-between start" class="mt-30px">
+         <div layout="column" flex="40">
+           <p class="fs-16">Documents</p>
+           <p class="fs-11">.doc, .docx, .pdf, .pages, .gdoc</p>
+         </div>
+          <div flex="60" layout-align="space-between start" layout="row">
+            <div flex="20" class="text-center" layout="column">
+              <p class="fs-16 mb-12px">High</p>
+              <p class="fs-11">Active content & <br>macros NOT removed</p>
+            </div>
+            <div flex>
+              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Documents"
+                         [max]="1"
+                         style="width: 100%"
+                         [min]="0"
+                         [step]="1"
+                         [value]="1"
+                         [vertical]="vertical"
+                         color="accent">
+              </md-slider>
+            </div>
+            <div flex="35" layout="column" class="ml-19px">
+              <p class="fs-16 mb-12px">Highest</p>
+              <p class="fs-11">Active content & <br>macros removed</p>
+            </div>
           </div>
-          <div class="col-4 text-center">
-            <h4 class="bold-dark-gray mb-3">Highest</h4>
-            <small>Active content removed</small>
+        </div>
+        <div layout="row" layout-align="space-between start" class="mt-30px">
+          <div layout="column" flex="60">
+            <p class="fs-16">Spreadsheets</p>
+            <p class="fs-11">.csv, .xls, .xlsx, .gsheet</p>
+          </div>
+          <div flex="40" layout-align="space-between center" layout="row">
+            <div flex="20">
+              <p class="fs-16 text-center">High</p>
+            </div>
+            <div flex>
+              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+                         [max]="1"
+                         style="width: 100%"
+                         [min]="0"
+                         [step]="1"
+                         [value]="1"
+                         [vertical]="vertical"
+                         color="accent">
+              </md-slider>
+            </div>
+            <div flex="35"  class="ml-19px">
+              <p class="fs-16">Highest</p>
+            </div>
+          </div>
+        </div>
+        <div layout="row" layout-align="space-between start" class="mt-30px">
+          <div layout="column" flex="60">
+            <p class="fs-16">Spreadsheets</p>
+            <p class="fs-11">.csv, .xls, .xlsx, .gsheet</p>
+          </div>
+          <div flex="40" layout-align="space-between center" layout="row">
+            <div flex="40">
+              <p class="fs-16 text-center">High</p>
+            </div>
+            <div flex>
+              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+                         [max]="1"
+                         style="width: 100%"
+                         [min]="0"
+                         [step]="1"
+                         [value]="1"
+                         [vertical]="vertical"
+                         color="accent">
+              </md-slider>
+            </div>
+            <div flex="35"  class="ml-19px">
+              <p class="fs-16">Highest</p>
+            </div>
+          </div>
+        </div>
+        <div layout="row" layout-align="space-between start" class="mt-30px">
+          <div layout="column" flex="50">
+            <p class="fs-16">Spreadsheets</p>
+            <p class="fs-11">.csv, .xls, .xlsx, .gsheet</p>
+          </div>
+          <div flex="50" layout-align="space-between center" layout="row">
+            <div flex="40">
+              <p class="fs-16 text-center">High</p>
+            </div>
+            <div flex>
+              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+                         [max]="1"
+                         style="width: 100%"
+                         [min]="0"
+                         [step]="1"
+                         [value]="1"
+                         [vertical]="vertical"
+                         color="accent">
+              </md-slider>
+            </div>
+            <div flex="35"  class="ml-19px">
+              <p class="fs-16">Highest</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Documents</p>
-        <small>.doc, .docx, .pdf, .pages
-        </small>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Documents"
-                   [max]="2"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Spreadsheets</p>
-        <small>.csv, .xls, .xlsx, .gsheet
-        </small>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
-                   [max]="2"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Images</p>
-        <small>.png, .jpeg, .jpg, .gif
-        </small>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Images"
-                   [max]="2"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Presentations</p>
-        <small>.ppt, .pptx, .keynote, .gslides
-        </small>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Presentations"
-                   [max]="2"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
+
     </div>
 
   </div>
-  <button class="btn btn-link mb-4 mt-4" (click)="restoreDefaultCdr()">Restore Default Settings</button>
-</div>
 
-<div id="noCdr" class="col-sm-12 white frame mb-5">
 
-  <div class="title-section pt-4 pb-4 col-12">
-    <h4 class="bold-dark-gray">ATTACHMENTS WITHOUT CDR</h4>
-  </div>
-  <div class="col-sm-12 mt-4">
 
-    <div class="col-sm-12 pl-0 pt-3 pb-3">
-      <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
-        <div class="row">
-          <div class="col-6 text-left">
-            <h4 class="bold-dark-gray mb-3">Allow</h4>
-          </div>
-          <div class="col-6 text-right">
-            <h4 class="bold-dark-gray mb-3">Block</h4>
+  <div id="noCdr" class="col-sm-12 white frame mb-5">
+
+    <div class="title-section pt-4 pb-4 col-12">
+      <h4 class="bold-dark-gray">ATTACHMENTS WITHOUT CDR</h4>
+    </div>
+    <div class="col-sm-12 mt-4">
+
+      <div class="col-sm-12 pl-0 pt-3 pb-3">
+        <div class="col-sm-8 col-sm-offset-4 mt-3 pl-0">
+          <div class="row">
+            <div class="col-6 text-left">
+              <h4 class="bold-dark-gray mb-3">Allow</h4>
+            </div>
+            <div class="col-6 text-right">
+              <h4 class="bold-dark-gray mb-3">Block</h4>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Videos/Sound</p>
-        <small>.mp4, mp3
-        </small>
+      <div class="col-sm-12 row mb-5 pr-0">
+        <div class="col-4">
+          <p class="bold-dark-gray">Videos/Sound</p>
+          <small>.mp4, mp3
+          </small>
+        </div>
+        <div class="col-sm-8 ">
+          <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Video/Sound']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="accent">
+          </md-slider>
+        </div>
       </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Video/Sound']"
-                   [max]="1"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
+      <div class="col-sm-12 row mb-5 pr-0">
+        <div class="col-4">
+          <p class="bold-dark-gray">Applications/Scripts</p>
+          <small>.exe, .dmg
+          </small>
+        </div>
+        <div class="col-sm-8 ">
+          <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Applications/Scripts']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="accent">
+          </md-slider>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Applications/Scripts</p>
-        <small>.exe, .dmg
-        </small>
+      <div class="col-sm-12 row mb-5 pr-0">
+        <div class="col-4">
+          <p class="bold-dark-gray">Unrecognized Files</p>
+        </div>
+        <div class="col-sm-8 ">
+          <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Unrecognized Files']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="accent">
+          </md-slider>
+        </div>
       </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Applications/Scripts']"
-                   [max]="1"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
+      <div class="col-sm-12 row mb-5 pr-0">
+        <div class="col-4">
+          <p class="bold-dark-gray">Password Protected</p>
+          <small>A secure version of an attachment can't be made when it is password protected
+          </small>
+        </div>
+        <div class="col-sm-8 ">
+          <md-slider [(ngModel)]="settings.SpecialAttachments['Password Protected']"
+                     [max]="1"
+                     style="width: 100%"
+                     [min]="0"
+                     [step]="1"
+                     [value]="0"
+                     [vertical]="vertical"
+                     color="accent">
+          </md-slider>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Unrecognized Files</p>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.AttachementsWithoutCdr['Unrecognized Files']"
-                   [max]="1"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
-    </div>
-    <div class="col-sm-12 row mb-5 pr-0">
-      <div class="col-4">
-        <p class="bold-dark-gray">Password Protected</p>
-        <small>A secure version of an attachment can't be made when it is password protected
-        </small>
-      </div>
-      <div class="col-sm-8 ">
-        <md-slider [(ngModel)]="settings.SpecialAttachments['Password Protected']"
-                   [max]="1"
-                   style="width: 100%"
-                   [min]="0"
-                   [step]="1"
-                   [value]="0"
-                   [vertical]="vertical"
-                   color="accent">
-        </md-slider>
-      </div>
-    </div>
 
+    </div>
+    <button class="btn btn-link mb-4 mt-4" (click)="restoreDefaultNoCdr()">Restore Default Settings</button>
   </div>
-  <button class="btn btn-link mb-4 mt-4"  (click)="restoreDefaultNoCdr()">Restore Default Settings</button>
-</div>
 
-<div layout="row" layout-align="center center" class="mt-5 mb-5">
-  <button class="btn btn-action-yellow-big hvr-glow" (click)="saveSettings(settings)">APPLY</button>
-</div>
+  <div id="save-settings-exception" layout="row" layout-align="center center" class="mt-5 mb-5">
+    <button class="btn btn-action-yellow-big hvr-glow" (click)="saveSettings(settings)">APPLY</button>
+  </div>
 
 </div>
 
-<!--
-
-<div layout="row" layout-align="center center" style="margin-top: 3em;">
-  <button md-raised-button color="primary" (click)="saveSettings(settings)">APPLY</button>
-</div>
-
--->
 
 
 

@@ -12,3 +12,16 @@
   position: relative;
 }
 
+.dpt-list:hover {
+  background-color: white;
+}
+#exception-list{
+  width: 325px !important;
+}
+.dpt-name{
+  color: #666666 !important;
+  font-weight: 500 !important;
+}
+.dpt-users{
+  color: #999999 !important;
+}

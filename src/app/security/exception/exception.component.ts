@@ -46,7 +46,6 @@ export class ExceptionComponent {
   }
   selectDepartment = (departmentName: string) => {
     this.settings = this.exceptionsList[departmentName];
-    console.log(this.settings);
   }
   deletePolicy = (policy: any) => {
     console.log('deleting');

@@ -1,7 +1,7 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
 import {FormControl} from '@angular/forms';
-import { TdFileService, IUploadOptions } from '@covalent/core';
+import {TdFileService, IUploadOptions} from '@covalent/core';
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -18,6 +18,11 @@ class BaseComponent {
     }
     return null;
   };
+
+  stringIsEmail(email: string) {
+    const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return pattern.test(email);
+  }
 }
 ;
 
@@ -61,10 +66,9 @@ export class ExistingExceptionsComponent {
   selector: 'exception-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['../exception.component.css'],
-  providers: [ TdFileService ]
-
+  providers: [TdFileService]
 })
-export class ExceptionSettingsComponent extends BaseComponent {
+export class ExceptionSettingsComponent extends BaseComponent implements OnChanges {
 
   mainPolicyExceptionsSettings: any;
 
@@ -73,115 +77,60 @@ export class ExceptionSettingsComponent extends BaseComponent {
   @Output() onDelete = new EventEmitter<any>();
   fileSelectMsg = 'No file selected yet.';
   fileUploadMsg = 'No file uploaded yet.';
+  users: any[];
+  addedUsers: string;
+  addingUsers: boolean;
+  numberOfMaxItems = 1;
 
   constructor(private fileUploadService: TdFileService) {
     super();
+    this.addingUsers = false;
   };
-  // ref: http://stackoverflow.com/a/1293163/2343
-  // This will parse a delimited string into an array of
-  // arrays. The default delimiter is the comma, but this
-  // can be overriden in the second argument.
-   CSVToArray( strData, strDelimiter ){
-  // Check to see if the delimiter is defined. If not,
-  // then default to comma.
-  strDelimiter = (strDelimiter || ",");
 
-  // Create a regular expression to parse the CSV values.
-  var objPattern = new RegExp(
-    (
-      // Delimiters.
-      "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+  ngOnChanges(...args: any[]) {
+    const exceptions = args[0].settings.currentValue.Exceptions;
+    this.users = exceptions.slice(0, this.numberOfMaxItems);
+    console.log(exceptions);
+  }
 
-      // Quoted fields.
-      "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-
-      // Standard fields.
-      "([^\"\\" + strDelimiter + "\\r\\n]*))"
-    ),
-    "gi"
-  );
-
-
-  // Create an array to hold our data. Give the array
-  // a default empty first row.
-  var arrData = [[]];
-
-  // Create an array to hold our individual pattern
-  // matching groups.
-  var arrMatches = null;
-
-
-  // Keep looping over the regular expression matches
-  // until we can no longer find a match.
-  while (arrMatches = objPattern.exec( strData )){
-
-    // Get the delimiter that was found.
-    var strMatchedDelimiter = arrMatches[ 1 ];
-
-    // Check to see if the given delimiter has a length
-    // (is not the start of string) and if it matches
-    // field delimiter. If id does not, then we know
-    // that this delimiter is a row delimiter.
-    if (
-      strMatchedDelimiter.length &&
-      strMatchedDelimiter !== strDelimiter
-    ){
-
-      // Since we have reached a new row of data,
-      // add an empty row to our data array.
-      arrData.push( [] );
-
+  addUsers(value: boolean) {
+    this.addingUsers = value;
+    if (!value && this.addedUsers) {
+      // adding the users
+      const splittedEmails = this.addedUsers.split(',');
+      for (const email of splittedEmails) {
+        const noSpaceEmail = email.replace(/\s+/g,'');
+        if (this.stringIsEmail(noSpaceEmail)) {
+          console.log('adding ', noSpaceEmail);
+          if (!this.settings.Exceptions.includes(noSpaceEmail)) {
+            this.settings.Exceptions.push(noSpaceEmail);
+          }
+        }
+      }
+      console.log(this.settings.Exceptions);
     }
-
-    var strMatchedValue;
-
-    // Now that we have our delimiter out of the way,
-    // let's check to see which kind of value we
-    // captured (quoted or unquoted).
-    if (arrMatches[ 2 ]){
-
-      // We found a quoted value. When we capture
-      // this value, unescape any double quotes.
-      strMatchedValue = arrMatches[ 2 ].replace(
-        new RegExp( "\"\"", "g" ),
-        "\""
-      );
-
-    } else {
-
-      // We found a non-quoted value.
-      strMatchedValue = arrMatches[ 3 ];
-
-    }
-
-
-    // Now that we have our value string, let's add
-    // it to the data array.
-    arrData[ arrData.length - 1 ].push( strMatchedValue );
   }
-  console.log(arrData)
 
-  // Return the parsed data.
-  return( arrData );
-}
+  moreItemsToDisplay(exceptions: Array<string>) {
+    return (exceptions.length > this.numberOfMaxItems);
+  }
 
-  uploadMultipleEvent(file: File): void {
-    console.log(file);
-    console.log('inside upload');
-    console.log(this.fileUploadService);
-    this.CSVToArray(file.name, ',');
-    this.fileUploadMsg = file.name;
+  displayRemainingItems(exceptions: Array<string>) {
+    const arrLength = exceptions.length;
+    this.users = exceptions.slice(0, arrLength);
+    this.numberOfMaxItems = arrLength;
   }
-  selectMultipleEvent(event){
-    console.log('inside multiple event');
-    console.log(event);
-  }
+
+  displayLessItems(exceptions: Array<string>) {
+    this.numberOfMaxItems = 1;
+    this.users = exceptions.slice(0, 1);
+  };
 
   deletePolicy = (policy: any) => {
     this.onDelete.emit(policy);
   }
   saveSettings = (settings: any) => {
-    const users = settings.Exceptions;
+    const users = this.users;
     console.log(settings);
     const extractedUsers = [];
     users.forEach((user) => {

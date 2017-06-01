@@ -1,9 +1,9 @@
 /**
  * Created by if_found_call_0586288454 on 27/04/2017 ap. J.-C..
  */
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({ name: 'DictionaryIteratorPipe',  pure: false })
+@Pipe({name: 'DictionaryIteratorPipe', pure: false})
 export class DictionaryIteratorPipe implements PipeTransform {
   transform(value: any, args: any[] = null): any {
     return Object.keys(value).map(key => value[key]);
@@ -13,7 +13,31 @@ export class DictionaryIteratorPipe implements PipeTransform {
 @Pipe({name: 'getPercentage'})
 export class GetPercentagePipe implements PipeTransform {
   transform(value: number, total: number, args: number[]): any {
-    if (!value || total < 1) {return value};
+    if (!value || total < 1) {
+      return value
+    }
+    ;
     return Math.round((value / total) * 100);
+  }
+}
+
+@Pipe({name: 'ArrayLength'})
+export class ArrayLengthPipe implements PipeTransform {
+
+  transform(arr: any[]): number {
+    if (!arr) {
+      return 0;
+    }
+    return arr.length;
+  }
+}
+@Pipe({name: 'RemainingItems'})
+export class RemainingItemsInArrayPipe implements PipeTransform {
+
+  transform(arr: any[], substractor: number): number {
+    if (!(arr && substractor)) {
+      return 0;
+    }
+    return (arr.length - substractor);
   }
 }

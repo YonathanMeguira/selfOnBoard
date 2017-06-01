@@ -69,7 +69,7 @@ import {default as reducer} from './store/app-store';
 
 // custom pipes
 
-import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
+import {DictionaryIteratorPipe, GetPercentagePipe, ArrayLengthPipe, RemainingItemsInArrayPipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
 
@@ -120,6 +120,8 @@ import {HelpComponent} from './help/help.component';
     ExistingExceptionsComponent,
     NewExceptionComponent,
     DictionaryIteratorPipe,
+    ArrayLengthPipe,
+    RemainingItemsInArrayPipe,
     NotificationsComponent,
     BillingComponent,
     TotalsTopComponent,

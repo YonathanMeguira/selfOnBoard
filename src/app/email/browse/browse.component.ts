@@ -30,7 +30,7 @@ export class BrowseComponent extends EmailComponent implements OnInit {
   ];
   query: any = {
     sortField: 'SanitizationDate',
-    PageSize: 10,
+    PageSize: 5,
     PageIndex: 1,
     sortOrder: 'Asc',
     Stage: 'All'

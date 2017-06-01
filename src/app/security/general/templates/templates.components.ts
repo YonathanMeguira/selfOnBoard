@@ -1,5 +1,9 @@
 import {Component, DoCheck, Input, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
 import {isNullOrUndefined} from 'util';
+import {
+  AttachmentsProcessedLevels, AttachmentsWithoutCdr, Policy,
+  SpecialAttachments
+} from "../../../model/company-policy";
 
 @Component({
   selector: 'general-settings',
@@ -9,7 +13,7 @@ import {isNullOrUndefined} from 'util';
 
 export class GeneralSettingsComponent {
   @Input()
-  generalSettings: any;
+  generalSettings: Policy;
 
   constructor(private changeDetection: ChangeDetectorRef) {
   }
@@ -21,25 +25,13 @@ export class GeneralSettingsComponent {
   styleUrls: ['../general.component.css']
 
 })
-export class GeneralSettingsWithCDRComponent implements DoCheck {
+export class GeneralSettingsWithCDRComponent{
 
   @Input()
-  cdrSettings: any;
-  oldCdr: any = this.cdrSettings;
-  isUndefined = () => {
-    return isNullOrUndefined(this.oldCdr);
-  }
+  generalSettings: Policy;
 
   constructor() {
   }
-
-  ngDoCheck() {
-    if (!(this.isUndefined()) && (this.oldCdr !== this.cdrSettings)) {
-      console.log('had changed');
-      console.log(this.isUndefined());
-    }
-  }
-
 }
 
 @Component({
@@ -49,14 +41,21 @@ export class GeneralSettingsWithCDRComponent implements DoCheck {
 })
 
 export class GeneralSettingsWithoutCDRComponent {
-  @Input() noCdrSettings: any;
-  @Input() specialAttachmentSettings: any;
-  defaultNoCdr = {'Unrecognized Files': 0, 'Video/Sound': 0, 'Applications/Scripts': 0};
+  // _noCdrSettings: AttachmentsWithoutCdr;
+  //
+  // @Input()
+  // set noCdrSettings(settings: any) {
+  //   this._noCdrSettings = settings;
+  // }
+
+  @Input()
+  generalSettings: Policy;
+
+  @Input() specialAttachmentSettings: SpecialAttachments;
 
   constructor() {
   }
 }
-
 
 @Component({
   selector: 'app-special-attachments',

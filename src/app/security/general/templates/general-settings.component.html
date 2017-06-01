@@ -11,10 +11,10 @@
       </div>
       <div layout="row" flex class="ml-3">
         <div layout="column">
-          <md-slide-toggle  [(ngModel)]="generalSettings.HandleLinks" aria-label="antivrus"
+          <md-slide-toggle  [(ngModel)]="generalSettings.handleLinks" aria-label="antivrus"
                             color="accent"></md-slide-toggle>
 
-          <md-radio-group *ngIf=" generalSettings.HandleLinks" [(ngModel)]="generalSettings.SelectedSafeLinksOperation"
+          <md-radio-group *ngIf=" generalSettings.handleLinks" [(ngModel)]="generalSettings.selectedSafeLinksOperation"
                           class="operation-actions" layout="column">
 
             <!--<md-radio-button value="1" color="primary"><span-->
@@ -22,23 +22,21 @@
               <!--supposed to be.-->
             <!--</md-radio-button>-->
             <md-radio-button value="2" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='2' }">Test hyperlinks </span> via reputation
+              [ngClass]="{'bold':  generalSettings.selectedSafeLinksOperation =='2' }">Test hyperlinks </span> via reputation
               engine i.e google, mcafee
             </md-radio-button>
             <md-radio-button value="3" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='3' }">Kill hyperlinks </span>so that only
+              [ngClass]="{'bold':  generalSettings.selectedSafeLinksOperation =='3' }">Kill hyperlinks </span>so that only
               the
               text is displayed
             </md-radio-button>
           </md-radio-group>
-
         </div>
-        <small *ngIf="! generalSettings.HandleLinks">The hyperlinks is turned off. Since it's been turned off, {{
+        <small *ngIf="! generalSettings.handleLinks">The hyperlinks is turned off. Since it's been turned off, {{
           numberOfMaliciousLinks}}
           malicious links were detected.We highly recommend turning it on for your safety.
         </small>
       </div>
     </div>
-
   </div>
 </div>

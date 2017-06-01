@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
 import {FormControl} from '@angular/forms'
+import {Policy} from "../../../model/company-policy";
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -68,7 +68,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
 
   mainPolicyExceptionsSettings: any;
 
-  @Input() settings: ExistingSettingsModel;
+  @Input() settings: Policy;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
 
@@ -80,18 +80,18 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
   ngOnInit() {
   };
 
-  restoreDefaultCdr = () => {
-    this.settings.AttachementsProcessedLevels.Documents = 2;
-    this.settings.AttachementsProcessedLevels.Images = 2;
-    this.settings.AttachementsProcessedLevels.Presentations = 2;
-    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
-  }
-  restoreDefaultNoCdr = () => {
-    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
-    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
-    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
-    this.settings.SpecialAttachments['Password Protected'] = 0;
-  };
+  // restoreDefaultCdr = () => {
+  //   this.settings.AttachementsProcessedLevels.Documents = 2;
+  //   this.settings.AttachementsProcessedLevels.Images = 2;
+  //   this.settings.AttachementsProcessedLevels.Presentations = 2;
+  //   this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
+  // }
+  // restoreDefaultNoCdr = () => {
+  //   this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
+  //   this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
+  //   this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+  //   this.settings.SpecialAttachments['Password Protected'] = 0;
+  // };
   deletePolicy = (policy: any) => {
     this.onDelete.emit(policy);
   }
@@ -123,20 +123,20 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnInit 
 })
 
 export class NewExceptionComponent extends BaseComponent {
-  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
+  settings: Policy;
   @Output() onCancel = new EventEmitter<any>();
-  @Output() onSave = new EventEmitter<NewSettingsModel>();
+  @Output() onSave = new EventEmitter<Policy>();
 
   constructor() {
     super();
-    this.settings.AttachementsProcessedLevels.Documents = 2;
-    this.settings.AttachementsProcessedLevels.Images = 2;
-    this.settings.AttachementsProcessedLevels.Presentations = 2;
-    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
-    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
-    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
-    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
-    this.settings.SpecialAttachments['Password Protected'] = 0;
+    this.settings.AttachmentsProcessedLevels.documents = 2;
+    this.settings.AttachmentsProcessedLevels.images = 2;
+    this.settings.AttachmentsProcessedLevels.presentations = 2;
+    this.settings.AttachmentsProcessedLevels.spreadsheets = 2;
+    this.settings.AttachmentsWithoutCdr.unrecognizedFiles = 0;
+    this.settings.AttachmentsWithoutCdr.videoSound = 0;
+    this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;
+    this.settings.SpecialAttachments.passwordProtected = 0;
   };
 
   cancelCreation = (cancel: boolean) => {

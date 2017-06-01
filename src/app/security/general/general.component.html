@@ -5,9 +5,9 @@
   </div>
   <general-settings [generalSettings]="mainPolicySettings"></general-settings>
   <general-with-cdr
-    [cdrSettings]="mainPolicySettings.AttachementsProcessedLevels"></general-with-cdr>
-  <general-without-cdr [noCdrSettings]="mainPolicySettings.AttachementsWithoutCdr"
-                       [specialAttachmentSettings]="mainPolicySettings.SpecialAttachments"></general-without-cdr>
+    [generalSettings]="mainPolicySettings"></general-with-cdr>
+  <general-without-cdr [generalSettings]="mainPolicySettings"></general-without-cdr>
+
   <div layout="row" layout-margin layout-align="center center" class="mt-5">
     <button class="btn btn-action-yellow-big hvr-glow" layout-padding (click)="saveSettings()">APPLY</button>
   </div>

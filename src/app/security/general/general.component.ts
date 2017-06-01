@@ -17,6 +17,8 @@ import {
 
 export class GeneralComponent implements OnInit{
 
+
+
   mainPolicySettings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   numberOfMaliciousLinks = 4;
   defaultValues: any;
@@ -25,7 +27,6 @@ export class GeneralComponent implements OnInit{
     this.securityService.getSettings().subscribe(
       result => {
         this.mainPolicySettings = result;
-        this.defaultValues = result;
         console.log(this.mainPolicySettings);
       }, error => {
         console.log('an error occurred');
@@ -50,6 +51,4 @@ export class GeneralComponent implements OnInit{
       }
     );
   }
-
-
 }

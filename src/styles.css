@@ -39,7 +39,9 @@
   padding-bottom: 42px !important;
 }
 
-
+.mt-30px{
+  margin-top: 30px;
+}
 
 
 .td-loading-wrapper.td-overlay  .td-loading{

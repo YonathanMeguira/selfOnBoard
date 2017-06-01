@@ -12,9 +12,41 @@
   src: url('https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto_slab/robotoslab-regular-webfont.ttf')
 }
 
+/* font sizes classes */
+.fs-11{
+  font-size: 11px !important;
+}
+.fs-13{
+  font-size: 13px !important;
+}
+
+.fs-16{
+  font-size: 16px !important;
+}
+
+/* general classes for margins */
+
+.mt-53px{
+  margin-top: 53px !important;
+}
+.ml-19px{
+  margin-left: 19px !important;
+}
+.mb-12px{
+  margin-bottom: 12px !important;
+}
+.pb-42px{
+  padding-bottom: 42px !important;
+}
+
+
+
+
 .td-loading-wrapper.td-overlay  .td-loading{
   background: rgba(255,255,255,0.63);
 }
+
+
 
 #coming-soon {
   background: #FFFFFF;
@@ -22,7 +54,10 @@
   border: 1px solid #979797;
   border-radius: 25px;
 }
-
+.inner-link{
+  color: #499CE0;
+  cursor: pointer;
+}
 #coming-soon > p {
   color: #404040;
   font-size: 16px;

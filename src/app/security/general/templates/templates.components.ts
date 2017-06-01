@@ -59,12 +59,14 @@ export class GeneralSettingsWithoutCDRComponent {
 
 
 @Component({
-  selector: 'app-special-attachments',
+  selector: 'special-attachments',
   templateUrl: './special-attachements.html',
   styleUrls: ['../general.component.css']
 })
 
 export class SpecialAttachmentsComponent {
+  @Input()
+  specialAttachmentsSettings: any;
 
   constructor() {
   }

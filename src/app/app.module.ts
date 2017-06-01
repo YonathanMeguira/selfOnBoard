@@ -41,7 +41,21 @@ import {AppRoutingModule} from './app.routes';
 import {ResponseHandlerService} from './shared/response-handler.service';
 import {UserIsSobAndHasToken} from './shared/route-activators';
 // 3rd libraries
-import {MaterialModule} from '@angular/material';
+import {
+  MdSliderModule,
+  MdCheckboxModule,
+  MdSlideToggleModule,
+  MdSidenavModule,
+  MdListModule,
+  MdButtonModule,
+  MdProgressBarModule,
+  MdProgressSpinnerModule,
+  MdDialogModule,
+  MdSelectModule,
+  MdRadioModule,
+  MdInputModule
+} from '@angular/material';
+
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DatePickerModule} from 'ng2-datepicker';
@@ -76,7 +90,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
-import { HelpComponent } from './help/help.component';
+import {HelpComponent} from './help/help.component';
 
 
 @NgModule({
@@ -124,7 +138,18 @@ import { HelpComponent } from './help/help.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MaterialModule,
+    MdSliderModule,
+    MdCheckboxModule,
+    MdSlideToggleModule,
+    MdSidenavModule,
+    MdListModule,
+    MdButtonModule,
+    MdProgressBarModule,
+    MdProgressSpinnerModule,
+    MdDialogModule,
+    MdSelectModule,
+    MdRadioModule,
+    MdInputModule,
     FlexLayoutModule,
     CovalentDataTableModule,
     BrowserAnimationsModule,

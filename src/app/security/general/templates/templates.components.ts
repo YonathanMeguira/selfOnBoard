@@ -1,9 +1,8 @@
-import {Component, DoCheck, Input, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
-import {isNullOrUndefined} from 'util';
+import {Component, Input, ChangeDetectorRef, OnChanges} from '@angular/core';
 import {
-  AttachmentsProcessedLevels, AttachmentsWithoutCdr, Policy,
+  Policy,
   SpecialAttachments
-} from "../../../model/company-policy";
+} from '../../../model/company-policy';
 
 @Component({
   selector: 'general-settings',
@@ -15,7 +14,7 @@ export class GeneralSettingsComponent {
   @Input()
   generalSettings: Policy;
 
-  constructor(private changeDetection: ChangeDetectorRef) {
+  constructor() {
   }
 
 }
@@ -25,7 +24,7 @@ export class GeneralSettingsComponent {
   styleUrls: ['../general.component.css']
 
 })
-export class GeneralSettingsWithCDRComponent{
+export class GeneralSettingsWithCDRComponent {
 
   @Input()
   generalSettings: Policy;
@@ -40,12 +39,18 @@ export class GeneralSettingsWithCDRComponent{
   styleUrls: ['../general.component.css']
 })
 
-export class GeneralSettingsWithoutCDRComponent {
+export class GeneralSettingsWithoutCDRComponent implements OnChanges{
   @Input()
   generalSettings: Policy;
+
+  ngOnChanges(...args: any[]) {
+    console.log(args[0].generalSettings.currentValue.AttachmentsWithoutCdr);
+    // changes.prop contains the old and the new value...
+  }
   // @Input() specialAttachmentSettings: SpecialAttachments;
   // constructor() {
   // }
+
 }
 
 @Component({

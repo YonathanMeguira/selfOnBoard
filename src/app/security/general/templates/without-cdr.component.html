@@ -1,9 +1,10 @@
 <div class="white frame">
+
   <div class="title-section" layout-padding>
     <h4 class="sob-title">ATTACHMENTS WITHOUT CDR</h4>
   </div>
   <div class="content-holder pb-42px" layout="row">
-    <div layout="column" flex="55">
+    <div layout="column" flex="60">
       <div layout="row" layout-align="space-between start" class="mt-30px">
         <p class="fs-16" flex="50">Videos/Sound<br>
           <span class="fs-11">.mp4, .mp3</span>
@@ -13,14 +14,13 @@
             <p class="fs-16">Allow</p>
           </div>
           <div flex>
-            <md-slider [(ngModel)]="generalSettings.AttachmentsWithoutCdr['videoSound']"
-                       [max]="1"
-                       style="width: 100%"
-                       [min]="0"
-                       [step]="1"
-                       [value]="1"
-                       [vertical]="vertical"
-                       color="accent">
+            <md-slider
+              [value]="generalSettings.AttachmentsWithoutCdr['videoSound']"
+              [max]="1"
+              [min]="0"
+              [step]="1"
+              [vertical]="false"
+              color="accent">
             </md-slider>
           </div>
           <div flex="35" class="ml-19px">
@@ -37,14 +37,13 @@
             <p class="fs-16">Allow</p>
           </div>
           <div flex>
-            <md-slider [(ngModel)]="generalSettings.AttachmentsWithoutCdr['applicationsScripts']"
-                       [max]="1"
-                       style="width: 100%"
-                       [min]="0"
-                       [step]="1"
-                       [value]="1"
-                       [vertical]="vertical"
-                       color="accent">
+            <md-slider
+              [value]="generalSettings.AttachmentsWithoutCdr['applicationsScripts']"
+              [max]="1"
+              [min]="0"
+              [step]="1"
+              [vertical]="false"
+              color="accent">
             </md-slider>
           </div>
           <div flex="35" class="ml-19px">
@@ -59,14 +58,13 @@
             <p class="fs-16">Allow</p>
           </div>
           <div flex>
-            <md-slider [(ngModel)]="generalSettings.AttachmentsWithoutCdr['unrecognizedFiles']"
-                       [max]="1"
-                       style="width: 100%"
-                       [min]="0"
-                       [step]="1"
-                       [value]="1"
-                       [vertical]="vertical"
-                       color="accent">
+            <md-slider
+              [value]="generalSettings.AttachmentsWithoutCdr['unrecognizedFiles']"
+              [max]="1"
+              [min]="0"
+              [step]="1"
+              [vertical]="false"
+              color="accent">
             </md-slider>
           </div>
           <div flex="35" class="ml-19px">
@@ -84,14 +82,13 @@
             <p class="fs-16">Allow</p>
           </div>
           <div flex>
-            <md-slider [(ngModel)]="generalSettings.SpecialAttachments['passwordProtected']"
-                       [max]="1"
-                       style="width: 100%"
-                       [min]="0"
-                       [step]="1"
-                       [value]="1"
-                       [vertical]="vertical"
-                       color="accent">
+            <md-slider
+              [value]="generalSettings.SpecialAttachments['passwordProtected']"
+              [max]="1"
+              [min]="0"
+              [step]="1"
+              [vertical]="false"
+              color="accent">
             </md-slider>
           </div>
           <div flex="35" class="ml-19px">

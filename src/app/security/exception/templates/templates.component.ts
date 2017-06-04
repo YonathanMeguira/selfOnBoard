@@ -1,8 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
-import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
 import {FormControl} from '@angular/forms';
-import {TdFileService, IUploadOptions} from '@covalent/core';
-import {Policy} from "../../../model/company-policy";
+import {TdFileService} from '@covalent/core';
+import {Policy} from '../../../model/company-policy';
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -71,26 +70,24 @@ export class ExistingExceptionsComponent {
 })
 export class ExceptionSettingsComponent extends BaseComponent implements OnChanges {
 
-  mainPolicyExceptionsSettings: any;
 
   @Input() settings: Policy;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
-  fileSelectMsg = 'No file selected yet.';
-  fileUploadMsg = 'No file uploaded yet.';
   users: any[];
   addedUsers: string;
   addingUsers: boolean;
   numberOfMaxItems = 1;
 
-  constructor(private fileUploadService: TdFileService) {
+  constructor() {
     super();
     this.addingUsers = false;
   };
 
   // TODO :: check if we can improve efficiency
   ngOnChanges(...args: any[]) {
-    const exceptions = args[0].settings.currentValue.exceptions;
+    const exceptions = args[0].settings.currentValue.Exceptions;
+    console.log(exceptions);
     this.users = exceptions.slice(0, this.numberOfMaxItems);
     console.log(exceptions);
   }

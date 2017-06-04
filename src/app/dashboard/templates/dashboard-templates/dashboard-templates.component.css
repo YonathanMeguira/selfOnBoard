@@ -9,13 +9,11 @@
 }
 
 .dashboard-top-titles{
-  font-size: 18px;
   color: #666666;
   font-style: normal;
   text-align: right;
 }
 .dashboard-top-figure{
-  font-size: 40px;
   color: #666666;
   font-weight: 600;
 }
@@ -31,16 +29,12 @@
   font-size: 40px !important;
 }
 
-.percentage {
-  font-size: 26px !important;
-}
-
 .graph-selector-box {
   height: 100%;
 }
 
 .graph-selector-title {
-  font-size: 14px !important;
   line-height: 1.7;
+  color: #999999 !important;
   font-weight: 600 !important;
 }

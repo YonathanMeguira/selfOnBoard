@@ -12,7 +12,6 @@ import {
 import {Store} from '@ngrx/store';
 import {AppStore} from 'app/store/app-store';
 import {DashboardActions} from '../store/actions/dashboard.actions';
-import {Observable} from '../../../node_modules/rxjs/Observable';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,7 +56,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           return;
         }
         this.allData = res;
-        console.log(this.allData);
         this.totals.TotalEmailsProcessed = res.TotalEmailsProcessed;
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
         this.totals.TotalUrls = res.TotalUrls;
@@ -145,7 +143,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.log(error);
       },
       () => {
-        console.log('data has finished loaded')
         this.dataHasLoaded = true;
       });
     // now actually calling for the store
@@ -184,11 +181,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const randomFeeds = [];
     const randomNumbers = this.generateThreeDifferentRandomNumbers();
     for (const i of randomNumbers) {
-      console.log(i);
       randomFeeds.push(arrayOfFeeds[i]);
     }
     ;
-    console.log(arrayOfFeeds);
     return randomFeeds;
   }
   GetFeed = () => {
@@ -196,7 +191,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       res => {
         const feed = res.response.results;
         this.feeds = this.makeArrayOfRandomFeeds(feed);
-        console.log(this.feeds);
       },
       error => console.log(error)
     );

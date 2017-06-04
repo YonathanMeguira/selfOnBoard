@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
 import {FormControl} from '@angular/forms';
 import {TdFileService, IUploadOptions} from '@covalent/core';
+import {Policy} from "../../../model/company-policy";
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -48,7 +49,7 @@ export class ExistingExceptionsComponent {
   selectDepartment = (departmentName: string) => {
     this.selectedPolicyName = departmentName;
     this.onSelect.emit(departmentName);
-  }
+  };
 
   isCurrentPolicy = (selectedPolicy: string) => {
     let isCurrentPolicy = false;
@@ -72,7 +73,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
 
   mainPolicyExceptionsSettings: any;
 
-  @Input() settings: ExistingSettingsModel;
+  @Input() settings: Policy;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   fileSelectMsg = 'No file selected yet.';
@@ -154,20 +155,20 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
 })
 
 export class NewExceptionComponent extends BaseComponent {
-  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
+  settings: Policy;
   @Output() onCancel = new EventEmitter<any>();
-  @Output() onSave = new EventEmitter<NewSettingsModel>();
+  @Output() onSave = new EventEmitter<Policy>();
 
   constructor() {
     super();
-    this.settings.AttachementsProcessedLevels.Documents = 2;
-    this.settings.AttachementsProcessedLevels.Images = 2;
-    this.settings.AttachementsProcessedLevels.Presentations = 2;
-    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
-    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
-    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
-    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
-    this.settings.SpecialAttachments['Password Protected'] = 0;
+    this.settings.AttachmentsProcessedLevels.documents = 2;
+    this.settings.AttachmentsProcessedLevels.images = 2;
+    this.settings.AttachmentsProcessedLevels.presentations = 2;
+    this.settings.AttachmentsProcessedLevels.spreadsheets = 2;
+    this.settings.AttachmentsWithoutCdr.unrecognizedFiles = 0;
+    this.settings.AttachmentsWithoutCdr.videoSound = 0;
+    this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;
+    this.settings.SpecialAttachments.passwordProtected = 0;
   };
 
   cancelCreation = (cancel: boolean) => {

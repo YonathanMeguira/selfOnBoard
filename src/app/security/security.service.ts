@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../shared/custom-http';
 import {Observable} from 'rxjs/Rx';
+import {Policy} from "../model/company-policy";
 
 @Injectable()
 export class SecurityService {
@@ -12,7 +13,30 @@ export class SecurityService {
   getSettings(): Observable<any> {
     const settingsUrl = 'http://' + this.server + ':4580/sob/api/securitySettings/policy?q=1';
     return this.http.get(settingsUrl)
-      .map((res) => res.json())
+      .map(
+        (res) => {
+          let json = res.json();
+          let policy = new Policy();
+          policy.AttachmentsProcessedLevels =
+            {
+              documents : json.AttachementsProcessedLevels['Documents'], spreadsheets : json.AttachementsProcessedLevels['Spreadsheets'], images : json.AttachementsProcessedLevels['Images'], presentations : json.AttachementsProcessedLevels['Presentations']
+          };
+
+          policy.AttachmentsWithoutCdr =
+            {
+              videoSound : json.AttachementsWithoutCdr['Video/Sound'], applicationsScripts : json.AttachementsWithoutCdr['Applications/Scripts'], unrecognizedFiles : json.AttachementsWithoutCdr['Unrecognized Files']
+            };
+
+          policy.selectedSafeLinksOperation = json.SelectedSafeLinksOperation;
+          policy.exceptions = json.Exceptions;
+          policy.handleLinks = json.HandleLinks;
+          policy.policyId = json.PolicyId;
+          policy.policyName = json.PolicyName;
+          policy.useAntiviruses = json.UseAntiviruses;
+
+          return policy;
+        }
+      )
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get shared'));
   }
 

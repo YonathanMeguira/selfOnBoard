@@ -41,20 +41,11 @@ export class GeneralSettingsWithCDRComponent{
 })
 
 export class GeneralSettingsWithoutCDRComponent {
-  // _noCdrSettings: AttachmentsWithoutCdr;
-  //
-  // @Input()
-  // set noCdrSettings(settings: any) {
-  //   this._noCdrSettings = settings;
-  // }
-
   @Input()
   generalSettings: Policy;
-
-  @Input() specialAttachmentSettings: SpecialAttachments;
-
-  constructor() {
-  }
+  // @Input() specialAttachmentSettings: SpecialAttachments;
+  // constructor() {
+  // }
 }
 
 @Component({
@@ -65,7 +56,7 @@ export class GeneralSettingsWithoutCDRComponent {
 
 export class SpecialAttachmentsComponent {
   @Input()
-  specialAttachmentsSettings: any;
+  specialAttachmentsSettings: SpecialAttachments;
 
   constructor() {
   }

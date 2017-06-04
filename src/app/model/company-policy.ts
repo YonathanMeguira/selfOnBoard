@@ -19,13 +19,14 @@ export class SpecialAttachments {
 export class Policy {
   policyId: number;
   policyName: string;
-  exceptions: any[];
+  exceptions: string[];
   useAntiviruses: boolean;
   handleLinks: boolean;
   selectedSafeLinksOperation: number;
   AttachmentsProcessedLevels: AttachmentsProcessedLevels;
   AttachmentsWithoutCdr: AttachmentsWithoutCdr;
   SpecialAttachments: SpecialAttachments;
+  Exceptions:string[];
 
   defaultAttachmentsWithoutCdr : AttachmentsWithoutCdr = {
     videoSound:Severity.Highest,

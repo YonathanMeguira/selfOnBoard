@@ -2,41 +2,38 @@
   <div class="title-section" layout-padding>
     <h4 class="sob-title">GENERAL</h4>
   </div>
-  <div class="content-holder">
-
-    <div layout="row" class="inner-section" layout-align="space-between end">
-      <div flex="40">
-        <h4 class="item mb-4">Hyperlinks</h4>
-        <small>This includes links in the body of an email and in any documents attached.</small>
-      </div>
-      <div layout="row" flex class="ml-3">
-        <div layout="column">
-          <md-slide-toggle  [(ngModel)]="generalSettings.handleLinks" aria-label="antivrus"
-                            color="accent"></md-slide-toggle>
-
-          <md-radio-group *ngIf=" generalSettings.handleLinks" [(ngModel)]="generalSettings.selectedSafeLinksOperation"
-                          class="operation-actions" layout="column">
-
-            <!--<md-radio-button value="1" color="primary"><span-->
-              <!--[ngClass]="{'bold':  generalSettings.SelectedSafeLinksOperation =='1' }">Fix hyperlinks </span>to be what it is-->
-              <!--supposed to be.-->
-            <!--</md-radio-button>-->
-            <md-radio-button value="2" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.selectedSafeLinksOperation =='2' }">Test hyperlinks </span> via reputation
-              engine i.e google, mcafee
-            </md-radio-button>
-            <md-radio-button value="3" color="primary"><span
-              [ngClass]="{'bold':  generalSettings.selectedSafeLinksOperation =='3' }">Kill hyperlinks </span>so that only
-              the
-              text is displayed
-            </md-radio-button>
-          </md-radio-group>
+  <div class="content-holder pb-42px" layout="row">
+    <div layout="column" flex="55">
+      <div layout="row" layout-align="space-between start" class="mt-53px">
+        <p class="fs-16" flex="50">Hyperlinks<br>
+          <span class="fs-11">This includes links in the body of an email
+          <br>and in any documents attached.</span>
+        </p>
+        <div flex="50" layout-align="space-between start" layout="row">
+          <div flex="40" class="text-center" layout="column">
+            <p class="fs-16 mb-12px">High</p>
+            <p class="fs-11">Fix and disable based on URL reputation</p>
+          </div>
+          <div flex>
+            <md-slider [(ngModel)]="generalSettings.HandleLinks"
+                       [max]="1"
+                       style="width: 100%"
+                       [min]="0"
+                       [step]="1"
+                       [value]="1"
+                       [vertical]="vertical"
+                       color="accent">
+            </md-slider>
+          </div>
+          <div flex="35" layout="column" class="ml-19px">
+            <p class="fs-16 mb-12px">Highest</p>
+            <p class="fs-11">Disable hyperlink</p>
+          </div>
         </div>
-        <small *ngIf="! generalSettings.handleLinks">The hyperlinks is turned off. Since it's been turned off, {{
-          numberOfMaliciousLinks}}
-          malicious links were detected.We highly recommend turning it on for your safety.
-        </small>
       </div>
     </div>
+
   </div>
+
 </div>
+

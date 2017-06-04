@@ -88,8 +88,9 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
     this.addingUsers = false;
   };
 
+  // TODO :: check if we can improve efficiency
   ngOnChanges(...args: any[]) {
-    const exceptions = args[0].settings.currentValue.Exceptions;
+    const exceptions = args[0].settings.currentValue.exceptions;
     this.users = exceptions.slice(0, this.numberOfMaxItems);
     console.log(exceptions);
   }
@@ -103,12 +104,12 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
         const noSpaceEmail = email.replace(/\s+/g,'');
         if (this.stringIsEmail(noSpaceEmail)) {
           console.log('adding ', noSpaceEmail);
-          if (!this.settings.Exceptions.includes(noSpaceEmail)) {
-            this.settings.Exceptions.push(noSpaceEmail);
+          if (!this.settings.exceptions.includes(noSpaceEmail)) {
+            this.settings.exceptions.push(noSpaceEmail);
           }
         }
       }
-      console.log(this.settings.Exceptions);
+      console.log(this.settings.exceptions);
     }
   }
 
@@ -141,7 +142,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
         extractedUsers.push(user);
       }
     });
-    settings.Exceptions = extractedUsers;
+    settings.exceptions = extractedUsers;
     this.onSave.emit(settings);
   }
 
@@ -175,13 +176,13 @@ export class NewExceptionComponent extends BaseComponent {
     this.onCancel.emit(cancel);
   }
   saveSettings = (newSettings: any) => {
-    const users = newSettings.Exceptions;
+    const users = newSettings.exceptions;
     const extractedUsers = [];
     users.forEach((user) => {
       extractedUsers.push(user.value);
     });
-    delete newSettings.Exceptions;
-    newSettings.Exceptions = extractedUsers;
+    delete newSettings.exceptions;
+    newSettings.exceptions = extractedUsers;
     this.onSave.emit(newSettings);
   }
 }

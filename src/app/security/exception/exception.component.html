@@ -6,7 +6,7 @@
 
     <existing-exceptions id="exception-list" [noSettingsExist] = "noSettingsExist" [exceptionsList]="exceptionsList" [currentSettings]="settings"
                          (onSelect)="selectDepartment($event)"></existing-exceptions>
-    <div flex class="mt-0">
+    <div flex = "60" class="mt-0">
       <div *ngIf="!noSettingsExist && !newDepartment">
         <exception-settings flex
                             [settings]="settings"

@@ -50,7 +50,110 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {
     // this.getDashboardData = store.select(s => s.dashboardData).subscribe(
-    this.dashboardService.getDashboardData(this.timeFrame).subscribe(
+
+    // now actually calling for the store
+    //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+  };
+
+  ngOnInit() {
+    this.GetFeed();
+    this.loadDashboardData(this.timeFrame);
+    // this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+  };
+
+  changeTimeFrame = (newTime: number) => {
+    this.timeFrame = newTime;
+    console.log('new time is coming up');
+    this.loadDashboardData(newTime);
+    console.log(this.allData);
+  }
+  dictionaryToObject = (dictionary: any) => {
+
+    const arr = [];
+    _.each(dictionary, (value, key) => {
+      const newObject = {
+        'name': key,
+        'value': value
+      };
+      arr.push(newObject);
+    });
+    return arr.slice(0, 5);
+  }
+
+  generateThreeDifferentRandomNumbers() {
+    let arr = [];
+    while (arr.length < 3) {
+      const randomnumber = Math.ceil(Math.random() * 9);
+      if (arr.indexOf(randomnumber) > -1) continue;
+      arr[arr.length] = randomnumber;
+    }
+    return arr;
+  }
+
+  makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
+    const randomFeeds = [];
+    const randomNumbers = this.generateThreeDifferentRandomNumbers();
+    for (const i of randomNumbers) {
+      randomFeeds.push(arrayOfFeeds[i]);
+    }
+    ;
+    return randomFeeds;
+  }
+
+  GetFeed = () => {
+    this.dashboardService.GetFeed().subscribe(
+      res => {
+        const feed = res.response.results;
+        this.feeds = this.makeArrayOfRandomFeeds(feed);
+      },
+      error => console.log(error)
+    );
+  }
+
+  selectedGraphChanged(event) {
+    switch (event) {
+      case 'totals.totalCleanReplicaByCdr':
+        this.graphData = [this.cleanReplica];
+        this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
+        this.graphColor = {domain: ['#326491']};
+        this.pieChartTitle = 'Clean Replica By CDR';
+        this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
+        break;
+      case 'totals.attachmentOk':
+        this.graphData = [this.attachmentOk];
+        this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
+        this.graphColor = {domain: ['#33796C']};
+        this.pieChartTitle = 'Original Attachment OK';
+        this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
+        break;
+      case 'totals.blockedByPolicy':
+        this.graphData = [this.blockedByCDR];
+        this.graphColor = {domain: ['#C98F20']};
+        this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
+        this.pieChartTitle = 'Attachment Blocked by Policy';
+        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
+        break;
+      case 'totals.attachmentBlockedByAntivirus':
+        this.graphData = [this.attachmentBlockedByAntivirus];
+        this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
+        this.graphColor = {domain: ['#994110']};
+        this.pieChartTitle = 'Attachment Blocked By Antivirus';
+        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
+        break;
+    }
+  }
+
+  showAllGraphs = (event) => {
+    this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
+    this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};
+    this.graphColor = {
+      domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
+    };
+    this.pieChartTitle = 'Total Passed Files';
+  };
+
+  loadDashboardData(timeFrame: number) {
+    this.dashboardService.getDashboardData(timeFrame).subscribe(
       res => {
         if (!res) {
           return;
@@ -145,96 +248,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       () => {
         this.dataHasLoaded = true;
       });
-    // now actually calling for the store
-    //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
-  };
-  ngOnInit() {
-    this.GetFeed();
-    // this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
-  };
-  changeTimeFrame = (newTime: number) => {
-    this.timeFrame = newTime;
-    this.store.dispatch(this.dashboardActions.loadDashboardData(newTime));
   }
-  dictionaryToObject = (dictionary: any) => {
-
-    const arr = [];
-    _.each(dictionary, (value, key) => {
-      const newObject = {
-        'name': key,
-        'value': value
-      };
-      arr.push(newObject);
-    });
-    return arr.slice(0, 5);
-  }
-  generateThreeDifferentRandomNumbers() {
-    let arr = [];
-    while (arr.length < 3) {
-      const randomnumber = Math.ceil(Math.random() * 9);
-      if (arr.indexOf(randomnumber) > -1) continue;
-      arr[arr.length] = randomnumber;
-    }
-    return arr;
-  }
-  makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
-    const randomFeeds = [];
-    const randomNumbers = this.generateThreeDifferentRandomNumbers();
-    for (const i of randomNumbers) {
-      randomFeeds.push(arrayOfFeeds[i]);
-    }
-    ;
-    return randomFeeds;
-  }
-  GetFeed = () => {
-    this.dashboardService.GetFeed().subscribe(
-      res => {
-        const feed = res.response.results;
-        this.feeds = this.makeArrayOfRandomFeeds(feed);
-      },
-      error => console.log(error)
-    );
-  }
-  selectedGraphChanged(event) {
-    switch (event) {
-      case 'totals.totalCleanReplicaByCdr':
-        this.graphData = [this.cleanReplica];
-        this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
-        this.graphColor = {domain: ['#326491']};
-        this.pieChartTitle = 'Clean Replica By CDR';
-        this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
-        break;
-      case 'totals.attachmentOk':
-        this.graphData = [this.attachmentOk];
-        this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
-        this.graphColor = {domain: ['#33796C']};
-        this.pieChartTitle = 'Original Attachment OK';
-        this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
-        break;
-      case 'totals.blockedByPolicy':
-        this.graphData = [this.blockedByCDR];
-        this.graphColor = {domain: ['#C98F20']};
-        this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
-        this.pieChartTitle = 'Attachment Blocked by Policy';
-        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
-        break;
-      case 'totals.attachmentBlockedByAntivirus':
-        this.graphData = [this.attachmentBlockedByAntivirus];
-        this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
-        this.graphColor = {domain: ['#994110']};
-        this.pieChartTitle = 'Attachment Blocked By Antivirus';
-        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
-        break;
-    }
-  }
-  showAllGraphs = (event) => {
-    this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
-    this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};
-    this.graphColor = {
-      domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
-    };
-    this.pieChartTitle = 'Total Passed Files';
-  };
 
   ngOnDestroy() {
     if (this.getDashboardData) {

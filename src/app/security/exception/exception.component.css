@@ -15,9 +15,13 @@
 .dpt-list:hover {
   background-color: white;
 }
+
 #exception-list{
-  width: 325px !important;
+  /*width: 27% !important;*/
 }
+
+
+
 .dpt-name{
   color: #666666 !important;
   font-weight: 500 !important;

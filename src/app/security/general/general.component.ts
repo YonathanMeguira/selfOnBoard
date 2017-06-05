@@ -6,7 +6,7 @@ import {
   GeneralSettingsWithoutCDRComponent,
   SpecialAttachmentsComponent
 } from './templates/templates.components';
-import {Policy} from "../../model/company-policy";
+import {Policy} from '../../model/company-policy';
 
 @Component({
   selector: 'app-general',

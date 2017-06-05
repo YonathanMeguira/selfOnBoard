@@ -92,7 +92,7 @@ import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
 import {HelpComponent} from './help/help.component';
-import { AttributesDirective } from './directives/attributes.directive';
+// import { AttributesDirective } from './directives/attributes.directive';
 
 
 @NgModule({
@@ -134,8 +134,7 @@ import { AttributesDirective } from './directives/attributes.directive';
     FirstTimeUserComponent,
     GetPercentagePipe,
     NewUserPasswordComponent,
-    HelpComponent,
-    AttributesDirective
+    HelpComponent
 
   ],
   imports: [

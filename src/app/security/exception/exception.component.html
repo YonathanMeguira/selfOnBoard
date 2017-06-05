@@ -2,18 +2,18 @@
   <div layout="row" flex="100" style="margin-top: 3em;">
     <button class="btn btn-neutral-yellow-hvr" (click)='newDptQuery(true)'>+ Add Department</button>
   </div>
-  <div flex="85" flex-gt-lg="85" fxFlex.lt-md="100" layout="row" layout-margin>
+  <div layout="row" layout-margin>
 
-    <existing-exceptions id="exception-list" [noSettingsExist] = "noSettingsExist" [exceptionsList]="exceptionsList" [currentSettings]="settings"
-                         (onSelect)="selectDepartment($event)"></existing-exceptions>
-    <div flex = "60" class="mt-0">
-      <div *ngIf="!noSettingsExist && !newDepartment">
-        <exception-settings flex
+    <existing-exceptions flex="25" id="exception-list" [noSettingsExist] = "noSettingsExist" [exceptionsList]="exceptionsList" [currentSettings]="settings"
+                         (onSelect)="selectDepartment($event)" class="mt-0 mr-0"></existing-exceptions>
+    <div flex class="mt-0">
+      <div *ngIf="!noSettingsExist && !newDepartment" flex>
+        <exception-settings
                             [settings]="settings"
                             (onSave)='postNewSettings($event)' (onDelete)='deletePolicy($event)'>
         </exception-settings>
       </div>
-      <div *ngIf="newDepartment">
+      <div *ngIf="newDepartment" flex>
         <new-exception (onCancel)="cancelCreation($event)" (onSave)="postNewSettings($event)"></new-exception>
       </div>
       <p *ngIf="!newDepartment && noSettingsExist">No setting currently exist</p>

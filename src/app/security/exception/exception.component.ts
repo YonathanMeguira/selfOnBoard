@@ -5,6 +5,7 @@ import {
   NewExceptionComponent
 } from './templates/templates.component';
 import {SecurityService} from '../security.service';
+import {Policy} from '../../model/company-policy';
 
 @Component({
   selector: 'app-exception',
@@ -17,7 +18,7 @@ import {SecurityService} from '../security.service';
 export class ExceptionComponent {
   newDepartment = false;
   dataIsLoading = true;
-  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
+  settings: Policy;
   exceptionsList: any = {};
   noSettingsExist = true;
 

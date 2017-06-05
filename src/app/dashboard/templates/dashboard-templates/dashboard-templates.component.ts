@@ -98,14 +98,20 @@ export class PieChartsComponent {
 })
 
 export class EmailSectionComponent {
-  @Input() figureColor;
-  @Input() users;
+  @Input() senders;
+  @Input() recipients;
   @Input() title: string;
-  @Input() emailScoreColor: string;
-  userValues: Array<object> = [{'name': 'April', 'value': 20}, {'name': 'May', 'value': 40}, {
-    'name': 'June',
-    'value': 30
-  }, {'name': 'July', 'value': 67}];
+  displayingSenders = false;
+  displayingRecipients = true;
+  displaySenders() {
+    this.displayingRecipients = false;
+    this.displayingSenders = true;
+  }
+  displayRecipients (){
+    this.displayingRecipients = true;
+    this.displayingSenders = false;
+  }
+
 }
 
 @Component({

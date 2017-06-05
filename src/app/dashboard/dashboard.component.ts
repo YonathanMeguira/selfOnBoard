@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   randomUsers: Array<any>;
   senders: Array<string>;
   recipients: Array<string>;
-  displayingSenders = false;
-  displayingRecipients = true;
+  topSenders: any;
+  topRecipients: any;
   colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
   graphColor = {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
@@ -110,6 +110,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
+
   selectedGraphChanged(event) {
     switch (event) {
       case 'totals.totalCleanReplicaByCdr':
@@ -117,6 +118,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
         this.graphColor = {domain: ['#326491']};
         this.pieChartTitle = 'Clean Replica By CDR';
+        this.senders = this.topSenders.TotalModified;
+        this.recipients = this.topRecipients.TotalModified;
         this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
         break;
       case 'totals.attachmentOk':
@@ -124,6 +127,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
         this.graphColor = {domain: ['#33796C']};
         this.pieChartTitle = 'Original Attachment OK';
+        this.senders = this.topSenders.TotalPassed;
+        this.recipients = this.topRecipients.TotalPassed;
         this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
         break;
       case 'totals.blockedByPolicy':
@@ -131,6 +136,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.graphColor = {domain: ['#C98F20']};
         this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
         this.pieChartTitle = 'Attachment Blocked by Policy';
+        this.senders = this.topSenders.TotalBlockedByPolicy;
+        this.recipients = this.topRecipients.TotalBlockedByPolicy;
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
         break;
       case 'totals.attachmentBlockedByAntivirus':
@@ -138,6 +145,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
         this.graphColor = {domain: ['#994110']};
         this.pieChartTitle = 'Attachment Blocked By Antivirus';
+        this.senders = this.topSenders.TotalBlockedByAntivirus;
+        this.recipients = this.topRecipients.TotalBlockedByAntivirus;
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
         break;
     }
@@ -150,6 +159,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
     };
     this.pieChartTitle = 'Total Passed Files';
+    this.senders = this.topSenders.AllAttachments;
+    this.recipients = this.topRecipients.AllAttachments;
   };
 
   loadDashboardData(timeFrame: number) {
@@ -163,8 +174,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
         this.totals.TotalUrls = res.TotalUrls;
         this.totals.TotalAttachmentProcessed = res.TotalAttachmentProcessed;
-        this.recipients = res.TopTenCleanCdrReplicaRecipients;
-        this.senders = res.TopTenCleanCdrReplicaSenders;
+        this.topRecipients = res.TopSendersRecipientsAddresses.TopRecipients;
+        this.topSenders = res.TopSendersRecipientsAddresses.TopSenders;
+        this.recipients = this.topRecipients.AllAttachments;
+        this.senders = this.topSenders.AllAttachments;
         // this.store.dispatch(this.dashboardActions.loadDashboardData());
         this.cleanReplica = {
           'name': 'Clean Replica by CDR',

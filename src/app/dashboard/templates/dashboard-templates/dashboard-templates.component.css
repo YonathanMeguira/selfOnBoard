@@ -38,3 +38,7 @@
   color: #999999 !important;
   font-weight: 600 !important;
 }
+.selectedTimeFrame {
+  background-color: white !important;
+  color: #333333;
+}

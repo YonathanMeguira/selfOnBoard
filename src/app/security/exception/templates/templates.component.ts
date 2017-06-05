@@ -159,10 +159,10 @@ export class NewExceptionComponent extends BaseComponent {
 
   constructor() {
     super();
-    this.settings.AttachmentsProcessedLevels.documents = 2;
-    this.settings.AttachmentsProcessedLevels.images = 2;
-    this.settings.AttachmentsProcessedLevels.presentations = 2;
-    this.settings.AttachmentsProcessedLevels.spreadsheets = 2;
+    this.settings.AttachmentsProcessedLevels.documents = 1;
+    this.settings.AttachmentsProcessedLevels.images = 1;
+    this.settings.AttachmentsProcessedLevels.presentations = 1;
+    this.settings.AttachmentsProcessedLevels.spreadsheets = 1;
     this.settings.AttachmentsWithoutCdr.unrecognizedFiles = 0;
     this.settings.AttachmentsWithoutCdr.videoSound = 0;
     this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;

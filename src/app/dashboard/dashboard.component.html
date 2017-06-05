@@ -28,9 +28,9 @@
     <div class="ml-0 mr-0" layout="row" layout-align="space-between start" layout-margin>
       <app-dashboard-pie-charts [pieData]='pieData' [colorScheme]='colorScheme' flex="50"
                                 [title]='pieChartTitle' class="ml-0"></app-dashboard-pie-charts>
-      <app-email-section flex [figureColor]='figureColor' [users]='recipients'
+      <app-email-section flex [recipients]='recipients' [senders]="senders"
                          [title]='pieChartTitle'
-                         [emailScoreColor]='emailScoreColor' class='mr-0'></app-email-section>
+                         class='mr-0'></app-email-section>
     </div>
     <div>
       <app-dashboard-news-feed [feeds]="feeds"></app-dashboard-news-feed>

@@ -118,7 +118,7 @@ export class UserComponent {
   }
 
   setConditionalIdForAppContainer(currentRoute: string) {
-    this.conditionalId = (currentRoute === '/user/security/exceptions') ? 'someThingElse' : 'userAppContainer';
+    this.conditionalId = (currentRoute === '/user/security/exceptions') ? 'securityId' : 'userAppContainer';
   }
 
   defineUserOrigin() {

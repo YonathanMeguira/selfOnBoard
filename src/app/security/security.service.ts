@@ -33,8 +33,8 @@ export class SecurityService {
           policy.policyId = json.PolicyId;
           policy.policyName = json.PolicyName;
           policy.useAntiviruses = json.UseAntiviruses;
-          policy.SpecialAttachments.signedDocuments = json.SpecialAttachments['Password Protected'];
-          policy.SpecialAttachments.passwordProtected = json.SpecialAttachments['Signed Documents'];
+          policy.SpecialAttachments.signedDocuments = json.SpecialAttachments['Signed Documents'];
+          policy.SpecialAttachments.passwordProtected = json.SpecialAttachments['Password Protected'];
 
           return policy;
         }

@@ -73,6 +73,14 @@ enum Severity {
   Highest = 1
 }
 
+export class Exceptions extends Policy{
+  Exceptions: string[];
+  constructor(){
+    super();
+  }
+
+}
+var exceptions: { [name: string] : Exceptions; }
 
 
 

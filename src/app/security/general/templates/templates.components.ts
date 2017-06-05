@@ -1,8 +1,9 @@
-import {Component, Input, ChangeDetectorRef, OnChanges} from '@angular/core';
+import {Component, DoCheck, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, OnInit} from '@angular/core';
+import {isNullOrUndefined} from 'util';
 import {
-  Policy,
+  AttachmentsProcessedLevels, AttachmentsWithoutCdr, Policy,
   SpecialAttachments
-} from '../../../model/company-policy';
+} from "../../../model/company-policy";
 
 @Component({
   selector: 'general-settings',
@@ -10,13 +11,29 @@ import {
   styleUrls: ['../general.component.css']
 })
 
-export class GeneralSettingsComponent {
+export class GeneralSettingsComponent implements OnInit {
+  _generalSettings: Policy;
+
+  @ViewChild('hyperlink') hyperlinkSlider;
+
   @Input()
-  generalSettings: Policy;
+  set generalSettings(policy: Policy) {
+    this._generalSettings = policy;
+    this.hyperlinkSlider.writeValue(policy.handleLinks);
+  }
+
+  get generalSettings(): Policy {
+    return this._generalSettings;
+  }
 
   constructor() {
   }
 
+  ngOnInit(): void {
+    this.hyperlinkSlider.registerOnChange((value) => {
+      this._generalSettings.handleLinks = value;
+    })
+  }
 }
 @Component({
   selector: 'general-with-cdr',
@@ -24,12 +41,27 @@ export class GeneralSettingsComponent {
   styleUrls: ['../general.component.css']
 
 })
-export class GeneralSettingsWithCDRComponent {
+export class GeneralSettingsWithCDRComponent implements OnInit{
+
+  _generalSettings: Policy;
+  @ViewChild('CDRSliderComponent') cdrSlider;
 
   @Input()
-  generalSettings: Policy;
+  set generalSettings(policy: Policy) {
+    this._generalSettings = policy;
+    this.cdrSlider.writeValue(policy.AttachmentsProcessedLevels.images);
+  }
+  get generalSettings(): Policy {
+    return this._generalSettings;
+  }
 
-  constructor() {
+  ngOnInit(): void {
+    this.cdrSlider.registerOnChange((value)=>{
+      this._generalSettings.AttachmentsProcessedLevels.images = value;
+      this._generalSettings.AttachmentsProcessedLevels.presentations = value;
+      this._generalSettings.AttachmentsProcessedLevels.spreadsheets = value;
+      this._generalSettings.AttachmentsProcessedLevels.documents = value;
+    })
   }
 }
 
@@ -39,18 +71,46 @@ export class GeneralSettingsWithCDRComponent {
   styleUrls: ['../general.component.css']
 })
 
-export class GeneralSettingsWithoutCDRComponent implements OnChanges{
-  @Input()
-  generalSettings: Policy;
-
-  ngOnChanges(...args: any[]) {
-    console.log(args[0].generalSettings.currentValue.AttachmentsWithoutCdr);
-    // changes.prop contains the old and the new value...
+export class GeneralSettingsWithoutCDRComponent implements OnInit{
+  constructor(private changeDetection: ChangeDetectorRef) {
   }
-  // @Input() specialAttachmentSettings: SpecialAttachments;
-  // constructor() {
-  // }
 
+  _generalSettings: Policy;
+
+  @ViewChild('videoSound') videoSoundSlider;
+  @ViewChild('applicationsScripts') applicationsScriptsSlider;
+  @ViewChild('unrecognizedFiles') unrecognizedFilesSlider;
+  @ViewChild('passwordProtected') passwordProtectedSlider;
+
+  @Input()
+  set generalSettings(policy: Policy) {
+    this._generalSettings = policy;
+    this.videoSoundSlider.writeValue(policy.AttachmentsWithoutCdr.videoSound);
+    this.applicationsScriptsSlider.writeValue(policy.AttachmentsWithoutCdr.applicationsScripts);
+    this.unrecognizedFilesSlider.writeValue(policy.AttachmentsWithoutCdr.unrecognizedFiles);
+    this.passwordProtectedSlider.writeValue(policy.SpecialAttachments.passwordProtected);
+  }
+  get generalSettings(): Policy {
+    return this._generalSettings;
+  }
+
+  ngOnInit(): void {
+    this.videoSoundSlider.registerOnChange((value)=>{
+      this._generalSettings.AttachmentsWithoutCdr.videoSound = value;
+    });
+
+    this.applicationsScriptsSlider.registerOnChange((value)=>{
+      this._generalSettings.AttachmentsWithoutCdr.applicationsScripts = value;
+    });
+
+    this.unrecognizedFilesSlider.registerOnChange((value)=>{
+      this._generalSettings.AttachmentsWithoutCdr.unrecognizedFiles = value;
+    });
+
+    this.passwordProtectedSlider.registerOnChange((value)=>{
+      this._generalSettings.SpecialAttachments.passwordProtected = value;
+    });
+  }
 }
 
 @Component({
@@ -59,11 +119,26 @@ export class GeneralSettingsWithoutCDRComponent implements OnChanges{
   styleUrls: ['../general.component.css']
 })
 
-export class SpecialAttachmentsComponent {
-  @Input()
-  specialAttachmentsSettings: SpecialAttachments;
+export class SpecialAttachmentsComponent implements OnInit{
+  _generalSettings: Policy;
 
-  constructor() {
+  @ViewChild('specialAttachmentSlider') specialAttachmentSlider;
+
+  @Input()
+  set generalSettings(policy: Policy) {
+   this._generalSettings = policy;
+    this.specialAttachmentSlider.writeValue(policy.SpecialAttachments.signedDocuments);
+  }
+  get generalSettings(): Policy {
+    return this._generalSettings;
   }
 
+  constructor(){
+   }
+
+  ngOnInit(): void {
+    this.specialAttachmentSlider.registerOnChange((value)=>{
+      this._generalSettings.SpecialAttachments.signedDocuments = value;
+    })
+  }
 }

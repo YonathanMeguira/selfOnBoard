@@ -15,12 +15,11 @@
             <p class="fs-11">Fix and disable based on URL reputation</p>
           </div>
           <div flex>
-            <md-slider [(ngModel)]="generalSettings.HandleLinks"
+            <md-slider #hyperlink
                        [max]="1"
                        style="width: 100%"
                        [min]="0"
                        [step]="1"
-                       [value]="1"
                        [vertical]="vertical"
                        color="accent">
             </md-slider>

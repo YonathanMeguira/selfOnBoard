@@ -21,7 +21,7 @@ export class Policy {
   policyName: string;
   exceptions: string[];
   useAntiviruses: boolean;
-  handleLinks: boolean;
+  handleLinks: number;
   selectedSafeLinksOperation: number;
   AttachmentsProcessedLevels: AttachmentsProcessedLevels;
   AttachmentsWithoutCdr: AttachmentsWithoutCdr;
@@ -43,7 +43,7 @@ export class Policy {
 
   defaultSpecialAttachments: SpecialAttachments = {
     passwordProtected :Severity.High,
-    signedDocuments : Severity.High
+    signedDocuments : Severity.Highest
   };
 
   constructor(){
@@ -58,7 +58,7 @@ export class Policy {
     this.AttachmentsWithoutCdr = JSON.parse(JSON.stringify(this.defaultAttachmentsWithoutCdr));//Object.assign({}, this.defaultAttachmentsWithoutCdr);
     this.AttachmentsProcessedLevels = JSON.parse(JSON.stringify(this.defaultAttachmentsProcessedLevels));//Object.assign({}, this.defaultAttachmentsProcessedLevels);
     this.SpecialAttachments = JSON.parse(JSON.stringify(this.defaultSpecialAttachments));//Object.assign({}, this.defaultSpecialAttachments);
-    this.handleLinks = true;
+    this.handleLinks = 1;
   }
 }
 

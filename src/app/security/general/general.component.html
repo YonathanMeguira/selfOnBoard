@@ -5,7 +5,7 @@
   </div>
   <general-with-cdr class="mb-3"
     [generalSettings]="mainPolicySettings"></general-with-cdr>
-  <special-attachments class="mb-3" [specialAttachmentsSettings]="mainPolicySettings.SpecialAttachments"></special-attachments>
+  <special-attachments class="mb-3" [generalSettings]="mainPolicySettings"></special-attachments>
   <general-settings class="mb-3" [generalSettings]="mainPolicySettings"></general-settings>
   <general-without-cdr [generalSettings]="mainPolicySettings"></general-without-cdr>
   <div layout="row" layout-margin layout-align="center center" class="mt-5">

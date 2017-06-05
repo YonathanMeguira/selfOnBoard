@@ -153,7 +153,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
 })
 
 export class NewExceptionComponent extends BaseComponent {
-  settings: Policy;
+  settings: Policy = new Policy();
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<Policy>();
 

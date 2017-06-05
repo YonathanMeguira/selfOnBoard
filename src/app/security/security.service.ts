@@ -29,10 +29,12 @@ export class SecurityService {
 
           policy.selectedSafeLinksOperation = json.SelectedSafeLinksOperation;
           policy.exceptions = json.Exceptions;
-          policy.handleLinks = json.HandleLinks;
+          policy.handleLinks = json.HandleLinks ? 1 : 0;
           policy.policyId = json.PolicyId;
           policy.policyName = json.PolicyName;
           policy.useAntiviruses = json.UseAntiviruses;
+          policy.SpecialAttachments.signedDocuments = json.SpecialAttachments['Password Protected'];
+          policy.SpecialAttachments.passwordProtected = json.SpecialAttachments['Signed Documents'];
 
           return policy;
         }
@@ -40,9 +42,33 @@ export class SecurityService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get shared'));
   }
 
-  saveSettings(settings): Observable<any> {
+  saveSettings(policy:Policy): Observable<any> {
+    var json = {
+      'AttachementsProcessedLevels': {
+        'Documents': policy.AttachmentsProcessedLevels.documents,
+        'Spreadsheets': policy.AttachmentsProcessedLevels.spreadsheets,
+        'Images': policy.AttachmentsProcessedLevels.images,
+        'Presentations': policy.AttachmentsProcessedLevels.presentations
+      },
+      'AttachementsWithoutCdr':{
+        'Video/Sound':policy.AttachmentsWithoutCdr.videoSound,
+        'Applications/Scripts':policy.AttachmentsWithoutCdr.applicationsScripts,
+        'Unrecognized Files':policy.AttachmentsWithoutCdr.unrecognizedFiles
+      },
+      'SpecialAttachments':{
+        'Password Protected':policy.SpecialAttachments.passwordProtected,
+        'Signed Documents':policy.SpecialAttachments.signedDocuments
+      },
+      'SelectedSafeLinksOperation':policy.selectedSafeLinksOperation,
+      'Exceptions':policy.exceptions,
+      'HandleLinks':policy.handleLinks ? true:false,
+      'PolicyId':policy.policyId,
+      'PolicyName':policy.policyName,
+      'UseAntiviruses':policy.useAntiviruses
+    };
+
     const saveSettings = 'http://' + this.server + ':4580/sob/api/securitySettings/savepolicy';
-    return this.http.post(saveSettings, settings)
+    return this.http.post(saveSettings, json)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not save settings'));
   }

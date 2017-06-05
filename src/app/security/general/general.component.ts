@@ -39,9 +39,9 @@ export class GeneralComponent implements OnInit{
   }
   saveSettings = () => {
     // setting all values on cdr to be the same
-    for (const setting in this.mainPolicySettings.AttachmentsProcessedLevels) {
-      this.mainPolicySettings.AttachmentsProcessedLevels[setting] = this.mainPolicySettings.AttachmentsProcessedLevels['documents'];
-    }
+    // for (const setting in this.mainPolicySettings.AttachmentsProcessedLevels) {
+    //   this.mainPolicySettings.AttachmentsProcessedLevels[setting] = this.mainPolicySettings.AttachmentsProcessedLevels['documents'];
+    // }
     this.securityService.saveSettings(this.mainPolicySettings).subscribe(
       success => {
         console.log(success);

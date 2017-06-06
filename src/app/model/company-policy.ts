@@ -73,13 +73,6 @@ enum Severity {
   Highest = 1
 }
 
-export class ExceptionsModel extends Policy {
- // exceptions: string[];
-
-  constructor() {
-    super();
-  }
-}
 
 
 

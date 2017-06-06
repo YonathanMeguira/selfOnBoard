@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TdFileService} from '@covalent/core';
-import {ExceptionsModel, Policy} from '../../../model/company-policy';
+import {Policy} from '../../../model/company-policy';
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -52,7 +52,7 @@ export class ExistingExceptionsComponent {
 
   isCurrentPolicy = (selectedPolicy: string) => {
     let isCurrentPolicy = false;
-    if (selectedPolicy === this.currentSettings.PolicyName) {
+    if (selectedPolicy === this.currentSettings.policyName) {
       isCurrentPolicy = true;
     } else {
       isCurrentPolicy = false;
@@ -68,11 +68,11 @@ export class ExistingExceptionsComponent {
   styleUrls: ['../exception.component.css'],
   providers: [TdFileService]
 })
-export class ExceptionSettingsComponent extends BaseComponent implements OnChanges {
+export class ExceptionSettingsComponent extends BaseComponent {
 
 
   // @Input() settings: {[name: string]: ExceptionsModel};
-  @Input() settings: ExceptionsModel;
+  @Input() settings: Policy;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   users: any[];
@@ -85,13 +85,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
     this.addingUsers = false;
   };
 
-  // TODO :: check if we can improve efficiency
-  ngOnChanges(...args: any[]) {
-    const exceptions = args[0].settings.currentValue;
-    console.log(exceptions);
- //   this.users = exceptions.slice(0, this.numberOfMaxItems);
-    console.log(exceptions);
-  }
+
 
   addUsers(value: boolean) {
     this.addingUsers = value;
@@ -99,20 +93,18 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
       // adding the users
       const splittedEmails = this.addedUsers.split(',');
       for (const email of splittedEmails) {
-        const noSpaceEmail = email.replace(/\s+/g,'');
+        const noSpaceEmail = email.replace(/\s+/g, '');
         if (this.stringIsEmail(noSpaceEmail)) {
-          console.log('adding ', noSpaceEmail);
           if (!this.settings.exceptions.includes(noSpaceEmail)) {
             this.settings.exceptions.push(noSpaceEmail);
           }
         }
       }
-      console.log(this.settings.exceptions);
     }
   }
 
   moreItemsToDisplay(exceptions: Array<string>) {
-    if (exceptions){
+    if (exceptions) {
       return (exceptions.length > this.numberOfMaxItems);
     }
   }
@@ -131,21 +123,9 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
   deletePolicy = (policy: any) => {
     this.onDelete.emit(policy);
   }
-  saveSettings = (settings: any) => {
-    const users = this.users;
-    console.log(settings);
-    const extractedUsers = [];
-    users.forEach((user) => {
-      if (user !== null && typeof user === 'object') {
-        extractedUsers.push(user.value);
-      } else {
-        extractedUsers.push(user);
-      }
-    });
-    settings.exceptions = extractedUsers;
+  saveSettings = (settings: Policy) => {
     this.onSave.emit(settings);
   }
-
 }
 ;
 
@@ -157,6 +137,7 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
 
 export class NewExceptionComponent extends BaseComponent {
   settings: Policy = new Policy();
+  addedUsers: string = "";
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<Policy>();
 
@@ -164,6 +145,7 @@ export class NewExceptionComponent extends BaseComponent {
     super();
     this.settings.AttachmentsProcessedLevels.documents = 1;
     this.settings.AttachmentsProcessedLevels.images = 1;
+    this.settings.exceptions = [];
     this.settings.AttachmentsProcessedLevels.presentations = 1;
     this.settings.AttachmentsProcessedLevels.spreadsheets = 1;
     this.settings.AttachmentsWithoutCdr.unrecognizedFiles = 0;
@@ -176,14 +158,18 @@ export class NewExceptionComponent extends BaseComponent {
     this.onCancel.emit(cancel);
   }
   saveSettings = (newSettings: any) => {
-    const users = newSettings.exceptions;
-    const extractedUsers = [];
-    users.forEach((user) => {
-      extractedUsers.push(user.value);
-    });
-    delete newSettings.exceptions;
-    newSettings.exceptions = extractedUsers;
+    const splittedEmails = this.addedUsers.split(',');
+    for (const email of splittedEmails) {
+      const noSpaceEmail = email.replace(/\s+/g, '');
+      if (this.stringIsEmail(noSpaceEmail)) {
+        this.settings.exceptions.push(noSpaceEmail);
+      }
+    }
     this.onSave.emit(newSettings);
+  }
+
+  newExceptionHasEmail() {
+    return this.addedUsers.length < 5;
   }
 }
 

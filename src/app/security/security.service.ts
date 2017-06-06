@@ -1,8 +1,34 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../shared/custom-http';
 import {Observable} from 'rxjs/Rx';
-import {Policy, ExceptionsModel} from '../model/company-policy';
+import {Policy} from '../model/company-policy';
 
+const serializePolicyToJson = function (policy: Policy) {
+  const json = {
+    'AttachementsProcessedLevels': {
+      'Documents': policy.AttachmentsProcessedLevels.documents,
+      'Spreadsheets': policy.AttachmentsProcessedLevels.spreadsheets,
+      'Images': policy.AttachmentsProcessedLevels.images,
+      'Presentations': policy.AttachmentsProcessedLevels.presentations
+    },
+    'AttachementsWithoutCdr': {
+      'Video/Sound': policy.AttachmentsWithoutCdr.videoSound,
+      'Applications/Scripts': policy.AttachmentsWithoutCdr.applicationsScripts,
+      'Unrecognized Files': policy.AttachmentsWithoutCdr.unrecognizedFiles
+    },
+    'SpecialAttachments': {
+      'Password Protected': policy.SpecialAttachments.passwordProtected,
+      'Signed Documents': policy.SpecialAttachments.signedDocuments
+    },
+    'SelectedSafeLinksOperation': policy.selectedSafeLinksOperation,
+    'Exceptions': policy.exceptions,
+    'HandleLinks': policy.handleLinks ? true : false,
+    'PolicyId': policy.policyId,
+    'PolicyName': policy.policyName,
+    'UseAntiviruses': policy.useAntiviruses
+  };
+  return json;
+};
 @Injectable()
 export class SecurityService {
   server = localStorage.getItem('serverName');
@@ -17,14 +43,14 @@ export class SecurityService {
         (res) => {
           const json = res.json();
           // return this.getMappedPolicy(json, Policy);
-          return this.getMappedPolicy(json, Policy);
+          return this.getMappedPolicy(json);
         }
       )
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get shared'));
   }
 
-  private getMappedPolicy(json: any, type: any) {
-    const policy = new type();
+  private getMappedPolicy(json: any) {
+    const policy = new Policy();
     policy.AttachmentsProcessedLevels =
       {
         documents: json.AttachementsProcessedLevels['Documents'],
@@ -53,29 +79,7 @@ export class SecurityService {
   }
 
   saveSettings(policy: Policy): Observable<any> {
-    var json = {
-      'AttachementsProcessedLevels': {
-        'Documents': policy.AttachmentsProcessedLevels.documents,
-        'Spreadsheets': policy.AttachmentsProcessedLevels.spreadsheets,
-        'Images': policy.AttachmentsProcessedLevels.images,
-        'Presentations': policy.AttachmentsProcessedLevels.presentations
-      },
-      'AttachementsWithoutCdr': {
-        'Video/Sound': policy.AttachmentsWithoutCdr.videoSound,
-        'Applications/Scripts': policy.AttachmentsWithoutCdr.applicationsScripts,
-        'Unrecognized Files': policy.AttachmentsWithoutCdr.unrecognizedFiles
-      },
-      'SpecialAttachments': {
-        'Password Protected': policy.SpecialAttachments.passwordProtected,
-        'Signed Documents': policy.SpecialAttachments.signedDocuments
-      },
-      'SelectedSafeLinksOperation': policy.selectedSafeLinksOperation,
-      'Exceptions': policy.exceptions,
-      'HandleLinks': policy.handleLinks ? true : false,
-      'PolicyId': policy.policyId,
-      'PolicyName': policy.policyName,
-      'UseAntiviruses': policy.useAntiviruses
-    };
+    const json = serializePolicyToJson(policy);
 
     const saveSettings = 'http://' + this.server + ':4580/sob/api/securitySettings/savepolicy';
     return this.http.post(saveSettings, json)
@@ -90,8 +94,8 @@ export class SecurityService {
         (res) => {
           const json = res.json();
           const ExceptionsDictionary = {}
-          for (const key of Object.keys(json)){
-            ExceptionsDictionary[key] = this.getMappedPolicy(json[key], ExceptionsModel);
+          for (const key of Object.keys(json)) {
+            ExceptionsDictionary[key] = this.getMappedPolicy(json[key]);
           }
           // return this.getMappedPolicy(json, Policy);
           return ExceptionsDictionary;
@@ -108,9 +112,14 @@ export class SecurityService {
   }
 
   savePolicyExceptionSettings(settings): Observable<any> {
+    const serializedException = serializePolicyToJson(settings);
     const url = 'http://' + this.server + ':4580/sob/api/securitySettings/savepolicyexceptions';
-    return this.http.post(url, settings)
-      .map((res) => res.json())
+    return this.http.post(url, serializedException)
+      .map((res) => {
+        const json = res.json();
+        // return this.getMappedPolicy(json, Policy);
+        return this.getMappedPolicy(json);
+      })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not save settings'));
   }
 

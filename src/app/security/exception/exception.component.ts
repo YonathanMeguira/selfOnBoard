@@ -5,7 +5,8 @@ import {
   NewExceptionComponent
 } from './templates/templates.component';
 import {SecurityService} from '../security.service';
-import {Exceptions} from '../../model/company-policy';
+import {ExceptionsModel} from '../../model/company-policy';
+
 
 @Component({
   selector: 'app-exception',
@@ -18,7 +19,7 @@ import {Exceptions} from '../../model/company-policy';
 export class ExceptionComponent {
   newDepartment = false;
   dataIsLoading = true;
-  settings: Exceptions;
+  settings:  { [name: string]: ExceptionsModel };
   exceptionsList: any = {};
   noSettingsExist = true;
 
@@ -33,7 +34,8 @@ export class ExceptionComponent {
         } else {
           this.noSettingsExist = false;
           console.log(result);
-          this.settings = result[Object.keys(result)[0]];
+        //  this.settings = result[Object.keys(result)[0]];
+          this.settings = result;
           this.exceptionsList = result;
           console.log(this.exceptionsList);
           console.log('result are not empty');
@@ -89,5 +91,8 @@ export class ExceptionComponent {
       },
       error => console.log(error)
     );
+  }
+  logSettings(){
+    console.log(this.settings);
   }
 }

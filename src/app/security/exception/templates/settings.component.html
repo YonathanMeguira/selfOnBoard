@@ -1,7 +1,9 @@
+<button (click)="logSettings()">Log Settings</button>
+
 <div layout="column">
   <div id="actionCenter" class="white frame margin-top">
     <div class="title-section" layout-padding layout="row" layout-align="space-between start" layout-margin>
-      <h4>{{settings.PolicyName}}</h4>
+      <h4>{{settings.policyName}}</h4>
       <p class="inner-link" (click)="deletePolicy(settings)">Delete this department</p>
     </div>
 
@@ -21,11 +23,11 @@
         <div layout="row" layout-align="space-between start" flex="80">
           <tag-input [(ngModel)]='users' [errorMessages]="errorMessages" [validators]="validators"
                      flex="80" theme='minimal' placeholder='Enter Emails'></tag-input>
-          <p class="inner-link" (click)='displayRemainingItems(settings.Exceptions)'
-             *ngIf="moreItemsToDisplay(settings.Exceptions)">
-            see {{settings.Exceptions | RemainingItems: numberOfMaxItems}} more</p>
-          <p class="inner-link" (click)='displayLessItems(settings.Exceptions)'
-             *ngIf="!moreItemsToDisplay(settings.Exceptions)">
+          <p class="inner-link" (click)='displayRemainingItems(settings.exceptions)'
+             *ngIf="moreItemsToDisplay(settings.exceptions)">
+            see {{settings.exceptions | RemainingItems: numberOfMaxItems}} more</p>
+          <p class="inner-link" (click)='displayLessItems(settings.exceptions)'
+             *ngIf="!moreItemsToDisplay(settings.exceptions)">
             see less</p>
         </div>
       </div>
@@ -59,7 +61,7 @@
               <p class="fs-11">Active content & <br>macros NOT removed</p>
             </div>
             <div flex>
-              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Documents"
+              <md-slider [(ngModel)]="settings.AttachmentsProcessedLevels.documents"
                          [max]="1"
                          style="width: 100%"
                          [min]="0"
@@ -85,7 +87,7 @@
               <p class="fs-16 text-center">High</p>
             </div>
             <div flex>
-              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+              <md-slider [(ngModel)]="settings.AttachmentsProcessedLevels.spreadsheets"
                          [max]="1"
                          style="width: 100%"
                          [min]="0"
@@ -102,15 +104,15 @@
         </div>
         <div layout="row" class="mt-30px">
           <div layout="column" flex="30">
-            <p class="fs-16">Spreadsheets</p>
-            <p class="fs-11">.csv, .xls, .xlsx, .gsheet</p>
+            <p class="fs-16">Images</p>
+            <p class="fs-11">.png, .jpeg, .jpg, .gif</p>
           </div>
           <div flex="55" layout-align="space-between center" layout="row">
             <div flex="45">
               <p class="fs-16 text-center">High</p>
             </div>
             <div flex>
-              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+              <md-slider [(ngModel)]="settings.AttachmentsProcessedLevels.images"
                          [max]="1"
                          style="width: 100%"
                          [min]="0"
@@ -127,15 +129,15 @@
         </div>
         <div layout="row" class="mt-30px">
           <div layout="column" flex="30">
-            <p class="fs-16">Spreadsheets</p>
-            <p class="fs-11">.csv, .xls, .xlsx, .gsheet</p>
+            <p class="fs-16">Presentations</p>
+            <p class="fs-11">.ppt, .pptx, .keynote, .gslides</p>
           </div>
           <div flex="55" layout-align="space-between center" layout="row">
             <div flex="45">
               <p class="fs-16 text-center">High</p>
             </div>
             <div flex>
-              <md-slider [(ngModel)]="settings.AttachementsProcessedLevels.Spreadsheets"
+              <md-slider [(ngModel)]="settings.AttachmentsProcessedLevels.presentations"
                          [max]="1"
                          style="width: 100%"
                          [min]="0"
@@ -172,7 +174,7 @@
               <p class="fs-11">Document is not processed with CDR</p>
             </div>
             <div flex>
-              <md-slider [(ngModel)]="settings.SpecialAttachments['Signed Documents']"
+              <md-slider [(ngModel)]="settings.SpecialAttachments.signedDocuments"
                          [max]="1"
                          style="width: 100%"
                          [min]="0"
@@ -249,7 +251,7 @@
               <p class="fs-16">Allow</p>
             </div>
             <div flex>
-              <md-slider  [(ngModel)]="settings.AttachementsWithoutCdr['Video/Sound']"
+              <md-slider  [(ngModel)]="settings.AttachmentsWithoutCdr.videoSound"
                           [max]="1"
                          style="width: 100%"
                          [min]="0"
@@ -258,7 +260,6 @@
                          [vertical]="vertical"
                          color="accent">
               </md-slider>
-              <p>{{settings.AttachementsWithoutCdr}}</p>
             </div>
             <div flex="35" layout="column" class="ml-19px">
               <p class="fs-16">Block</p>
@@ -275,7 +276,7 @@
               <p class="fs-16 ">Allow</p>
             </div>
             <div flex>
-              <md-slider  [(ngModel)]="settings.AttachementsWithoutCdr['Applications/Scripts']"
+              <md-slider  [(ngModel)]="settings.AttachmentsWithoutCdr.applicationsScripts"
                           [max]="1"
                           style="width: 100%"
                           [min]="0"
@@ -299,7 +300,7 @@
               <p class="fs-16 mb-12px">Allow</p>
             </div>
             <div flex>
-              <md-slider  [(ngModel)]="settings.AttachementsWithoutCdr['Unrecognized Files']"
+              <md-slider  [(ngModel)]="settings.AttachmentsWithoutCdr.unrecognizedFiles"
                           [max]="1"
                           style="width: 100%"
                           [min]="0"
@@ -324,7 +325,7 @@
               <p class="fs-16 ">Allow</p>
             </div>
             <div flex>
-              <md-slider  [(ngModel)]="settings.SpecialAttachments['Password Protected']"
+              <md-slider  [(ngModel)]="settings.SpecialAttachments.passwordProtected"
                           [max]="1"
                           style="width: 100%"
                           [min]="0"

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../shared/custom-http';
 import {Observable} from 'rxjs/Rx';
-import {Policy, Exceptions} from '../model/company-policy';
+import {Policy, ExceptionsModel} from '../model/company-policy';
 
 @Injectable()
 export class SecurityService {
@@ -87,7 +87,15 @@ export class SecurityService {
     const settingsUrl = 'http://' + this.server + ':4580/sob/api/securitySettings/policyExceptions?q=1';
     return this.http.get(settingsUrl)
       .map(
-        (res) => res.json()
+        (res) => {
+          const json = res.json();
+          const ExceptionsDictionary = {}
+          for (const key of Object.keys(json)){
+            ExceptionsDictionary[key] = this.getMappedPolicy(json[key], ExceptionsModel);
+          }
+          // return this.getMappedPolicy(json, Policy);
+          return ExceptionsDictionary;
+        }
       )
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not get shared'));
   }

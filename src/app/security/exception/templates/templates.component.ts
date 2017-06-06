@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TdFileService} from '@covalent/core';
-import {Policy} from '../../../model/company-policy';
+import {ExceptionsModel, Policy} from '../../../model/company-policy';
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -71,7 +71,8 @@ export class ExistingExceptionsComponent {
 export class ExceptionSettingsComponent extends BaseComponent implements OnChanges {
 
 
-  @Input() settings: Policy;
+  // @Input() settings: {[name: string]: ExceptionsModel};
+  @Input() settings: ExceptionsModel;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   users: any[];
@@ -86,9 +87,9 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
 
   // TODO :: check if we can improve efficiency
   ngOnChanges(...args: any[]) {
-    const exceptions = args[0].settings.currentValue.Exceptions;
+    const exceptions = args[0].settings.currentValue;
     console.log(exceptions);
-    this.users = exceptions.slice(0, this.numberOfMaxItems);
+ //   this.users = exceptions.slice(0, this.numberOfMaxItems);
     console.log(exceptions);
   }
 
@@ -111,7 +112,9 @@ export class ExceptionSettingsComponent extends BaseComponent implements OnChang
   }
 
   moreItemsToDisplay(exceptions: Array<string>) {
-    return (exceptions.length > this.numberOfMaxItems);
+    if (exceptions){
+      return (exceptions.length > this.numberOfMaxItems);
+    }
   }
 
   displayRemainingItems(exceptions: Array<string>) {

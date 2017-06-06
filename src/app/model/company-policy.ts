@@ -26,34 +26,34 @@ export class Policy {
   AttachmentsProcessedLevels: AttachmentsProcessedLevels;
   AttachmentsWithoutCdr: AttachmentsWithoutCdr;
   SpecialAttachments: SpecialAttachments;
-  Exceptions:string[];
+  Exceptions: string[];
 
-  defaultAttachmentsWithoutCdr : AttachmentsWithoutCdr = {
-    videoSound:Severity.Highest,
-    applicationsScripts:Severity.Highest,
-    unrecognizedFiles:Severity.Highest,
+  defaultAttachmentsWithoutCdr: AttachmentsWithoutCdr = {
+    videoSound: Severity.Highest,
+    applicationsScripts: Severity.Highest,
+    unrecognizedFiles: Severity.Highest,
   };
 
-  defaultAttachmentsProcessedLevels : AttachmentsProcessedLevels = {
-    documents:Severity.Highest,
-    spreadsheets:Severity.Highest,
-    images:Severity.Highest,
-    presentations:Severity.Highest
+  defaultAttachmentsProcessedLevels: AttachmentsProcessedLevels = {
+    documents: Severity.Highest,
+    spreadsheets: Severity.Highest,
+    images: Severity.Highest,
+    presentations: Severity.Highest
   };
 
   defaultSpecialAttachments: SpecialAttachments = {
-    passwordProtected :Severity.High,
-    signedDocuments : Severity.Highest
+    passwordProtected: Severity.High,
+    signedDocuments: Severity.Highest
   };
 
-  constructor(){
+  constructor() {
     this.AttachmentsWithoutCdr = new AttachmentsWithoutCdr();
     this.AttachmentsProcessedLevels = new AttachmentsProcessedLevels();
     this.SpecialAttachments = new SpecialAttachments();
     this.resetToDefault();
   }
 
-  resetToDefault(){
+  resetToDefault() {
     this.selectedSafeLinksOperation = HyperLinks.TestHyperlinks;
     this.AttachmentsWithoutCdr = JSON.parse(JSON.stringify(this.defaultAttachmentsWithoutCdr));//Object.assign({}, this.defaultAttachmentsWithoutCdr);
     this.AttachmentsProcessedLevels = JSON.parse(JSON.stringify(this.defaultAttachmentsProcessedLevels));//Object.assign({}, this.defaultAttachmentsProcessedLevels);
@@ -73,14 +73,16 @@ enum Severity {
   Highest = 1
 }
 
-export class Exceptions extends Policy{
-  Exceptions: string[];
-  constructor(){
+export class ExceptionsModel extends Policy {
+ // exceptions: string[];
+
+  constructor() {
     super();
   }
-
 }
-var exceptions: { [name: string] : Exceptions; }
+
+
+
 
 
 

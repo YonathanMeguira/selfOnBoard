@@ -12,6 +12,8 @@ import {SearchComponent} from './email/search/search.component';
 import {BrowseComponent} from './email/browse/browse.component';
 import {SecurityComponent} from './security/security.component';
 import {ExceptionComponent} from './security/exception/exception.component';
+import {DeleteExceptionDialog} from './security/exception/templates/templates.component';
+
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
 import {UserComponent, UserChangePasswordComponent} from './user/user.component';
@@ -130,6 +132,7 @@ import {HelpComponent} from './help/help.component';
     GraphComponent,
     PieChartsComponent,
     ConfirmDialog,
+    DeleteExceptionDialog,
     FirstTimeUserComponent,
     GetPercentagePipe,
     NewUserPasswordComponent,
@@ -178,7 +181,7 @@ import {HelpComponent} from './help/help.component';
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog,
-    UserChangePasswordComponent, UpdatePlanComponent],
+    UserChangePasswordComponent, UpdatePlanComponent, DeleteExceptionDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule {

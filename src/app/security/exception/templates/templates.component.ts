@@ -1,7 +1,8 @@
-import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TdFileService} from '@covalent/core';
 import {Policy} from '../../../model/company-policy';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -24,8 +25,6 @@ class BaseComponent {
     return pattern.test(email);
   }
 }
-;
-
 
 @Component({
   selector: 'existing-exceptions',
@@ -36,6 +35,7 @@ export class ExistingExceptionsComponent {
   @Input() exceptionsList: any;
   @Input() currentSettings: any;
   @Input() noSettingsExist: boolean;
+  @Input() newDepartmentRequired: boolean;
   @Output() onSelect = new EventEmitter<any>();
   selectedPolicyName: string;
   validators: any;
@@ -43,7 +43,6 @@ export class ExistingExceptionsComponent {
 
   constructor() {
   };
-
 
   selectDepartment = (departmentName: string) => {
     this.selectedPolicyName = departmentName;
@@ -60,18 +59,32 @@ export class ExistingExceptionsComponent {
     return isCurrentPolicy;
   }
 }
-;
+
+@Component({
+  selector: 'app-confirm-exception-deletion',
+  template: ` <h3 md-dialog-title>Delete {{data}} ?</h3>
+  <md-dialog-content>This action is irreversible</md-dialog-content>
+  <md-dialog-actions>
+    <button md-button md-dialog-close (click)="dialogRef.close(false)">Don't Delete</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button md-button [style.color]="'red'" (click)="dialogRef.close(true)">Delete</button>
+  </md-dialog-actions>
+  `,
+})
+export class DeleteExceptionDialog {
+  constructor(public dialogRef: MdDialogRef<DeleteExceptionDialog>, @Inject(MD_DIALOG_DATA) public data: any) {
+  }
+}
 
 @Component({
   selector: 'exception-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['../exception.component.css'],
-  providers: [TdFileService]
+  providers: [TdFileService],
+  entryComponents: [DeleteExceptionDialog]
 })
 export class ExceptionSettingsComponent extends BaseComponent {
 
-
-  // @Input() settings: {[name: string]: ExceptionsModel};
   @Input() settings: Policy;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
@@ -80,11 +93,10 @@ export class ExceptionSettingsComponent extends BaseComponent {
   addingUsers: boolean;
   numberOfMaxItems = 1;
 
-  constructor() {
+  constructor(public dialog: MdDialog) {
     super();
     this.addingUsers = false;
   };
-
 
 
   addUsers(value: boolean) {
@@ -120,27 +132,30 @@ export class ExceptionSettingsComponent extends BaseComponent {
     this.users = exceptions.slice(0, 1);
   };
 
-  deletePolicy = (policy: any) => {
-    this.onDelete.emit(policy);
+  deletePolicy = (policy: Policy) => {
+    const dialogRef = this.dialog.open(DeleteExceptionDialog, {
+      data: policy.policyName
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){ // result => boolean : true or false
+        this.onDelete.emit(policy);
+      }
+    });
   }
   saveSettings = (settings: Policy) => {
     this.onSave.emit(settings);
   }
 }
-;
-
 @Component({
   selector: 'new-exception',
   templateUrl: './new-exception.html',
   styleUrls: ['../exception.component.css']
 })
-
 export class NewExceptionComponent extends BaseComponent {
   settings: Policy = new Policy();
-  addedUsers: string = "";
+  addedUsers = '';
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<Policy>();
-
   constructor() {
     super();
     this.settings.AttachmentsProcessedLevels.documents = 1;
@@ -153,7 +168,6 @@ export class NewExceptionComponent extends BaseComponent {
     this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;
     this.settings.SpecialAttachments.passwordProtected = 0;
   };
-
   cancelCreation = (cancel: boolean) => {
     this.onCancel.emit(cancel);
   }
@@ -167,7 +181,6 @@ export class NewExceptionComponent extends BaseComponent {
     }
     this.onSave.emit(newSettings);
   }
-
   newExceptionHasEmail() {
     return this.addedUsers.length < 5;
   }

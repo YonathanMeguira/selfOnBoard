@@ -67,12 +67,10 @@ export class UserComponent {
   private dialogRef: MdDialogRef<any>;
 
   togglePostSpinner(): void {
-    if (this.showPostLoader) {
-      console.log('subscribing to post');
-      this._loadingService.register('overlayStarSyntax');
-    } else {
-      console.log('resolving from post')
+    if (!this.showPostLoader) {
       this._loadingService.resolve('overlayStarSyntax');
+    } else {
+      this._loadingService.register('overlayStarSyntax');
     }
     this.overlayStarSyntax = !this.overlayStarSyntax;
   }
@@ -87,6 +85,7 @@ export class UserComponent {
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
         this.showLoader = state;
+        console.log(state);
       });
 
     this.postStateSubscription = this.httpState.postProtocolState$.subscribe(

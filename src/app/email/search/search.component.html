@@ -3,7 +3,7 @@
     <div class="white frame">
       <div class="col-8 pl-0">
         <div layout="row" class="search-container" layout-align="start end">
-          <label class="mr-5 mb-0 search-label" >Resec Ticket ID</label>
+          <label class="mr-5 mb-0 search-label" >ReSec Ticket ID</label>
           <input type="text" class="sob-input" flex="50" [(ngModel)]="query.ticketId">
           <button class="btn search-btn" (click)="searchMails()" [disabled]="!query.ticketId">
             <i class="fa fa-chevron-right" aria-hidden="true" style="font-size: 18px"></i>
@@ -40,10 +40,10 @@
             </div>
 
             <div class="row mb-5">
-              <button class="btn btn-action-inverse"
+              <button class="btn btn-neutral-yellow-hvr"
                       (click)="performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')">Release to Recipient
               </button>
-              <button class="btn btn-action-inverse" (click)="performAction(emails.SanitizationId, 'ForwardToAdmin')">
+              <button class="btn btn-neutral-yellow-hvr" (click)="performAction(emails.SanitizationId, 'ForwardToAdmin')">
                 Forward To Admin
               </button>
             </div>

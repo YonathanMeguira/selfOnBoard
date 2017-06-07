@@ -113,7 +113,8 @@ export class UserComponent {
       .addSvgIcon('loginLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/loginLogo'))
       .addSvgIcon('resecLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/resecLogo.svg'))
       .addSvgIcon('help', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/info.svg'))
-
+      .addSvgIcon('releaseMail', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/releaseMail.svg'))
+      .addSvgIcon('forwardMail', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/forwardMail.svg'))
   }
 
   setConditionalIdForAppContainer(currentRoute: string) {

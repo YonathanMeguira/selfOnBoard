@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {TdFileService} from '@covalent/core';
+import {TdFileService, IUploadOptions} from '@covalent/core';
 import {Policy} from '../../../model/company-policy';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 
@@ -137,7 +137,7 @@ export class ExceptionSettingsComponent extends BaseComponent {
       data: policy.policyName
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result){ // result => boolean : true or false
+      if (result) { // result => boolean : true or false
         this.onDelete.emit(policy);
       }
     });
@@ -145,6 +145,19 @@ export class ExceptionSettingsComponent extends BaseComponent {
   saveSettings = (settings: Policy) => {
     this.onSave.emit(settings);
   }
+
+  uploadEvent(file: File) {
+    console.log(file)
+    const fileName = file.name;
+    const fileReader = new FileReader();
+    fileReader.readAsArrayBuffer(file);
+    var readingState = fileReader.readyState;
+    console.log(readingState);
+   // fileReader.onloadend(event);
+    const result = fileReader.result;
+    console.log(result);
+  };
+
 }
 @Component({
   selector: 'new-exception',
@@ -156,6 +169,7 @@ export class NewExceptionComponent extends BaseComponent {
   addedUsers = '';
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<Policy>();
+
   constructor() {
     super();
     this.settings.AttachmentsProcessedLevels.documents = 1;
@@ -168,6 +182,7 @@ export class NewExceptionComponent extends BaseComponent {
     this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;
     this.settings.SpecialAttachments.passwordProtected = 0;
   };
+
   cancelCreation = (cancel: boolean) => {
     this.onCancel.emit(cancel);
   }
@@ -181,6 +196,7 @@ export class NewExceptionComponent extends BaseComponent {
     }
     this.onSave.emit(newSettings);
   }
+
   newExceptionHasEmail() {
     return this.addedUsers.length < 5;
   }

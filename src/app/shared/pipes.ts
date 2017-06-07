@@ -5,8 +5,16 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({name: 'DictionaryIteratorPipe', pure: false})
 export class DictionaryIteratorPipe implements PipeTransform {
-  transform(value: any, args: any[] = null): any {
-    return Object.keys(value).map(key => value[key]);
+  transform(value: any, showKeyAndValue?: boolean): any {
+    if (showKeyAndValue) {
+      let arr = [];
+      for (let key in value) {
+        arr.push({'key': key, 'value': value[key]});
+      }
+      return arr;
+    } else {
+      return Object.keys(value).map(key => value[key]);
+    }
   }
 }
 

@@ -49,7 +49,8 @@ export class UserChangePasswordComponent {
   selector: 'app-user',
   templateUrl: './user.component.html?v=${new Date().getTime()',
   styleUrls: ['./user.component.css?v=${new Date().getTime()'],
-  entryComponents: [UserChangePasswordComponent]
+  entryComponents: [UserChangePasswordComponent],
+  providers: [AccountService]
 })
 
 export class UserComponent {
@@ -79,6 +80,7 @@ export class UserComponent {
               iconReg: MdIconRegistry,
               sanitizer: DomSanitizer,
               public dialog: MdDialog,
+              public accountService: AccountService,
               private httpState: HTTPStateService,
               private _loadingService: TdLoadingService) {
 
@@ -105,6 +107,17 @@ export class UserComponent {
         this.username = user.charAt(0).toUpperCase() + user.slice(1);
       }
     });
+
+    this.accountService.getAccountGeneralSettings().subscribe(
+      result => {
+        if (result == null){
+          return;
+        }
+
+        this.isStripeUser = result.StripeSubscriptionToken ? true: false;
+      }, error => {
+        console.log(error);
+      });
 
     iconReg.addSvgIcon('dashboard', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/dashboard.svg'))
       .addSvgIcon('security', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/security_settings.svg'))

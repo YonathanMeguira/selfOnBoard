@@ -20,7 +20,6 @@ import {SearchComponent} from './email/search/search.component';
 import {BrowseComponent} from './email/browse/browse.component';
 import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
 import {UserIsSobAndHasToken} from './shared/route-activators';
-import {HelpComponent} from './help/help.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -57,8 +56,7 @@ const appRoutes: Routes = [
           {path: 'notifications', component: NotificationsComponent},
           {path: 'billing', component: BillingComponent},
         ]
-      },
-      {path: 'help', component: HelpComponent}
+      }
     ]
   }
 ];

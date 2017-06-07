@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MailService} from '../email.service';
 import {EmailComponent} from '../email.component';
 
-class Query {
-  ticketId: string;
-}
 
 @Component({
   selector: 'app-search',
@@ -12,10 +9,10 @@ class Query {
   styleUrls: ['../email.component.css'],
   providers: [MailService]
 })
-export class SearchComponent extends EmailComponent implements OnInit {
+export class SearchComponent extends EmailComponent implements OnInit{
 
   emails: any = {};
-  query: Query = new Query();
+  query: any = {};
   isFirstTime;
   noSearchInitiated = true;
   totalNumberOfMails: number;
@@ -28,13 +25,10 @@ export class SearchComponent extends EmailComponent implements OnInit {
   ngOnInit() {
     this.isFirstTime = false;
     console.log(this.isFirstTime);
-
   }
 
   searchMails() {
     this.pullingData = true;
-    const noWhiteSpaceTicketId = this.query.ticketId.replace(/ /g, '');
-    this.query.ticketId = noWhiteSpaceTicketId;
     this.mailService.searchMails(this.query).subscribe(
       success => {
         console.log(success);
@@ -67,10 +61,5 @@ export class SearchComponent extends EmailComponent implements OnInit {
       return false;
     }
   }
-  outcomesAreNotNull(object: Object){
-    return object ! == null;
-  }
-  fieldNotEmpty(field: any){
-    return field !== null;
-  }
+
 }

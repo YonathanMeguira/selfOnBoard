@@ -28,21 +28,16 @@
     <div class="ml-0 mr-0" layout="row" layout-align="space-between start" layout-margin>
       <app-dashboard-pie-charts [pieData]='pieData' [colorScheme]='colorScheme' flex="50"
                                 [title]='pieChartTitle' class="ml-0"></app-dashboard-pie-charts>
-      <app-email-section flex [recipients]='recipients' [senders]="senders"
+      <app-email-section flex [figureColor]='figureColor' [users]='recipients'
                          [title]='pieChartTitle'
-                         class='mr-0'></app-email-section>
+                         [emailScoreColor]='emailScoreColor' class='mr-0'></app-email-section>
     </div>
     <div>
       <app-dashboard-news-feed [feeds]="feeds"></app-dashboard-news-feed>
     </div>
   </div>
 </div>
-<style>
-  .selectedTimeFrame {
-    background-color: white !important;
-    color: #333333;
-  }
-</style>
+
 <!--
 <style>
   @media screen and (min-width: 1000px) and (max-width: 1150px) {

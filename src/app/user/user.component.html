@@ -26,10 +26,6 @@
             routerLink="/user/account" routerLinkActive="active">
           <md-icon class="center-icon" svgIcon="settings"></md-icon>
         </li>
-        <li mdTooltip="Help" mdTooltipPosition="right" class="text-center pt-3 pb-3 mb-3"
-            routerLink="/user/help" routerLinkActive="active">
-          <md-icon class="center-icon" svgIcon="help"></md-icon>
-        </li>
       </ul>
     </nav>
   </md-sidenav>
@@ -72,7 +68,7 @@
       </div>
     </nav>
     <div *tdLoading="'overlayStarSyntax'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'accent'">
-      <div [attr.id]="conditionalId">
+      <div id="userAppContainer">
         <router-outlet></router-outlet>
       </div>
     </div>
@@ -80,3 +76,9 @@
 </md-sidenav-container>
 
 
+<style>
+  #userAppContainer {
+    margin: 0 7%;
+    padding: 2em 0;
+  }
+</style>

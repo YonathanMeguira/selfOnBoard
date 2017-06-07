@@ -4,7 +4,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
 import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
 import {AccountService} from '../account/account.service';
-import {HTTPStateService} from '../shared/custom-http';
+ import {HTTPStateService} from '../shared/custom-http';
 import {Subscription} from 'rxjs/Subscription';
 import {TdLoadingService} from '@covalent/core';
 
@@ -45,6 +45,7 @@ export class UserChangePasswordComponent {
   }
 }
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html?v=${new Date().getTime()',
@@ -58,34 +59,32 @@ export class UserComponent {
   private servername: string;
   showLoader = false;
   showPostLoader = false;
-  conditionalId: string;
   overlayStarSyntax = false;
   getStateSubscription: Subscription;
   postStateSubscription: Subscription;
   // TODO:: change the value from the service
   isStripeUser = false;
   private dialogRef: MdDialogRef<any>;
-
   togglePostSpinner(): void {
-    if (!this.showPostLoader) {
-      this._loadingService.resolve('overlayStarSyntax');
-    } else {
+    if (this.showPostLoader) {
+      console.log('subscribing to post')
       this._loadingService.register('overlayStarSyntax');
+    } else {
+      console.log('resolving from post')
+     this._loadingService.resolve('overlayStarSyntax');
     }
     this.overlayStarSyntax = !this.overlayStarSyntax;
   }
-
   constructor(private router: Router,
               iconReg: MdIconRegistry,
               sanitizer: DomSanitizer,
               public dialog: MdDialog,
-              private httpState: HTTPStateService,
-              private _loadingService: TdLoadingService) {
+             private httpState: HTTPStateService,
+             private _loadingService: TdLoadingService ) {
 
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
         this.showLoader = state;
-        console.log(state);
       });
 
     this.postStateSubscription = this.httpState.postProtocolState$.subscribe(
@@ -98,7 +97,6 @@ export class UserComponent {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
-        this.setConditionalIdForAppContainer(event.url);
       }
       const user = localStorage.getItem('username');
       if (user) {
@@ -111,14 +109,8 @@ export class UserComponent {
       .addSvgIcon('mails', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/mails.svg'))
       .addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/settings.svg'))
       .addSvgIcon('loginLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/loginLogo'))
-      .addSvgIcon('resecLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/resecLogo.svg'))
-      .addSvgIcon('help', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/info.svg'))
-      .addSvgIcon('releaseMail', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/releaseMail.svg'))
-      .addSvgIcon('forwardMail', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/forwardMail.svg'))
-  }
+      .addSvgIcon('resecLogo', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/resecLogo.svg'));
 
-  setConditionalIdForAppContainer(currentRoute: string) {
-    this.conditionalId = (currentRoute === '/user/security/exceptions') ? 'securityId' : 'userAppContainer';
   }
 
   defineUserOrigin() {

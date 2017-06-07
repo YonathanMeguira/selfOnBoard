@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   randomUsers: Array<any>;
   senders: Array<string>;
   recipients: Array<string>;
-  topSenders: any;
-  topRecipients: any;
+  displayingSenders = false;
+  displayingRecipients = true;
   colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
   graphColor = {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
@@ -63,10 +63,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   changeTimeFrame = (newTime: number) => {
     this.timeFrame = newTime;
-    console.log('new time is coming up');
     this.loadDashboardData(newTime);
-    console.log(this.allData);
+  //  this.store.dispatch(this.dashboardActions.loadDashboardData(newTime));
   }
+
   dictionaryToObject = (dictionary: any) => {
 
     const arr = [];
@@ -79,7 +79,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     return arr.slice(0, 5);
   }
-
   generateThreeDifferentRandomNumbers() {
     let arr = [];
     while (arr.length < 3) {
@@ -89,28 +88,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return arr;
   }
-
   makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
     const randomFeeds = [];
     const randomNumbers = this.generateThreeDifferentRandomNumbers();
     for (const i of randomNumbers) {
+      console.log(i);
       randomFeeds.push(arrayOfFeeds[i]);
     }
     ;
+    console.log(arrayOfFeeds);
     return randomFeeds;
   }
-
   GetFeed = () => {
     this.dashboardService.GetFeed().subscribe(
       res => {
         const feed = res.response.results;
         this.feeds = this.makeArrayOfRandomFeeds(feed);
+        console.log(this.feeds);
       },
       error => console.log(error)
     );
   }
-
-
   selectedGraphChanged(event) {
     switch (event) {
       case 'totals.totalCleanReplicaByCdr':
@@ -118,8 +116,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
         this.graphColor = {domain: ['#326491']};
         this.pieChartTitle = 'Clean Replica By CDR';
-        this.senders = this.topSenders.TotalModified;
-        this.recipients = this.topRecipients.TotalModified;
         this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
         break;
       case 'totals.attachmentOk':
@@ -127,8 +123,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
         this.graphColor = {domain: ['#33796C']};
         this.pieChartTitle = 'Original Attachment OK';
-        this.senders = this.topSenders.TotalPassed;
-        this.recipients = this.topRecipients.TotalPassed;
         this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
         break;
       case 'totals.blockedByPolicy':
@@ -136,8 +130,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.graphColor = {domain: ['#C98F20']};
         this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
         this.pieChartTitle = 'Attachment Blocked by Policy';
-        this.senders = this.topSenders.TotalBlockedByPolicy;
-        this.recipients = this.topRecipients.TotalBlockedByPolicy;
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
         break;
       case 'totals.attachmentBlockedByAntivirus':
@@ -145,8 +137,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
         this.graphColor = {domain: ['#994110']};
         this.pieChartTitle = 'Attachment Blocked By Antivirus';
-        this.senders = this.topSenders.TotalBlockedByAntivirus;
-        this.recipients = this.topRecipients.TotalBlockedByAntivirus;
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
         break;
     }
@@ -159,40 +149,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
       domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
     };
     this.pieChartTitle = 'Total Passed Files';
-    this.senders = this.topSenders.AllAttachments;
-    this.recipients = this.topRecipients.AllAttachments;
   };
 
-  loadDashboardData(timeFrame: number) {
+  loadDashboardData(timeFrame: number){
     this.dashboardService.getDashboardData(timeFrame).subscribe(
       res => {
         if (!res) {
           return;
         }
         this.allData = res;
+        console.log(this.allData);
         this.totals.TotalEmailsProcessed = res.TotalEmailsProcessed;
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
         this.totals.TotalUrls = res.TotalUrls;
         this.totals.TotalAttachmentProcessed = res.TotalAttachmentProcessed;
-        this.topRecipients = res.TopSendersRecipientsAddresses.TopRecipients;
-        this.topSenders = res.TopSendersRecipientsAddresses.TopSenders;
-        this.recipients = this.topRecipients.AllAttachments;
-        this.senders = this.topSenders.AllAttachments;
+        this.recipients = res.TopTenCleanCdrReplicaRecipients;
+        this.senders = res.TopTenCleanCdrReplicaSenders;
         // this.store.dispatch(this.dashboardActions.loadDashboardData());
         this.cleanReplica = {
           'name': 'Clean Replica by CDR',
           'series': [
             {
               'name': 'April',
-              'value': 100
+              'value': 41
             },
             {
               'name': 'May',
-              'value': 20
+              'value': 54
             },
             {
               'name': 'June',
-              'value': 90
+              'value': 60
             }
           ]
         };
@@ -201,11 +188,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           'series': [
             {
               'name': 'April',
-              'value': 10
+              'value': 70
             },
             {
               'name': 'May',
-              'value': 100
+              'value': 20
             },
             {
               'name': 'June',
@@ -218,15 +205,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
           'series': [
             {
               'name': 'April',
-              'value': 50
+              'value': 30
             },
             {
               'name': 'May',
-              'value': 120
+              'value': 45
             },
             {
               'name': 'June',
-              'value': 20
+              'value': 90
             },
           ]
         };
@@ -239,11 +226,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             },
             {
               'name': 'May',
-              'value': 140
+              'value': 15
             },
             {
               'name': 'June',
-              'value': 10
+              'value': 34
             },
           ]
         };
@@ -259,6 +246,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.log(error);
       },
       () => {
+        console.log('data has finished loaded')
         this.dataHasLoaded = true;
       });
   }

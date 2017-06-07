@@ -1,8 +1,6 @@
-import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {TdFileService, IUploadOptions} from '@covalent/core';
-import {Policy} from '../../../model/company-policy';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {ExistingSettingsModel, NewSettingsModel} from '../../Models';
+import {FormControl} from '@angular/forms'
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -19,23 +17,19 @@ class BaseComponent {
     }
     return null;
   };
-
-  stringIsEmail(email: string) {
-    const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return pattern.test(email);
-  }
 }
+;
+
 
 @Component({
   selector: 'existing-exceptions',
   templateUrl: './existing-exceptions.component.html',
   styleUrls: ['../exception.component.css']
 })
-export class ExistingExceptionsComponent {
+export class ExistingExceptionsComponent implements OnInit {
   @Input() exceptionsList: any;
   @Input() currentSettings: any;
   @Input() noSettingsExist: boolean;
-  @Input() newDepartmentRequired: boolean;
   @Output() onSelect = new EventEmitter<any>();
   selectedPolicyName: string;
   validators: any;
@@ -44,6 +38,10 @@ export class ExistingExceptionsComponent {
   constructor() {
   };
 
+  ngOnInit() {
+  }
+  ;
+
   selectDepartment = (departmentName: string) => {
     this.selectedPolicyName = departmentName;
     this.onSelect.emit(departmentName);
@@ -51,154 +49,108 @@ export class ExistingExceptionsComponent {
 
   isCurrentPolicy = (selectedPolicy: string) => {
     let isCurrentPolicy = false;
-    if (selectedPolicy === this.currentSettings.policyName) {
-      isCurrentPolicy = true;
+    if (selectedPolicy === this.currentSettings.PolicyName) {
+      isCurrentPolicy = true
     } else {
       isCurrentPolicy = false;
     }
     return isCurrentPolicy;
   }
 }
-
-@Component({
-  selector: 'app-confirm-exception-deletion',
-  template: ` <h3 md-dialog-title>Delete {{data}} ?</h3>
-  <md-dialog-content>This action is irreversible</md-dialog-content>
-  <md-dialog-actions>
-    <button md-button md-dialog-close (click)="dialogRef.close(false)">Don't Delete</button>
-    <!-- Can optionally provide a result for the closing dialog. -->
-    <button md-button [style.color]="'red'" (click)="dialogRef.close(true)">Delete</button>
-  </md-dialog-actions>
-  `,
-})
-export class DeleteExceptionDialog {
-  constructor(public dialogRef: MdDialogRef<DeleteExceptionDialog>, @Inject(MD_DIALOG_DATA) public data: any) {
-  }
-}
+;
 
 @Component({
   selector: 'exception-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['../exception.component.css'],
-  providers: [TdFileService],
-  entryComponents: [DeleteExceptionDialog]
+  styleUrls: ['../exception.component.css']
 })
-export class ExceptionSettingsComponent extends BaseComponent {
+export class ExceptionSettingsComponent extends BaseComponent implements OnInit {
 
-  @Input() settings: Policy;
+  mainPolicyExceptionsSettings: any;
+
+  @Input() settings: ExistingSettingsModel;
   @Output() onSave = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
-  users: any[];
-  addedUsers: string;
-  addingUsers: boolean;
-  numberOfMaxItems = 1;
 
-  constructor(public dialog: MdDialog) {
+  constructor() {
     super();
-    this.addingUsers = false;
+
   };
 
-
-  addUsers(value: boolean) {
-    this.addingUsers = value;
-    if (!value && this.addedUsers) {
-      // adding the users
-      const splittedEmails = this.addedUsers.split(',');
-      for (const email of splittedEmails) {
-        const noSpaceEmail = email.replace(/\s+/g, '');
-        if (this.stringIsEmail(noSpaceEmail)) {
-          if (!this.settings.exceptions.includes(noSpaceEmail)) {
-            this.settings.exceptions.push(noSpaceEmail);
-          }
-        }
-      }
-    }
-  }
-
-  moreItemsToDisplay(exceptions: Array<string>) {
-    if (exceptions) {
-      return (exceptions.length > this.numberOfMaxItems);
-    }
-  }
-
-  displayRemainingItems(exceptions: Array<string>) {
-    const arrLength = exceptions.length;
-    this.users = exceptions.slice(0, arrLength);
-    this.numberOfMaxItems = arrLength;
-  }
-
-  displayLessItems(exceptions: Array<string>) {
-    this.numberOfMaxItems = 1;
-    this.users = exceptions.slice(0, 1);
+  ngOnInit() {
   };
 
-  deletePolicy = (policy: Policy) => {
-    const dialogRef = this.dialog.open(DeleteExceptionDialog, {
-      data: policy.policyName
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) { // result => boolean : true or false
-        this.onDelete.emit(policy);
+  restoreDefaultCdr = () => {
+    this.settings.AttachementsProcessedLevels.Documents = 2;
+    this.settings.AttachementsProcessedLevels.Images = 2;
+    this.settings.AttachementsProcessedLevels.Presentations = 2;
+    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
+  }
+  restoreDefaultNoCdr = () => {
+    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
+    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
+    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+    this.settings.SpecialAttachments['Password Protected'] = 0;
+  };
+  deletePolicy = (policy: any) => {
+    this.onDelete.emit(policy);
+  }
+  restoreDefaultSpecial = () => {
+    console.log('service not ready yet..');
+  }
+  saveSettings = (settings: any) => {
+    const users = settings.Exceptions;
+    console.log(settings);
+    const extractedUsers = [];
+    users.forEach((user) => {
+      if (user !== null && typeof user === 'object') {
+        extractedUsers.push(user.value);
+      } else {
+        extractedUsers.push(user);
       }
     });
-  }
-  saveSettings = (settings: Policy) => {
+    settings.Exceptions = extractedUsers;
     this.onSave.emit(settings);
   }
 
-  uploadEvent(file: File) {
-    console.log(file)
-    const fileName = file.name;
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
-    var readingState = fileReader.readyState;
-    console.log(readingState);
-   // fileReader.onloadend(event);
-    const result = fileReader.result;
-    console.log(result);
-  };
-
 }
+;
+
 @Component({
   selector: 'new-exception',
   templateUrl: './new-exception.html',
   styleUrls: ['../exception.component.css']
 })
+
 export class NewExceptionComponent extends BaseComponent {
-  settings: Policy = new Policy();
-  addedUsers = '';
+  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   @Output() onCancel = new EventEmitter<any>();
-  @Output() onSave = new EventEmitter<Policy>();
+  @Output() onSave = new EventEmitter<NewSettingsModel>();
 
   constructor() {
     super();
-    this.settings.AttachmentsProcessedLevels.documents = 1;
-    this.settings.AttachmentsProcessedLevels.images = 1;
-    this.settings.exceptions = [];
-    this.settings.AttachmentsProcessedLevels.presentations = 1;
-    this.settings.AttachmentsProcessedLevels.spreadsheets = 1;
-    this.settings.AttachmentsWithoutCdr.unrecognizedFiles = 0;
-    this.settings.AttachmentsWithoutCdr.videoSound = 0;
-    this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;
-    this.settings.SpecialAttachments.passwordProtected = 0;
+    this.settings.AttachementsProcessedLevels.Documents = 2;
+    this.settings.AttachementsProcessedLevels.Images = 2;
+    this.settings.AttachementsProcessedLevels.Presentations = 2;
+    this.settings.AttachementsProcessedLevels.Spreadsheets = 2;
+    this.settings.AttachementsWithoutCdr['Unrecognized Files'] = 0;
+    this.settings.AttachementsWithoutCdr['Video/Sound'] = 0;
+    this.settings.AttachementsWithoutCdr['Applications/Scripts'] = 0;
+    this.settings.SpecialAttachments['Password Protected'] = 0;
   };
 
   cancelCreation = (cancel: boolean) => {
     this.onCancel.emit(cancel);
   }
   saveSettings = (newSettings: any) => {
-    const splittedEmails = this.addedUsers.split(',');
-    for (const email of splittedEmails) {
-      const noSpaceEmail = email.replace(/\s+/g, '');
-      if (this.stringIsEmail(noSpaceEmail)) {
-        this.settings.exceptions.push(noSpaceEmail);
-      }
-    }
+    const users = newSettings.Exceptions;
+    const extractedUsers = [];
+    users.forEach((user) => {
+      extractedUsers.push(user.value);
+    });
+    delete newSettings.Exceptions;
+    newSettings.Exceptions = extractedUsers;
     this.onSave.emit(newSettings);
-  }
-
-  newExceptionHasEmail() {
-    return this.addedUsers.length < 5;
   }
 }
 

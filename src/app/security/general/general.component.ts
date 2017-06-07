@@ -6,7 +6,6 @@ import {
   GeneralSettingsWithoutCDRComponent,
   SpecialAttachmentsComponent
 } from './templates/templates.components';
-import {Policy} from '../../model/company-policy';
 
 @Component({
   selector: 'app-general',
@@ -17,7 +16,8 @@ import {Policy} from '../../model/company-policy';
 })
 
 export class GeneralComponent implements OnInit{
-  mainPolicySettings: Policy = new Policy();
+
+  mainPolicySettings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}, 'SpecialAttachments': {}};
   numberOfMaliciousLinks = 4;
   defaultValues: any;
 
@@ -25,7 +25,7 @@ export class GeneralComponent implements OnInit{
     this.securityService.getSettings().subscribe(
       result => {
         this.mainPolicySettings = result;
-
+        this.defaultValues = result;
         console.log(this.mainPolicySettings);
       }, error => {
         console.log('an error occurred');
@@ -35,13 +35,13 @@ export class GeneralComponent implements OnInit{
   constructor(private securityService: SecurityService, private changeDetection: ChangeDetectorRef) {
   }
   resetToDefaultValues(){
-    this.mainPolicySettings = new Policy();
+    this.mainPolicySettings = this.defaultValues;
   }
   saveSettings = () => {
     // setting all values on cdr to be the same
-    // for (const setting in this.mainPolicySettings.AttachmentsProcessedLevels) {
-    //   this.mainPolicySettings.AttachmentsProcessedLevels[setting] = this.mainPolicySettings.AttachmentsProcessedLevels['documents'];
-    // }
+    for (const setting in this.mainPolicySettings.AttachementsProcessedLevels) {
+      this.mainPolicySettings.AttachementsProcessedLevels[setting] = this.mainPolicySettings.AttachementsProcessedLevels['Documents'];
+    }
     this.securityService.saveSettings(this.mainPolicySettings).subscribe(
       success => {
         console.log(success);

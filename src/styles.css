@@ -11,77 +11,10 @@
   font-family: 'sobRoboto'; /*a name to be used later*/
   src: url('https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto_slab/robotoslab-regular-webfont.ttf')
 }
-/* this id is added dynamically to the app container based on the current route */
-
-#securityId{
-  margin-left: 1.7% !important;
-  margin-right: 14.0625% !important;
-}
-textarea:focus, input:focus, input[type]:focus {
-  outline: 0 none !important;
-}
-.mini-heading{
-  font-family: 'RobotoSlab-Regular', 'Roboto Slab' !important;
-  font-weight: 600 !important;
-  font-style: normal !important;
-  font-size: 14px !important;
-  color: #666666 !important;
-}
-.custom-textarea{
-  border: transparent;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2),
-  0 0px 0px 0 rgba(0, 0, 0, .14),
-  0 0px 0px 0 rgba(0, 0, 0, .12);
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
-  will-change: box-shadow;
-  display: block;
-  font-size: 14px;
-  color: #999999;
-  font-style: normal;
-  line-height: 15px;
-
-  position: relative;
-  border-radius: 2px;
-  background-color: white;
-
-}
-/* font sizes classes */
-.fs-11{
-  font-size: 11px !important;
-}
-.fs-13{
-  font-size: 13px !important;
-}
-
-.fs-16{
-  font-size: 16px !important;
-}
-
-/* general classes for margins */
-
-.mt-53px{
-  margin-top: 53px !important;
-}
-.ml-19px{
-  margin-left: 19px !important;
-}
-.mb-12px{
-  margin-bottom: 12px !important;
-}
-.pb-42px{
-  padding-bottom: 42px !important;
-}
-
-.mt-30px{
-  margin-top: 30px;
-}
-
 
 .td-loading-wrapper.td-overlay  .td-loading{
   background: rgba(255,255,255,0.63);
 }
-
-
 
 #coming-soon {
   background: #FFFFFF;
@@ -89,10 +22,7 @@ textarea:focus, input:focus, input[type]:focus {
   border: 1px solid #979797;
   border-radius: 25px;
 }
-.inner-link{
-  color: #499CE0 !important;
-  cursor: pointer !important;
-}
+
 #coming-soon > p {
   color: #404040;
   font-size: 16px;

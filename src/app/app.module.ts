@@ -12,8 +12,6 @@ import {SearchComponent} from './email/search/search.component';
 import {BrowseComponent} from './email/browse/browse.component';
 import {SecurityComponent} from './security/security.component';
 import {ExceptionComponent} from './security/exception/exception.component';
-import {DeleteExceptionDialog} from './security/exception/templates/templates.component';
-
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
 import {UserComponent, UserChangePasswordComponent} from './user/user.component';
@@ -43,21 +41,7 @@ import {AppRoutingModule} from './app.routes';
 import {ResponseHandlerService} from './shared/response-handler.service';
 import {UserIsSobAndHasToken} from './shared/route-activators';
 // 3rd libraries
-import {
-  MdSliderModule,
-  MdCheckboxModule,
-  MdSlideToggleModule,
-  MdSidenavModule,
-  MdListModule,
-  MdButtonModule,
-  MdProgressBarModule,
-  MdProgressSpinnerModule,
-  MdDialogModule,
-  MdSelectModule,
-  MdRadioModule,
-  MdInputModule
-} from '@angular/material';
-
+import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DatePickerModule} from 'ng2-datepicker';
@@ -71,10 +55,9 @@ import {default as reducer} from './store/app-store';
 
 // custom pipes
 
-import {DictionaryIteratorPipe, GetPercentagePipe, ArrayLengthPipe, RemainingItemsInArrayPipe} from './shared/pipes';
+import {DictionaryIteratorPipe, GetPercentagePipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
-import 'hammerjs';
 
 // dashboard components
 import {
@@ -93,7 +76,6 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
-import {HelpComponent} from './help/help.component';
 
 
 @NgModule({
@@ -123,8 +105,6 @@ import {HelpComponent} from './help/help.component';
     ExistingExceptionsComponent,
     NewExceptionComponent,
     DictionaryIteratorPipe,
-    ArrayLengthPipe,
-    RemainingItemsInArrayPipe,
     NotificationsComponent,
     BillingComponent,
     TotalsTopComponent,
@@ -132,29 +112,17 @@ import {HelpComponent} from './help/help.component';
     GraphComponent,
     PieChartsComponent,
     ConfirmDialog,
-    DeleteExceptionDialog,
     FirstTimeUserComponent,
     GetPercentagePipe,
-    NewUserPasswordComponent,
-    HelpComponent,
+    NewUserPasswordComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MdSliderModule,
-    MdCheckboxModule,
-    MdSlideToggleModule,
-    MdSidenavModule,
-    MdListModule,
-    MdButtonModule,
-    MdProgressBarModule,
-    MdProgressSpinnerModule,
-    MdDialogModule,
-    MdSelectModule,
-    MdRadioModule,
-    MdInputModule,
+    MaterialModule,
     FlexLayoutModule,
     CovalentDataTableModule,
     BrowserAnimationsModule,
@@ -181,7 +149,7 @@ import {HelpComponent} from './help/help.component';
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog,
-    UserChangePasswordComponent, UpdatePlanComponent, DeleteExceptionDialog],
+    UserChangePasswordComponent, UpdatePlanComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

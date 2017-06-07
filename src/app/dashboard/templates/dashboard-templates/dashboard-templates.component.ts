@@ -54,7 +54,7 @@ export class GraphComponent implements OnInit {
   @Input() graphData: any;
   curving: any;
   @Input() graphColor: string;
-  view: any[];
+  // view: any[] = [100%, 229];
   showXAxis = true;
   showYAxis = false;
   gradient = false;
@@ -71,7 +71,6 @@ export class GraphComponent implements OnInit {
   // lie, area
   constructor() {
     this.curving = d3.curveCardinal;
-    this.view = undefined;
   }
 
   ngOnInit() {
@@ -98,20 +97,14 @@ export class PieChartsComponent {
 })
 
 export class EmailSectionComponent {
-  @Input() senders;
-  @Input() recipients;
+  @Input() figureColor;
+  @Input() users;
   @Input() title: string;
-  displayingSenders = false;
-  displayingRecipients = true;
-  displaySenders() {
-    this.displayingRecipients = false;
-    this.displayingSenders = true;
-  }
-  displayRecipients (){
-    this.displayingRecipients = true;
-    this.displayingSenders = false;
-  }
-
+  @Input() emailScoreColor: string;
+  userValues: Array<object> = [{'name': 'April', 'value': 20}, {'name': 'May', 'value': 40}, {
+    'name': 'June',
+    'value': 30
+  }, {'name': 'July', 'value': 67}];
 }
 
 @Component({

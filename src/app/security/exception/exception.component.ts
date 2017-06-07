@@ -5,8 +5,6 @@ import {
   NewExceptionComponent
 } from './templates/templates.component';
 import {SecurityService} from '../security.service';
-import {Policy} from '../../model/company-policy';
-
 
 @Component({
   selector: 'app-exception',
@@ -19,7 +17,7 @@ import {Policy} from '../../model/company-policy';
 export class ExceptionComponent {
   newDepartment = false;
   dataIsLoading = true;
-  settings:  { [name: string]: Policy };
+  settings: any = {'AttachementsProcessedLevels': {}, 'AttachementsWithoutCdr': {}};
   exceptionsList: any = {};
   noSettingsExist = true;
 
@@ -27,7 +25,7 @@ export class ExceptionComponent {
     this.loadSettings();
   };
   loadSettings = () => {
-    this.securityService.getPolicyExceptionsSettings().subscribe(
+    this.securityService.GetPolicyExceptionsSettings().subscribe(
       (result) => {
         if (Object.keys(result).length === 0 && result.constructor === Object) {
           this.noSettingsExist = true;
@@ -35,6 +33,8 @@ export class ExceptionComponent {
           this.noSettingsExist = false;
           this.settings = result[Object.keys(result)[0]];
           this.exceptionsList = result;
+          console.log(this.exceptionsList);
+          console.log('result are not empty');
         }
       }, (error) => {
         console.log('an error occurred');
@@ -48,10 +48,12 @@ export class ExceptionComponent {
     this.settings = this.exceptionsList[departmentName];
     console.log(this.settings);
   }
-  deletePolicy = (policy: Policy) => {
+  deletePolicy = (policy: any) => {
+    console.log('deleting');
     this.securityService.deletePolicyExceptionSettings(policy).subscribe(
       result => {
-        const policyName = policy.policyName;
+        console.log(result);
+        const policyName = policy.PolicyName;
         delete this.exceptionsList[policyName];
         if (Object.keys(this.exceptionsList).length === 0) {
           this.noSettingsExist = true;
@@ -73,10 +75,12 @@ export class ExceptionComponent {
   newDptQuery = (newDpt: boolean) => {
     this.newDepartment = newDpt;
   }
-  postNewSettings = (settings: Policy) => {
+  postNewSettings = (settings: any) => {
+    console.log(settings);
     this.securityService.savePolicyExceptionSettings(settings).subscribe(
       success => {
-        const policyName = settings.policyName;
+        console.log(success);
+        const policyName = settings.PolicyName;
         this.exceptionsList[policyName] = success;
         this.newDepartment = false;
         this.settings = success;

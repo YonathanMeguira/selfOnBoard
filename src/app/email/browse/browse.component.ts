@@ -26,11 +26,11 @@ export class BrowseComponent extends EmailComponent implements OnInit {
     {name: 'SanitizationDate', label: 'Date', format: rawDate => this.convertToDate(rawDate)},
     {name: 'Reason Blocked', label: 'Reason'},
     {name: 'Recipient', label: 'Recipient'},
-    {name: 'Attached Files', label: 'Attached File(s)'},
+    {name: 'AttachedFiles', label: 'Attached File(s)'},
   ];
   query: any = {
     sortField: 'SanitizationDate',
-    PageSize: 5,
+    PageSize: 10,
     PageIndex: 1,
     sortOrder: 'Asc',
     Stage: 'All'

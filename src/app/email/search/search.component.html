@@ -1,70 +1,49 @@
 <div>
-  <p>Ticket Id valid with JDEV</p>
-  <p> with attachments: eb7ff222-1e93-477e-b704-ae9dfe432770</p>
-  <p> without attachments : 1cd8dd9a-22df-4255-80bf-f3bdfa4e37d9</p>
   <div *ngIf="!isFirstTime" class="mb-5 mt-5">
     <div class="white frame">
       <div class="col-8 pl-0">
         <div layout="row" class="search-container" layout-align="start end">
-          <label class="mr-5 mb-0 search-label">ReSec Ticket ID</label>
+          <label class="mr-5 mb-0 search-label" >Resec Ticket ID</label>
           <input type="text" class="sob-input" flex="50" [(ngModel)]="query.ticketId">
           <button class="btn search-btn" (click)="searchMails()" [disabled]="!query.ticketId">
             <i class="fa fa-chevron-right" aria-hidden="true" style="font-size: 18px"></i>
           </button>
         </div>
         <!-- search result section -->
-        <div class="pb-5" style="padding-left: 40px">
+        <div class="pl-5 pb-5">
           <div *ngIf="!noResultFound && !noSearchInitiated">
             <div class="mt-5 mb-4" *ngIf="!noResultFound">
-              <div class="row mb-3">
-                <p class="col-3">Date</p>
+              <div class="row">
+                <p class="bold-gray col-3">Date</p>
                 <p class="bold-dark-gray col">{{emails.SanitizationDate | date:'medium'}}</p>
               </div>
-              <div class="row mb-3">
-                <p class=" col-3">Reason</p>
+              <div class="row">
+                <p class="bold-gray col-3">Reason</p>
                 <p class="bold-dark-gray col">{{emails['Reason Blocked']}}</p>
               </div>
-              <div class="row mb-3">
-                <p class=" col-3">Recipient</p>
+              <div class="row">
+                <p class="bold-gray col-3">Recipient</p>
                 <p class="bold-dark-gray col">{{emails.Recipient}}</p>
               </div>
-              <div class="row mb-3">
-                <p class="col-3">Sender</p>
+              <div class="row">
+                <p class="bold-gray col-3">Sender</p>
                 <p class="bold-dark-gray col">{{emails.Sender}}</p>
               </div>
-              <div class="row mb-3">
-                <p class=" col-3">Subject</p>
+              <div class="row">
+                <p class="bold-gray col-3">Subject</p>
                 <p class="bold-dark-gray col">{{emails.Subject}}</p>
               </div>
-              <div class="row mb-3" *ngIf="fieldNotEmpty(emails['Attached Files'])">
-                <p class=" col-3">Attached Files</p>
-                <p class="bold-dark-gray col">{{emails['Attached Files']}}</p>
+              <div class="row">
+                <p class="bold-gray col-3">Attached Files</p>
+                <p class="bold-dark-gray col">.{{emails['Attached Files']}}</p>
               </div>
             </div>
 
-            <table class="table table-responsive" *ngIf="outcomesAreNotNull(emails['Attached Files Outcomes'])">
-              <thead>
-              <th>Attachment</th>
-              <th>Reason</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let attachment of emails['Attached Files Outcomes'] | DictionaryIteratorPipe: 'true'">
-                  <td>{{attachment.key}}</td>
-                  <td>{{attachment.value}}</td>
-                </tr>
-              </tbody>
-            </table>
-
             <div class="row mb-5">
-              <button class="btn btn-neutral-yellow-hvr" layout="row" layout-align="center center"
-                      (click)="performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')">
-                <md-icon class="center-icon mr-3" svgIcon="releaseMail"></md-icon>
-                Release to Recipient
+              <button class="btn btn-action-inverse"
+                      (click)="performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')">Release to Recipient
               </button>
-              <button class="btn btn-neutral-yellow-hvr"
-                      (click)="performAction(emails.SanitizationId, 'ForwardToAdmin')"
-                      layout="row" layout-align="center center">
-                <md-icon class="center-icon mr-3" svgIcon="forwardMail"></md-icon>
+              <button class="btn btn-action-inverse" (click)="performAction(emails.SanitizationId, 'ForwardToAdmin')">
                 Forward To Admin
               </button>
             </div>
@@ -90,8 +69,8 @@
 
 
 <style>
-  .search-label {
-    font-weight: 500;
-    color: #666666;
-  }
+.search-label{
+  font-weight: 500;
+  color: #666666;
+}
 </style>

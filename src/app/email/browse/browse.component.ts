@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MailService} from '../email.service';
-
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {
   ITdDataTableColumn,
@@ -20,6 +20,7 @@ import {EmailComponent} from '../email.component';
 export class BrowseComponent extends EmailComponent implements OnInit {
   emails: Array<any> = [];
   isEmailEmpty = true;
+  sub: any;
   totalNumberOfMails: number;
   selectedMails: number[] = [];
   columns: ITdDataTableColumn[] = [
@@ -36,12 +37,30 @@ export class BrowseComponent extends EmailComponent implements OnInit {
     Stage: 'All'
   };
 
-  constructor(private _mailService: MailService) {
+  constructor(private _mailService: MailService,
+              private route: ActivatedRoute,
+              private router: Router) {
     super();
   };
 
   ngOnInit() {
-    this.BrowseMails();
+
+    this.sub = this.route
+      .queryParams
+      .subscribe(params => {
+        if (params['sender']) {
+          this.query = {};
+          this.query.Sender = params.sender;
+          this.BrowseMails();
+        } else if (params['recipient']) {
+          this.query = {};
+          this.query.Recipient = params.recipient;
+          this.BrowseMails();
+        } else {
+          this.BrowseMails();
+        }
+      });
+
   };
 
   BrowseMails = () => {
@@ -113,4 +132,7 @@ export class BrowseComponent extends EmailComponent implements OnInit {
     this.BrowseMails();
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

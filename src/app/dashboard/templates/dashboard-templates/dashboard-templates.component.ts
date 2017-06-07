@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import * as d3 from 'd3';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-top-totals',
@@ -102,16 +103,34 @@ export class EmailSectionComponent {
   @Input() recipients;
   @Input() title: string;
   displayingSenders = false;
+  @Input() recipientValueColor: string;
   displayingRecipients = true;
+
+  constructor(private router: Router) {
+  }
+
   displaySenders() {
     this.displayingRecipients = false;
     this.displayingSenders = true;
   }
-  displayRecipients (){
+
+  displayRecipients() {
     this.displayingRecipients = true;
     this.displayingSenders = false;
   }
 
+  seeAllRelatedMails(type: string, mail: string) {
+    switch (type) {
+      case 'sender':
+        console.log('sender')
+        this.router.navigate(['user/emails/browse'], {queryParams: {sender: mail}});
+        break;
+      case 'recipient':
+        console.log('recipient');
+        this.router.navigate(['user/emails/browse'], {queryParams: {recipient: mail}});
+        break;
+    }
+  }
 }
 
 @Component({

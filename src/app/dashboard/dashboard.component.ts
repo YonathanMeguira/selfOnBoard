@@ -25,12 +25,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   graphData: any;
   currGraphData: any;
   getDashboardData: any;
+  recipientValueColor = '#9A1796';
   totals: any = {};
   dataHasLoaded = false;
   allData: any = {};
   feeds: Array<any>;
   pieData: any = {};
-  randomUsers: Array<any>;
   senders: Array<string>;
   recipients: Array<string>;
   topSenders: any;
@@ -118,6 +118,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme = {domain: ['#326491', '#4D9CE3', '#234768', '#6CAEE8', '#ADD2F2']};
         this.graphColor = {domain: ['#326491']};
         this.pieChartTitle = 'Clean Replica By CDR';
+        this.recipientValueColor = '#A5CDED';
         this.senders = this.topSenders.TotalModified;
         this.recipients = this.topRecipients.TotalModified;
         this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
@@ -127,6 +128,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme.domain = ['#33796C', '#4FBDAA', '#25574E', '#429B8B', '#AFE1D8'];
         this.graphColor = {domain: ['#33796C']};
         this.pieChartTitle = 'Original Attachment OK';
+        this.recipientValueColor = '#A4DCD2';
         this.senders = this.topSenders.TotalPassed;
         this.recipients = this.topRecipients.TotalPassed;
         this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
@@ -136,6 +138,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.graphColor = {domain: ['#C98F20']};
         this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
         this.pieChartTitle = 'Attachment Blocked by Policy';
+        this.recipientValueColor = '#F7D399';
         this.senders = this.topSenders.TotalBlockedByPolicy;
         this.recipients = this.topRecipients.TotalBlockedByPolicy;
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
@@ -145,6 +148,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.colorScheme.domain = ['#994110', '#EF661F', '#6D2F08', '#F1813C', '#F8B994'];
         this.graphColor = {domain: ['#994110']};
         this.pieChartTitle = 'Attachment Blocked By Antivirus';
+        this.recipientValueColor = '#F5AF91';
         this.senders = this.topSenders.TotalBlockedByAntivirus;
         this.recipients = this.topRecipients.TotalBlockedByAntivirus;
         this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
@@ -158,6 +162,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.graphColor = {
       domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
     };
+    this.recipientValueColor = '#9A1796';
     this.pieChartTitle = 'Total Passed Files';
     this.senders = this.topSenders.AllAttachments;
     this.recipients = this.topRecipients.AllAttachments;

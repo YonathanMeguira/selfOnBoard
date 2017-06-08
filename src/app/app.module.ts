@@ -94,6 +94,7 @@ import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
 import {HelpComponent} from './help/help.component';
+import { MnFullpageModule } from 'ngx-fullpage';
 
 
 @NgModule({
@@ -162,6 +163,7 @@ import {HelpComponent} from './help/help.component';
     DatePickerModule,
     NgxDatatableModule,
     NgbModule.forRoot(),
+    MnFullpageModule.forRoot(),
     TagInputModule,
     NgxChartsModule,
     StoreModule.provideStore(reducer),

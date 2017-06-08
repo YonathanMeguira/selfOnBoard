@@ -110,11 +110,11 @@ export class UserComponent {
 
     this.accountService.getAccountGeneralSettings().subscribe(
       result => {
-        if (result == null){
+        if (result == null) {
           return;
         }
 
-        this.isStripeUser = result.StripeSubscriptionToken ? true: false;
+        this.isStripeUser = result.StripeSubscriptionToken ? true : false;
       }, error => {
         console.log(error);
       });
@@ -133,6 +133,10 @@ export class UserComponent {
   setConditionalIdForAppContainer(currentRoute: string) {
     this.conditionalId = (currentRoute === '/user/security/exceptions') ? 'securityId' : 'userAppContainer';
   }
+
+
+
+
 
   defineUserOrigin() {
     let hasLoggedWithParamInUrl: boolean;

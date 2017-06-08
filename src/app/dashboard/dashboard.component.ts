@@ -12,6 +12,9 @@ import {
 import {Store} from '@ngrx/store';
 import {AppStore} from 'app/store/app-store';
 import {DashboardActions} from '../store/actions/dashboard.actions';
+import {SeriesModel, GraphDataModel} from './dashboard.models';
+import {serialize} from "@angular/compiler/src/i18n/serializers/xml_helper";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +24,7 @@ import {DashboardActions} from '../store/actions/dashboard.actions';
   entryComponents: [TotalsTopComponent, GraphSelectorComponent,
     GraphComponent, PieChartsComponent, EmailSectionComponent, NewsFeedComponent]
 })
+
 export class DashboardComponent implements OnInit, OnDestroy {
   graphData: any;
   currGraphData: any;
@@ -43,7 +47,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   emailScoreColor = '#8BBFEF';
   private cleanReplica: any;
   private attachmentOk: any;
-  private blockedByCDR: any;
+  private blockedByPolicy: any;
   private attachmentBlockedByAntivirus: any;
   timeFrame = 7;
 
@@ -134,7 +138,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
         break;
       case 'totals.blockedByPolicy':
-        this.graphData = [this.blockedByCDR];
+        this.graphData = [this.blockedByPolicy];
         this.graphColor = {domain: ['#C98F20']};
         this.colorScheme.domain = ['#C98F20', '#F4AE29', '#6F500D', '#F8CA72', '#FBE7C2'];
         this.pieChartTitle = 'Attachment Blocked by Policy';
@@ -156,8 +160,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  makeDataGraphReadable(objectName: string, data: any) {
+    let graphObject = new GraphDataModel(objectName);
+    const serializedData = [];
+    for (const measurement of data) {
+      const object: any = {};
+      object.name = new Date(measurement.Key);
+      object.value = measurement.Value;
+      serializedData.push(object);
+    }
+    console.log(serializedData);
+    graphObject.series = serializedData;
+    console.log(graphObject);
+    return graphObject;
+  }
+
   showAllGraphs = (event) => {
-    this.graphData = [this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR];
+    this.graphData = this.currGraphData;
     this.colorScheme = {domain: ['#582662', '#893D99', '#3F1D45', '#9E5FAB', '#C9A6D1']};
     this.graphColor = {
       domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
@@ -184,77 +203,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.recipients = this.topRecipients.AllAttachments;
         this.senders = this.topSenders.AllAttachments;
         // this.store.dispatch(this.dashboardActions.loadDashboardData());
-        this.cleanReplica = {
-          'name': 'Clean Replica by CDR',
-          'series': [
-            {
-              'name': 'April',
-              'value': 100
-            },
-            {
-              'name': 'May',
-              'value': 20
-            },
-            {
-              'name': 'June',
-              'value': 90
-            }
-          ]
-        };
-        this.attachmentOk = {
-          'name': 'Original Attachment OK',
-          'series': [
-            {
-              'name': 'April',
-              'value': 10
-            },
-            {
-              'name': 'May',
-              'value': 100
-            },
-            {
-              'name': 'June',
-              'value': 13
-            },
-          ]
-        };
-        this.blockedByCDR = {
-          'name': 'Attachment Blocked By CDR',
-          'series': [
-            {
-              'name': 'April',
-              'value': 50
-            },
-            {
-              'name': 'May',
-              'value': 120
-            },
-            {
-              'name': 'June',
-              'value': 20
-            },
-          ]
-        };
-        this.attachmentBlockedByAntivirus = {
-          'name': 'Attachment Blocked By Antivirus',
-          'series': [
-            {
-              'name': 'April',
-              'value': 23
-            },
-            {
-              'name': 'May',
-              'value': 140
-            },
-            {
-              'name': 'June',
-              'value': 10
-            },
-          ]
-        };
+        this.cleanReplica = this.makeDataGraphReadable('Clean Replica By CDR', this.allData.TotalSanitizationsPerDate.TotalCdrGraphList);
+        this.attachmentOk = this.makeDataGraphReadable('Attachments Passed OK', this.allData.TotalSanitizationsPerDate.TotalPassedGraphList);
+        this.blockedByPolicy = this.makeDataGraphReadable('Blocked By Policy', this.allData.TotalSanitizationsPerDate.TotalBlockedByPolicyGraphList);
+        this.attachmentBlockedByAntivirus = this.makeDataGraphReadable('Blocked By Antivirus', this.allData.TotalSanitizationsPerDate.TotalBlockedByAvGraphList);
         this.currGraphData =
           [
-            this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByCDR
+            this.cleanReplica, this.attachmentBlockedByAntivirus, this.attachmentOk, this.blockedByPolicy
           ];
 
         this.graphData = this.currGraphData;

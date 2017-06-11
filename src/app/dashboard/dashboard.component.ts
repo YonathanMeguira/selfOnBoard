@@ -67,9 +67,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   changeTimeFrame = (newTime: number) => {
     this.timeFrame = newTime;
-    console.log('new time is coming up');
     this.loadDashboardData(newTime);
-    console.log(this.allData);
   }
   dictionaryToObject = (dictionary: any) => {
 
@@ -169,9 +167,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       object.value = measurement.Value;
       serializedData.push(object);
     }
-    console.log(serializedData);
     graphObject.series = serializedData;
-    console.log(graphObject);
     return graphObject;
   }
 

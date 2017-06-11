@@ -19,13 +19,15 @@ import {Policy} from '../../model/company-policy';
 export class ExceptionComponent {
   newDepartment = false;
   dataIsLoading = true;
-  settings:  { [name: string]: Policy };
+  settings: { [name: string]: Policy };
+  allSettingsBackUp: { [name: string]: Policy };
   exceptionsList: any = {};
   noSettingsExist = true;
 
   constructor(private securityService: SecurityService) {
     this.loadSettings();
   };
+
   loadSettings = () => {
     this.securityService.getPolicyExceptionsSettings().subscribe(
       (result) => {
@@ -34,6 +36,7 @@ export class ExceptionComponent {
         } else {
           this.noSettingsExist = false;
           this.settings = result[Object.keys(result)[0]];
+          this.allSettingsBackUp = this.settings;
           this.exceptionsList = result;
         }
       }, (error) => {
@@ -67,11 +70,26 @@ export class ExceptionComponent {
   cancelCreation = (cancel: boolean) => {
     this.newDepartment = cancel;
     console.log(this.settings);
+    this.settings = this.allSettingsBackUp;
     this.noSettingsExist = (Object.keys(this.settings).length === 0 && this.settings.constructor === Object) ? true : false;
-
   }
+
+  loadGeneralSettings() {
+    this.securityService.getSettings().subscribe(
+      result => {
+        this.settings = result;
+        console.log(result);
+      }, error => {
+        console.log('an error occurred');
+      });
+  }
+
   newDptQuery = (newDpt: boolean) => {
     this.newDepartment = newDpt;
+    if (newDpt) {
+      console.log('adding exceptions');
+      this.loadGeneralSettings();
+    }
   }
   postNewSettings = (settings: Policy) => {
     this.securityService.savePolicyExceptionSettings(settings).subscribe(
@@ -79,10 +97,12 @@ export class ExceptionComponent {
         const policyName = settings.policyName;
         this.exceptionsList[policyName] = success;
         this.newDepartment = false;
-        this.settings = success;
+        this.allSettingsBackUp[policyName] = success;
+        this.settings = this.allSettingsBackUp;
         this.noSettingsExist = false;
       },
       error => console.log(error)
     );
   }
+
 }

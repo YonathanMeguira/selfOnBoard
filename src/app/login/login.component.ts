@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
           } else {
             localStorage.setItem('serverName', this.user.server);
             localStorage.setItem('userRole', success.UserRole);
+            localStorage.setItem('currentPassword', this.user.password);
             const token = 'Bearer ' + success.AccessToken;
             const isFirstTime = success.UserAdditionalData.IsFirstTime;
             localStorage.setItem('token', token);

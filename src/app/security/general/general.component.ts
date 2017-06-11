@@ -18,8 +18,6 @@ import {Policy} from '../../model/company-policy';
 
 export class GeneralComponent implements OnInit{
   mainPolicySettings: Policy = new Policy();
-  numberOfMaliciousLinks = 4;
-  defaultValues: any;
 
   ngOnInit() {
     this.securityService.getSettings().subscribe(

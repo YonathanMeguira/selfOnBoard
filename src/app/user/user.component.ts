@@ -7,7 +7,7 @@ import {AccountService} from '../account/account.service';
 import {HTTPStateService} from '../shared/custom-http';
 import {Subscription} from 'rxjs/Subscription';
 import {TdLoadingService} from '@covalent/core';
-
+import {PasswordMethods, PasswordModel} from '../model/passwords.model';
 
 @Component({
   selector: 'app-user-change-password',
@@ -16,21 +16,28 @@ import {TdLoadingService} from '@covalent/core';
   styleUrls: ['./user.component.css']
 })
 
-export class UserChangePasswordComponent {
+export class UserChangePasswordComponent extends PasswordMethods {
   changePassword = true;
   forgotPassword = false;
-  passwordsToSend: any = {};
+  passwordsToSend: PasswordModel = new PasswordModel();
 
   constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>,
               private accountService: AccountService) {
-
+    super();
   }
-
   switchToForgotPassword = () => {
     this.changePassword = false;
     this.forgotPassword = true;
   }
-
+  fieldIsValid(password: string){
+    return this.passwordIsValid(password);
+  }
+  oldPasswordIsValid(currentPassword: string){
+    return this.currentPasswordIsValid(currentPassword);
+  }
+  passwordsAreValid(newPassword: string, confirmNewPassword: string){
+    return this.bothPasswordsAreValidAndMatch(newPassword, confirmNewPassword);
+  }
   applyChangePassword() {
     this.accountService.ChangePassword(this.passwordsToSend).subscribe(
       result => {
@@ -43,6 +50,8 @@ export class UserChangePasswordComponent {
       }
     )
   }
+
+
 }
 
 @Component({
@@ -133,9 +142,6 @@ export class UserComponent {
   setConditionalIdForAppContainer(currentRoute: string) {
     this.conditionalId = (currentRoute === '/user/security/exceptions') ? 'securityId' : 'userAppContainer';
   }
-
-
-
 
 
   defineUserOrigin() {

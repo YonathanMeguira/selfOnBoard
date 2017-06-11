@@ -147,7 +147,9 @@ export class ExceptionSettingsComponent extends BaseComponent {
   }
 
   uploadEvent(file: File) {
-    console.log(file)
+    console.log(file);
+    var stam = file.msDetachStream;
+    console.log(stam);
     const fileName = file.name;
     const fileReader = new FileReader();
     fileReader.readAsArrayBuffer(file);

@@ -42,7 +42,6 @@ export class SecurityService {
       .map(
         (res) => {
           const json = res.json();
-          // return this.getMappedPolicy(json, Policy);
           return this.getMappedPolicy(json);
         }
       )
@@ -113,6 +112,7 @@ export class SecurityService {
 
   savePolicyExceptionSettings(settings): Observable<any> {
     const serializedException = serializePolicyToJson(settings);
+    console.log(serializedException);
     const url = 'http://' + this.server + ':4580/sob/api/securitySettings/savepolicyexceptions';
     return this.http.post(url, serializedException)
       .map((res) => {

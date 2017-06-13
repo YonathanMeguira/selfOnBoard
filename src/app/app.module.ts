@@ -13,11 +13,9 @@ import {BrowseComponent} from './email/browse/browse.component';
 import {SecurityComponent} from './security/security.component';
 import {ExceptionComponent} from './security/exception/exception.component';
 import {DeleteExceptionDialog} from './security/exception/templates/templates.component';
-
 import {GeneralComponent} from './security/general/general.component';
 import {AccountComponent} from './account/account.component';
 import {UserComponent, UserChangePasswordComponent} from './user/user.component';
-
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -76,6 +74,7 @@ import {NotificationsComponent} from './account/notifications/notifications.comp
 import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
 import 'hammerjs';
 
+import {SuccessDialog, ErrorGetDialog, ErrorPostDialog} from './shared/system.dialogs';
 // dashboard components
 import {
   TotalsTopComponent,
@@ -114,6 +113,9 @@ import { MnFullpageModule } from 'ngx-fullpage';
     UpdatePlanComponent,
     ChangePasswordModalComponent,
     UserChangePasswordComponent,
+    SuccessDialog,
+    ErrorGetDialog,
+    ErrorPostDialog,
     UserComponent,
     GeneralSettingsComponent,
     GeneralSettingsWithCDRComponent,
@@ -137,7 +139,7 @@ import { MnFullpageModule } from 'ngx-fullpage';
     FirstTimeUserComponent,
     GetPercentagePipe,
     NewUserPasswordComponent,
-    HelpComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
@@ -183,7 +185,7 @@ import { MnFullpageModule } from 'ngx-fullpage';
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [ChangePasswordModalComponent, ConfirmDialog,
-    UserChangePasswordComponent, UpdatePlanComponent, DeleteExceptionDialog],
+    UserChangePasswordComponent, UpdatePlanComponent, DeleteExceptionDialog, SuccessDialog, ErrorGetDialog, ErrorPostDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule {

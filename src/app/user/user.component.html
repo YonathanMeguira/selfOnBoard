@@ -34,7 +34,7 @@
     </nav>
   </md-sidenav>
   <div layout-fill style="background-color: #F7F8F8">
-    <md-progress-bar *ngIf="showLoader" mode="query"></md-progress-bar>
+    <md-progress-bar *ngIf="showLoader == true" mode="indeterminate"></md-progress-bar>
     <nav class="navbar sticky-top bg-white-shadow mb-0">
       <div class="container-fluid row">
         <div class="nav navbar-nav mr-auto  justify-content-center">
@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="nav navbar-nav ml-auto  justify-content-center">
-          
+
           <div class="dropdown">
             <button class="btn  dropdown-toggle"
                     type="button" id="dropdownMenu1"

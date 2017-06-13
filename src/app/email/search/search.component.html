@@ -2,6 +2,7 @@
   <p>Ticket Id valid with JDEV</p>
   <p> with attachments: eb7ff222-1e93-477e-b704-ae9dfe432770</p>
   <p> without attachments : 1cd8dd9a-22df-4255-80bf-f3bdfa4e37d9</p>
+
   <div *ngIf="!isFirstTime" class="mb-5 mt-5">
     <div class="white frame">
       <div class="col-8 pl-0">
@@ -42,12 +43,12 @@
               </div>
             </div>
 
-            <table class="table table-responsive" >
+            <table class="table table-responsive mt-5">
               <thead>
               <th class="col-2">Attachment</th>
               <th>Reason</th>
               </thead>
-              <tbody>
+              <tbody id="search-mail-body">
                 <tr *ngFor="let attachment of emails['Attached Files Outcomes'] | DictionaryIteratorPipe: 'true'">
                   <td>{{attachment.key}}</td>
                   <td>{{attachment.value}}</td>

@@ -11,16 +11,34 @@ import {Subscription} from 'rxjs/Subscription';
 @Injectable()
 export class HTTPStateService {
   private getProtocolStateSource = new Subject<boolean>();
+  private getErrorStateSource = new Subject<boolean>();
   private postProtocolStateSource = new Subject<boolean>();
+  private postProtocolStartSource = new Subject<boolean>();
+  private postErrorStateSource = new Subject<boolean>();
   getProtocolState$ = this.getProtocolStateSource.asObservable();
+  getErrorState$ = this.getErrorStateSource.asObservable();
   postProtocolState$ = this.postProtocolStateSource.asObservable();
+  postErrorState$ = this.postErrorStateSource.asObservable();
+  postStartState$ = this.postProtocolStartSource.asObservable();
 
   setGetState(inProcess: boolean) {
     this.getProtocolStateSource.next(inProcess);
   }
 
+  setGetError(error: boolean) {
+    this.getErrorStateSource.next(error);
+  }
+
   setPostState(inProcess: boolean) {
     this.postProtocolStateSource.next(inProcess);
+  }
+
+  setPostError(error: boolean) {
+    this.postErrorStateSource.next(error);
+  }
+
+  setPostProtocolStart(started: boolean) {
+    this.postProtocolStartSource.next(started);
   }
 }
 ;
@@ -49,17 +67,35 @@ export class HttpService extends Http {
   }
 
   // methods to intercept get calls
-  private onCatch(error: any, caught: Observable<any>): Observable<any> {
+  private onGetCatch(error: any, caught: Observable<any>): Observable<any> {
     return Observable.throw(error);
   }
 
-  private onSuccess(res: Response): Response {
-    return res;
-    // make something special for each retrieved value
+  private onPostCatch(error: any, caught: Observable<any>): Observable<any> {
+    return Observable.throw(error);
   }
 
-  private onError(error: any): void {
-    console.log(error);
+  private onPostSuccess(res: Response): Response {
+    this.hidePostLoader();
+    return res;
+  }
+
+  private onGetSuccess(res: Response): Response {
+    this.hideGetLoader();
+    return res;
+  }
+
+  private onGetError(error: any): void {
+    console.log('server error on get ', error);
+    this.httpState.setGetError(true);
+    this.httpState.setGetState(false);
+    // make something special on error
+  }
+
+  private onPostError(error: any): void {
+    console.log('post service error ', error);
+    this.httpState.setPostError(true);
+    this.httpState.setPostState(false);
     // make something special on error
   }
 
@@ -68,40 +104,42 @@ export class HttpService extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
-  //  this.showGetLoader();
+    //  this.showGetLoader();
     return super.get(url, options)
-      .catch(this.onCatch)
+      .catch(this.onGetCatch)
       .do((res: Response) => {
-       this.onSuccess(res);
+        this.onGetSuccess(res);
       }, (error: any) => {
-        this.onError(error);
+        this.onGetError(error);
       })
       .finally(() => {
-        this.hideGetLoader();
+        //   this.hideGetLoader();
+        console.log('finished get request');
       });
   }
 
   private showPostLoader() {
-    console.log('begining');
     this.httpState.setPostState(true);
   }
 
   private hidePostLoader() {
-    console.log('finished');
+    console.log('arrived at a result');
     this.httpState.setPostState(false);
   }
 
   post(url: string, data: any, options?: RequestOptionsArgs): Observable<Response> {
-    this.showPostLoader();
+    this.httpState.setPostProtocolStart(true);
     return super.post(url, data, options)
-      .catch(this.onCatch)
+      .catch(this.onPostCatch)
       .do((res: Response) => {
-        this.onSuccess(res);
+        this.onPostSuccess(res);
       }, (error: any) => {
-        this.onError(error);
+        this.onPostError(error);
       })
       .finally(() => {
-        this.hidePostLoader();
+        console.log('finished post request');
+        this.httpState.setPostProtocolStart(false);
+        // this.hidePostLoader();
       });
   }
 

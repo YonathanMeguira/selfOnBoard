@@ -1,4 +1,4 @@
-import {Component, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Router, NavigationEnd, Event} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
@@ -8,6 +8,7 @@ import {HTTPStateService} from '../shared/custom-http';
 import {Subscription} from 'rxjs/Subscription';
 import {TdLoadingService} from '@covalent/core';
 import {PasswordMethods, PasswordModel} from '../model/passwords.model';
+import {SuccessDialog, ErrorGetDialog, ErrorPostDialog} from '../shared/system.dialogs';
 
 @Component({
   selector: 'app-user-change-password',
@@ -25,19 +26,24 @@ export class UserChangePasswordComponent extends PasswordMethods {
               private accountService: AccountService) {
     super();
   }
+
   switchToForgotPassword = () => {
     this.changePassword = false;
     this.forgotPassword = true;
   }
-  fieldIsValid(password: string){
+
+  fieldIsValid(password: string) {
     return this.passwordIsValid(password);
   }
-  oldPasswordIsValid(currentPassword: string){
+
+  oldPasswordIsValid(currentPassword: string) {
     return this.currentPasswordIsValid(currentPassword);
   }
-  passwordsAreValid(newPassword: string, confirmNewPassword: string){
+
+  passwordsAreValid(newPassword: string, confirmNewPassword: string) {
     return this.bothPasswordsAreValidAndMatch(newPassword, confirmNewPassword);
   }
+
   applyChangePassword() {
     this.accountService.ChangePassword(this.passwordsToSend).subscribe(
       result => {
@@ -58,11 +64,11 @@ export class UserChangePasswordComponent extends PasswordMethods {
   selector: 'app-user',
   templateUrl: './user.component.html?v=${new Date().getTime()',
   styleUrls: ['./user.component.css?v=${new Date().getTime()'],
-  entryComponents: [UserChangePasswordComponent],
+  entryComponents: [UserChangePasswordComponent, SuccessDialog],
   providers: [AccountService]
 })
 
-export class UserComponent {
+export class UserComponent implements OnDestroy{
   private currentUrl: string;
   private username: string;
   private servername: string;
@@ -72,9 +78,40 @@ export class UserComponent {
   overlayStarSyntax = false;
   getStateSubscription: Subscription;
   postStateSubscription: Subscription;
+  getErrorStateSubscription: Subscription;
+  postErrorStateSubscription: Subscription;
+  postRequestHasStarted: Subscription;
+
   // TODO:: change the value from the service
   isStripeUser = false;
   private dialogRef: MdDialogRef<any>;
+
+  showSuccessDialog() {
+    const dialogRef = this.dialog.open(SuccessDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+  showGetErrorDialog() {
+    const dialogRef = this.dialog.open(ErrorGetDialog);
+    console.log('about to open it up')
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+  showPostErrorDialog() {
+    const dialogRef = this.dialog.open(ErrorPostDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+
 
   togglePostSpinner(): void {
     if (!this.showPostLoader) {
@@ -96,13 +133,32 @@ export class UserComponent {
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
         this.showLoader = state;
-        console.log(state);
+      });
+    this.getErrorStateSubscription = this.httpState.getErrorState$.subscribe(
+      error => {
+        console.log(error);
+        this.showLoader = !this.showLoader;
+        this.showGetErrorDialog();
+      });
+    this.postErrorStateSubscription = this.httpState.postErrorState$.subscribe(
+      state => {
+        console.log('post error occurred');
+        this.showPostErrorDialog();
+      });
+    this.postRequestHasStarted = this.httpState.postStartState$.subscribe(
+      state => {
+        this.showPostLoader = state;
+        this.togglePostSpinner();
       });
 
     this.postStateSubscription = this.httpState.postProtocolState$.subscribe(
       state => {
-        this.showPostLoader = state;
-        this.togglePostSpinner();
+        console.log('the state is '+ state);
+        if (!state) {
+          console.log('no error occurred');
+          this.showSuccessDialog();
+        };
+        // this.togglePostSpinner();
       });
 
     this.servername = localStorage.getItem('serverName');
@@ -137,6 +193,8 @@ export class UserComponent {
       .addSvgIcon('help', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/info.svg'))
       .addSvgIcon('releaseMail', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/releaseMail.svg'))
       .addSvgIcon('forwardMail', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/forwardMail.svg'))
+      .addSvgIcon('successIcon', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/success.svg'))
+      .addSvgIcon('serverError', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/serverError.svg'))
   }
 
   setConditionalIdForAppContainer(currentRoute: string) {
@@ -166,13 +224,14 @@ export class UserComponent {
       return this.currentUrl.indexOf(parent) >= 0;
     }
   }
-
   openChangePassword() {
     this.dialogRef = this.dialog.open(UserChangePasswordComponent, {width: '40%'});
   };
-
   ngOnDestroy() {
     this.getStateSubscription.unsubscribe();
     this.postStateSubscription.unsubscribe();
+    this.getErrorStateSubscription.unsubscribe();
+    this.postErrorStateSubscription.unsubscribe();
+    this.postRequestHasStarted.unsubscribe();
   }
 }

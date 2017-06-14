@@ -2,7 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {Router, NavigationEnd, Event} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
-import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
+import {MdDialog, MdDialogRef} from '@angular/material';
 import {AccountService} from '../account/account.service';
 import {HTTPStateService} from '../shared/custom-http';
 import {Subscription} from 'rxjs/Subscription';
@@ -18,10 +18,10 @@ import {SuccessDialog, ErrorGetDialog, ErrorPostDialog} from '../shared/system.d
 })
 
 export class UserChangePasswordComponent extends PasswordMethods {
+
   changePassword = true;
   forgotPassword = false;
   passwordsToSend: PasswordModel = new PasswordModel();
-
   constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>,
               private accountService: AccountService) {
     super();
@@ -75,6 +75,7 @@ export class UserComponent implements OnDestroy{
   showLoader = false;
   showPostLoader = false;
   conditionalId: string;
+  isFirstTimeUser: boolean;
   overlayStarSyntax = false;
   getStateSubscription: Subscription;
   postStateSubscription: Subscription;
@@ -128,6 +129,8 @@ export class UserComponent implements OnDestroy{
               private httpState: HTTPStateService,
               private _loadingService: TdLoadingService) {
 
+    this.isFirstTimeUser = (localStorage.getItem('isFirstTime') === 'true');
+    console.log(this.isFirstTimeUser);
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
         console.log('get state is => ', state);

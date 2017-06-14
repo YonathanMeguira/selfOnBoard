@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private attachmentOk: any;
   private blockedByPolicy: any;
   private attachmentBlockedByAntivirus: any;
-  timeFrame = 7;
+  timeFrame = 30;
 
   constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
               private dashboardActions: DashboardActions) {

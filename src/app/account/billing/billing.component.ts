@@ -24,24 +24,24 @@ export class UpdatePlanComponent {
     this.config = this.dialogRef._containerInstance.dialogConfig.data;
     this.currentPlan = this.config.accountData.CurrentPlan;
     this.selectedPlan = this.currentPlan;
-    this.stripeSubscriptionToken = this.config.accountData.StripeSubscriptionToken
+    this.stripeSubscriptionToken = this.config.accountData.StripeSubscriptionToken;
   };
 
 
   selected(event: any) {
     console.log(event);
-    let target = event.target || event.srcElement || event.currentTarget;
-    let idAttr = target.attributes.id;
-    let value = idAttr.nodeValue;
+    const target = event.target || event.srcElement || event.currentTarget;
+    const idAttr = target.attributes.id;
+    const value = idAttr.nodeValue;
     this.selectedPlan = value;
     console.log(target);
   }
 
   getCSSClasses(str: string) {
     if (str.toLocaleLowerCase() === this.selectedPlan.toLocaleLowerCase()) {
-      return "btn btn-upgrade-selected";
+      return 'btn btn-upgrade-selected';
     }
-    return "btn btn-upgrade-unselected";
+    return 'btn btn-upgrade-unselected';
   }
 
   isButtonDisabled() {
@@ -49,17 +49,16 @@ export class UpdatePlanComponent {
   }
 
   saveAccountPlan() {
-    //return;
+    // return;
     this.accountService.updateBillingData(this.stripeSubscriptionToken, this.selectedPlan.toLocaleLowerCase()).subscribe(() => {
-        let blobDataToSend = this.config.accountData;
+        const blobDataToSend = this.config.accountData;
 
         blobDataToSend.CurrentPlan = this.selectedPlan.toLocaleLowerCase();
 
         // update the server with new plan
-        // TODO:: check with the server if he can update this data atomiclly by him self
+        // TODO:: check with the server if he can update this data automatically by himself
         this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(() => {
-          }
-          ,
+          },
           error => console.log(error)
         );
         this.dialogRef.close(true);
@@ -67,7 +66,7 @@ export class UpdatePlanComponent {
       },
       error => {
         // TODO:: throw error message to user.
-        console.log(error)
+        console.log(error);
       });
   }
 }
@@ -93,7 +92,6 @@ class BillingData {
 export class BillingComponent implements OnInit {
   private accountData: any;
   private dialogRef: MdDialogRef<any>;
-  private users = [139, 140, 141, 142, 143, 144, 145];
   private billingData: BillingData = new BillingData();
   private currentNumberOfUsers: string;
 
@@ -133,15 +131,15 @@ export class BillingComponent implements OnInit {
             this.currentNumberOfUsers = billingResult.UsersQuantity;
           }),
           (error) => {
-            console.log(error)
+            console.log(error);
           };
       });
   }
 
   openUpgradePlan() {
     // the upgrade window should not be opened if the StripeToken
-    if (!this.accountData.StripeSubscriptionToken){
-        return;
+    if (!this.accountData.StripeSubscriptionToken) {
+      return;
     }
 
     this.dialogRef = this.dialog.open(UpdatePlanComponent, {
@@ -150,7 +148,7 @@ export class BillingComponent implements OnInit {
     });
     this.dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if (result == true)
+      if (result)
         this.loadBillingData();
     });
   };
@@ -158,18 +156,19 @@ export class BillingComponent implements OnInit {
   saveAccountData() {
     // add validation on data if needed
 
-    var blobDataToSend = this.accountData;
+    const blobDataToSend = this.accountData;
 
     // update the form data
     blobDataToSend.CompanyName = this.billingData.companyName;
     blobDataToSend.CompanyAddress = this.billingData.address;
 
-    let newNumOfUsers = +this.billingData.numOfUsers;
-    if (+this.currentNumberOfUsers !== newNumOfUsers && newNumOfUsers >= 0)
+    const newNumOfUsers = +this.billingData.numOfUsers;
+    if (+this.currentNumberOfUsers !== newNumOfUsers && newNumOfUsers >= 0) {
+    }
 
     // update stripe with new users number
-      this.accountService.updateUsersNumber(this.accountData.StripeSubscriptionToken, this.billingData.numOfUsers).subscribe(() => {
-      });
+    this.accountService.updateUsersNumber(this.accountData.StripeSubscriptionToken, this.billingData.numOfUsers).subscribe(() => {
+    });
 
     this.accountService.postAccountGeneralSettings(blobDataToSend).subscribe(() => {
         // TODO:: show success dialog

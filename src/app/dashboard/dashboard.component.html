@@ -1,4 +1,4 @@
-<div class="col-12">
+<div class="col-12 animated fadeInRight" *ngIf="dataHasLoaded">
   <div class="row justify-content-end mb-5 mt-5">
     <button class="btn btn-transparent hvr-glow" (click)="changeTimeFrame(7)"
             [ngClass]="{'selectedTimeFrame': timeFrame==7}">Last 7 Days
@@ -10,7 +10,7 @@
             [ngClass]="{'selectedTimeFrame': timeFrame==90}">Last 90 Days
     </button>
   </div>
-  <div *ngIf="dataHasLoaded">
+  <div >
     <app-dashboard-top-totals [totals]="totals" (onTotalSelected)='showAllGraphs($event)'></app-dashboard-top-totals>
     <div>
       <div class="graph-container ml-0 mr-0" layout="row" layout-md="column" layout-sm="column" layout-margin

@@ -1,9 +1,9 @@
 <!-- nesting level: 2 entry inside the app -->
 
 <md-sidenav-container style="height: 100vh">
-  <md-sidenav #sidenav opened="true"  id="smb-sidenav" mode="side" style="width: 60px !important; min-width: unset">
+  <md-sidenav #sidenav opened="true"  id="smb-sidenav" mode="side" style="width: 60px !important; min-width: unset" [opened]="!isFirstTimeUser">
     <ul style="height: 15%">
-      <li mdTooltipPosition="right" class="text-center mt-3 pt-3 pb-3 mb-3 noHoverEffect">
+      <li class="text-center mt-3 pt-3 pb-3 mb-3 noHoverEffect" routerLink="/user/dashboard">
         <md-icon class="center-icon" svgIcon="resecLogo"></md-icon>
       </li>
     </ul>
@@ -42,7 +42,7 @@
           <div layout="row" *ngIf="testRoute('account')">
             <a class="sob-page-link ml-3 mr-3" routerLink="account/notifications" routerLinkActive="page-active">Notifications</a>
             <a class="sob-page-link ml-2 mr-4" routerLink="account/account" routerLinkActive="page-active">Account</a>
-            <a class="sob-page-link ml-2" routerLink="account/billing" routerLinkActive="page-active">Billing</a><!--*ngIf="isStripeUser"-->
+            <a class="sob-page-link ml-2" routerLink="account/billing" routerLinkActive="page-active" *ngIf="isStripeUser">Billing</a><!---->
           </div>
           <div layout="row" *ngIf="testRoute('emails')">
             <a class="sob-page-link ml-3 mr-3" routerLink="emails/search" routerLinkActive="page-active">Search</a>

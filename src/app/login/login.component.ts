@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
                   if (isFistLogin) {
                     this.router.navigate(['user/firstTimeChangePassword']);
                   } else {
-                    console.log(localStorage);
                     this.router.navigate(['/user/dashboard']);
                   }
                 }

@@ -381,6 +381,17 @@ input:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
+.user-chips{
+  border: solid 2px #ccc !important;
+  color: #666666 !important;
+  border-radius: 8px;
+  padding: 0.1em 0.6em;
+  cursor: pointer !important;
+}
+.user-chips:hover{
+  background-color: #F2F2F2;
+}
+
 .btn-warning:hover {
   color: #FFF;
   background: rgb(240, 173, 78, 0.75);
@@ -432,7 +443,7 @@ input:-webkit-autofill {
 .btn-purple:hover {
   font-family: "Roboto Slab";
   font-size: 13px;
-  color: white;
+  color: white !important;
   letter-spacing: 1px;
   line-height: 15px;
   border-radius: 40px;

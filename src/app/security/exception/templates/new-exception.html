@@ -5,7 +5,8 @@
         <p class="mini-heading" flex="30">Department Name</p>
         <input class="sob-input" [(ngModel)]="settings.policyName" flex>
       </div>
-      <p class="inner-link" style="text-align: right !important" (click)="cancelCreation(false)" flex>Cancel new department</p>
+      <p class="inner-link" style="text-align: right !important" (click)="cancelCreation(false)" flex>Cancel new
+        department</p>
     </div>
 
     <div layout="row" layout-align="space-between start" layout-margin class="mt-5 mb-5 ml-2 mr-3">
@@ -42,7 +43,7 @@
             <p class="fs-11">.doc, .docx, .pdf, .pages, .gdoc</p>
           </div>
           <div layout-align="space-between start" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16 mb-12px">High</p>
               <p class="fs-11">Active content & <br>macros NOT removed</p>
             </div>
@@ -69,7 +70,7 @@
             <p class="fs-11">.csv, .xls, .xlsx, .gsheet</p>
           </div>
           <div flex="55" layout-align="space-between center" layout="row">
-            <div flex="45">
+            <div flex="45" flex-gt-lg="25">
               <p class="fs-16 text-center">High</p>
             </div>
             <div flex>
@@ -94,7 +95,7 @@
             <p class="fs-11">.png, .jpeg, .jpg, .gif</p>
           </div>
           <div flex="55" layout-align="space-between center" layout="row">
-            <div flex="45">
+            <div flex="45" flex-gt-lg="25">
               <p class="fs-16 text-center">High</p>
             </div>
             <div flex>
@@ -119,7 +120,7 @@
             <p class="fs-11">.ppt, .pptx, .keynote, .gslides</p>
           </div>
           <div flex="55" layout-align="space-between center" layout="row">
-            <div flex="45">
+            <div flex="45" flex-gt-lg="25">
               <p class="fs-16 text-center">High</p>
             </div>
             <div flex>
@@ -155,7 +156,7 @@
             <p class="fs-16">Signed Documents</p>
           </div>
           <div layout-align="space-between start" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16 mb-12px">Signature in tact</p>
               <p class="fs-11">Document is not processed with CDR</p>
             </div>
@@ -194,7 +195,7 @@
               in<br> any documents attached</p>
           </div>
           <div layout-align="space-between start" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16 mb-12px">High</p>
               <p class="fs-11">Fix and disabled based on URL reputation</p>
             </div>
@@ -233,7 +234,7 @@
             <p class="fs-11">.mp4, .mp3</p>
           </div>
           <div layout-align="space-between center" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16">Allow</p>
             </div>
             <div flex>
@@ -258,7 +259,7 @@
             <p class="fs-11">.dmg, .exe</p>
           </div>
           <div layout-align="space-between center" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16 ">Allow</p>
             </div>
             <div flex>
@@ -267,7 +268,6 @@
                          style="width: 100%"
                          [min]="0"
                          [step]="1"
-                         [value]="1"
                          [vertical]="vertical"
                          color="accent">
               </md-slider>
@@ -282,7 +282,7 @@
             <p class="fs-16">Unrecognized Files</p>
           </div>
           <div layout-align="space-between center" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16 mb-12px">Allow</p>
             </div>
             <div flex>
@@ -307,7 +307,7 @@
             <p class="fs-11">A secure version of an attachment can't be made when it is password protected.</p>
           </div>
           <div layout-align="space-between center" flex="55" layout="row">
-            <div flex="45" class="text-center" layout="column">
+            <div flex="45" flex-gt-lg="25" class="text-center" layout="column">
               <p class="fs-16 ">Allow</p>
             </div>
             <div flex>

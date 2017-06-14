@@ -240,5 +240,6 @@ export class UserComponent implements OnDestroy{
     this.getErrorStateSubscription.unsubscribe();
     this.postErrorStateSubscription.unsubscribe();
     this.postRequestHasStarted.unsubscribe();
+    this.postRequestOutcome.unsubscribe();
   }
 }

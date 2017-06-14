@@ -1,9 +1,5 @@
-import {Component, DoCheck, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, OnInit} from '@angular/core';
-import {isNullOrUndefined} from 'util';
-import {
-  AttachmentsProcessedLevels, AttachmentsWithoutCdr, Policy,
-  SpecialAttachments
-} from "../../../model/company-policy";
+import {Component, Input, ChangeDetectorRef, ViewChild, OnInit} from '@angular/core';
+import {Policy} from "../../../model/company-policy";
 
 @Component({
   selector: 'general-settings',
@@ -95,7 +91,7 @@ export class GeneralSettingsWithoutCDRComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.videoSoundSlider.registerOnChange((value)=>{
+    this.videoSoundSlider.registerOnChange((value) => {
       this._generalSettings.AttachmentsWithoutCdr.videoSound = value;
     });
 

@@ -49,7 +49,6 @@ export class ExceptionComponent {
   }
   selectDepartment = (departmentName: string) => {
     this.settings = this.exceptionsList[departmentName];
-    console.log(this.settings);
   }
   deletePolicy = (policy: Policy) => {
     this.securityService.deletePolicyExceptionSettings(policy).subscribe(
@@ -69,26 +68,15 @@ export class ExceptionComponent {
   }
   cancelCreation = (cancel: boolean) => {
     this.newDepartment = cancel;
-    console.log(this.settings);
     this.settings = this.allSettingsBackUp;
     this.noSettingsExist = (Object.keys(this.settings).length === 0 && this.settings.constructor === Object) ? true : false;
   }
 
-  loadGeneralSettings() {
-    this.securityService.getSettings().subscribe(
-      result => {
-        this.settings = result;
-        console.log(result);
-      }, error => {
-        console.log('an error occurred');
-      });
-  }
 
   newDptQuery = (newDpt: boolean) => {
     this.newDepartment = newDpt;
     if (newDpt) {
-      console.log('adding exceptions');
-      this.loadGeneralSettings();
+     // this.loadGeneralSettings();
     }
   }
   postNewSettings = (settings: Policy) => {

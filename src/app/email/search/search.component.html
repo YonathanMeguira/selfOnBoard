@@ -37,13 +37,13 @@
                 <p class=" col-3">Subject</p>
                 <p class="bold-dark-gray col">{{emails.Subject}}</p>
               </div>
-              <div class="row mb-3" *ngIf="fieldNotEmpty(emails['Attached Files'])">
+              <div class="row mb-3" *ngIf="!mailHasNoAttachments">
                 <p class=" col-3">Attached Files</p>
                 <p class="bold-dark-gray col">{{emails['Attached Files']}}</p>
               </div>
             </div>
 
-            <table class="table table-responsive mt-5">
+            <table class="table table-responsive mt-5" *ngIf="!mailHasNoAttachments">
               <thead>
               <th class="col-2">Attachment</th>
               <th>Reason</th>

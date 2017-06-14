@@ -1,8 +1,10 @@
 import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {TdFileService, IUploadOptions} from '@covalent/core';
+import {TdFileService} from '@covalent/core';
 import {Policy} from '../../../model/company-policy';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {SecurityService} from '../../security.service';
+
 
 class BaseComponent {
   validators = [this.isEmail];
@@ -91,7 +93,7 @@ export class ExceptionSettingsComponent extends BaseComponent {
   users: any[];
   addedUsers: string;
   addingUsers: boolean;
-  numberOfMaxItems = 1;
+  numberOfMaxItems = 5;
 
   constructor(public dialog: MdDialog) {
     super();
@@ -115,21 +117,28 @@ export class ExceptionSettingsComponent extends BaseComponent {
     }
   }
 
-  moreItemsToDisplay(exceptions: Array<string>) {
-    if (exceptions) {
-      return (exceptions.length > this.numberOfMaxItems);
-    }
+  moreItemsToDisplay() {
+    return (this.settings.exceptions.length > this.numberOfMaxItems);
   }
 
-  displayRemainingItems(exceptions: Array<string>) {
-    const arrLength = exceptions.length;
-    this.users = exceptions.slice(0, arrLength);
-    this.numberOfMaxItems = arrLength;
+  notEnoughUsers() {
+    const userLength = this.settings.exceptions.length;
+    return userLength < this.numberOfMaxItems;
   }
 
-  displayLessItems(exceptions: Array<string>) {
-    this.numberOfMaxItems = 1;
-    this.users = exceptions.slice(0, 1);
+  deleteUser(user: string): string[] {
+    const userIndex = this.settings.exceptions.indexOf(user);
+    this.settings.exceptions.splice(userIndex, 1);
+    return this.settings.exceptions;
+  }
+
+  displayRemainingItems() {
+    const userLength = this.settings.exceptions.length;
+    this.numberOfMaxItems = userLength;
+  }
+
+  displayLessItems() {
+    this.numberOfMaxItems = 5;
   };
 
   deletePolicy = (policy: Policy) => {
@@ -137,7 +146,7 @@ export class ExceptionSettingsComponent extends BaseComponent {
       data: policy.policyName
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) { // result => boolean : true or false
+      if (result) {
         this.onDelete.emit(policy);
       }
     });
@@ -147,24 +156,21 @@ export class ExceptionSettingsComponent extends BaseComponent {
   }
 
   uploadEvent(file: File) {
-    console.log(file);
-    var stam = file.msDetachStream;
-    console.log(stam);
+    const stam = file.msDetachStream;
     const fileName = file.name;
     const fileReader = new FileReader();
     fileReader.readAsArrayBuffer(file);
     var readingState = fileReader.readyState;
-    console.log(readingState);
-   // fileReader.onloadend(event);
+    // fileReader.onloadend(event);
     const result = fileReader.result;
-    console.log(result);
   };
 
 }
 @Component({
   selector: 'new-exception',
   templateUrl: './new-exception.html',
-  styleUrls: ['../exception.component.css']
+  styleUrls: ['../exception.component.css'],
+  providers: [SecurityService]
 })
 export class NewExceptionComponent extends BaseComponent {
   settings: Policy = new Policy();
@@ -172,18 +178,21 @@ export class NewExceptionComponent extends BaseComponent {
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<Policy>();
 
-  constructor() {
+
+  constructor(private securityService: SecurityService) {
     super();
-    this.settings.AttachmentsProcessedLevels.documents = 1;
-    this.settings.AttachmentsProcessedLevels.images = 1;
-    this.settings.exceptions = [];
-    this.settings.AttachmentsProcessedLevels.presentations = 1;
-    this.settings.AttachmentsProcessedLevels.spreadsheets = 1;
-    this.settings.AttachmentsWithoutCdr.unrecognizedFiles = 0;
-    this.settings.AttachmentsWithoutCdr.videoSound = 0;
-    this.settings.AttachmentsWithoutCdr.applicationsScripts = 0;
-    this.settings.SpecialAttachments.passwordProtected = 0;
+    this.loadGeneralSettings();
   };
+
+  loadGeneralSettings() {
+    this.securityService.getSettings().subscribe(
+      result => {
+        this.settings = result;
+        console.log(result);
+      }, error => {
+        console.log(error);
+      });
+  }
 
   cancelCreation = (cancel: boolean) => {
     this.onCancel.emit(cancel);

@@ -21,6 +21,7 @@ export class SearchComponent extends EmailComponent implements OnInit {
   totalNumberOfMails: number;
   pullingData = false;
   noResultFound = false;
+  mailHasNoAttachments: boolean;
 
   constructor(private mailService: MailService) {
     super();
@@ -38,7 +39,8 @@ export class SearchComponent extends EmailComponent implements OnInit {
     this.mailService.searchMails(this.query).subscribe(
       success => {
         console.log(success);
-        this.emails = success.List[0];
+        this.emails = success.List.pop();
+        this.mailHasNoAttachments = (Object.keys(this.emails['Attached Files Outcomes']).length === 0) ? true : false;
         this.totalNumberOfMails = success.Total;
         this.noResultFound = (this.totalNumberOfMails > 0) ? false : true;
         this.pullingData = false;
@@ -60,17 +62,5 @@ export class SearchComponent extends EmailComponent implements OnInit {
       }
     );
   }
-  actionsAvailable = (selectionLength: number) => {
-    if (selectionLength > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  outcomesAreNotNull(object: Object){
-    return object ! == null;
-  }
-  fieldNotEmpty(field: any){
-    return field !== null;
-  }
+
 }

@@ -15,11 +15,13 @@ export class HTTPStateService {
   private postProtocolStateSource = new Subject<boolean>();
   private postProtocolStartSource = new Subject<boolean>();
   private postErrorStateSource = new Subject<boolean>();
+  private postOutcomeSource = new Subject<boolean>();
   getProtocolState$ = this.getProtocolStateSource.asObservable();
   getErrorState$ = this.getErrorStateSource.asObservable();
   postProtocolState$ = this.postProtocolStateSource.asObservable();
   postErrorState$ = this.postErrorStateSource.asObservable();
   postStartState$ = this.postProtocolStartSource.asObservable();
+  postOutcomeState$ = this.postOutcomeSource.asObservable();
 
   setGetState(inProcess: boolean) {
     this.getProtocolStateSource.next(inProcess);
@@ -40,8 +42,10 @@ export class HTTPStateService {
   setPostProtocolStart(started: boolean) {
     this.postProtocolStartSource.next(started);
   }
-}
-;
+  setPostOutcome(success: boolean){
+    this.postOutcomeSource.next(success);
+  }
+};
 
 @Injectable()
 export class HttpService extends Http {
@@ -77,6 +81,7 @@ export class HttpService extends Http {
 
   private onPostSuccess(res: Response): Response {
     this.hidePostLoader();
+    this.httpState.setPostOutcome(true);
     return res;
   }
 
@@ -104,7 +109,7 @@ export class HttpService extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
-    //  this.showGetLoader();
+      this.showGetLoader();
     return super.get(url, options)
       .catch(this.onGetCatch)
       .do((res: Response) => {
@@ -118,12 +123,8 @@ export class HttpService extends Http {
       });
   }
 
-  private showPostLoader() {
-    this.httpState.setPostState(true);
-  }
 
   private hidePostLoader() {
-    console.log('arrived at a result');
     this.httpState.setPostState(false);
   }
 

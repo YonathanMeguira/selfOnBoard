@@ -80,7 +80,7 @@ export class SecurityService {
   saveSettings(policy: Policy): Observable<any> {
     const json = serializePolicyToJson(policy);
 
-    const saveSettings = 'http://' + 'null' + ':4580/sob/api/securitySettings/savepolicy';
+    const saveSettings = 'http://' + this.server + ':4580/sob/api/securitySettings/savepolicy';
     return this.http.post(saveSettings, json)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not save settings'));

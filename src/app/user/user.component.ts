@@ -81,6 +81,7 @@ export class UserComponent implements OnDestroy{
   getErrorStateSubscription: Subscription;
   postErrorStateSubscription: Subscription;
   postRequestHasStarted: Subscription;
+  postRequestOutcome: Subscription;
 
   // TODO:: change the value from the service
   isStripeUser = false;
@@ -96,7 +97,6 @@ export class UserComponent implements OnDestroy{
   }
   showGetErrorDialog() {
     const dialogRef = this.dialog.open(ErrorGetDialog);
-    console.log('about to open it up')
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
@@ -111,8 +111,6 @@ export class UserComponent implements OnDestroy{
       }
     });
   }
-
-
   togglePostSpinner(): void {
     if (!this.showPostLoader) {
       this._loadingService.resolve('overlayStarSyntax');
@@ -132,33 +130,42 @@ export class UserComponent implements OnDestroy{
 
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
+        console.log('get state is => ', state);
         this.showLoader = state;
       });
     this.getErrorStateSubscription = this.httpState.getErrorState$.subscribe(
       error => {
-        console.log(error);
+        console.log('get error state is => ', error);
         this.showLoader = !this.showLoader;
         this.showGetErrorDialog();
       });
     this.postErrorStateSubscription = this.httpState.postErrorState$.subscribe(
       state => {
-        console.log('post error occurred');
+        console.log('post error state is => ', state );
         this.showPostErrorDialog();
       });
     this.postRequestHasStarted = this.httpState.postStartState$.subscribe(
       state => {
+        console.log('post request started status =>', state);
         this.showPostLoader = state;
         this.togglePostSpinner();
       });
 
     this.postStateSubscription = this.httpState.postProtocolState$.subscribe(
       state => {
-        console.log('the state is '+ state);
-        if (!state) {
+        console.log('POST state is ', state);
+        if (state) {
           console.log('no error occurred');
           this.showSuccessDialog();
         };
         // this.togglePostSpinner();
+      });
+
+    this.postRequestOutcome = this.httpState.postOutcomeState$.subscribe(
+      success => {
+        if (success){
+          this.showSuccessDialog();
+        }
       });
 
     this.servername = localStorage.getItem('serverName');

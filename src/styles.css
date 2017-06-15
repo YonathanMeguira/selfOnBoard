@@ -2,7 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-@import '/node_modules/@covalent/core/common/platform.css';
+@import './assets/libraries/platform.css';
 
 .chart-legend .legend-labels {
   background-color: white !important;

@@ -29,7 +29,10 @@ export class SearchComponent extends EmailComponent implements OnInit {
   ngOnInit() {
     this.isFirstTime = false;
     console.log(this.isFirstTime);
-
+  }
+  emptyQuery(){
+    this.noSearchInitiated = true;
+    this.query = new Query();
   }
 
   searchMails() {

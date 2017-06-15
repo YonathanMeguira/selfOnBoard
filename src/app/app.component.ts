@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css?v=${new Date().getTime()']
 })
 export class AppComponent {
-  title = 'app works!';
+  constructor(private router: Router) {}
+  ngOnInit(){
+    this.detectBrowser();
+  }
+  detectBrowser(){
+    const isChrome = (navigator.userAgent.toLowerCase().includes('chrome')) ? true : false;
+    if (!isChrome){
+      this.router.navigate(['wrong-browser']);
+    }
+  }
 }

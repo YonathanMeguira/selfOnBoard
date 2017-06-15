@@ -13,7 +13,6 @@ import {AccountComponent} from './account/account.component';
 import {AccountGeneralComponent} from './account/account-general/account-general.component';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent} from './account/billing/billing.component';
-
 import {GeneralComponent} from './security/general/general.component';
 import {ExceptionComponent} from './security/exception/exception.component';
 import {SearchComponent} from './email/search/search.component';
@@ -21,9 +20,11 @@ import {BrowseComponent} from './email/browse/browse.component';
 import {FirstTimeUserComponent} from './dashboard/templates/first-time-user/first-time-user.component';
 import {UserIsSobAndHasToken} from './shared/route-activators';
 import {HelpComponent} from './help/help.component';
+import {WrongBrowserComponent} from './wrong-browser/wrong-browser.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'wrong-browser', component: WrongBrowserComponent},
   {path: 'login', component: LoginComponent},
   {
     path: 'user',

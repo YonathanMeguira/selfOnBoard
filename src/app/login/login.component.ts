@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.clear();
+    // this.detectBrowser();
     // console.log(window.location.href);
     this.checkServerInUrl();
   }
@@ -98,4 +99,11 @@ export class LoginComponent implements OnInit {
       )
     ;
   }
+
+ /* detectBrowser(){
+    const isChrome = (navigator.userAgent.toLowerCase().includes('chrome')) ? true : false;
+    if (!isChrome){
+      this.router.navigate(['wrong-browser']);
+    }
+  }*/
 }

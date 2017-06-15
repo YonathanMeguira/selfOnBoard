@@ -6,12 +6,13 @@
   <div *ngIf="!isFirstTime" class="mb-5 mt-5">
     <div class="white frame">
       <div class="col-8 pl-0">
-        <div layout="row" class="search-container" layout-align="start end">
+        <div layout="row" class="search-container" layout-align="start center">
           <label class="mr-5 mb-0 search-label">ReSec Ticket ID</label>
-          <input type="text" class="sob-input" flex="50" [(ngModel)]="query.ticketId">
-          <button class="btn search-btn" (click)="searchMails()" [disabled]="!query.ticketId">
+          <input type="text" class="sob-input" flex="50" [(ngModel)]="query.ticketId" (keyup.enter)="searchMails()">
+          <button class="btn search-btn" (click)="searchMails()" [disabled]="!query.ticketId" *ngIf="noSearchInitiated">
             <i class="fa fa-chevron-right" aria-hidden="true" style="font-size: 18px"></i>
           </button>
+          <button md-mini-fab (click)="emptyQuery()" *ngIf="!noSearchInitiated" class="ml-3">X</button>
         </div>
         <!-- search result section -->
         <div class="pb-5" style="padding-left: 40px">
@@ -43,7 +44,7 @@
               </div>
             </div>
 
-            <table class="table table-responsive mt-5" *ngIf="!mailHasNoAttachments">
+            <table class="table table-responsive mt-5" *ngIf="!mailHasNoAttachments" flex="85">
               <thead>
               <th class="col-2">Attachment</th>
               <th>Reason</th>

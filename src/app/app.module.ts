@@ -94,6 +94,7 @@ import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
 import {HelpComponent} from './help/help.component';
 import { MnFullpageModule } from 'ngx-fullpage';
+import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
 
 
 @NgModule({
@@ -139,7 +140,8 @@ import { MnFullpageModule } from 'ngx-fullpage';
     FirstTimeUserComponent,
     GetPercentagePipe,
     NewUserPasswordComponent,
-    HelpComponent
+    HelpComponent,
+    WrongBrowserComponent
   ],
   imports: [
     BrowserModule,

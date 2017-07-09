@@ -22,15 +22,21 @@ export class SearchComponent extends EmailComponent implements OnInit {
   pullingData = false;
   noResultFound = false;
   mailHasNoAttachments: boolean;
+  mycolor: string;
+  fs: number;
 
   constructor(private mailService: MailService) {
     super();
   };
+
   ngOnInit() {
+    this.mycolor = "red";
+    this.fs = 60;
     this.isFirstTime = false;
     console.log(this.isFirstTime);
   }
-  emptyQuery(){
+
+  emptyQuery() {
     this.noSearchInitiated = true;
     this.query = new Query();
   }

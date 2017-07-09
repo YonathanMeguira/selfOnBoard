@@ -36,6 +36,10 @@ import {
   NewExceptionComponent
 } from './security/exception/templates/templates.component';
 
+
+import {HighlightDirective} from './shared/attributes.directives';
+
+
 // routing
 import {AppRoutingModule} from './app.routes';
 import {ResponseHandlerService} from './shared/response-handler.service';
@@ -93,7 +97,6 @@ import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
 import {HelpComponent} from './help/help.component';
-import { MnFullpageModule } from 'ngx-fullpage';
 import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
 
 
@@ -141,7 +144,8 @@ import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
     GetPercentagePipe,
     NewUserPasswordComponent,
     HelpComponent,
-    WrongBrowserComponent
+    WrongBrowserComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -163,11 +167,10 @@ import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
     FlexLayoutModule,
     CovalentDataTableModule,
     BrowserAnimationsModule,
-    CovalentCoreModule,
+   CovalentCoreModule,
     DatePickerModule,
     NgxDatatableModule,
     NgbModule.forRoot(),
-    MnFullpageModule.forRoot(),
     TagInputModule,
     NgxChartsModule,
     StoreModule.provideStore(reducer),

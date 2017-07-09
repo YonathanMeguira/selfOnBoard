@@ -2,8 +2,8 @@
  * Created by if_found_call_0586288454 on 11/06/2017 ap. J.-C..
  */
 
-
 export class PasswordMethods {
+
 
   passwordsMatch = (password1: string, password2: string) => {
     return (password1 === password2 && password2 !== undefined);
@@ -35,7 +35,6 @@ export class PasswordMethods {
   bothPasswordsAreValidAndMatch(newPassword: string, newPasswordConfirm: string) {
     return (this.passwordsMatch(newPassword, newPasswordConfirm) && this.passwordIsValid(newPassword));
   }
-
 
 
 }

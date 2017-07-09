@@ -65,8 +65,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('serverName', this.user.server);
             localStorage.setItem('userRole', success.UserRole);
             localStorage.setItem('currentPassword', this.user.password);
-            const token = 'Bearer ' + success.AccessToken;
-            const isFirstTime = success.UserAdditionalData.IsFirstTime;
+            const token = 'Bearer ' + success['access_token'];
+            const isFirstTime = success.IsFirstTime;
             localStorage.setItem('token', token);
             localStorage.setItem('username', this.user.username);
             this.checkingUser = false;
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
                   return;
                 }
                 this.currentAccount = result;
-                let isFistLogin = result.IsFirstLogin;
+                let isFistLogin = result.IsFirstTime;
                 localStorage.setItem('isFirstTime', isFirstTime);
                 if (this.checkState()) {
                   if (isFistLogin) {

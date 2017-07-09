@@ -23,7 +23,7 @@ export class UserChangePasswordComponent extends PasswordMethods {
   forgotPassword = false;
   passwordsToSend: PasswordModel = new PasswordModel();
   constructor(public dialogRef: MdDialogRef<UserChangePasswordComponent>,
-              private accountService: AccountService) {
+              private accountService: AccountService, private router: Router) {
     super();
   }
 
@@ -48,9 +48,9 @@ export class UserChangePasswordComponent extends PasswordMethods {
     this.accountService.ChangePassword(this.passwordsToSend).subscribe(
       result => {
         console.log(result);
-        const newToken = 'Bearer ' + result.AccessToken;
-        localStorage.setItem('token', newToken);
+        localStorage.clear();
         this.dialogRef.close();
+        this.router.navigate(['login']);
       }, error => {
         console.log(error);
       }

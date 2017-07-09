@@ -4,6 +4,10 @@
 
 @import './assets/libraries/platform.css';
 
+.mat-list-item-content{
+  height: 53px !important;
+}
+
 .chart-legend .legend-labels {
   background-color: white !important;
   line-height: 100% !important;

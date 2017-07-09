@@ -17,6 +17,7 @@
 }
 .dpt-list{
   border-bottom: solid 1px white;
+  height: 53px;
 }
 
 #exception-list{

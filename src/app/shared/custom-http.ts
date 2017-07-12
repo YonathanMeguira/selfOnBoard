@@ -22,7 +22,6 @@ export class HTTPStateService {
   postErrorState$ = this.postErrorStateSource.asObservable();
   postStartState$ = this.postProtocolStartSource.asObservable();
   postOutcomeState$ = this.postOutcomeSource.asObservable();
-
   setGetState(inProcess: boolean) {
     this.getProtocolStateSource.next(inProcess);
   }
@@ -49,7 +48,7 @@ export class HTTPStateService {
 
 @Injectable()
 export class HttpService extends Http {
-
+  token = localStorage.getItem('token')
   GetCallInProcess = false;
   subscription: Subscription;
 
@@ -58,7 +57,7 @@ export class HttpService extends Http {
               private httpState: HTTPStateService) {
     super(backend, options);
     const token = localStorage.getItem('token'); // your custom token getter function here
-    options.headers.set('Authorization', token);
+    // options.headers.set('Authorization', token);
     this.subscription = httpState.getProtocolState$.subscribe(
       state => {
         this.GetCallInProcess = state;
@@ -109,7 +108,7 @@ export class HttpService extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
-      this.showGetLoader();
+    this.showGetLoader();
     return super.get(url, options)
       .catch(this.onGetCatch)
       .do((res: Response) => {

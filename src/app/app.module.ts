@@ -73,7 +73,7 @@ import {default as reducer} from './store/app-store';
 
 // custom pipes
 
-import {DictionaryIteratorPipe, GetPercentagePipe, ArrayLengthPipe, RemainingItemsInArrayPipe} from './shared/pipes';
+import {DictionaryIteratorPipe, GetPercentagePipe, ArrayLengthPipe, RemainingItemsInArrayPipe, LimitLinesDirective} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
 import 'hammerjs';
@@ -142,6 +142,7 @@ import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
     DeleteExceptionDialog,
     FirstTimeUserComponent,
     GetPercentagePipe,
+    LimitLinesDirective,
     NewUserPasswordComponent,
     HelpComponent,
     WrongBrowserComponent,

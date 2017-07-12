@@ -1,7 +1,7 @@
 /**
  * Created by if_found_call_0586288454 on 27/04/2017 ap. J.-C..
  */
-import {Pipe, PipeTransform} from '@angular/core';
+import {Pipe, PipeTransform, Directive, ElementRef, AfterViewInit, Input} from '@angular/core';
 
 @Pipe({name: 'DictionaryIteratorPipe', pure: false})
 export class DictionaryIteratorPipe implements PipeTransform {
@@ -47,5 +47,23 @@ export class RemainingItemsInArrayPipe implements PipeTransform {
       return 0;
     }
     return (arr.length - substractor);
+  }
+}
+
+@Directive({
+  selector: '[limitNumberOfLines]'
+})
+export class LimitLinesDirective implements AfterViewInit {
+  constructor(private elRef: ElementRef) {
+  }
+
+  @Input() limit: number;
+
+  ngAfterViewInit(): void {
+    const element = this.elRef.nativeElement;
+    const divHeight = element.offsetHeight;
+    const lineHeight = parseInt(window.getComputedStyle(element).getPropertyValue('line-height'));
+    const NumOfLines = divHeight / lineHeight;
+    console.log(NumOfLines);
   }
 }

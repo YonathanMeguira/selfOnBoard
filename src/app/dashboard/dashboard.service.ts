@@ -18,16 +18,11 @@ export class DashboardService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error, could not retrieve the  dashboard data'));
   }
 
-  GetRandomRecipients(): Observable<any> {
-    const randomRecipients = 'https://api.myjson.com/bins/seuvd';
-    return this.http.get(randomRecipients)
-      .map((res) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the fake data for senders'));
-  }
-
   GetFeed(): Observable<any> {
-    const feedUrl = 'http://content.guardianapis.com/search?show-fields=all&q=cybersecurity&api-key=d9837304-6676-41b2-ad98-9e89fe52dd5d'
-    return this.regularHttp.get(feedUrl)
+    const header = new Headers();
+    header.append('Access-Control-Request-Headers', 'Content-Type');
+    const feedUrl = 'https://cyber-news-scrapr.herokuapp.com/news';
+    return this.regularHttp.get(feedUrl, header)
       .map((res) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Sorry we could not fetch the news'));
   }

@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     domain: ['#9A1796', '#EE5F12', '#7BBDEE', '#F9C453']
   };
   pieChartTitle = 'Clean Replica By CDR';
-  emailScoreColor = '#8BBFEF';
   private cleanReplica: any;
   private attachmentOk: any;
   private blockedByPolicy: any;
@@ -81,7 +80,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     return arr.slice(0, 5);
   }
-
   generateThreeDifferentRandomNumbers() {
     let arr = [];
     while (arr.length < 3) {
@@ -91,7 +89,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return arr;
   }
-
   makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
     const randomFeeds = [];
     const randomNumbers = this.generateThreeDifferentRandomNumbers();
@@ -101,12 +98,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ;
     return randomFeeds;
   }
-
   GetFeed = () => {
     this.dashboardService.GetFeed().subscribe(
       res => {
-        const feed = res.response.results;
+        const feed = res;
         this.feeds = this.makeArrayOfRandomFeeds(feed);
+        console.log(this.feeds);
       },
       error => console.log(error)
     );
@@ -159,7 +156,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   makeDataGraphReadable(objectName: string, data: any) {
-    let graphObject = new GraphDataModel(objectName);
+    const graphObject = new GraphDataModel(objectName);
     const serializedData = [];
     for (const measurement of data) {
       const object: any = {};
@@ -211,7 +208,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.graphData = this.currGraphData;
         // GraphComponent.Multi =
       },
-      error => {
+      (error) => {
         console.log(error);
       },
       () => {

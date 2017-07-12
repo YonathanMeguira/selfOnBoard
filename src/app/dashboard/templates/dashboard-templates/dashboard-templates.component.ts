@@ -140,5 +140,6 @@ export class EmailSectionComponent {
 })
 
 export class NewsFeedComponent {
+
   @Input() feeds;
 }

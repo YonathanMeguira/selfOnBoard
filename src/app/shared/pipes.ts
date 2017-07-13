@@ -60,10 +60,14 @@ export class LimitLinesDirective implements AfterViewInit {
   @Input() limit: number;
 
   ngAfterViewInit(): void {
+    // are there any other better cycles ? when is the content associated to the model gets initiated ?
     const element = this.elRef.nativeElement;
     const divHeight = element.offsetHeight;
     const lineHeight = parseInt(window.getComputedStyle(element).getPropertyValue('line-height'));
     const NumOfLines = divHeight / lineHeight;
+    // TODO: reverse the formula to only display the number of lines we want + '...'
+    // password: !P04531418p
+    element.style['-webkit-line-clamp'] = this.limit;
     console.log(NumOfLines);
   }
 }

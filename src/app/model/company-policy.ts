@@ -26,7 +26,6 @@ export class Policy {
   AttachmentsProcessedLevels: AttachmentsProcessedLevels;
   AttachmentsWithoutCdr: AttachmentsWithoutCdr;
   SpecialAttachments: SpecialAttachments;
-  Exceptions: string[];
 
   defaultAttachmentsWithoutCdr: AttachmentsWithoutCdr = {
     videoSound: Severity.Highest,

@@ -172,12 +172,12 @@ export class ExceptionSettingsComponent extends BaseComponent {
   styleUrls: ['../exception.component.css'],
   providers: [SecurityService]
 })
+
 export class NewExceptionComponent extends BaseComponent {
   settings: Policy = new Policy();
   addedUsers = '';
   @Output() onCancel = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<Policy>();
-
 
   constructor(private securityService: SecurityService) {
     super();
@@ -185,11 +185,13 @@ export class NewExceptionComponent extends BaseComponent {
   };
 
   loadGeneralSettings() {
+    console.log(this.settings)
     this.securityService.getSettings().subscribe(
       result => {
         this.settings = result;
         console.log(result);
-      }, error => {
+        console.log(`second time ${this.settings}`);
+      }, (error) => {
         console.log(error);
       });
   }
@@ -198,6 +200,7 @@ export class NewExceptionComponent extends BaseComponent {
     this.onCancel.emit(cancel);
   }
   saveSettings = (newSettings: any) => {
+    this.settings.exceptions = [];
     const splittedEmails = this.addedUsers.split(',');
     for (const email of splittedEmails) {
       const noSpaceEmail = email.replace(/\s+/g, '');

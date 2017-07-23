@@ -3,16 +3,28 @@
     <p class="bold light-gray">{{title}}</p>
     <p>Top Attachment Type</p>
     <div id="graph-holder" style="height: 100%; ">
-      <ngx-charts-pie-chart
-        [scheme]="colorScheme"
-        [results]="pieData"
-        [legend]="true"
-        [explodeSlices]="true"
-        [labels]="showLabels"
-        [doughnut]="true"
-        [gradient]="false"
-        [arcWidth]="0.1">
+      <ngx-charts-pie-chart *ngIf="!selectedGraphHasNoData; else noDataTemplate"
+                            [scheme]="colorScheme"
+                            [results]="pieData"
+                            [legend]="true"
+                            [explodeSlices]="true"
+                            [labels]="showLabels"
+                            [doughnut]="true"
+                            [gradient]="false"
+                            [arcWidth]="0.1">
       </ngx-charts-pie-chart>
+      <ng-template #noDataTemplate>
+        <ngx-charts-pie-chart
+          [scheme]="NoDatacolorScheme"
+          [results]="NoDatapieData"
+          [legend]="true"
+          [explodeSlices]="true"
+          [labels]="false"
+          [doughnut]="true"
+          [gradient]="false"
+          [arcWidth]="0.1">
+        </ngx-charts-pie-chart>
+      </ng-template>
     </div>
   </div>
 </div>

@@ -9,7 +9,17 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        {
+          "glob": "index.js",
+          "input": "./server/",
+          "output": "./"
+        },
+        {
+          "glob": "package.json",
+          "input": "./server/",
+          "output": "./"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -21,12 +31,11 @@
       "styles": [
         "styles.css",
         "theming.scss",
-        "responsive.css"
+        "responsive.css",
+        "../node_modules/@covalent/core/common/platform.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/fullpage.js/dist/jquery.fullpage.js"
-      ],
+        "../node_modules/jquery/dist/jquery.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -22,7 +22,7 @@ export class ExceptionComponent {
   settings: { [name: string]: Policy };
   allSettingsBackUp: { [name: string]: Policy };
   exceptionsList: any = {};
-  noSettingsExist = true;
+  noSettingsExist: boolean;
 
   constructor(private securityService: SecurityService) {
     this.loadSettings();
@@ -76,7 +76,7 @@ export class ExceptionComponent {
   newDptQuery = (newDpt: boolean) => {
     this.newDepartment = newDpt;
     if (newDpt) {
-     // this.loadGeneralSettings();
+      // this.loadGeneralSettings();
     }
   }
   postNewSettings = (settings: Policy) => {

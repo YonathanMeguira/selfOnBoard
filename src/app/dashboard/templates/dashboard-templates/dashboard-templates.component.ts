@@ -88,8 +88,11 @@ export class GraphComponent implements OnInit {
 export class PieChartsComponent {
   view = [400, 300];
   @Input() pieData;
+  @Input() selectedGraphHasNoData: boolean;
   @Input() title: string;
   @Input() colorScheme;
+  NoDatacolorScheme = {domain: ['#999']};
+  NoDatapieData = [{'name': 'No Data', 'value': 10}];
 }
 
 @Component({

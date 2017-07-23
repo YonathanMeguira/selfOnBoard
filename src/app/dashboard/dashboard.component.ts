@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   feeds: Array<any>;
   pieData: any = {};
   senders: Array<string>;
+  selectedGraphHasNoData: boolean;
   recipients: Array<string>;
   topSenders: any;
   topRecipients: any;
@@ -80,6 +81,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     return arr.slice(0, 5);
   }
+
   generateThreeDifferentRandomNumbers() {
     let arr = [];
     while (arr.length < 3) {
@@ -89,6 +91,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return arr;
   }
+
   makeArrayOfRandomFeeds(arrayOfFeeds: Array<any>): Array<any> {
     const randomFeeds = [];
     const randomNumbers = this.generateThreeDifferentRandomNumbers();
@@ -98,6 +101,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ;
     return randomFeeds;
   }
+
   GetFeed = () => {
     this.dashboardService.GetFeed().subscribe(
       res => {
@@ -120,7 +124,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.recipientValueColor = '#A5CDED';
         this.senders = this.topSenders.TotalModified;
         this.recipients = this.topRecipients.TotalModified;
-        this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
+        if (this.allData.TotalModified.TotalResult > 0) {
+          this.selectedGraphHasNoData = false;
+          this.pieData = this.dictionaryToObject(this.allData.TotalModified.TopFiveFileTypes);
+        } else {
+          this.selectedGraphHasNoData = true;
+        }
         break;
       case 'totals.attachmentOk':
         this.graphData = [this.attachmentOk];
@@ -130,7 +139,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.recipientValueColor = '#A4DCD2';
         this.senders = this.topSenders.TotalPassed;
         this.recipients = this.topRecipients.TotalPassed;
-        this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
+        if (this.allData.TotalPassed.TotalResult > 0) {
+          this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
+          this.selectedGraphHasNoData = false;
+        } else {
+          this.selectedGraphHasNoData = false;
+        }
         break;
       case 'totals.blockedByPolicy':
         this.graphData = [this.blockedByPolicy];
@@ -140,7 +154,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.recipientValueColor = '#F7D399';
         this.senders = this.topSenders.TotalBlockedByPolicy;
         this.recipients = this.topRecipients.TotalBlockedByPolicy;
-        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
+        if (this.allData.TotalBlockedByPolicy.TotalResult > 0) {
+          this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByPolicy.TopFiveFileTypes);
+          this.selectedGraphHasNoData = false;
+        } else {
+          this.selectedGraphHasNoData = true;
+        }
         break;
       case 'totals.attachmentBlockedByAntivirus':
         this.graphData = [this.attachmentBlockedByAntivirus];
@@ -150,7 +169,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.recipientValueColor = '#F5AF91';
         this.senders = this.topSenders.TotalBlockedByAntivirus;
         this.recipients = this.topRecipients.TotalBlockedByAntivirus;
-        this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
+        if (this.allData.TotalBlockedByAntivirus.TotalResult > 0) {
+          this.pieData = this.dictionaryToObject(this.allData.TotalBlockedByAntivirus.TopFiveFileTypes);
+          this.selectedGraphHasNoData = false;
+        } else {
+          this.selectedGraphHasNoData = true;
+        }
         break;
     }
   }

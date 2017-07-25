@@ -203,6 +203,7 @@ export class NewExceptionComponent extends BaseComponent {
   }
   saveSettings = (newSettings: any) => {
     this.settings.exceptions = [];
+    delete newSettings.policyId;
     const splittedEmails = this.addedUsers.split(',');
     for (const email of splittedEmails) {
       const noSpaceEmail = email.replace(/\s+/g, '');

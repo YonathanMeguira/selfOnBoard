@@ -76,9 +76,6 @@ export class ExceptionComponent {
 
   newDptQuery = (newDpt: boolean) => {
     this.newDepartment = newDpt;
-    if (newDpt) {
-      // this.loadGeneralSettings();
-    }
   }
   postNewSettings = (settings: Policy) => {
     this.securityService.savePolicyExceptionSettings(settings).subscribe(

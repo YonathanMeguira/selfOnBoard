@@ -592,6 +592,7 @@ var NewExceptionComponent = (function (_super) {
         };
         _this.saveSettings = function (newSettings) {
             _this.settings.exceptions = [];
+            delete newSettings.policyId;
             var splittedEmails = _this.addedUsers.split(',');
             for (var _i = 0, splittedEmails_2 = splittedEmails; _i < splittedEmails_2.length; _i++) {
                 var email = splittedEmails_2[_i];
@@ -2400,9 +2401,6 @@ var ExceptionComponent = (function () {
         };
         this.newDptQuery = function (newDpt) {
             _this.newDepartment = newDpt;
-            if (newDpt) {
-                // this.loadGeneralSettings();
-            }
         };
         this.postNewSettings = function (settings) {
             _this.securityService.savePolicyExceptionSettings(settings).subscribe(function (success) {

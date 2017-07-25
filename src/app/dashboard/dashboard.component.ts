@@ -133,7 +133,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.pieData = this.dictionaryToObject(this.allData.TotalPassed.TopFiveFileTypes);
           this.selectedGraphHasNoData = false;
         } else {
-          this.selectedGraphHasNoData = false;
+          this.selectedGraphHasNoData = true;
         }
         break;
       case 'totals.blockedByPolicy':

@@ -154,18 +154,11 @@ export class ExceptionSettingsComponent extends BaseComponent {
     });
   }
   saveSettings = (settings: Policy) => {
+    console.log(settings);
     this.onSave.emit(settings);
   }
 
-  uploadEvent(file: File) {
-    const stam = file.msDetachStream;
-    const fileName = file.name;
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
-    var readingState = fileReader.readyState;
-    // fileReader.onloadend(event);
-    const result = fileReader.result;
-  };
+
 
 }
 @Component({

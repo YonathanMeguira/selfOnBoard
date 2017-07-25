@@ -431,6 +431,8 @@ var ExistingExceptionsComponent = (function () {
             }
             return isCurrentPolicy;
         };
+        console.log('will load');
+        console.log(this.exceptionsList);
     }
     ;
     return ExistingExceptionsComponent;
@@ -2366,6 +2368,7 @@ var ExceptionComponent = (function () {
                     _this.settings = result[Object.keys(result)[0]];
                     _this.allSettingsBackUp = _this.settings;
                     _this.exceptionsList = result;
+                    console.log(_this.exceptionsList);
                 }
             }, function (error) {
                 console.log('an error occurred');
@@ -2461,10 +2464,6 @@ var GeneralComponent = (function () {
         this.changeDetection = changeDetection;
         this.mainPolicySettings = new __WEBPACK_IMPORTED_MODULE_3__model_company_policy__["a" /* Policy */]();
         this.saveSettings = function () {
-            // setting all values on cdr to be the same
-            // for (const setting in this.mainPolicySettings.AttachmentsProcessedLevels) {
-            //   this.mainPolicySettings.AttachmentsProcessedLevels[setting] = this.mainPolicySettings.AttachmentsProcessedLevels['documents'];
-            // }
             _this.securityService.saveSettings(_this.mainPolicySettings).subscribe(function (success) {
                 console.log(success);
             }, function (error) {
@@ -2476,7 +2475,6 @@ var GeneralComponent = (function () {
         var _this = this;
         this.securityService.getSettings().subscribe(function (result) {
             _this.mainPolicySettings = result;
-            console.log(_this.mainPolicySettings);
         }, function (error) {
             console.log('an error occurred');
         });
@@ -3119,7 +3117,6 @@ var UserChangePasswordComponent = (function (_super) {
     UserChangePasswordComponent.prototype.applyChangePassword = function () {
         var _this = this;
         this.accountService.ChangePassword(this.passwordsToSend).subscribe(function (result) {
-            console.log(result);
             localStorage.clear();
             _this.dialogRef.close();
             _this.router.navigate(['login']);
@@ -3168,29 +3165,22 @@ var UserComponent = (function () {
             }
         };
         this.isFirstTimeUser = (localStorage.getItem('isFirstTime') === 'true');
-        console.log(this.isFirstTimeUser);
         this.getStateSubscription = this.httpState.getProtocolState$.subscribe(function (state) {
-            console.log('get state is => ', state);
             _this.showLoader = state;
         });
         this.getErrorStateSubscription = this.httpState.getErrorState$.subscribe(function (error) {
-            console.log('get error state is => ', error);
             _this.showLoader = !_this.showLoader;
             _this.showGetErrorDialog();
         });
         this.postErrorStateSubscription = this.httpState.postErrorState$.subscribe(function (state) {
-            console.log('post error state is => ', state);
             _this.showPostErrorDialog();
         });
         this.postRequestHasStarted = this.httpState.postStartState$.subscribe(function (state) {
-            console.log('post request started status =>', state);
             _this.showPostLoader = state;
             _this.togglePostSpinner();
         });
         this.postStateSubscription = this.httpState.postProtocolState$.subscribe(function (state) {
-            console.log('POST state is ', state);
             if (state) {
-                console.log('no error occurred');
                 _this.showSuccessDialog();
             }
             ;
@@ -3236,7 +3226,6 @@ var UserComponent = (function () {
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__shared_system_dialogs__["a" /* SuccessDialog */]);
         dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-                console.log(result);
             }
         });
     };
@@ -3244,7 +3233,6 @@ var UserComponent = (function () {
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__shared_system_dialogs__["b" /* ErrorGetDialog */]);
         dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-                console.log(result);
             }
         });
     };

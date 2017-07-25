@@ -38,6 +38,7 @@ export class ExceptionComponent {
           this.settings = result[Object.keys(result)[0]];
           this.allSettingsBackUp = this.settings;
           this.exceptionsList = result;
+          console.log(this.exceptionsList);
         }
       }, (error) => {
         console.log('an error occurred');

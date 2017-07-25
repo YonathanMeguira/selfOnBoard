@@ -44,6 +44,8 @@ export class ExistingExceptionsComponent {
   errorMessages: any;
 
   constructor() {
+    console.log('will load');
+    console.log(this.exceptionsList);
   };
 
   selectDepartment = (departmentName: string) => {

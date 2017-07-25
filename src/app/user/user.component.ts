@@ -47,7 +47,6 @@ export class UserChangePasswordComponent extends PasswordMethods {
   applyChangePassword() {
     this.accountService.ChangePassword(this.passwordsToSend).subscribe(
       result => {
-        console.log(result);
         localStorage.clear();
         this.dialogRef.close();
         this.router.navigate(['login']);
@@ -92,7 +91,6 @@ export class UserComponent implements OnDestroy{
     const dialogRef = this.dialog.open(SuccessDialog);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
       }
     });
   }
@@ -100,7 +98,6 @@ export class UserComponent implements OnDestroy{
     const dialogRef = this.dialog.open(ErrorGetDialog);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
       }
     });
   }
@@ -130,35 +127,28 @@ export class UserComponent implements OnDestroy{
               private _loadingService: TdLoadingService) {
 
     this.isFirstTimeUser = (localStorage.getItem('isFirstTime') === 'true');
-    console.log(this.isFirstTimeUser);
     this.getStateSubscription = this.httpState.getProtocolState$.subscribe(
       state => {
-        console.log('get state is => ', state);
         this.showLoader = state;
       });
     this.getErrorStateSubscription = this.httpState.getErrorState$.subscribe(
       error => {
-        console.log('get error state is => ', error);
         this.showLoader = !this.showLoader;
         this.showGetErrorDialog();
       });
     this.postErrorStateSubscription = this.httpState.postErrorState$.subscribe(
       state => {
-        console.log('post error state is => ', state );
         this.showPostErrorDialog();
       });
     this.postRequestHasStarted = this.httpState.postStartState$.subscribe(
       state => {
-        console.log('post request started status =>', state);
         this.showPostLoader = state;
         this.togglePostSpinner();
       });
 
     this.postStateSubscription = this.httpState.postProtocolState$.subscribe(
       state => {
-        console.log('POST state is ', state);
         if (state) {
-          console.log('no error occurred');
           this.showSuccessDialog();
         };
         // this.togglePostSpinner();

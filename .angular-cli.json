@@ -35,7 +35,8 @@
         "../node_modules/@covalent/core/common/platform.scss"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js"],
+        "assets/libraries/jquery.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

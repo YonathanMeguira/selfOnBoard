@@ -52,10 +52,12 @@ import {
   MdSidenavModule,
   MdListModule,
   MdButtonModule,
+  MdMenuModule,
   MdProgressBarModule,
   MdProgressSpinnerModule,
   MdDialogModule,
   MdSelectModule,
+  MdIconModule,
   MdRadioModule,
   MdInputModule
 } from '@angular/material';
@@ -64,8 +66,13 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DatePickerModule} from 'ng2-datepicker';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {CovalentDataTableModule} from '@covalent/core';
-import {CovalentCoreModule} from '@covalent/core';
+import {
+  CovalentLayoutModule,
+  CovalentDataTableModule,
+  CovalentPagingModule,
+  CovalentLoadingModule,
+  CovalentFileModule
+} from '@covalent/core';
 import {TagInputModule} from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -73,7 +80,7 @@ import {default as reducer} from './store/app-store';
 
 // custom pipes
 
-import {DictionaryIteratorPipe, GetPercentagePipe, ArrayLengthPipe, RemainingItemsInArrayPipe, LimitLinesDirective} from './shared/pipes';
+import {DictionaryIteratorPipe, GetPercentagePipe, ArrayLengthPipe, RemainingItemsInArrayPipe} from './shared/pipes';
 import {NotificationsComponent} from './account/notifications/notifications.component';
 import {BillingComponent, UpdatePlanComponent} from './account/billing/billing.component';
 import 'hammerjs';
@@ -97,7 +104,7 @@ import {DashboardEffects} from './store/effects/dashboard.effects';
 import {DashboardActions} from './store/actions/dashboard.actions';
 import {DashboardService} from './dashboard/dashboard.service';
 import {HelpComponent} from './help/help.component';
-import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
+import {WrongBrowserComponent} from './wrong-browser/wrong-browser.component';
 
 
 @NgModule({
@@ -142,7 +149,6 @@ import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
     DeleteExceptionDialog,
     FirstTimeUserComponent,
     GetPercentagePipe,
-    LimitLinesDirective,
     NewUserPasswordComponent,
     HelpComponent,
     WrongBrowserComponent,
@@ -158,6 +164,7 @@ import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
     MdSlideToggleModule,
     MdSidenavModule,
     MdListModule,
+    MdIconModule,
     MdButtonModule,
     MdProgressBarModule,
     MdProgressSpinnerModule,
@@ -166,9 +173,13 @@ import { WrongBrowserComponent } from './wrong-browser/wrong-browser.component';
     MdRadioModule,
     MdInputModule,
     FlexLayoutModule,
+    CovalentPagingModule,
+    CovalentLayoutModule,
     CovalentDataTableModule,
+    CovalentFileModule,
+    CovalentLoadingModule,
     BrowserAnimationsModule,
-   CovalentCoreModule,
+    MdMenuModule,
     DatePickerModule,
     NgxDatatableModule,
     NgbModule.forRoot(),

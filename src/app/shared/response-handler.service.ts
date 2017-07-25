@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {DialogsService} from './dialogs.service';
-import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ResponseHandlerService {

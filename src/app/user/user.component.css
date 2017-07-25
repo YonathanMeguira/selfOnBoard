@@ -114,11 +114,17 @@ ul {
 .sob-menu-item:hover {
   color: rgb(0, 153, 255) !important;
 }
-
 #dropdownMenu1:focus {
   outline: 0 !important;
 }
-
+#userMenu{
+  background-color: #F7F8F8;
+  color: #666;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: none;
+  border-radius: 4px;
+}
 .loader {
   color: #fff;
   font-family: Consolas, Menlo, Monaco, monospace;

@@ -23,11 +23,8 @@
                    name="password" #password="ngModel">
             <label [hidden]="password.valid || password.pristine" class="wrong-input">Password is incorrect</label>
           </md-input-container>
-          <button type="submit"  [disabled]="!loginForm.valid" class="btn btn-action-yellow-big hvr-glow">Sign in</button>
+          <button type="submit"  [disabled]="!loginForm.valid || checkingUser" class="btn btn-action-yellow-big hvr-glow">Sign in</button>
         </form>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <md-spinner *ngIf="checkingUser" color="primary"></md-spinner>
       </div>
     </div>
   </div>

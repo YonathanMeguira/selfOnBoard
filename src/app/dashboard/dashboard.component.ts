@@ -9,11 +9,7 @@ import {
   EmailSectionComponent,
   NewsFeedComponent
 } from './templates/dashboard-templates/dashboard-templates.component';
-import {Store} from '@ngrx/store';
-import {AppStore} from 'app/store/app-store';
-import {DashboardActions} from '../store/actions/dashboard.actions';
-import {SeriesModel, GraphDataModel} from './dashboard.models';
-import {serialize} from "@angular/compiler/src/i18n/serializers/xml_helper";
+import {GraphDataModel} from './dashboard.models';
 
 
 @Component({
@@ -51,18 +47,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private attachmentBlockedByAntivirus: any;
   timeFrame = 30;
 
-  constructor(private dashboardService: DashboardService, private store: Store<AppStore>,
-              private dashboardActions: DashboardActions) {
-    // this.getDashboardData = store.select(s => s.dashboardData).subscribe(
-
-    // now actually calling for the store
-    //  this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
+  constructor(private dashboardService: DashboardService) {
   };
 
   ngOnInit() {
     this.GetFeed();
     this.loadDashboardData(this.timeFrame);
-    // this.store.dispatch(this.dashboardActions.loadDashboardData(this.timeFrame));
   };
 
   changeTimeFrame = (newTime: number) => {
@@ -215,6 +205,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.pieData = this.dictionaryToObject(res.TotalBlockedByPolicy);
         this.totals.TotalUrls = res.TotalUrls;
         this.totals.TotalAttachmentProcessed = res.TotalAttachmentProcessed;
+        if (this.totals.TotalAttachmentProcessed > 0) {
+          this.selectedGraphHasNoData = false;
+        } else {
+          this.selectedGraphHasNoData = true;
+        }
         this.topRecipients = res.TopSendersRecipientsAddresses.TopRecipients;
         this.topSenders = res.TopSendersRecipientsAddresses.TopSenders;
         this.recipients = this.topRecipients.AllAttachments;

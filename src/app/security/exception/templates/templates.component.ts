@@ -198,8 +198,9 @@ export class NewExceptionComponent extends BaseComponent {
     this.settings.exceptions = [];
     delete newSettings.policyId;
     const splittedEmails = this.addedUsers.split(',');
-    for (const email of splittedEmails) {
-      const noSpaceEmail = email.replace(/\s+/g, '');
+    const arrayLength = splittedEmails.length;
+    for (let i = 0; i < arrayLength; i++) {
+      const noSpaceEmail = splittedEmails[i].replace(/\s+/g, '');
       if (this.stringIsEmail(noSpaceEmail)) {
         this.settings.exceptions.push(noSpaceEmail);
       }

@@ -31,7 +31,7 @@ var EmailComponent = (function () {
 EmailComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-email',
-        template: __webpack_require__(1004),
+        template: __webpack_require__(1003),
         styles: [__webpack_require__(433)]
     }),
     __metadata("design:paramtypes", [])
@@ -44,70 +44,70 @@ EmailComponent = __decorate([
 /***/ 1000:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"white frame p-3 ml-0\" style=\"height: 400px\">\n  <div layout=\"column\" style=\"height: 100%\">\n    <p class=\"bold light-gray\">{{title}}</p>\n    <p>Top Attachment Type</p>\n    <div id=\"graph-holder\" style=\"height: 100%; \">\n      <ngx-charts-pie-chart *ngIf=\"!selectedGraphHasNoData; else noDataTemplate\"\n                            [scheme]=\"colorScheme\"\n                            [results]=\"pieData\"\n                            [legend]=\"true\"\n                            [explodeSlices]=\"true\"\n                            [labels]=\"showLabels\"\n                            [doughnut]=\"true\"\n                            [gradient]=\"false\"\n                            [arcWidth]=\"0.1\">\n      </ngx-charts-pie-chart>\n      <ng-template #noDataTemplate>\n        <ngx-charts-pie-chart\n          [scheme]=\"NoDatacolorScheme\"\n          [results]=\"NoDatapieData\"\n          [legend]=\"true\"\n          [explodeSlices]=\"true\"\n          [labels]=\"false\"\n          [doughnut]=\"true\"\n          [gradient]=\"false\"\n          [arcWidth]=\"0.1\">\n        </ngx-charts-pie-chart>\n      </ng-template>\n    </div>\n  </div>\n</div>\n\n<style>\n\n</style>\n"
+module.exports = "<div layout=\"row\" layout-align=\"space-between\" class=\"mb-4\">\n  <div flex=\"50\" class=\"p-5 white frame mr-3\" layout=\"row\" layout-align=\"center center\">\n    <p flex=\"66\" class=\"dashboard-top-titles text-center\">Total Emails Processed</p>\n    <p flex=\"33\" class=\"dashboard-top-figure\">{{totals.TotalEmailsProcessed}}</p>\n  </div>\n  <div flex=\"50\" class=\"p-5 white frame ml-3\" layout=\"row\" layout-align=\"center center\">\n    <p flex=\"66\" class=\"dashboard-top-titles text-center\">Total Hyperlinks Processed</p>\n    <p flex=\"33\" class=\"dashboard-top-figure\">{{totals.TotalUrls}}</p>\n  </div>\n</div>\n\n<div class=\"col-12 white frame pr-0 \" (click)=\"displayTotals('showTotals')\" style=\"cursor:pointer;\">\n  <div layout=\"row\" layout-align=\"end end\" flex=\"100\">\n    <div id=\"triangle-purple\"></div>\n  </div>\n  <div layout=\"row\" layout-align=\"center center\" class=\"pb-5 pt-3\">\n    <h4 class=\"dashboard-top-titles mr-3\">Total Attachments Processed</h4>\n    <h1 class=\" bold-dark-gray underlined-purple ml-3 dashboard-top-figure\">{{totals.TotalAttachmentProcessed.TotalResult}}</h1>\n  </div>\n</div>\n\n<style>\n  #triangle-purple {\n    width: 0;\n    height: 0;\n    border-top: 20px solid #9A1796;\n    border-left: 20px solid transparent;\n  }\n</style>\n"
 
 /***/ }),
 
 /***/ 1001:
 /***/ (function(module, exports) {
 
-module.exports = "<div layout=\"row\" layout-align=\"space-between\" class=\"mb-4\">\n  <div flex=\"50\" class=\"p-5 white frame mr-3\" layout=\"row\" layout-align=\"center center\">\n    <p flex=\"66\" class=\"dashboard-top-titles text-center\">Total Emails Processed</p>\n    <p flex=\"33\" class=\"dashboard-top-figure\">{{totals.TotalEmailsProcessed}}</p>\n  </div>\n  <div flex=\"50\" class=\"p-5 white frame ml-3\" layout=\"row\" layout-align=\"center center\">\n    <p flex=\"66\" class=\"dashboard-top-titles text-center\">Total Hyperlinks Processed</p>\n    <p flex=\"33\" class=\"dashboard-top-figure\">{{totals.TotalUrls}}</p>\n  </div>\n</div>\n\n<div class=\"col-12 white frame pr-0 \" (click)=\"displayTotals('showTotals')\" style=\"cursor:pointer;\">\n  <div layout=\"row\" layout-align=\"end end\" flex=\"100\">\n    <div id=\"triangle-purple\"></div>\n  </div>\n  <div layout=\"row\" layout-align=\"center center\" class=\"pb-5 pt-3\">\n    <h4 class=\"dashboard-top-titles mr-3\">Total Attachments Processed</h4>\n    <h1 class=\" bold-dark-gray underlined-purple ml-3 dashboard-top-figure\">{{totals.TotalAttachmentProcessed.TotalResult}}</h1>\n  </div>\n</div>\n\n<style>\n  #triangle-purple {\n    width: 0;\n    height: 0;\n    border-top: 20px solid #9A1796;\n    border-left: 20px solid transparent;\n  }\n</style>\n"
+module.exports = "<div class=\"col-12 white frame pb-5\">\n  <div class=\"title-section\">\n    <h4 class=\"bold-dark-gray p-4\">WELCOME!</h4>\n  </div>\n  <div class=\"mt-5 mb-5 col-7\">\n    <small>This checklist will help you get started.</small>\n    <div class=\"row mt-5\">\n      <div col=\"3\">\n        <md-checkbox></md-checkbox>\n      </div>\n      <div class=\"col-9\">\n        <h5 class=\"bold-dark-gray mb-4\">Change your MX Record</h5>\n        <small>Access your account at your domain host and change the domain's MX record to SECUREMAIL.RE-SEC.COM.\n          Here's a directory of all domain hosts and hot to find your MX record.\n        </small>\n      </div>\n    </div>\n    <div class=\"row mt-5\">\n      <div col=\"3\">\n        <md-checkbox></md-checkbox>\n      </div>\n      <div class=\"col-9\">\n        <h5 class=\"bold-dark-gray mb-4\">Send a test email</h5>\n        <small>Make sure the MX record change was a success and that\n          we're up and running by sending a test email.\n        </small>\n        <div class=\"mt-3\">\n          <button class=\"btn btn-action-inverse ml-0\">Send Test Email</button>\n        </div>\n      </div>\n    </div>\n    <div class=\"row mt-5\">\n      <div col=\"3\">\n        <md-checkbox></md-checkbox>\n      </div>\n      <div class=\"col-9\">\n        <h5 class=\"bold-dark-gray mb-4\">Customize Security Settings</h5>\n        <small>Create your company security policy by heading to the <a class=\"internal-link\">Security Settings</a>\n          section.\n        </small>\n      </div>\n    </div>\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
 /***/ 1002:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-12 white frame pb-5\">\n  <div class=\"title-section\">\n    <h4 class=\"bold-dark-gray p-4\">WELCOME!</h4>\n  </div>\n  <div class=\"mt-5 mb-5 col-7\">\n    <small>This checklist will help you get started.</small>\n    <div class=\"row mt-5\">\n      <div col=\"3\">\n        <md-checkbox></md-checkbox>\n      </div>\n      <div class=\"col-9\">\n        <h5 class=\"bold-dark-gray mb-4\">Change your MX Record</h5>\n        <small>Access your account at your domain host and change the domain's MX record to SECUREMAIL.RE-SEC.COM.\n          Here's a directory of all domain hosts and hot to find your MX record.\n        </small>\n      </div>\n    </div>\n    <div class=\"row mt-5\">\n      <div col=\"3\">\n        <md-checkbox></md-checkbox>\n      </div>\n      <div class=\"col-9\">\n        <h5 class=\"bold-dark-gray mb-4\">Send a test email</h5>\n        <small>Make sure the MX record change was a success and that\n          we're up and running by sending a test email.\n        </small>\n        <div class=\"mt-3\">\n          <button class=\"btn btn-action-inverse ml-0\">Send Test Email</button>\n        </div>\n      </div>\n    </div>\n    <div class=\"row mt-5\">\n      <div col=\"3\">\n        <md-checkbox></md-checkbox>\n      </div>\n      <div class=\"col-9\">\n        <h5 class=\"bold-dark-gray mb-4\">Customize Security Settings</h5>\n        <small>Create your company security policy by heading to the <a class=\"internal-link\">Security Settings</a>\n          section.\n        </small>\n      </div>\n    </div>\n  </div>\n\n</div>\n\n"
+module.exports = "\n\n<div class=\"col-12 bg-white-shadow\">\n\n  <div class=\"mt-5 text-center\" *ngIf=\"!isEmailEmpty\">\n\n    <div class=\"title-section pt-4 pb-4\">\n      <p class=\"section-header pl-0\">BLOCKED EMAILS & ATTACHMENTS</p>\n    </div>\n    <p class=\"mail-result\">{{totalNumberOfMails}} Emails</p>\n    <td-data-table\n      #dataTable\n      [data]=\"emails\"\n      [columns]=\"columns\"\n      [sortable]=\"true\"\n      [selectable]=\"false\"\n      [sortBy]=\"query.sortField\"\n      [sortOrder]=\"query.sortOrder\"\n      (sortChange)=\"sort($event)\"\n      (rowSelect)=\"selectMail($event)\"\n      (selectAll)=\"selectAllMails($event)\">\n    </td-data-table>\n    <div class=\"md-padding\" *ngIf=\"!dataTable.hasData\" layout=\"row\" layout-align=\"center center\">\n      <h3>No results to display.</h3>\n    </div>\n    <td-paging-bar #pagingBar [pageSizes]=\"[5, 10, 15, 20]\" [total]=\"totalNumberOfMails\" (change)=\"page($event)\">\n      <span td-paging-bar-label hide-xs>Row per page:</span>\n      {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>\n    </td-paging-bar>\n  </div>\n</div>\n\n\n<style>\n  .mail-result{\n    font-size: 18px;\n    color: #666666;\n    font-family: 'RobotoSlab-Light', 'Roboto Slab Light', 'Roboto Slab' !important;\n    font-weight: 500 !important;\n    font-style: normal !important;\n    text-align: left !important;\n    padding-top: 20px !important;\n    padding-bottom: 20px !important;\n  }\n</style>\n"
 
 /***/ }),
 
 /***/ 1003:
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"col-12 bg-white-shadow\">\n\n  <div class=\"mt-5 text-center\" *ngIf=\"!isEmailEmpty\">\n\n    <div class=\"title-section pt-4 pb-4\">\n      <p class=\"section-header pl-0\">BLOCKED EMAILS & ATTACHMENTS</p>\n    </div>\n    <p class=\"mail-result\">{{totalNumberOfMails}} Emails</p>\n    <td-data-table\n      #dataTable\n      [data]=\"emails\"\n      [columns]=\"columns\"\n      [sortable]=\"true\"\n      [selectable]=\"false\"\n      [sortBy]=\"query.sortField\"\n      [sortOrder]=\"query.sortOrder\"\n      (sortChange)=\"sort($event)\"\n      (rowSelect)=\"selectMail($event)\"\n      (selectAll)=\"selectAllMails($event)\">\n    </td-data-table>\n    <div class=\"md-padding\" *ngIf=\"!dataTable.hasData\" layout=\"row\" layout-align=\"center center\">\n      <h3>No results to display.</h3>\n    </div>\n    <td-paging-bar #pagingBar [pageSizes]=\"[5, 10, 15, 20]\" [total]=\"totalNumberOfMails\" (change)=\"page($event)\">\n      <span td-paging-bar-label hide-xs>Row per page:</span>\n      {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>\n    </td-paging-bar>\n  </div>\n</div>\n\n\n<style>\n  .mail-result{\n    font-size: 18px;\n    color: #666666;\n    font-family: 'RobotoSlab-Light', 'Roboto Slab Light', 'Roboto Slab' !important;\n    font-weight: 500 !important;\n    font-style: normal !important;\n    text-align: left !important;\n    padding-top: 20px !important;\n    padding-bottom: 20px !important;\n  }\n</style>\n"
+module.exports = "<div  id=\"reports-container\">\n\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
 /***/ 1004:
 /***/ (function(module, exports) {
 
-module.exports = "<div  id=\"reports-container\">\n\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<div>\n  <div *ngIf=\"!isFirstTime\" class=\"mb-5 mt-5\">\n    <div class=\"white frame\">\n      <div class=\"col-8 pl-0\">\n        <div layout=\"row\" class=\"search-container\" layout-align=\"start center\">\n          <label class=\"mr-5 mb-0 search-label\">ReSec Ticket ID</label>\n          <input type=\"text\" class=\"sob-input\" flex=\"50\" [(ngModel)]=\"query.ticketId\" (keyup.enter)=\"searchMails()\">\n          <button class=\"btn search-btn\" (click)=\"searchMails()\" [disabled]=\"!query.ticketId\" *ngIf=\"noSearchInitiated\">\n            <i class=\"fa fa-chevron-right\" aria-hidden=\"true\" style=\"font-size: 18px\"></i>\n          </button>\n          <button md-mini-fab (click)=\"emptyQuery()\" *ngIf=\"!noSearchInitiated\" class=\"ml-3\">X</button>\n        </div>\n        <!-- search result section -->\n        <div class=\"pb-5\" style=\"padding-left: 40px\">\n          <div *ngIf=\"!noResultFound && !noSearchInitiated\">\n            <div class=\"mt-5 mb-4\" *ngIf=\"!noResultFound\">\n              <div class=\"row mb-3\">\n                <p class=\"col-3\">Date</p>\n                <p class=\"bold-dark-gray col\">{{emails.SanitizationDate | date:'medium'}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\" col-3\">Reason</p>\n                <p class=\"bold-dark-gray col\">{{emails['Reason Blocked']}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\" col-3\">Recipient</p>\n                <p class=\"bold-dark-gray col\">{{emails.Recipient}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\"col-3\">Sender</p>\n                <p class=\"bold-dark-gray col\">{{emails.Sender}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\" col-3\">Subject</p>\n                <p class=\"bold-dark-gray col\">{{emails.Subject}}</p>\n              </div>\n              <div class=\"row mb-3\" *ngIf=\"!mailHasNoAttachments\">\n                <p class=\" col-3\">Attached Files</p>\n                <p class=\"bold-dark-gray col\">{{emails['Attached Files']}}</p>\n              </div>\n            </div>\n\n            <table class=\"table table-responsive mt-5\" *ngIf=\"!mailHasNoAttachments\" flex=\"85\">\n              <thead>\n              <th class=\"col-2\">Attachment</th>\n              <th>Reason</th>\n              </thead>\n              <tbody id=\"search-mail-body\">\n                <tr *ngFor=\"let attachment of emails['Attached Files Outcomes'] | DictionaryIteratorPipe: 'true'\">\n                  <td>{{attachment.key}}</td>\n                  <td>{{attachment.value}}</td>\n                </tr>\n              </tbody>\n            </table>\n\n            <div class=\"row mb-5\">\n              <button class=\"btn btn-neutral-yellow-hvr\" layout=\"row\" layout-align=\"center center\"\n                      (click)=\"performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')\">\n                <md-icon class=\"center-icon mr-3\" svgIcon=\"releaseMail\"></md-icon>\n                Release to Recipient\n              </button>\n              <button class=\"btn btn-neutral-yellow-hvr\"\n                      (click)=\"performAction(emails.SanitizationId, 'ForwardToAdmin')\"\n                      layout=\"row\" layout-align=\"center center\">\n                <md-icon class=\"center-icon mr-3\" svgIcon=\"forwardMail\"></md-icon>\n                Forward To Admin\n              </button>\n            </div>\n          </div>\n          <div *ngIf=\"noResultFound && !noSearchInitiated\" class=\"mt-5 alert alert-warning\">\n            <p>no result found</p>\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n  <div *ngIf=\"isFirstTime\" class=\"col text-center white frame\">\n    <div class=\"mt-5 mb-5 p-5\">\n      <p class=\"bold-dark-gray\">\n        0 email</p>\n      <p>No emails have been processed yet. Once they do, you'll see them listed here. Head to the dashboard, complete\n        your\n        checklist and make sure you're up and running with ReSecure Mail.</p>\n    </div>\n  </div>\n</div>\n\n\n<style>\n  .search-label {\n    font-weight: 500;\n    color: #666666;\n  }\n</style>\n"
 
 /***/ }),
 
 /***/ 1005:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div *ngIf=\"!isFirstTime\" class=\"mb-5 mt-5\">\n    <div class=\"white frame\">\n      <div class=\"col-8 pl-0\">\n        <div layout=\"row\" class=\"search-container\" layout-align=\"start center\">\n          <label class=\"mr-5 mb-0 search-label\">ReSec Ticket ID</label>\n          <input type=\"text\" class=\"sob-input\" flex=\"50\" [(ngModel)]=\"query.ticketId\" (keyup.enter)=\"searchMails()\">\n          <button class=\"btn search-btn\" (click)=\"searchMails()\" [disabled]=\"!query.ticketId\" *ngIf=\"noSearchInitiated\">\n            <i class=\"fa fa-chevron-right\" aria-hidden=\"true\" style=\"font-size: 18px\"></i>\n          </button>\n          <button md-mini-fab (click)=\"emptyQuery()\" *ngIf=\"!noSearchInitiated\" class=\"ml-3\">X</button>\n        </div>\n        <!-- search result section -->\n        <div class=\"pb-5\" style=\"padding-left: 40px\">\n          <div *ngIf=\"!noResultFound && !noSearchInitiated\">\n            <div class=\"mt-5 mb-4\" *ngIf=\"!noResultFound\">\n              <div class=\"row mb-3\">\n                <p class=\"col-3\">Date</p>\n                <p class=\"bold-dark-gray col\">{{emails.SanitizationDate | date:'medium'}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\" col-3\">Reason</p>\n                <p class=\"bold-dark-gray col\">{{emails['Reason Blocked']}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\" col-3\">Recipient</p>\n                <p class=\"bold-dark-gray col\">{{emails.Recipient}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\"col-3\">Sender</p>\n                <p class=\"bold-dark-gray col\">{{emails.Sender}}</p>\n              </div>\n              <div class=\"row mb-3\">\n                <p class=\" col-3\">Subject</p>\n                <p class=\"bold-dark-gray col\">{{emails.Subject}}</p>\n              </div>\n              <div class=\"row mb-3\" *ngIf=\"!mailHasNoAttachments\">\n                <p class=\" col-3\">Attached Files</p>\n                <p class=\"bold-dark-gray col\">{{emails['Attached Files']}}</p>\n              </div>\n            </div>\n\n            <table class=\"table table-responsive mt-5\" *ngIf=\"!mailHasNoAttachments\" flex=\"85\">\n              <thead>\n              <th class=\"col-2\">Attachment</th>\n              <th>Reason</th>\n              </thead>\n              <tbody id=\"search-mail-body\">\n                <tr *ngFor=\"let attachment of emails['Attached Files Outcomes'] | DictionaryIteratorPipe: 'true'\">\n                  <td>{{attachment.key}}</td>\n                  <td>{{attachment.value}}</td>\n                </tr>\n              </tbody>\n            </table>\n\n            <div class=\"row mb-5\">\n              <button class=\"btn btn-neutral-yellow-hvr\" layout=\"row\" layout-align=\"center center\"\n                      (click)=\"performAction(emails.SanitizationId, 'ReleaseEmailToRecipient')\">\n                <md-icon class=\"center-icon mr-3\" svgIcon=\"releaseMail\"></md-icon>\n                Release to Recipient\n              </button>\n              <button class=\"btn btn-neutral-yellow-hvr\"\n                      (click)=\"performAction(emails.SanitizationId, 'ForwardToAdmin')\"\n                      layout=\"row\" layout-align=\"center center\">\n                <md-icon class=\"center-icon mr-3\" svgIcon=\"forwardMail\"></md-icon>\n                Forward To Admin\n              </button>\n            </div>\n          </div>\n          <div *ngIf=\"noResultFound && !noSearchInitiated\" class=\"mt-5 alert alert-warning\">\n            <p>no result found</p>\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n  <div *ngIf=\"isFirstTime\" class=\"col text-center white frame\">\n    <div class=\"mt-5 mb-5 p-5\">\n      <p class=\"bold-dark-gray\">\n        0 email</p>\n      <p>No emails have been processed yet. Once they do, you'll see them listed here. Head to the dashboard, complete\n        your\n        checklist and make sure you're up and running with ReSecure Mail.</p>\n    </div>\n  </div>\n</div>\n\n\n<style>\n  .search-label {\n    font-weight: 500;\n    color: #666666;\n  }\n</style>\n"
+module.exports = "<p>1-800-455-1234</p>\n<p>support@resec.com</p>\n"
 
 /***/ }),
 
 /***/ 1006:
 /***/ (function(module, exports) {
 
-module.exports = "<p>1-800-455-1234</p>\n<p>support@resec.com</p>\n"
+module.exports = "<div class=\"outer\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\n  <h3 *ngIf=\"wrongId\" color=\"accent\">Please enter valid credentials</h3>\n  <div class=\"frame white\" style=\"width: 40%\">\n    <div layout-margin layout=\"row\" layout-align=\"center center\" class=\"mt-5 mb-2\">\n      <md-icon style=\"height:60px; width: auto\" svgIcon=\"resecLoginLogo\"></md-icon>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div [hidden]=\"submitted\" fxFlex=\"90\">\n        <form (ngSubmit)=\"onSubmit()\" #loginForm=\"ngForm\" id=\"form-container\" fxLayout=\"column\" fxLayoutGap=\"20px\"\n              fxLayoutWrap>\n          <md-input-container class=\"full-width\" dividerColor=\"primary\" *ngIf=\"!urlHasServer\">\n            <input mdInput placeholder=\"Server\" type=\"text\" id=\"server\" required [(ngModel)]=\"user.server\" name=\"server\"\n                   #server=\"ngModel\">\n            <label [hidden]=\"server.valid || server.pristine\" class=\"wrong-input\">Server is required</label>\n          </md-input-container>\n          <md-input-container class=\"full-width\" dividerColor=\"primary\">\n            <input mdInput type=\"text\" placeholder=\"Username\" id=\"username\" required [(ngModel)]=\"user.username\"\n                   name=\"username\" #username=\"ngModel\">\n            <label [hidden]=\"username.valid || username.pristine\" class=\"wrong-input\">Username is required</label>\n          </md-input-container>\n          <md-input-container class=\"full-width\" dividerColor=\"primary\">\n            <input mdInput type=\"password\" placeholder=\"Password\" id=\"password\" required [(ngModel)]=\"user.password\"\n                   name=\"password\" #password=\"ngModel\">\n            <label [hidden]=\"password.valid || password.pristine\" class=\"wrong-input\">Password is incorrect</label>\n          </md-input-container>\n          <button type=\"submit\"  [disabled]=\"!loginForm.valid || checkingUser\" class=\"btn btn-action-yellow-big hvr-glow\">Sign in</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n\n<style>\n  #login-btn{\n    background-color: purple;\n    color: white;\n  }\n</style>\n"
 
 /***/ }),
 
 /***/ 1007:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"outer\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\n  <h3 *ngIf=\"wrongId\" color=\"accent\">Please enter valid credentials</h3>\n  <div class=\"frame white\" style=\"width: 40%\">\n    <div layout-margin layout=\"row\" layout-align=\"center center\" class=\"mt-5 mb-2\">\n      <md-icon style=\"height:60px; width: auto\" svgIcon=\"resecLoginLogo\"></md-icon>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div [hidden]=\"submitted\" fxFlex=\"90\">\n        <form (ngSubmit)=\"onSubmit()\" #loginForm=\"ngForm\" id=\"form-container\" fxLayout=\"column\" fxLayoutGap=\"20px\"\n              fxLayoutWrap>\n          <md-input-container class=\"full-width\" dividerColor=\"primary\" *ngIf=\"!urlHasServer\">\n            <input mdInput placeholder=\"Server\" type=\"text\" id=\"server\" required [(ngModel)]=\"user.server\" name=\"server\"\n                   #server=\"ngModel\">\n            <label [hidden]=\"server.valid || server.pristine\" class=\"wrong-input\">Server is required</label>\n          </md-input-container>\n          <md-input-container class=\"full-width\" dividerColor=\"primary\">\n            <input mdInput type=\"text\" placeholder=\"Username\" id=\"username\" required [(ngModel)]=\"user.username\"\n                   name=\"username\" #username=\"ngModel\">\n            <label [hidden]=\"username.valid || username.pristine\" class=\"wrong-input\">Username is required</label>\n          </md-input-container>\n          <md-input-container class=\"full-width\" dividerColor=\"primary\">\n            <input mdInput type=\"password\" placeholder=\"Password\" id=\"password\" required [(ngModel)]=\"user.password\"\n                   name=\"password\" #password=\"ngModel\">\n            <label [hidden]=\"password.valid || password.pristine\" class=\"wrong-input\">Password is incorrect</label>\n          </md-input-container>\n          <button type=\"submit\"  [disabled]=\"!loginForm.valid || checkingUser\" class=\"btn btn-action-yellow-big hvr-glow\">Sign in</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n\n<style>\n  #login-btn{\n    background-color: purple;\n    color: white;\n  }\n</style>\n"
+module.exports = "<div layout=\"column\" layout-align=\"center center\">\n  <div class=\"white frame p-5\" style=\"width: 60%; margin-top: 10em\">\n    <div class=\"text-center m-3\">\n      <h4 class=\"mb-3 bold \">Change Password</h4>\n    </div>\n    <form #changePassword=\"ngForm\">\n      <div class=\"mb-4 mt-2\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Current Password</p>\n        <input #currentPassword=\"ngModel\" name=\"currentPassword\" minlength=\"6\" flex=\"50\" class=\"sob-input\" required\n               [(ngModel)]=\"passwordsToSend.CurrentPassword\" type=\"password\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"oldPasswordIsValid(passwordsToSend.CurrentPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">New Password</p>\n        <input #NewPassword='ngModel' flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.NewPassword\"\n               type=\"password\" name=\"NewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"fieldIsValid(passwordsToSend.NewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Confirm New Password</p>\n        <input #ConfirmNewPassword=\"ngModel\" flex=\"50\" class=\"sob-input\" required\n               [(ngModel)]=\"passwordsToSend.ConfirmNewPassword\" type=\"password\" name=\"ConfirmNewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"passwordsMatch(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"row justify-content-center\">\n        <button type=\"button\" class=\"btn btn-action-yellow-big\"\n                [disabled]=\"!(passwordsAreValid(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword))\"\n                (click)=\"applyChangePassword()\">CHANGE\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n<style>\n  .green-icon {\n    color: #72B895 !important;\n  }\n\n  .reset-field {\n    margin-bottom: 0px !important;\n    color: #666666 !important;\n    font-weight: 600 !important;\n  }\n</style>\n"
 
 /***/ }),
 
 /***/ 1008:
 /***/ (function(module, exports) {
 
-module.exports = "<div layout=\"column\" layout-align=\"center center\">\n  <div class=\"white frame p-5\" style=\"width: 60%; margin-top: 10em\">\n    <div class=\"text-center m-3\">\n      <h4 class=\"mb-3 bold \">Change Password</h4>\n    </div>\n    <form #changePassword=\"ngForm\">\n      <div class=\"mb-4 mt-2\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Current Password</p>\n        <input #currentPassword=\"ngModel\" name=\"currentPassword\" minlength=\"6\" flex=\"50\" class=\"sob-input\" required\n               [(ngModel)]=\"passwordsToSend.CurrentPassword\" type=\"password\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"oldPasswordIsValid(passwordsToSend.CurrentPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">New Password</p>\n        <input #NewPassword='ngModel' flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.NewPassword\"\n               type=\"password\" name=\"NewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"fieldIsValid(passwordsToSend.NewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Confirm New Password</p>\n        <input #ConfirmNewPassword=\"ngModel\" flex=\"50\" class=\"sob-input\" required\n               [(ngModel)]=\"passwordsToSend.ConfirmNewPassword\" type=\"password\" name=\"ConfirmNewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"passwordsMatch(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"row justify-content-center\">\n        <button type=\"button\" class=\"btn btn-action-yellow-big\"\n                [disabled]=\"!(passwordsAreValid(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword))\"\n                (click)=\"applyChangePassword()\">CHANGE\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n<style>\n  .green-icon {\n    color: #72B895 !important;\n  }\n\n  .reset-field {\n    margin-bottom: 0px !important;\n    color: #666666 !important;\n    font-weight: 600 !important;\n  }\n</style>\n"
+module.exports = "<div layout=\"column\" *ngIf=\"!dataIsLoading\">\n  <div layout=\"row\" flex=\"100\" style=\"margin-top: 3em;\">\n    <button class=\"btn btn-neutral-yellow-hvr\" (click)='newDptQuery(true)'>+ Add Department</button>\n  </div>\n  <div layout=\"row\" layout-margin>\n\n    <existing-exceptions flex=\"25\" id=\"exception-list\" [noSettingsExist]=\"noSettingsExist\"\n                         [exceptionsList]=\"exceptionsList\" [currentSettings]=\"settings\"\n                         [newDepartmentRequired]=\"newDepartment\"\n                         (onSelect)=\"selectDepartment($event)\" class=\"mt-0 mr-0\"></existing-exceptions>\n    <div flex class=\"mt-0\">\n      <div *ngIf=\"!noSettingsExist && !newDepartment\" flex>\n        <exception-settings\n          [settings]=\"settings\"\n          (onSave)='postNewSettings($event)' (onDelete)='deletePolicy($event)'>\n        </exception-settings>\n      </div>\n      <div *ngIf=\"newDepartment\" flex>\n        <new-exception (onCancel)=\"cancelCreation($event)\" (onSave)=\"postNewSettings($event)\"></new-exception>\n      </div>\n      <p *ngIf=\"!newDepartment && noSettingsExist\">No setting currently exist</p>\n    </div>\n  </div>\n\n</div>\n<!--\n<div layout=\"column\" layout-align=\"center center\" *ngIf=\"dataIsLoading\" style=\"min-height: 80vh\">\n  <md-spinner></md-spinner>\n</div>\n-->\n"
 
 /***/ }),
 
 /***/ 1009:
 /***/ (function(module, exports) {
 
-module.exports = "<div layout=\"column\" *ngIf=\"!dataIsLoading\">\n  <div layout=\"row\" flex=\"100\" style=\"margin-top: 3em;\">\n    <button class=\"btn btn-neutral-yellow-hvr\" (click)='newDptQuery(true)'>+ Add Department</button>\n  </div>\n  <div layout=\"row\" layout-margin>\n\n    <existing-exceptions flex=\"25\" id=\"exception-list\" [noSettingsExist]=\"noSettingsExist\"\n                         [exceptionsList]=\"exceptionsList\" [currentSettings]=\"settings\"\n                         [newDepartmentRequired]=\"newDepartment\"\n                         (onSelect)=\"selectDepartment($event)\" class=\"mt-0 mr-0\"></existing-exceptions>\n    <div flex class=\"mt-0\">\n      <div *ngIf=\"!noSettingsExist && !newDepartment\" flex>\n        <exception-settings\n          [settings]=\"settings\"\n          (onSave)='postNewSettings($event)' (onDelete)='deletePolicy($event)'>\n        </exception-settings>\n      </div>\n      <div *ngIf=\"newDepartment\" flex>\n        <new-exception (onCancel)=\"cancelCreation($event)\" (onSave)=\"postNewSettings($event)\"></new-exception>\n      </div>\n      <p *ngIf=\"!newDepartment && noSettingsExist\">No setting currently exist</p>\n    </div>\n  </div>\n\n</div>\n<!--\n<div layout=\"column\" layout-align=\"center center\" *ngIf=\"dataIsLoading\" style=\"min-height: 80vh\">\n  <md-spinner></md-spinner>\n</div>\n-->\n"
+module.exports = "\n<div layout=\"column\">\n  <md-list *ngIf=\"!noSettingsExist\" class=\"pt-0\">\n    <md-list-item *ngIf=\"newDepartmentRequired\" class=\"selectedPolicy dpt-name\">New Department</md-list-item>\n    <md-list-item *ngFor=\"let exception of exceptionsList | DictionaryIteratorPipe\" class=\"dpt-list\"\n                  (click)=\"selectDepartment(exception.policyName)\"\n                  [ngClass]=\"{'selectedPolicy': isCurrentPolicy(exception.policyName) && !newDepartmentRequired}\">\n      <p class=\"dpt-name fs-13\" md-line>{{exception.policyName}}</p>\n      <p md-line class=\"fs-13 dpt-users\">{{exception.exceptions | ArrayLength}} users</p>\n    </md-list-item>\n  </md-list>\n</div>\n"
 
 /***/ }),
 
@@ -187,81 +187,74 @@ var Severity;
 /***/ 1010:
 /***/ (function(module, exports) {
 
-module.exports = "\n<div layout=\"column\">\n  <md-list *ngIf=\"!noSettingsExist\" class=\"pt-0\">\n    <md-list-item *ngIf=\"newDepartmentRequired\" class=\"selectedPolicy dpt-name\">New Department</md-list-item>\n    <md-list-item *ngFor=\"let exception of exceptionsList | DictionaryIteratorPipe\" class=\"dpt-list\"\n                  (click)=\"selectDepartment(exception.policyName)\"\n                  [ngClass]=\"{'selectedPolicy': isCurrentPolicy(exception.policyName) && !newDepartmentRequired}\">\n      <p class=\"dpt-name fs-13\" md-line>{{exception.policyName}}</p>\n      <p md-line class=\"fs-13 dpt-users\">{{exception.exceptions | ArrayLength}} users</p>\n    </md-list-item>\n  </md-list>\n</div>\n"
+module.exports = "<div layout=\"column\">\n  <div id=\"actionCenter\" class=\"white frame margin-top\">\n    <div class=\"title-section\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n      <div flex=\"70\" layout=\"row\" layout-align=\"space-between center\">\n        <p class=\"mini-heading\" flex=\"30\">Department Name</p>\n        <input class=\"sob-input\" [(ngModel)]=\"settings.policyName\" flex>\n      </div>\n      <p class=\"inner-link\" style=\"text-align: right !important\" (click)=\"cancelCreation(false)\" flex>Cancel new\n        department</p>\n    </div>\n\n    <div layout=\"row\" layout-align=\"space-between start\" layout-margin class=\"mt-5 mb-5 ml-2 mr-3\">\n      <div layout=\"column\" layout-align=\"start space-between \" flex=\"70\">\n        <div layout=\"row\" layout-align=\"space-between start\" class=\"mb-4\">\n          <p class=\"mini-heading\" flex=\"30\">Department Users </p>\n          <div layout=\"column\" flex>\n          <textarea [(ngModel)]=\"addedUsers\" class=\"custom-textarea\" rows=\"7\"\n                    placeholder=\"Copy and past email addresses separated by a comma (,)\"></textarea>\n            <div layout=\"row\" layout-align=\"start\" class=\"mt-3\">\n              <p class=\"inner-link fs-11\">Upload .csv</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS PROCESSED WITH CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div id=\"explanation\">\n          <p class=\"fs-13\">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the\n            file is created and the email is received seamlessly to the end user.</p>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Documents</p>\n            <p class=\"fs-11\">.doc, .docx, .pdf, .pages, .gdoc</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Active content & <br>macros NOT removed</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.documents\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Active content & <br>macros removed</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Spreadsheets</p>\n            <p class=\"fs-11\">.csv, .xls, .xlsx, .gsheet</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.spreadsheets\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Images</p>\n            <p class=\"fs-11\">.png, .jpeg, .jpg, .gif</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.images\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Presentations</p>\n            <p class=\"fs-11\">.ppt, .pptx, .keynote, .gslides</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.presentations\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"specialAttachments\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">SPECIAL ATTACHMENTS</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Signed Documents</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Signature intact</p>\n              <p class=\"fs-11\">Document is not processed with CDR</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.signedDocuments\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Signature is not recreated</p>\n              <p class=\"fs-11\">CDR is processed accordingly to existing policy</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"general\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">GENERAL</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16 mb-3\">Hyperlinks</p>\n            <p class=\"fs-11\">This includes links in the body <br>of an email and\n              in<br> any documents attached</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Fix and disabled based on URL reputation</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.selectedSafeLinksOperation\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Disabled hyperlinks</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS WITHOUT CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Videos/Sound</p>\n            <p class=\"fs-11\">.mp4, .mp3</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.videoSound\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Applications/Scripts</p>\n            <p class=\"fs-11\">.dmg, .exe</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.applicationsScripts\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Unrecognized Files</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.unrecognizedFiles\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Password Protected</p>\n            <p class=\"fs-11\">A secure version of an attachment can't be made when it is password protected.</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.passwordProtected\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 \">Block</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n\n  <div id=\"save-settings-exception\" layout=\"row\" layout-align=\"center center\" class=\"mt-4 mb-5\">\n    <button [disabled]=\"newExceptionHasEmail()\" class=\"btn btn-action-yellow-big hvr-glow\"\n            (click)=\"saveSettings(settings)\">APPLY\n    </button>\n  </div>\n\n</div>\n\n\n\n\n\n\n\n"
 
 /***/ }),
 
 /***/ 1011:
 /***/ (function(module, exports) {
 
-module.exports = "<div layout=\"column\">\n  <div id=\"actionCenter\" class=\"white frame margin-top\">\n    <div class=\"title-section\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n      <div flex=\"70\" layout=\"row\" layout-align=\"space-between center\">\n        <p class=\"mini-heading\" flex=\"30\">Department Name</p>\n        <input class=\"sob-input\" [(ngModel)]=\"settings.policyName\" flex>\n      </div>\n      <p class=\"inner-link\" style=\"text-align: right !important\" (click)=\"cancelCreation(false)\" flex>Cancel new\n        department</p>\n    </div>\n\n    <div layout=\"row\" layout-align=\"space-between start\" layout-margin class=\"mt-5 mb-5 ml-2 mr-3\">\n      <div layout=\"column\" layout-align=\"start space-between \" flex=\"70\">\n        <div layout=\"row\" layout-align=\"space-between start\" class=\"mb-4\">\n          <p class=\"mini-heading\" flex=\"30\">Department Users </p>\n          <div layout=\"column\" flex>\n          <textarea [(ngModel)]=\"addedUsers\" class=\"custom-textarea\" rows=\"7\"\n                    placeholder=\"Copy and past email addresses separated by a comma (,)\"></textarea>\n            <div layout=\"row\" layout-align=\"start\" class=\"mt-3\">\n              <p class=\"inner-link fs-11\">Upload .csv</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS PROCESSED WITH CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div id=\"explanation\">\n          <p class=\"fs-13\">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the\n            file is created and the email is received seamlessly to the end user.</p>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Documents</p>\n            <p class=\"fs-11\">.doc, .docx, .pdf, .pages, .gdoc</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Active content & <br>macros NOT removed</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.documents\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Active content & <br>macros removed</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Spreadsheets</p>\n            <p class=\"fs-11\">.csv, .xls, .xlsx, .gsheet</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.spreadsheets\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Images</p>\n            <p class=\"fs-11\">.png, .jpeg, .jpg, .gif</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.images\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Presentations</p>\n            <p class=\"fs-11\">.ppt, .pptx, .keynote, .gslides</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.presentations\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"specialAttachments\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">SPECIAL ATTACHMENTS</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Signed Documents</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Signature intact</p>\n              <p class=\"fs-11\">Document is not processed with CDR</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.signedDocuments\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Signature is not recreated</p>\n              <p class=\"fs-11\">CDR is processed accordingly to existing policy</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"general\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">GENERAL</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16 mb-3\">Hyperlinks</p>\n            <p class=\"fs-11\">This includes links in the body <br>of an email and\n              in<br> any documents attached</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Fix and disabled based on URL reputation</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.selectedSafeLinksOperation\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Disabled hyperlinks</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS WITHOUT CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Videos/Sound</p>\n            <p class=\"fs-11\">.mp4, .mp3</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.videoSound\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Applications/Scripts</p>\n            <p class=\"fs-11\">.dmg, .exe</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.applicationsScripts\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Unrecognized Files</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.unrecognizedFiles\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Password Protected</p>\n            <p class=\"fs-11\">A secure version of an attachment can't be made when it is password protected.</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.passwordProtected\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 \">Block</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n\n  <div id=\"save-settings-exception\" layout=\"row\" layout-align=\"center center\" class=\"mt-4 mb-5\">\n    <button [disabled]=\"newExceptionHasEmail()\" class=\"btn btn-action-yellow-big hvr-glow\"\n            (click)=\"saveSettings(settings)\">APPLY\n    </button>\n  </div>\n\n</div>\n\n\n\n\n\n\n\n"
+module.exports = "<div layout=\"column\">\n  <div id=\"actionCenter\" class=\"white frame margin-top\">\n    <div class=\"title-section\" layout-padding layout=\"row\" layout-align=\"space-between start\" layout-margin>\n      <h4>{{settings.policyName}}</h4>\n      <p class=\"inner-link\" (click)=\"deletePolicy(settings)\">Delete this department</p>\n    </div>\n\n    <div layout=\"row\" layout-align=\"space-between start\" layout-margin class=\"mt-5 mb-5 ml-2 mr-3\">\n      <div layout=\"column\" layout-align=\"start space-between \" flex=\"80\">\n        <div *ngIf=\"addingUsers\" layout=\"row\" layout-align=\"space-between start\" flex=\"80\" class=\"mb-4\">\n          <p class=\"mini-heading\" flex=\"30\">Department Users </p>\n          <div layout=\"column\" flex>\n          <textarea [(ngModel)]=\"addedUsers\" class=\"custom-textarea\" rows=\"7\"\n                    placeholder=\"Copy and past email addresses separated by a comma (,)\"></textarea>\n            <div layout=\"row\" layout-align=\"start\" class=\"mt-3\">\n              <td-file-upload #singleFileUpload (upload)=\"uploadEvent($event)\"\n                              (cancel)=\"cancelEvent()\" accept=\".csv\">\n                <md-icon>file_upload</md-icon>\n                <span>{{ singleFileUpload.files?.name }}</span>\n                <ng-template td-file-input-label>\n                  <md-icon>attach_file</md-icon>\n                  <span>Upload .csv</span>\n                </ng-template>\n              </td-file-upload>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" layout-align=\"space-between start\" flex=\"80\">\n          <div layout-wrap layout=\"row\" flex=\"80\">\n            <p *ngFor=\"let user of settings.exceptions |slice:0:numberOfMaxItems\" layout=\"row\"\n               layout-align=\"space-between center\" class=\"user-chips m-2\">\n              {{user}} <span (click)=\"deleteUser(user)\" class=\"ml-2\">x</span>\n            </p>\n          </div>\n          <div style=\"margin-top: 0.4em\" *ngIf=\"!notEnoughUsers()\">\n            <p class=\"inner-link\" (click)='displayRemainingItems()'\n               *ngIf=\"moreItemsToDisplay()\">\n              see {{settings.exceptions | RemainingItems: numberOfMaxItems}} more</p>\n            <p class=\"inner-link\" (click)='displayLessItems()'\n               *ngIf=\"!moreItemsToDisplay()\">\n              see less</p>\n          </div>\n        </div>\n      </div>\n      <button class=\"btn btn-neutral-yellow-hvr\" flex=\"15\" (click)=\"addUsers(true)\" *ngIf=\"!addingUsers\">Add users\n      </button>\n      <button class=\"btn btn-action\" flex=\"15\" (click)=\"addUsers(false)\" *ngIf=\"addingUsers\">Done</button>\n\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS PROCESSED WITH CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div id=\"explanation\">\n          <p class=\"fs-13\">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the\n            file is created and the email is received seamlessly to the end user.</p>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Documents</p>\n            <p class=\"fs-11\">.doc, .docx, .pdf, .pages, .gdoc</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Active content & <br>macros NOT removed</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.documents\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Active content & <br>macros removed</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Spreadsheets</p>\n            <p class=\"fs-11\">.csv, .xls, .xlsx, .gsheet</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.spreadsheets\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Images</p>\n            <p class=\"fs-11\">.png, .jpeg, .jpg, .gif</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.images\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Presentations</p>\n            <p class=\"fs-11\">.ppt, .pptx, .keynote, .gslides</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.presentations\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"specialAttachments\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">SPECIAL ATTACHMENTS</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Signed Documents</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Signature intact</p>\n              <p class=\"fs-11\">Document is not processed with CDR</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.signedDocuments\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Signature is not recreated</p>\n              <p class=\"fs-11\">CDR is processed accordingly to existing policy</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"general\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">GENERAL</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16 mb-3\">Hyperlinks</p>\n            <p class=\"fs-11\">This includes links in the body <br>of an email and\n              in<br> any documents attached</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Fix and disabled based on URL reputation</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.handleLinks\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Disabled hyperlinks</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS WITHOUT CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Videos/Sound</p>\n            <p class=\"fs-11\">.mp4, .mp3</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.videoSound\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Applications/Scripts</p>\n            <p class=\"fs-11\">.dmg, .exe</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.applicationsScripts\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Unrecognized Files</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.unrecognizedFiles\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Password Protected</p>\n            <p class=\"fs-11\">A secure version of an attachment can't be made when it is password protected.</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.passwordProtected\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 \">Block</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n\n  <div id=\"save-settings-exception\" layout=\"row\" layout-align=\"center center\" class=\"mt-4 mb-5\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" (click)=\"saveSettings(settings)\">APPLY</button>\n  </div>\n\n</div>\n\n\n\n\n"
 
 /***/ }),
 
 /***/ 1012:
 /***/ (function(module, exports) {
 
-module.exports = "<div layout=\"column\">\n  <div id=\"actionCenter\" class=\"white frame margin-top\">\n    <div class=\"title-section\" layout-padding layout=\"row\" layout-align=\"space-between start\" layout-margin>\n      <h4>{{settings.policyName}}</h4>\n      <p class=\"inner-link\" (click)=\"deletePolicy(settings)\">Delete this department</p>\n    </div>\n\n    <div layout=\"row\" layout-align=\"space-between start\" layout-margin class=\"mt-5 mb-5 ml-2 mr-3\">\n      <div layout=\"column\" layout-align=\"start space-between \" flex=\"80\">\n        <div *ngIf=\"addingUsers\" layout=\"row\" layout-align=\"space-between start\" flex=\"80\" class=\"mb-4\">\n          <p class=\"mini-heading\" flex=\"30\">Department Users </p>\n          <div layout=\"column\" flex>\n          <textarea [(ngModel)]=\"addedUsers\" class=\"custom-textarea\" rows=\"7\"\n                    placeholder=\"Copy and past email addresses separated by a comma (,)\"></textarea>\n            <div layout=\"row\" layout-align=\"start\" class=\"mt-3\">\n              <td-file-upload #singleFileUpload (upload)=\"uploadEvent($event)\"\n                              (cancel)=\"cancelEvent()\" accept=\".csv\">\n                <md-icon>file_upload</md-icon>\n                <span>{{ singleFileUpload.files?.name }}</span>\n                <ng-template td-file-input-label>\n                  <md-icon>attach_file</md-icon>\n                  <span>Upload .csv</span>\n                </ng-template>\n              </td-file-upload>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" layout-align=\"space-between start\" flex=\"80\">\n          <div layout-wrap layout=\"row\" flex=\"80\">\n            <p *ngFor=\"let user of settings.exceptions |slice:0:numberOfMaxItems\" layout=\"row\"\n               layout-align=\"space-between center\" class=\"user-chips m-2\">\n              {{user}} <span (click)=\"deleteUser(user)\" class=\"ml-2\">x</span>\n            </p>\n          </div>\n          <div style=\"margin-top: 0.4em\" *ngIf=\"!notEnoughUsers()\">\n            <p class=\"inner-link\" (click)='displayRemainingItems()'\n               *ngIf=\"moreItemsToDisplay()\">\n              see {{settings.exceptions | RemainingItems: numberOfMaxItems}} more</p>\n            <p class=\"inner-link\" (click)='displayLessItems()'\n               *ngIf=\"!moreItemsToDisplay()\">\n              see less</p>\n          </div>\n        </div>\n      </div>\n      <button class=\"btn btn-neutral-yellow-hvr\" flex=\"15\" (click)=\"addUsers(true)\" *ngIf=\"!addingUsers\">Add users\n      </button>\n      <button class=\"btn btn-action\" flex=\"15\" (click)=\"addUsers(false)\" *ngIf=\"addingUsers\">Done</button>\n\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS PROCESSED WITH CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div id=\"explanation\">\n          <p class=\"fs-13\">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the\n            file is created and the email is received seamlessly to the end user.</p>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Documents</p>\n            <p class=\"fs-11\">.doc, .docx, .pdf, .pages, .gdoc</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Active content & <br>macros NOT removed</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.documents\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Active content & <br>macros removed</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Spreadsheets</p>\n            <p class=\"fs-11\">.csv, .xls, .xlsx, .gsheet</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.spreadsheets\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Images</p>\n            <p class=\"fs-11\">.png, .jpeg, .jpg, .gif</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.images\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Presentations</p>\n            <p class=\"fs-11\">.ppt, .pptx, .keynote, .gslides</p>\n          </div>\n          <div flex=\"55\" layout-align=\"space-between center\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\">\n              <p class=\"fs-16 text-center\">High</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsProcessedLevels.presentations\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" class=\"ml-19px\">\n              <p class=\"fs-16\">Highest</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"specialAttachments\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">SPECIAL ATTACHMENTS</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Signed Documents</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Signature intact</p>\n              <p class=\"fs-11\">Document is not processed with CDR</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.signedDocuments\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Signature is not recreated</p>\n              <p class=\"fs-11\">CDR is processed accordingly to existing policy</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"white frame mt-4\" id=\"general\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">GENERAL</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16 mb-3\">Hyperlinks</p>\n            <p class=\"fs-11\">This includes links in the body <br>of an email and\n              in<br> any documents attached</p>\n          </div>\n          <div layout-align=\"space-between start\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">High</p>\n              <p class=\"fs-11\">Fix and disabled based on URL reputation</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.handleLinks\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Highest</p>\n              <p class=\"fs-11\">Disabled hyperlinks</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n\n  <div class=\"white frame mt-4\" id=\"withCdr\">\n    <div class=\"title-section\" layout-padding>\n      <h4 class=\"sob-title\">ATTACHMENTS WITHOUT CDR</h4>\n    </div>\n    <div class=\"content-holder pb-42px\" layout=\"row\">\n      <div layout=\"column\" flex>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Videos/Sound</p>\n            <p class=\"fs-11\">.mp4, .mp3</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.videoSound\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Applications/Scripts</p>\n            <p class=\"fs-11\">.dmg, .exe</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.applicationsScripts\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Unrecognized Files</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 mb-12px\">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.AttachmentsWithoutCdr.unrecognizedFiles\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 mb-12px\">Block</p>\n            </div>\n          </div>\n        </div>\n        <div layout=\"row\" class=\"mt-30px\">\n          <div layout=\"column\" flex=\"30\">\n            <p class=\"fs-16\">Password Protected</p>\n            <p class=\"fs-11\">A secure version of an attachment can't be made when it is password protected.</p>\n          </div>\n          <div layout-align=\"space-between center\" flex=\"55\" layout=\"row\">\n            <div flex=\"45\" flex-gt-lg=\"25\" class=\"text-center\" layout=\"column\">\n              <p class=\"fs-16 \">Allow</p>\n            </div>\n            <div flex>\n              <md-slider [(ngModel)]=\"settings.SpecialAttachments.passwordProtected\"\n                         [max]=\"1\"\n                         style=\"width: 100%\"\n                         [min]=\"0\"\n                         [step]=\"1\"\n                         [value]=\"1\"\n                         [vertical]=\"vertical\"\n                         color=\"accent\">\n              </md-slider>\n            </div>\n            <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n              <p class=\"fs-16 \">Block</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n\n  <div id=\"save-settings-exception\" layout=\"row\" layout-align=\"center center\" class=\"mt-4 mb-5\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" (click)=\"saveSettings(settings)\">APPLY</button>\n  </div>\n\n</div>\n\n\n\n\n"
+module.exports = "<div class=\"container-2\"  layout=\"column\">\n  <div layout=\"row\" layout-align=\"space-between start\" class=\"mb-4\">\n    <small class=\"mb-4\">The Company policy is applied to all email addresses under the domain name.</small>\n  <button class=\"btn btn-link\" (click)=\"resetToDefaultValues()\">Restore All Recommended Settings</button>\n  </div>\n  <general-with-cdr class=\"mb-3\"\n    [generalSettings]=\"mainPolicySettings\"></general-with-cdr>\n  <special-attachments class=\"mb-3\" [generalSettings]=\"mainPolicySettings\"></special-attachments>\n  <general-settings class=\"mb-3\" [generalSettings]=\"mainPolicySettings\"></general-settings>\n  <general-without-cdr [generalSettings]=\"mainPolicySettings\"></general-without-cdr>\n  <div layout=\"row\" layout-margin layout-align=\"center center\" class=\"mt-5\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" layout-padding (click)=\"saveSettings()\">APPLY</button>\n  </div>\n</div>\n\n\n"
 
 /***/ }),
 
 /***/ 1013:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-2\"  layout=\"column\">\n  <div layout=\"row\" layout-align=\"space-between start\" class=\"mb-4\">\n    <small class=\"mb-4\">The Company policy is applied to all email addresses under the domain name.</small>\n  <button class=\"btn btn-link\" (click)=\"resetToDefaultValues()\">Restore All Recommended Settings</button>\n  </div>\n  <general-with-cdr class=\"mb-3\"\n    [generalSettings]=\"mainPolicySettings\"></general-with-cdr>\n  <special-attachments class=\"mb-3\" [generalSettings]=\"mainPolicySettings\"></special-attachments>\n  <general-settings class=\"mb-3\" [generalSettings]=\"mainPolicySettings\"></general-settings>\n  <general-without-cdr [generalSettings]=\"mainPolicySettings\"></general-without-cdr>\n  <div layout=\"row\" layout-margin layout-align=\"center center\" class=\"mt-5\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" layout-padding (click)=\"saveSettings()\">APPLY</button>\n  </div>\n</div>\n\n\n"
+module.exports = "<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">GENERAL</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-53px\">\n        <p class=\"fs-16\" flex=\"50\">Hyperlinks<br>\n          <span class=\"fs-11\">This includes links in the body of an email\n          <br>and in any documents attached.</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between start\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\" layout=\"column\">\n            <p class=\"fs-16 mb-12px\">High</p>\n            <p class=\"fs-11\">Fix and disable based on URL reputation</p>\n          </div>\n          <div flex>\n            <md-slider #hyperlink\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n            <p class=\"fs-16 mb-12px\">Highest</p>\n            <p class=\"fs-11\">Disable hyperlink</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
 /***/ 1014:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">GENERAL</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-53px\">\n        <p class=\"fs-16\" flex=\"50\">Hyperlinks<br>\n          <span class=\"fs-11\">This includes links in the body of an email\n          <br>and in any documents attached.</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between start\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\" layout=\"column\">\n            <p class=\"fs-16 mb-12px\">High</p>\n            <p class=\"fs-11\">Fix and disable based on URL reputation</p>\n          </div>\n          <div flex>\n            <md-slider #hyperlink\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n            <p class=\"fs-16 mb-12px\">Highest</p>\n            <p class=\"fs-11\">Disable hyperlink</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n\n"
+module.exports = "<!--Model is not well defined-->\n\n\n<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">SPECIAL ATTACHMENTS</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Signed Documents</p>\n        <div flex=\"50\" layout-align=\"space-between start\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\" layout=\"column\">\n            <p class=\"fs-16 mb-12px\">Signature intact</p>\n            <p class=\"fs-11\">Documents is not processed with CDR</p>\n          </div>\n          <div flex>\n            <md-slider #specialAttachmentSlider\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n            <p class=\"fs-16 mb-12px\">Signature is not recreated</p>\n            <p class=\"fs-11\">CDR is processed according to existing policy</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
 /***/ 1015:
 /***/ (function(module, exports) {
 
-module.exports = "<!--Model is not well defined-->\n\n\n<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">SPECIAL ATTACHMENTS</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Signed Documents</p>\n        <div flex=\"50\" layout-align=\"space-between start\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\" layout=\"column\">\n            <p class=\"fs-16 mb-12px\">Signature intact</p>\n            <p class=\"fs-11\">Documents is not processed with CDR</p>\n          </div>\n          <div flex>\n            <md-slider #specialAttachmentSlider\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n            <p class=\"fs-16 mb-12px\">Signature is not recreated</p>\n            <p class=\"fs-11\">CDR is processed according to existing policy</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n"
+module.exports = "<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">ATTACHMENTS PROCESSED WITH CDR</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div id=\"explanation\">\n        <p class=\"fs-13\">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the\n          file is created and the email is received seamlessly to the end user.</p>\n        <p class=\"fs-13 mt-5\">If you would like to make file type-specific changes,\n          head to <span class=\"inner-link\" routerLink=\"../exceptions\">exception</span>\n        </p>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Applied to documents, <br>spreadsheets, images <br>and presentations</p>\n        <div flex=\"50\" layout-align=\"space-between start\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\" layout=\"column\">\n            <p class=\"fs-16 mb-12px\">High</p>\n            <p class=\"fs-11\">Active content & <br>macros NOT removed</p>\n          </div>\n          <div flex>\n            <md-slider #CDRSliderComponent\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [value]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n            <p class=\"fs-16 mb-12px\">Highest</p>\n            <p class=\"fs-11\">Active content & <br>macros removed</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
 /***/ 1016:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">ATTACHMENTS PROCESSED WITH CDR</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div id=\"explanation\">\n        <p class=\"fs-13\">CDR (Content Disarm and Reconstruction) means that a secure version of<br> the\n          file is created and the email is received seamlessly to the end user.</p>\n        <p class=\"fs-13 mt-5\">If you would like to make file type-specific changes,\n          head to <span class=\"inner-link\" routerLink=\"../exceptions\">exception</span>\n        </p>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Applied to documents, <br>spreadsheets, images <br>and presentations</p>\n        <div flex=\"50\" layout-align=\"space-between start\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\" layout=\"column\">\n            <p class=\"fs-16 mb-12px\">High</p>\n            <p class=\"fs-11\">Active content & <br>macros NOT removed</p>\n          </div>\n          <div flex>\n            <md-slider #CDRSliderComponent\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [value]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" layout=\"column\" class=\"ml-19px\">\n            <p class=\"fs-16 mb-12px\">Highest</p>\n            <p class=\"fs-11\">Active content & <br>macros removed</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n"
+module.exports = "<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">ATTACHMENTS WITHOUT CDR</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Videos/Sound<br>\n          <span class=\"fs-11\">.mp4, .mp3</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #videoSound\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Applications/Scripts<br>\n          <span class=\"fs-11\">.exe, .dmg</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #applicationsScripts\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Unrecognized Files</p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #unrecognizedFiles\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Password Protected<br>\n          <span class=\"fs-11\">A secure version of an attachment can't be made when\n            it is password protected.</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #passwordProtected\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 
 /***/ 1017:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"white frame\">\n  <div class=\"title-section\" layout-padding>\n    <h4 class=\"sob-title\">ATTACHMENTS WITHOUT CDR</h4>\n  </div>\n  <div class=\"content-holder pb-42px\" layout=\"row\">\n    <div layout=\"column\" flex=\"60\">\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Videos/Sound<br>\n          <span class=\"fs-11\">.mp4, .mp3</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #videoSound\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Applications/Scripts<br>\n          <span class=\"fs-11\">.exe, .dmg</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #applicationsScripts\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Unrecognized Files</p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #unrecognizedFiles\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"mt-30px\">\n        <p class=\"fs-16\" flex=\"50\">Password Protected<br>\n          <span class=\"fs-11\">A secure version of an attachment can't be made when\n            it is password protected.</span>\n        </p>\n        <div flex=\"50\" layout-align=\"space-between center\" layout=\"row\">\n          <div flex=\"40\" class=\"text-center\">\n            <p class=\"fs-16\">Allow</p>\n          </div>\n          <div flex>\n            <md-slider #passwordProtected\n                       [max]=\"1\"\n                       style=\"width: 100%\"\n                       [min]=\"0\"\n                       [step]=\"1\"\n                       [vertical]=\"vertical\"\n                       color=\"accent\">\n            </md-slider>\n          </div>\n          <div flex=\"35\" class=\"ml-19px\">\n            <p class=\"fs-16\">Block</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n"
+module.exports = "<div id=\"settings-container\">\n\n  <router-outlet></router-outlet>\n</div>\n\n"
 
 /***/ }),
 
 /***/ 1018:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"settings-container\">\n\n  <router-outlet></router-outlet>\n</div>\n\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row justify-content-end mb-4\">\n    <button class=\"btn btn-circle\" md-dialog-close>x</button>\n  </div>\n  <div *ngIf=\"changePassword\">\n    <div class=\"text-center m-3\">\n      <h4 class=\"mb-3 bold \">Change Password</h4>\n      <button class=\"btn btn-link\" (click)=\"switchToForgotPassword()\">Forgot Password ?</button>\n    </div>\n    <form #changePassword=\"ngForm\">\n      <div class=\"mb-4 mt-2\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Current Password</p>\n        <input #currentPassword=\"ngModel\" name=\"currentPassword\" minlength=\"6\" flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.CurrentPassword\" type=\"password\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"oldPasswordIsValid(passwordsToSend.CurrentPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">New Password</p>\n        <input #NewPassword='ngModel' flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.NewPassword\" type=\"password\" name=\"NewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"fieldIsValid(passwordsToSend.NewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Confirm New Password</p>\n        <input #ConfirmNewPassword = \"ngModel\" flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.ConfirmNewPassword\" type=\"password\" name=\"ConfirmNewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"passwordsMatch(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"row justify-content-center\">\n        <button type=\"button\" class=\"btn btn-action-yellow-big\"\n                [disabled]=\"!(passwordsAreValid(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword))\"\n                (click)=\"applyChangePassword()\">CHANGE\n        </button>\n      </div>\n    </form>\n  </div>\n  <div *ngIf=\"forgotPassword\">\n    <div class=\"col text-center\">\n      <h4 class=\"mb-3 bold\">Forgot Password ?</h4>\n      <p class=\"mb-3\">We'll send you a link to reset your password.</p>\n      <button type=\"button\" class=\"btn btn-action-yellow-big\" md-dialog-close>RESET PASSWORD\n      </button>\n    </div>\n  </div>\n</div>\n\n\n<style>\n  .green-icon {\n    color: #72B895 !important;\n  }\n\n  .reset-field {\n    margin-bottom: 0px !important;\n    color: #666666 !important;\n    font-weight: 600 !important;\n  }\n</style>\n"
 
 /***/ }),
 
 /***/ 1019:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row justify-content-end mb-4\">\n    <button class=\"btn btn-circle\" md-dialog-close>x</button>\n  </div>\n  <div *ngIf=\"changePassword\">\n    <div class=\"text-center m-3\">\n      <h4 class=\"mb-3 bold \">Change Password</h4>\n      <button class=\"btn btn-link\" (click)=\"switchToForgotPassword()\">Forgot Password ?</button>\n    </div>\n    <form #changePassword=\"ngForm\">\n      <div class=\"mb-4 mt-2\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Current Password</p>\n        <input #currentPassword=\"ngModel\" name=\"currentPassword\" minlength=\"6\" flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.CurrentPassword\" type=\"password\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"oldPasswordIsValid(passwordsToSend.CurrentPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">New Password</p>\n        <input #NewPassword='ngModel' flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.NewPassword\" type=\"password\" name=\"NewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"fieldIsValid(passwordsToSend.NewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"mb-4\" layout=\"row\" layout-align=\"space-between center\" layout-margin>\n        <p flex=\"35\" class=\"reset-field ml-0\">Confirm New Password</p>\n        <input #ConfirmNewPassword = \"ngModel\" flex=\"50\" class=\"sob-input\" required [(ngModel)]=\"passwordsToSend.ConfirmNewPassword\" type=\"password\" name=\"ConfirmNewPassword\">\n        <div flex>\n          <i class=\"fa fa-check-circle-o fa-2x green-icon\" aria-hidden=\"true\"\n             *ngIf=\"passwordsMatch(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword)\"></i>\n        </div>\n      </div>\n      <div class=\"row justify-content-center\">\n        <button type=\"button\" class=\"btn btn-action-yellow-big\"\n                [disabled]=\"!(passwordsAreValid(passwordsToSend.NewPassword, passwordsToSend.ConfirmNewPassword))\"\n                (click)=\"applyChangePassword()\">CHANGE\n        </button>\n      </div>\n    </form>\n  </div>\n  <div *ngIf=\"forgotPassword\">\n    <div class=\"col text-center\">\n      <h4 class=\"mb-3 bold\">Forgot Password ?</h4>\n      <p class=\"mb-3\">We'll send you a link to reset your password.</p>\n      <button type=\"button\" class=\"btn btn-action-yellow-big\" md-dialog-close>RESET PASSWORD\n      </button>\n    </div>\n  </div>\n</div>\n\n\n<style>\n  .green-icon {\n    color: #72B895 !important;\n  }\n\n  .reset-field {\n    margin-bottom: 0px !important;\n    color: #666666 !important;\n    font-weight: 600 !important;\n  }\n</style>\n"
-
-/***/ }),
-
-/***/ 1020:
-/***/ (function(module, exports) {
-
 module.exports = "<!-- nesting level: 2 entry inside the app -->\n\n<md-sidenav-container style=\"height: 100vh\">\n  <md-sidenav #sidenav opened=\"true\" id=\"smb-sidenav\" mode=\"side\" style=\"width: 60px !important; min-width: unset\"\n              [opened]=\"!isFirstTimeUser\">\n    <ul style=\"height: 15%\">\n      <li class=\"text-center mt-3 pt-3 pb-3 mb-3 noHoverEffect\" routerLink=\"/user/dashboard\">\n        <md-icon class=\"center-icon\" svgIcon=\"resecLogo\"></md-icon>\n      </li>\n    </ul>\n    <nav>\n      <ul>\n        <li mdTooltip=\"Dashboard\" mdTooltipPosition=\"right\" class=\"text-center pt-3 pb-3 mb-3\"\n            routerLink=\"/user/dashboard\" routerLinkActive=\"active\">\n          <md-icon class=\"center-icon\" svgIcon=\"dashboard\"></md-icon>\n        </li>\n        <li mdTooltip=\"Processed Emails\" mdTooltipPosition=\"right\" class=\"text-center pt-3 pb-3 mb-3\"\n            routerLink=\"/user/emails\"\n            routerLinkActive=\"active\">\n          <md-icon class=\"center-icon\" svgIcon=\"mails\"></md-icon>\n        </li>\n        <li mdTooltip=\"Security Settings\" mdTooltipPosition=\"right\" class=\"text-center pt-3 pb-3 mb-3\"\n            routerLink=\"/user/security\" routerLinkActive=\"active\">\n          <md-icon class=\"center-icon\" svgIcon=\"security\"></md-icon>\n        </li>\n        <li mdTooltip=\"Account Settings\" mdTooltipPosition=\"right\" class=\"text-center pt-3 pb-3 mb-3\"\n            routerLink=\"/user/account\" routerLinkActive=\"active\">\n          <md-icon class=\"center-icon\" svgIcon=\"settings\"></md-icon>\n        </li>\n        <li mdTooltip=\"Help\" mdTooltipPosition=\"right\" class=\"text-center pt-3 pb-3 mb-3\"\n            routerLink=\"/user/help\" routerLinkActive=\"active\">\n          <md-icon class=\"center-icon\" svgIcon=\"help\"></md-icon>\n        </li>\n      </ul>\n    </nav>\n  </md-sidenav>\n  <div layout-fill style=\"background-color: #F7F8F8\">\n    <md-progress-bar *ngIf=\"showLoader\" mode=\"indeterminate\"></md-progress-bar>\n    <nav class=\"navbar sticky-top bg-white-shadow mb-0\">\n      <div class=\"container-fluid row\">\n        <div class=\"nav navbar-nav mr-auto  justify-content-center\">\n          <!-- nav here -->\n          <div layout=\"row\" *ngIf=\"testRoute('account')\">\n            <a class=\"sob-page-link ml-3 mr-3\" routerLink=\"account/notifications\" routerLinkActive=\"page-active\">Notifications</a>\n            <a class=\"sob-page-link ml-2 mr-4\" routerLink=\"account/account\" routerLinkActive=\"page-active\">Account</a>\n            <a class=\"sob-page-link ml-2\" routerLink=\"account/billing\" routerLinkActive=\"page-active\"\n               *ngIf=\"isStripeUser\">Billing</a><!---->\n          </div>\n          <div layout=\"row\" *ngIf=\"testRoute('emails')\">\n            <a class=\"sob-page-link ml-3 mr-3\" routerLink=\"emails/search\" routerLinkActive=\"page-active\">Search</a>\n            <a class=\"sob-page-link\" routerLink=\"emails/browse\" routerLinkActive=\"page-active\">Browse</a>\n          </div>\n          <div layout=\"row\" *ngIf=\"testRoute('security')\">\n            <a class=\"sob-page-link ml-3 mr-3\" routerLink=\"security/general\" routerLinkActive=\"page-active\">Company\n              Policy</a>\n            <a class=\"sob-page-link\" routerLink=\"security/exceptions\" routerLinkActive=\"page-active\">Exceptions</a>\n          </div>\n        </div>\n        <div class=\"nav navbar-nav ml-auto  justify-content-center\">\n          <button [mdMenuTriggerFor]=\"userMenu\" id=\"userMenu\">{{username}}</button>\n          <md-menu #userMenu=\"mdMenu\">\n            <button md-menu-item (click)=\"openChangePassword()\">Change Password</button>\n            <button md-menu-item (click)=\"logout()\">Logout</button>\n          </md-menu>\n        </div>\n      </div>\n    </nav>\n    <div *tdLoading=\"'overlayStarSyntax'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'accent'\">\n      <div [attr.id]=\"conditionalId\">\n        <router-outlet></router-outlet>\n      </div>\n    </div>\n  </div>\n</md-sidenav-container>\n\n\n"
 
 /***/ }),
 
-/***/ 1021:
+/***/ 1020:
 /***/ (function(module, exports) {
 
 module.exports = "<div layout=\"column\" layout-align=\"center center\" style=\"height: 100vh\" layout-margin>\n  <p style=\"font-size: 4em\" class=\"text-center\">Oops, we only support chrome</p>\n  <md-icon style=\"height:25em; width: auto\" svgIcon=\"chromeLogo\" class=\"mt-5 mb-5\"></md-icon>\n  <button md-button (click)=\"downloadChrome()\" [color]=\"'primary'\" class=\"mt-5\" id=\"downloadChromeButton\">Download Chrome</button>\n</div>\n\n"
@@ -286,7 +279,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 1260:
+/***/ 1259:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(606);
@@ -294,7 +287,7 @@ module.exports = __webpack_require__(606);
 
 /***/ }),
 
-/***/ 161:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -302,7 +295,7 @@ module.exports = __webpack_require__(606);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_custom_http__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -350,15 +343,15 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 162:
+/***/ 161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__covalent_core__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__covalent_core__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_company_policy__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__security_service__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__security_service__ = __webpack_require__(162);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ExistingExceptionsComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return DeleteExceptionDialog; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExceptionSettingsComponent; });
@@ -460,7 +453,7 @@ __decorate([
 ExistingExceptionsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'existing-exceptions',
-        template: __webpack_require__(1010),
+        template: __webpack_require__(1009),
         styles: [__webpack_require__(117)]
     }),
     __metadata("design:paramtypes", [])
@@ -479,7 +472,7 @@ DeleteExceptionDialog = __decorate([
         template: " <h3 md-dialog-title>Delete {{data}} ?</h3>\n  <md-dialog-content>This action is irreversible</md-dialog-content>\n  <md-dialog-actions>\n    <button md-button md-dialog-close (click)=\"dialogRef.close(false)\">Don't Delete</button>\n    <!-- Can optionally provide a result for the closing dialog. -->\n    <button md-button [style.color]=\"'red'\" (click)=\"dialogRef.close(true)\">Delete</button>\n  </md-dialog-actions>\n  ",
     }),
     __param(1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["Q" /* MD_DIALOG_DATA */])),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["o" /* MdDialogRef */]) === "function" && _a || Object, Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialogRef */]) === "function" && _a || Object, Object])
 ], DeleteExceptionDialog);
 
 var ExceptionSettingsComponent = (function (_super) {
@@ -561,12 +554,12 @@ __decorate([
 ExceptionSettingsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'exception-settings',
-        template: __webpack_require__(1012),
+        template: __webpack_require__(1011),
         styles: [__webpack_require__(117)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__covalent_core__["f" /* TdFileService */]],
         entryComponents: [DeleteExceptionDialog]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialog */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MdDialog */]) === "function" && _c || Object])
 ], ExceptionSettingsComponent);
 
 var NewExceptionComponent = (function (_super) {
@@ -585,9 +578,9 @@ var NewExceptionComponent = (function (_super) {
             _this.settings.exceptions = [];
             delete newSettings.policyId;
             var splittedEmails = _this.addedUsers.split(',');
-            for (var _i = 0, splittedEmails_2 = splittedEmails; _i < splittedEmails_2.length; _i++) {
-                var email = splittedEmails_2[_i];
-                var noSpaceEmail = email.replace(/\s+/g, '');
+            var arrayLength = splittedEmails.length;
+            for (var i = 0; i < arrayLength; i++) {
+                var noSpaceEmail = splittedEmails[i].replace(/\s+/g, '');
                 if (_this.stringIsEmail(noSpaceEmail)) {
                     _this.settings.exceptions.push(noSpaceEmail);
                 }
@@ -625,7 +618,7 @@ __decorate([
 NewExceptionComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'new-exception',
-        template: __webpack_require__(1011),
+        template: __webpack_require__(1010),
         styles: [__webpack_require__(117)],
         providers: [__WEBPACK_IMPORTED_MODULE_4__security_service__["a" /* SecurityService */]]
     }),
@@ -637,7 +630,7 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 163:
+/***/ 162:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -780,7 +773,7 @@ var _a;
 
 /***/ }),
 
-/***/ 336:
+/***/ 335:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -828,11 +821,11 @@ var ChangePasswordModalComponent = (function () {
 ChangePasswordModalComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'change-password-modal-component',
-        template: __webpack_require__(989),
+        template: __webpack_require__(988),
         styles: [__webpack_require__(431)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]) === "function" && _b || Object])
 ], ChangePasswordModalComponent);
 
 var AccountOwnerData = (function () {
@@ -913,12 +906,12 @@ var AccountGeneralComponent = (function () {
 AccountGeneralComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-account-general',
-        template: __webpack_require__(988),
+        template: __webpack_require__(987),
         styles: [__webpack_require__(431)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]],
         entryComponents: [ChangePasswordModalComponent]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MdDialog */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MdDialog */]) === "function" && _d || Object])
 ], AccountGeneralComponent);
 
 var _a, _b, _c, _d;
@@ -926,7 +919,7 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 337:
+/***/ 336:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -953,7 +946,7 @@ var AccountComponent = (function () {
 AccountComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-account',
-        template: __webpack_require__(990),
+        template: __webpack_require__(989),
         styles: [__webpack_require__(965)]
     }),
     __metadata("design:paramtypes", [])
@@ -963,7 +956,7 @@ AccountComponent = __decorate([
 
 /***/ }),
 
-/***/ 338:
+/***/ 337:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -993,7 +986,7 @@ var UpdatePlanComponent = (function () {
         this.changePassword = true;
         this.forgotPassword = false;
         this.currentRd = rd;
-        this.config = this.dialogRef._containerInstance.dialogConfig.data;
+        this.config = this.dialogRef.componentInstance.config.data;
         this.currentPlan = this.config.accountData.CurrentPlan;
         this.selectedPlan = this.currentPlan;
         this.stripeSubscriptionToken = this.config.accountData.StripeSubscriptionToken;
@@ -1038,11 +1031,11 @@ var UpdatePlanComponent = (function () {
 UpdatePlanComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-user-update-plan',
-        template: __webpack_require__(992),
+        template: __webpack_require__(991),
         styles: [__webpack_require__(432)],
         providers: [__WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */]) === "function" && _c || Object])
 ], UpdatePlanComponent);
 
 var BillingData = (function () {
@@ -1126,12 +1119,12 @@ var BillingComponent = (function () {
 BillingComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-billing',
-        template: __webpack_require__(991),
+        template: __webpack_require__(990),
         styles: [__webpack_require__(432)],
         entryComponents: [UpdatePlanComponent],
         providers: [__WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialog */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["q" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["q" /* MdDialog */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__account_service__["a" /* AccountService */]) === "function" && _e || Object])
 ], BillingComponent);
 
 var _a, _b, _c, _d, _e;
@@ -1139,7 +1132,7 @@ var _a, _b, _c, _d, _e;
 
 /***/ }),
 
-/***/ 339:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1181,7 +1174,7 @@ var NotificationsComponent = (function () {
 NotificationsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-notifications',
-        template: __webpack_require__(993),
+        template: __webpack_require__(992),
         styles: [__webpack_require__(966)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__account_service__["a" /* AccountService */]]
     }),
@@ -1193,15 +1186,15 @@ var _a;
 
 /***/ }),
 
-/***/ 340:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_dashboard_dashboard_service__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_dashboard_dashboard_service__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(982);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__templates_dashboard_templates_dashboard_templates_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__templates_dashboard_templates_dashboard_templates_component__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_models__ = __webpack_require__(675);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1422,7 +1415,7 @@ var DashboardComponent = (function () {
 DashboardComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard',
-        template: __webpack_require__(995),
+        template: __webpack_require__(994),
         styles: [__webpack_require__(968)],
         providers: [__WEBPACK_IMPORTED_MODULE_1_app_dashboard_dashboard_service__["a" /* DashboardService */]],
         entryComponents: [__WEBPACK_IMPORTED_MODULE_3__templates_dashboard_templates_dashboard_templates_component__["c" /* TotalsTopComponent */], __WEBPACK_IMPORTED_MODULE_3__templates_dashboard_templates_dashboard_templates_component__["d" /* GraphSelectorComponent */],
@@ -1436,7 +1429,7 @@ var _a;
 
 /***/ }),
 
-/***/ 341:
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1484,7 +1477,7 @@ __decorate([
 TotalsTopComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard-top-totals',
-        template: __webpack_require__(1001),
+        template: __webpack_require__(1000),
         styles: [__webpack_require__(66)]
     }),
     __metadata("design:paramtypes", [])
@@ -1517,7 +1510,7 @@ __decorate([
 GraphSelectorComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard-graph-selector',
-        template: __webpack_require__(997),
+        template: __webpack_require__(996),
         styles: [__webpack_require__(66)]
     }),
     __metadata("design:paramtypes", [])
@@ -1557,7 +1550,7 @@ __decorate([
 GraphComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard-graph',
-        template: __webpack_require__(998),
+        template: __webpack_require__(997),
         styles: [__webpack_require__(66)]
     }),
     __metadata("design:paramtypes", [])
@@ -1590,7 +1583,7 @@ __decorate([
 PieChartsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard-pie-charts',
-        template: __webpack_require__(1000),
+        template: __webpack_require__(999),
         styles: [__webpack_require__(66)]
     })
 ], PieChartsComponent);
@@ -1642,7 +1635,7 @@ __decorate([
 EmailSectionComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-email-section',
-        template: __webpack_require__(996),
+        template: __webpack_require__(995),
         styles: [__webpack_require__(66)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _a || Object])
@@ -1660,7 +1653,7 @@ __decorate([
 NewsFeedComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard-news-feed',
-        template: __webpack_require__(999),
+        template: __webpack_require__(998),
         styles: [__webpack_require__(66)]
     })
 ], NewsFeedComponent);
@@ -1670,7 +1663,7 @@ var _a;
 
 /***/ }),
 
-/***/ 342:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1696,7 +1689,7 @@ var FirstTimeUserComponent = (function () {
 FirstTimeUserComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-first-time-user',
-        template: __webpack_require__(1002),
+        template: __webpack_require__(1001),
         styles: [__webpack_require__(969)]
     }),
     __metadata("design:paramtypes", [])
@@ -1706,12 +1699,12 @@ FirstTimeUserComponent = __decorate([
 
 /***/ }),
 
-/***/ 343:
+/***/ 342:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__email_service__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__email_service__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__email_component__ = __webpack_require__(100);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrowseComponent; });
@@ -1856,7 +1849,7 @@ var BrowseComponent = (function (_super) {
 BrowseComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-browse',
-        template: __webpack_require__(1003),
+        template: __webpack_require__(1002),
         styles: [__webpack_require__(970)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__email_service__["a" /* MailService */]]
     }),
@@ -1868,7 +1861,7 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 344:
+/***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1925,12 +1918,12 @@ var _a;
 
 /***/ }),
 
-/***/ 345:
+/***/ 344:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__email_service__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__email_service__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email_component__ = __webpack_require__(100);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchComponent; });
 var __extends = (this && this.__extends) || (function () {
@@ -2013,7 +2006,7 @@ var SearchComponent = (function (_super) {
 SearchComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-search',
-        template: __webpack_require__(1005),
+        template: __webpack_require__(1004),
         styles: [__webpack_require__(433)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__email_service__["a" /* MailService */]]
     }),
@@ -2025,7 +2018,7 @@ var _a;
 
 /***/ }),
 
-/***/ 346:
+/***/ 345:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2051,7 +2044,7 @@ var HelpComponent = (function () {
 HelpComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-help',
-        template: __webpack_require__(1006),
+        template: __webpack_require__(1005),
         styles: [__webpack_require__(971)]
     }),
     __metadata("design:paramtypes", [])
@@ -2061,7 +2054,7 @@ HelpComponent = __decorate([
 
 /***/ }),
 
-/***/ 347:
+/***/ 346:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2175,7 +2168,7 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-login',
-        template: __webpack_require__(1007),
+        template: __webpack_require__(1006),
         styles: [__webpack_require__(972)],
         providers: [__WEBPACK_IMPORTED_MODULE_1_app_shared_users_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_5_app_account_account_service__["a" /* AccountService */]]
     }),
@@ -2187,7 +2180,7 @@ var _a, _b, _c, _d, _e;
 
 /***/ }),
 
-/***/ 348:
+/***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2239,14 +2232,14 @@ var PasswordModel = (function () {
 
 /***/ }),
 
-/***/ 349:
+/***/ 348:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__account_account_service__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_passwords_model__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_passwords_model__ = __webpack_require__(347);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewUserPasswordComponent; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -2311,7 +2304,7 @@ var NewUserPasswordComponent = (function (_super) {
 NewUserPasswordComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-new-user-password',
-        template: __webpack_require__(1008),
+        template: __webpack_require__(1007),
         styles: [__webpack_require__(973)],
         providers: [__WEBPACK_IMPORTED_MODULE_2__account_account_service__["a" /* AccountService */]]
     }),
@@ -2323,13 +2316,13 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 350:
+/***/ 349:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__templates_templates_component__ = __webpack_require__(162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__security_service__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__templates_templates_component__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__security_service__ = __webpack_require__(162);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExceptionComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2411,7 +2404,7 @@ var ExceptionComponent = (function () {
 ExceptionComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-exception',
-        template: __webpack_require__(1009),
+        template: __webpack_require__(1008),
         styles: [__webpack_require__(117)],
         entryComponents: [__WEBPACK_IMPORTED_MODULE_1__templates_templates_component__["a" /* ExceptionSettingsComponent */], __WEBPACK_IMPORTED_MODULE_1__templates_templates_component__["b" /* ExistingExceptionsComponent */], __WEBPACK_IMPORTED_MODULE_1__templates_templates_component__["c" /* NewExceptionComponent */]],
         providers: [__WEBPACK_IMPORTED_MODULE_2__security_service__["a" /* SecurityService */]]
@@ -2424,13 +2417,13 @@ var _a;
 
 /***/ }),
 
-/***/ 351:
+/***/ 350:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__security_service__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__templates_templates_components__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__security_service__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__templates_templates_components__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_company_policy__ = __webpack_require__(101);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GeneralComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2476,7 +2469,7 @@ var GeneralComponent = (function () {
 GeneralComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-general',
-        template: __webpack_require__(1013),
+        template: __webpack_require__(1012),
         styles: [__webpack_require__(87)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__security_service__["a" /* SecurityService */]],
         entryComponents: [__WEBPACK_IMPORTED_MODULE_2__templates_templates_components__["a" /* GeneralSettingsComponent */], __WEBPACK_IMPORTED_MODULE_2__templates_templates_components__["b" /* GeneralSettingsWithCDRComponent */], __WEBPACK_IMPORTED_MODULE_2__templates_templates_components__["d" /* GeneralSettingsWithoutCDRComponent */], __WEBPACK_IMPORTED_MODULE_2__templates_templates_components__["c" /* SpecialAttachmentsComponent */]]
@@ -2489,7 +2482,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 352:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2544,7 +2537,7 @@ __decorate([
 GeneralSettingsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'general-settings',
-        template: __webpack_require__(1014),
+        template: __webpack_require__(1013),
         styles: [__webpack_require__(87)]
     }),
     __metadata("design:paramtypes", [])
@@ -2587,7 +2580,7 @@ __decorate([
 GeneralSettingsWithCDRComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'general-with-cdr',
-        template: __webpack_require__(1016),
+        template: __webpack_require__(1015),
         styles: [__webpack_require__(87)]
     })
 ], GeneralSettingsWithCDRComponent);
@@ -2651,7 +2644,7 @@ __decorate([
 GeneralSettingsWithoutCDRComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'general-without-cdr',
-        template: __webpack_require__(1017),
+        template: __webpack_require__(1016),
         styles: [__webpack_require__(87)]
     }),
     __metadata("design:paramtypes", [typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _g || Object])
@@ -2691,7 +2684,7 @@ __decorate([
 SpecialAttachmentsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'special-attachments',
-        template: __webpack_require__(1015),
+        template: __webpack_require__(1014),
         styles: [__webpack_require__(87)]
     }),
     __metadata("design:paramtypes", [])
@@ -2702,7 +2695,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 
 /***/ }),
 
-/***/ 353:
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2728,7 +2721,7 @@ var SecurityComponent = (function () {
 SecurityComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-security',
-        template: __webpack_require__(1018),
+        template: __webpack_require__(1017),
         styles: [__webpack_require__(974)]
     }),
     __metadata("design:paramtypes", [])
@@ -2738,7 +2731,7 @@ SecurityComponent = __decorate([
 
 /***/ }),
 
-/***/ 354:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2768,7 +2761,7 @@ ConfirmDialog = __decorate([
         selector: 'confirm-dialog',
         template: "\n    <p class=\"text-center bold-dark-gray\">{{ title }}</p>\n    <p class=\"text-center\">{{ message }}</p>\n    <div class=\"text-center mt-4 mb-4\">\n      <button type=\"button\" class=\" btn btn-action\"\n              (click)=\"dialogRef.close(true)\">Logout\n      </button>\n    </div>\n  ",
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_material__["o" /* MdDialogRef */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_material__["p" /* MdDialogRef */]) === "function" && _a || Object])
 ], ConfirmDialog);
 
 var DialogsService = (function () {
@@ -2786,7 +2779,7 @@ var DialogsService = (function () {
 }());
 DialogsService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_material__["p" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_material__["p" /* MdDialog */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_material__["q" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_material__["q" /* MdDialog */]) === "function" && _b || Object])
 ], DialogsService);
 
 var _a, _b;
@@ -2794,13 +2787,13 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 355:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialogs_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialogs_service__ = __webpack_require__(353);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResponseHandlerService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2852,7 +2845,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 356:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2894,7 +2887,7 @@ UserIsSobAndHasToken = __decorate([
 
 /***/ }),
 
-/***/ 357:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2928,7 +2921,7 @@ SuccessDialog = __decorate([
         selector: 'app-system-dialog',
         template: " \n    <h3 md-dialog-title class=\"text-center\"> \n    <md-icon id=\"success-icon-modal\" svgIcon=\"successIcon\"></md-icon>\n  </h3>\n  <md-dialog-content>Your changes were successfully saved</md-dialog-content>\n  <md-dialog-actions layout=\"row\" layout-align=\"center center\">\n    <button md-button md-dialog-close (click)=\"dialogRef.close(false)\">OK</button>\n  </md-dialog-actions>\n  ",
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */]) === "function" && _a || Object])
 ], SuccessDialog);
 
 var ErrorGetDialog = (function () {
@@ -2942,7 +2935,7 @@ ErrorGetDialog = __decorate([
         selector: 'app-error-get-dialog',
         template: "\n    <h3 md-dialog-title class=\"text-center\">\n      <md-icon id=\"success-icon-modal\" svgIcon=\"serverError\"></md-icon>\n    </h3>\n    <md-dialog-content>We could not reach our servers</md-dialog-content>\n    <md-dialog-actions layout=\"row\" layout-align=\"space-between center\">\n      <button md-button md-dialog-close>OK</button>\n      <button md-button md-dialog-close (click)=\"dialogRef.close(true)\">Try Again</button>\n    </md-dialog-actions>\n  ",
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */]) === "function" && _b || Object])
 ], ErrorGetDialog);
 
 var ErrorPostDialog = (function () {
@@ -2956,7 +2949,7 @@ ErrorPostDialog = __decorate([
         selector: 'app-error-post-dialog',
         template: "\n    <h3 md-dialog-title class=\"text-center\">\n      <md-icon id=\"success-icon-modal\" svgIcon=\"serverError\"></md-icon>\n    </h3>\n    <md-dialog-content>We could not save your settings</md-dialog-content>\n    <md-dialog-actions layout=\"row\" layout-align=\"center center\">\n      <button md-button md-dialog-close>OK</button>\n    </md-dialog-actions>\n  ",
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialogRef */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["p" /* MdDialogRef */]) === "function" && _c || Object])
 ], ErrorPostDialog);
 
 var _a, _b, _c;
@@ -2964,7 +2957,7 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 358:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3019,11 +3012,11 @@ var DashboardActions_1;
 
 /***/ }),
 
-/***/ 359:
+/***/ 358:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_actions__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_actions__ = __webpack_require__(357);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__dashboard_actions__["a"]; });
 
 
@@ -3034,7 +3027,7 @@ var DashboardActions_1;
 
 /***/ }),
 
-/***/ 360:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3044,9 +3037,9 @@ var DashboardActions_1;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__account_account_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_custom_http__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__covalent_core__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_passwords_model__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_system_dialogs__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__covalent_core__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_passwords_model__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_system_dialogs__ = __webpack_require__(356);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserChangePasswordComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserComponent; });
 var __extends = (this && this.__extends) || (function () {
@@ -3118,11 +3111,11 @@ var UserChangePasswordComponent = (function (_super) {
 UserChangePasswordComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-user-change-password',
-        template: __webpack_require__(1019),
+        template: __webpack_require__(1018),
         providers: [__WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */]],
         styles: [__webpack_require__(975)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["o" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["o" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _c || Object])
 ], UserChangePasswordComponent);
 
 var UserComponent = (function () {
@@ -3268,12 +3261,12 @@ var UserComponent = (function () {
 UserComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-user',
-        template: __webpack_require__(1020),
+        template: __webpack_require__(1019),
         styles: [__webpack_require__(976)],
         entryComponents: [UserChangePasswordComponent, __WEBPACK_IMPORTED_MODULE_8__shared_system_dialogs__["a" /* SuccessDialog */]],
         providers: [__WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["P" /* MdIconRegistry */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["P" /* MdIconRegistry */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["DomSanitizer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["DomSanitizer"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["p" /* MdDialog */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_5__shared_custom_http__["b" /* HTTPStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_custom_http__["b" /* HTTPStateService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__covalent_core__["g" /* TdLoadingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__covalent_core__["g" /* TdLoadingService */]) === "function" && _k || Object])
+    __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["P" /* MdIconRegistry */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["P" /* MdIconRegistry */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["DomSanitizer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["DomSanitizer"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MdDialog */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__account_account_service__["a" /* AccountService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_5__shared_custom_http__["b" /* HTTPStateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_custom_http__["b" /* HTTPStateService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__covalent_core__["g" /* TdLoadingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__covalent_core__["g" /* TdLoadingService */]) === "function" && _k || Object])
 ], UserComponent);
 
 var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
@@ -3281,7 +3274,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 
 /***/ }),
 
-/***/ 361:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3315,7 +3308,7 @@ var WrongBrowserComponent = (function () {
 WrongBrowserComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-wrong-browser',
-        template: __webpack_require__(1021),
+        template: __webpack_require__(1020),
         styles: [__webpack_require__(977)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["DomSanitizer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["DomSanitizer"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["P" /* MdIconRegistry */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["P" /* MdIconRegistry */]) === "function" && _b || Object])
@@ -3530,14 +3523,14 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__response_handler_service__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__response_handler_service__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return HTTPStateService; });
@@ -3785,7 +3778,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
-        template: __webpack_require__(994),
+        template: __webpack_require__(993),
         styles: [__webpack_require__(967)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object])
@@ -3803,58 +3796,56 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_custom_http__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_dialogs_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_dialogs_service__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(672);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dashboard_dashboard_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dashboard_dashboard_component__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__email_email_component__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__email_search_search_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__email_browse_browse_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__security_security_component__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__security_exception_exception_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__ = __webpack_require__(162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__security_general_general_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__account_account_component__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__user_user_component__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ngrx_store__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ngrx_effects__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__email_search_search_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__email_browse_browse_component__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__security_security_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__security_exception_exception_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__security_general_general_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__account_account_component__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__user_user_component__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ngrx_store__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ngrx_effects__ = __webpack_require__(321);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ngrx_store_devtools__ = __webpack_require__(666);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__security_general_templates_templates_components__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__account_account_general_account_general_component__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__security_general_templates_templates_components__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__account_account_general_account_general_component__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__shared_attributes_directives__ = __webpack_require__(676);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__app_routes__ = __webpack_require__(674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__shared_response_handler_service__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__shared_route_activators__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__shared_response_handler_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__shared_route_activators__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__angular_material__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__angular_flex_layout__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__angular_flex_layout__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__angular_platform_browser_animations__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_ng2_datepicker__ = __webpack_require__(984);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__swimlane_ngx_datatable__ = __webpack_require__(685);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__swimlane_ngx_datatable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__swimlane_ngx_datatable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__covalent_core__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_ng2_tag_input__ = __webpack_require__(985);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_ng2_tag_input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33_ng2_tag_input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__ng_bootstrap_ng_bootstrap__ = __webpack_require__(656);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__swimlane_ngx_charts__ = __webpack_require__(684);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__swimlane_ngx_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__swimlane_ngx_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__store_app_store__ = __webpack_require__(679);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__shared_pipes__ = __webpack_require__(677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__account_notifications_notifications_component__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__account_billing_billing_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_hammerjs__ = __webpack_require__(979);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_40_hammerjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__dashboard_templates_first_time_user_first_time_user_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__new_user_password_new_user_password_component__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__angular_common__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__store_effects_dashboard_effects__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__store_actions_dashboard_actions__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__dashboard_dashboard_service__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__help_help_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__wrong_browser_wrong_browser_component__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__covalent_core__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ng_bootstrap_ng_bootstrap__ = __webpack_require__(656);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__swimlane_ngx_charts__ = __webpack_require__(684);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__swimlane_ngx_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__swimlane_ngx_charts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__store_app_store__ = __webpack_require__(679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__shared_pipes__ = __webpack_require__(677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__account_notifications_notifications_component__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__account_billing_billing_component__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_hammerjs__ = __webpack_require__(979);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39_hammerjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_first_time_user_first_time_user_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__new_user_password_new_user_password_component__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__angular_common__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__store_effects_dashboard_effects__ = __webpack_require__(680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__store_actions_dashboard_actions__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__dashboard_dashboard_service__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__help_help_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__wrong_browser_wrong_browser_component__ = __webpack_require__(360);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* unused harmony export httpFactory */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3902,7 +3893,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
 // custom pipes
 
 
@@ -3930,21 +3920,21 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_8__dashboard_dashboard_component__["a" /* DashboardComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__["a" /* EmailSectionComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__["a" /* EmailSectionComponent */],
             __WEBPACK_IMPORTED_MODULE_9__email_email_component__["a" /* EmailComponent */],
             __WEBPACK_IMPORTED_MODULE_10__email_search_search_component__["a" /* SearchComponent */],
             __WEBPACK_IMPORTED_MODULE_11__email_browse_browse_component__["a" /* BrowseComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__["b" /* NewsFeedComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__["b" /* NewsFeedComponent */],
             __WEBPACK_IMPORTED_MODULE_12__security_security_component__["a" /* SecurityComponent */],
             __WEBPACK_IMPORTED_MODULE_13__security_exception_exception_component__["a" /* ExceptionComponent */],
             __WEBPACK_IMPORTED_MODULE_15__security_general_general_component__["a" /* GeneralComponent */],
             __WEBPACK_IMPORTED_MODULE_16__account_account_component__["a" /* AccountComponent */],
-            __WEBPACK_IMPORTED_MODULE_39__account_billing_billing_component__["a" /* UpdatePlanComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__account_billing_billing_component__["a" /* UpdatePlanComponent */],
             __WEBPACK_IMPORTED_MODULE_22__account_account_general_account_general_component__["a" /* ChangePasswordModalComponent */],
             __WEBPACK_IMPORTED_MODULE_17__user_user_component__["a" /* UserChangePasswordComponent */],
-            __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__["a" /* SuccessDialog */],
-            __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__["b" /* ErrorGetDialog */],
-            __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__["c" /* ErrorPostDialog */],
+            __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__["a" /* SuccessDialog */],
+            __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__["b" /* ErrorGetDialog */],
+            __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__["c" /* ErrorPostDialog */],
             __WEBPACK_IMPORTED_MODULE_17__user_user_component__["b" /* UserComponent */],
             __WEBPACK_IMPORTED_MODULE_21__security_general_templates_templates_components__["a" /* GeneralSettingsComponent */],
             __WEBPACK_IMPORTED_MODULE_21__security_general_templates_templates_components__["b" /* GeneralSettingsWithCDRComponent */],
@@ -3954,27 +3944,27 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__["a" /* ExceptionSettingsComponent */],
             __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__["b" /* ExistingExceptionsComponent */],
             __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__["c" /* NewExceptionComponent */],
-            __WEBPACK_IMPORTED_MODULE_37__shared_pipes__["a" /* DictionaryIteratorPipe */],
-            __WEBPACK_IMPORTED_MODULE_37__shared_pipes__["b" /* ArrayLengthPipe */],
-            __WEBPACK_IMPORTED_MODULE_37__shared_pipes__["c" /* RemainingItemsInArrayPipe */],
-            __WEBPACK_IMPORTED_MODULE_38__account_notifications_notifications_component__["a" /* NotificationsComponent */],
-            __WEBPACK_IMPORTED_MODULE_39__account_billing_billing_component__["b" /* BillingComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__["c" /* TotalsTopComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__["d" /* GraphSelectorComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__["e" /* GraphComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_dashboard_templates_dashboard_templates_component__["f" /* PieChartsComponent */],
+            __WEBPACK_IMPORTED_MODULE_36__shared_pipes__["a" /* DictionaryIteratorPipe */],
+            __WEBPACK_IMPORTED_MODULE_36__shared_pipes__["b" /* ArrayLengthPipe */],
+            __WEBPACK_IMPORTED_MODULE_36__shared_pipes__["c" /* RemainingItemsInArrayPipe */],
+            __WEBPACK_IMPORTED_MODULE_37__account_notifications_notifications_component__["a" /* NotificationsComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__account_billing_billing_component__["b" /* BillingComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__["c" /* TotalsTopComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__["d" /* GraphSelectorComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__["e" /* GraphComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__dashboard_templates_dashboard_templates_dashboard_templates_component__["f" /* PieChartsComponent */],
             __WEBPACK_IMPORTED_MODULE_5__shared_dialogs_service__["a" /* ConfirmDialog */],
             __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__["d" /* DeleteExceptionDialog */],
-            __WEBPACK_IMPORTED_MODULE_43__dashboard_templates_first_time_user_first_time_user_component__["a" /* FirstTimeUserComponent */],
-            __WEBPACK_IMPORTED_MODULE_37__shared_pipes__["d" /* GetPercentagePipe */],
-            __WEBPACK_IMPORTED_MODULE_44__new_user_password_new_user_password_component__["a" /* NewUserPasswordComponent */],
-            __WEBPACK_IMPORTED_MODULE_49__help_help_component__["a" /* HelpComponent */],
-            __WEBPACK_IMPORTED_MODULE_50__wrong_browser_wrong_browser_component__["a" /* WrongBrowserComponent */],
+            __WEBPACK_IMPORTED_MODULE_42__dashboard_templates_first_time_user_first_time_user_component__["a" /* FirstTimeUserComponent */],
+            __WEBPACK_IMPORTED_MODULE_36__shared_pipes__["d" /* GetPercentagePipe */],
+            __WEBPACK_IMPORTED_MODULE_43__new_user_password_new_user_password_component__["a" /* NewUserPasswordComponent */],
+            __WEBPACK_IMPORTED_MODULE_48__help_help_component__["a" /* HelpComponent */],
+            __WEBPACK_IMPORTED_MODULE_49__wrong_browser_wrong_browser_component__["a" /* WrongBrowserComponent */],
             __WEBPACK_IMPORTED_MODULE_23__shared_attributes_directives__["a" /* HighlightDirective */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_24__app_routes__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_27__angular_material__["a" /* MdSliderModule */],
@@ -3988,8 +3978,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_27__angular_material__["i" /* MdProgressSpinnerModule */],
             __WEBPACK_IMPORTED_MODULE_27__angular_material__["j" /* MdDialogModule */],
             __WEBPACK_IMPORTED_MODULE_27__angular_material__["k" /* MdSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_27__angular_material__["l" /* MdRadioModule */],
-            __WEBPACK_IMPORTED_MODULE_27__angular_material__["m" /* MdInputModule */],
+            __WEBPACK_IMPORTED_MODULE_27__angular_material__["l" /* MdTooltipModule */],
+            __WEBPACK_IMPORTED_MODULE_27__angular_material__["m" /* MdRadioModule */],
+            __WEBPACK_IMPORTED_MODULE_27__angular_material__["n" /* MdInputModule */],
             __WEBPACK_IMPORTED_MODULE_28__angular_flex_layout__["a" /* FlexLayoutModule */],
             __WEBPACK_IMPORTED_MODULE_32__covalent_core__["a" /* CovalentPagingModule */],
             __WEBPACK_IMPORTED_MODULE_32__covalent_core__["b" /* CovalentLayoutModule */],
@@ -3997,17 +3988,16 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_32__covalent_core__["d" /* CovalentFileModule */],
             __WEBPACK_IMPORTED_MODULE_32__covalent_core__["e" /* CovalentLoadingModule */],
             __WEBPACK_IMPORTED_MODULE_29__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_27__angular_material__["n" /* MdMenuModule */],
+            __WEBPACK_IMPORTED_MODULE_27__angular_material__["o" /* MdMenuModule */],
             __WEBPACK_IMPORTED_MODULE_30_ng2_datepicker__["a" /* DatePickerModule */],
             __WEBPACK_IMPORTED_MODULE_31__swimlane_ngx_datatable__["NgxDatatableModule"],
-            __WEBPACK_IMPORTED_MODULE_34__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_33_ng2_tag_input__["TagInputModule"],
-            __WEBPACK_IMPORTED_MODULE_35__swimlane_ngx_charts__["NgxChartsModule"],
-            __WEBPACK_IMPORTED_MODULE_18__ngrx_store__["a" /* StoreModule */].provideStore(__WEBPACK_IMPORTED_MODULE_36__store_app_store__["a" /* default */]),
+            __WEBPACK_IMPORTED_MODULE_33__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_34__swimlane_ngx_charts__["NgxChartsModule"],
+            __WEBPACK_IMPORTED_MODULE_18__ngrx_store__["a" /* StoreModule */].provideStore(__WEBPACK_IMPORTED_MODULE_35__store_app_store__["a" /* default */]),
             __WEBPACK_IMPORTED_MODULE_20__ngrx_store_devtools__["a" /* StoreDevtoolsModule */].instrumentOnlyWithExtension({
                 maxAge: 20
             }),
-            __WEBPACK_IMPORTED_MODULE_19__ngrx_effects__["a" /* EffectsModule */].run(__WEBPACK_IMPORTED_MODULE_46__store_effects_dashboard_effects__["a" /* DashboardEffects */]),
+            __WEBPACK_IMPORTED_MODULE_19__ngrx_effects__["a" /* EffectsModule */].run(__WEBPACK_IMPORTED_MODULE_45__store_effects_dashboard_effects__["a" /* DashboardEffects */]),
         ],
         providers: [
             {
@@ -4015,12 +4005,12 @@ AppModule = __decorate([
                 useFactory: httpFactory,
                 deps: [__WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* XHRBackend */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* RequestOptions */], __WEBPACK_IMPORTED_MODULE_25__shared_response_handler_service__["a" /* ResponseHandlerService */], __WEBPACK_IMPORTED_MODULE_4__shared_custom_http__["b" /* HTTPStateService */]]
             }, __WEBPACK_IMPORTED_MODULE_25__shared_response_handler_service__["a" /* ResponseHandlerService */], __WEBPACK_IMPORTED_MODULE_5__shared_dialogs_service__["b" /* DialogsService */],
-            __WEBPACK_IMPORTED_MODULE_26__shared_route_activators__["a" /* UserIsSobAndHasToken */], __WEBPACK_IMPORTED_MODULE_48__dashboard_dashboard_service__["a" /* DashboardService */],
-            __WEBPACK_IMPORTED_MODULE_4__shared_custom_http__["b" /* HTTPStateService */], __WEBPACK_IMPORTED_MODULE_47__store_actions_dashboard_actions__["a" /* DashboardActions */],
-            { provide: __WEBPACK_IMPORTED_MODULE_45__angular_common__["LocationStrategy"], useClass: __WEBPACK_IMPORTED_MODULE_45__angular_common__["HashLocationStrategy"] }
+            __WEBPACK_IMPORTED_MODULE_26__shared_route_activators__["a" /* UserIsSobAndHasToken */], __WEBPACK_IMPORTED_MODULE_47__dashboard_dashboard_service__["a" /* DashboardService */],
+            __WEBPACK_IMPORTED_MODULE_4__shared_custom_http__["b" /* HTTPStateService */], __WEBPACK_IMPORTED_MODULE_46__store_actions_dashboard_actions__["a" /* DashboardActions */],
+            { provide: __WEBPACK_IMPORTED_MODULE_44__angular_common__["LocationStrategy"], useClass: __WEBPACK_IMPORTED_MODULE_44__angular_common__["HashLocationStrategy"] }
         ],
         entryComponents: [__WEBPACK_IMPORTED_MODULE_22__account_account_general_account_general_component__["a" /* ChangePasswordModalComponent */], __WEBPACK_IMPORTED_MODULE_5__shared_dialogs_service__["a" /* ConfirmDialog */],
-            __WEBPACK_IMPORTED_MODULE_17__user_user_component__["a" /* UserChangePasswordComponent */], __WEBPACK_IMPORTED_MODULE_39__account_billing_billing_component__["a" /* UpdatePlanComponent */], __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__["d" /* DeleteExceptionDialog */], __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__["a" /* SuccessDialog */], __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__["b" /* ErrorGetDialog */], __WEBPACK_IMPORTED_MODULE_41__shared_system_dialogs__["c" /* ErrorPostDialog */]],
+            __WEBPACK_IMPORTED_MODULE_17__user_user_component__["a" /* UserChangePasswordComponent */], __WEBPACK_IMPORTED_MODULE_38__account_billing_billing_component__["a" /* UpdatePlanComponent */], __WEBPACK_IMPORTED_MODULE_14__security_exception_templates_templates_component__["d" /* DeleteExceptionDialog */], __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__["a" /* SuccessDialog */], __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__["b" /* ErrorGetDialog */], __WEBPACK_IMPORTED_MODULE_40__shared_system_dialogs__["c" /* ErrorPostDialog */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -4038,24 +4028,24 @@ function httpFactory(backend, options, responseHandler, httpState) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__new_user_password_new_user_password_component__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_user_component__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__security_security_component__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dashboard_dashboard_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__new_user_password_new_user_password_component__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_user_component__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__security_security_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dashboard_dashboard_component__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__email_email_component__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__account_account_component__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__account_account_general_account_general_component__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__account_notifications_notifications_component__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__account_billing_billing_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__security_general_general_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__security_exception_exception_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__email_search_search_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__email_browse_browse_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__dashboard_templates_first_time_user_first_time_user_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_route_activators__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__help_help_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__wrong_browser_wrong_browser_component__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__account_account_component__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__account_account_general_account_general_component__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__account_notifications_notifications_component__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__account_billing_billing_component__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__security_general_general_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__security_exception_exception_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__email_search_search_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__email_browse_browse_component__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__dashboard_templates_first_time_user_first_time_user_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_route_activators__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__help_help_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__wrong_browser_wrong_browser_component__ = __webpack_require__(360);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4334,7 +4324,7 @@ RemainingItemsInArrayPipe = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
@@ -4386,7 +4376,7 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reducers__ = __webpack_require__(682);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngrx_store__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngrx_store__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngrx_core_compose__ = __webpack_require__(658);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngrx_core_compose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ngrx_core_compose__);
 
@@ -4405,9 +4395,9 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngrx_effects__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_service__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngrx_effects__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_service__ = __webpack_require__(160);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardEffects; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4461,7 +4451,7 @@ var _a, _b, _c;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(358);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dashboardGraphReducer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return dashboardDataReducer; });
 
@@ -5017,89 +5007,96 @@ webpackContext.id = 983;
 
 /***/ }),
 
-/***/ 988:
+/***/ 987:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-12 \">\n\n  <div id=\"company\" class=\"white frame col mb-2\">\n    <div class=\"section-title\">\n      <p class=\"pt-4 pb-4 section-header\">COMPANY</p>\n    </div>\n    <div class=\"pt-4 pb-3\">\n      <div class=\"row mb-4\">\n        <p class=\"textBold-gray col-3\">Company Name</p>\n        <p class=\"bold-gray col-3\">{{companyData.name}}</p>\n      </div>\n      <div class=\"row mb-4\">\n        <p class=\"textBold-gray col-3\">Domain</p>\n        <p class=\"bold-gray col-3\">{{companyData.domain}}</p>\n      </div>\n      <div class=\"row mb-4\">\n        <p class=\"textBold-gray col-3\">MX Record</p>\n        <p class=\"bold-gray col-3\">{{companyData.mxRecord}}</p>\n       <!-- <button class=\"btn btn-neutral-yellow-hvr\" type=\"button\" (click)=\"sendTestEmail()\">Send Test Email</button>\n        <small *ngIf=\"testEmailSent\">Test email sent, please wait 1-2 min for confirmation.</small>-->\n      </div>\n    </div>\n  </div>\n\n  <div id=\"accountOwner\" class=\"white frame col mb-2\">\n    <div class=\"section-title\">\n      <p class=\"pt-4 pb-4 section-header\">ACCOUNT OWNER</p>\n    </div>\n    <div class=\"pt-4 pb-3 mt-3\">\n      <div class=\"row mb-4\">\n        <p class=\"textBold-gray col-3\">Name</p>\n        <input class=\"col-3 sob-input bold-gray\" [(ngModel)]=\"accountOwnerData.name\" type=\"text\">\n      </div>\n      <div class=\"row  mb-4\">\n        <p class=\"textBold-gray col-3\">Email</p>\n        <input class=\"col-3 sob-input bold-gray\" type=\"email\" [(ngModel)]=\"accountOwnerData.email\">\n      </div>\n      <div class=\"row  mb-4\">\n        <p class=\"textBold-gray col-3\">Phone</p>\n        <input class=\"col-3 sob-input bold-gray\" type=\"number\" [(ngModel)]=\"accountOwnerData.phone\">\n      </div>\n      <div class=\"row  mb-4\" [hidden]=\"true\">\n        <p class=\"textBold-gray col-3\">Password</p>\n        <input class=\"col-3 sob-input bold-gray\" type=\"password\" [(ngModel)]=\"accountOwnerData.password\">\n        <button type=\"button\" class=\"btn btn-link\" (click)=\"openChangePassword()\">change</button>\n      </div>\n\n        <label class=\"checkbox-inline\">\n          <input type=\"checkbox\" [(ngModel)]=\"isAdmin\">I am the administrator</label>\n\n    </div>\n  </div>\n\n  <div *ngIf=\"!isAdmin\" id=\"isNotAdmin\" class=\"white frame col mb-2\">\n    <div class=\"section-title\">\n      <p class=\"pt-3 pb-3 section-header\">ADMINISTRATOR</p>\n    </div>\n    <div class=\"pt-4 pb-5 mt-3 mb-5\">\n      <div class=\"row mb-4\">\n        <p class=\"textBold-gray col-3\">Name</p>\n        <input class=\"col-3 sob-input bold-gray\" [(ngModel)]=\"adminData.name\" type=\"text\">\n      </div>\n      <div class=\"row  mb-4\">\n        <p class=\"textBold-gray col-3\">Email</p>\n        <input class=\"col-3 sob-input bold-gray\" type=\"email\" [(ngModel)]=\"adminData.email\">\n      </div>\n      <div class=\"row  pb-5\">\n        <p class=\"textBold-gray col-3\">Phone</p>\n        <input class=\"col-3 sob-input bold-gray\" type=\"number\" [(ngModel)]=\"adminData.phone\">\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row justify-content-center mt-5 pt-4\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" (click)=\"saveAccountData()\">APPLY</button>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
-/***/ 989:
+/***/ 988:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\">\n  <div class=\"row justify-content-end mb-4\">\n    <button class=\"btn btn-circle\" md-dialog-close>x</button>\n  </div>\n  <div *ngIf=\"forgotPassword\">\n    <div class=\"text-center m-3\">\n      <h4 class=\"mb-3\">Change Password</h4>\n      <button class=\"btn btn-link\" (click)=\"switchToForgotPassword()\">Forgot Password?</button>\n    </div>\n    <div class=\"row mb-4\">\n      <p class=\"col-6\">Current Password</p>\n      <input class=\"col-6 form-control\" [(ngModel)]=\"passwordsToSend.CurrentPassword\">\n    </div>\n    <div class=\"row mb-4\">\n      <p class=\"col-6\">New Password</p>\n      <input class=\"col-6 form-control\" [(ngModel)]=\"passwordsToSend.NewPassword\">\n    </div>\n    <div class=\"row mb-4\">\n      <p class=\"col-6\">Confirm New Password</p>\n      <input class=\"col-6 form-control\" [(ngModel)]=\"passwordsToSend.ConfirmNewPassword\">\n    </div>\n    <div class=\"row justify-content-center\">\n      <button type=\"button\" class=\"btn btn-action\" (click)=\"changePassword()\" [disabled]=\"!(passwordsToSend.NewPassword && (passwordsToSend.NewPassword === passwordsToSend.ConfirmNewPassword))\">APPLY\n      </button>\n    </div>\n  </div>\n  <div *ngIf=\"resetPassword\">\n    <div class=\"col text-center\">\n      <h4 class=\"mb-3\">Forgot Password ?</h4>\n      <p class=\"mb-3\">We'll send you a link to reset your password.</p>\n      <button type=\"button\" class=\"btn btn-action\">RESET PASSWORD\n      </button>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
-/***/ 990:
+/***/ 989:
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ }),
 
-/***/ 991:
+/***/ 990:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\" col-12\">\n  <div id=\"company\" class=\"white frame col mb-2\">\n    <div class=\"section-title pt-3 pb-3\" layout=\"row\" layout-align=\"space-between center\">\n      <p class=\"section-header pl-0\" flex=\"70\">PLAN</p>\n      <div flex layout=\"row\" layout-align=\"end center\">\n        <button class=\"btn btn-purple\" (click)=\"openUpgradePlan()\">Upgrade My Plan</button>\n        <!--<button class=\"btn btn-neutral-yellow-hvr\">Cancel Plan</button>-->\n      </div>\n    </div>\n    <div class=\"pt-3 pb-5\">\n      <div class=\"row mb-4 mt-4\">\n        <p class=\"textBold-gray col-3\">Name</p>\n        <p class=\"bold-gray col-3\">{{billingData.planName}}</p>\n      </div>\n      <div class=\"row mt-5\">\n        <p class=\"textBold-gray col-3\">Fee</p>\n        <p class=\"bold-gray col-3\">{{billingData.fee}}</p>\n        <!--<p class=\"textBold col-3\">$1.99/user/Month</p>-->\n      </div>\n      <div class=\"row mt-5 pb-5\">\n        <p class=\"textBold-gray col-3\">Users</p>\n        <div class=\"col-3\">\n          <input class=\"sob-input col-4 bold-gray\" type=\"number\" [(ngModel)]=\"billingData.numOfUsers\">\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <div id=\"billingDetails\" class=\"white frame col mb-2 pb-5\">\n    <div class=\"section-title pt-3 pb-3\">\n      <p class=\"section-header pl-0\">BILLING DETAILS</p>\n    </div>\n    <div class=\"pt-3 pb-3\">\n      <div class=\"form-group row mt-4\">\n        <label for=\"name\" class=\"textBold-gray col-3 col-form-label\">Company Name</label>\n        <div class=\"col-5\">\n          <input class=\"sob-input col-12 bold-gray\" type=\"text\" [(ngModel)]=\"billingData.companyName\" id=\"name\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"address\" class=\"textBold-gray col-3 col-form-label\">Billing Address</label>\n        <div class=\"col-5\">\n          <input class=\"sob-input col-12 bold-gray\" type=\"text\" [(ngModel)]=\"billingData.address\" id=\"address\">\n        </div>\n      </div>\n      <!--<div class=\"form-group row\">-->\n      <!--<label for=\"number\" class=\"textBold-gray col-3 col-form-label\">Company Number</label>-->\n      <!--<div class=\"col-5\">-->\n      <!--<input class=\"sob-input col-12\" type=\"number\" [(ngModel)]=\"billingData.companyNumber\" id=\"number\">-->\n      <!--</div>-->\n      <!--</div>-->\n\n      <!--<div class=\"form-group row pb-5\" [hidden]=\"true\">-->\n      <!--<label for=\"ccNumber\" class=\"textBold-gray col-3 col-form-label\">Payment</label>-->\n      <!--<div class=\"col-3\">-->\n      <!--<input class=\"sob-input col-12\" type=\"number\" [(ngModel)]=\"billing.ccNumber\" id=\"ccNumber\">-->\n      <!--</div>-->\n      <!--<div class=\"col-2\">-->\n      <!--<input class=\"sob-input col-12\" type=\"Month\" [(ngModel)]=\"billing.ccExp\" id=\"address\">-->\n      <!--</div>-->\n      <!--</div>-->\n    </div>\n  </div>\n\n\n  <div class=\"row justify-content-center mt-5\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" (click)=\"saveAccountData()\">APPLY</button>\n  </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 992:
+/***/ 991:
 /***/ (function(module, exports) {
 
 module.exports = "<div layout=\"row\" layout-align=\"start center\">\n  <div layout=\"column\" flex=\"100\" layout-align=\"center center\" class=\"pl-4 pb-4 pr-4\">\n    <div class=\"section-border\">\n      <div layout=\"row\" layout-align=\"end center\">\n        <button class=\"btn btn-circle\" md-dialog-close>x</button>\n      </div>\n      <h3 class=\"text-center bold-dark-gray mt-4 mb-4\">ReSec Cloud Email Protection</h3>\n    </div>\n    <div layout=\"column\" id=\"plan-container\" class=\"mt-4\">\n      <p class=\"mb-3\">Your current plan.</p>\n      <div layout=\"row\" layout-align=\"space-between start\" class=\"ml-0 mr-0\">\n        <div layout=\"column\" layout-align=\"center center\" flex=\"33\" layout-margin>\n          <!--<button #standardBtn class=\"btn btn-upgrade-selected\" (click)=\"selected($event)\">Standard</button>-->\n          <button #standardBtn  (click)=\"selected($event)\" id=\"Standard\" [ngClass]=\"getCSSClasses('Standard')\">Standard</button>\n          <small class=\"mt-4\">$0.99/User/Month</small>\n        </div>\n        <div layout=\"column\" layout-align=\"center center\" flex=\"33\" layout-margin>\n          <!--<button #professionalBtn class=\"btn btn-upgrade-unselected\" (click)=\"selected($event)\">Professional</button>-->\n          <button #professionalBtn  (click)=\"selected($event)\" id=\"Professional\" [ngClass]=\"getCSSClasses('Professional')\">Professional</button>\n          <small class=\"mt-4\">$1.99/User/Month</small>\n        </div>\n        <div layout=\"column\" layout-align=\"center center\" flex=\"33\" layout-margin>\n          <!--<button #premiumBtn class=\"btn btn-upgrade-unselected\" (click)=\"selected($event)\">Premium</button>-->\n          <button #premiumBtn (click)=\"selected($event)\" id=\"Premium\" [ngClass]=\"getCSSClasses('Premium')\">Premium</button>\n          <small class=\"mt-4\">$2.99/User/Month</small>\n        </div>\n      </div>\n    </div>\n    <div class=\"mt-5\" layout=\"row\" layout-align=\"space-between start\">\n      <div flex=\"33\" layout-align=\"start start\" class=\"plan-list\">\n        <ul>\n          <li>Unlimited users</li>\n          <li>Full file blocking functionality</li>\n          <li>Full URL processing</li>\n          <li>Single company policy</li>\n          <li>Single antivirus engine</li>\n          <li>Reconstruction of Word, Excel, Powerpoint, PDF, Visio & Images</li>\n          <li>48 hour original archiving</li>\n        </ul>\n      </div>\n      <div flex=\"33\" layout-align=\"start start\"  class=\"plan-list\">\n        <ul>\n          <li>Unlimited users</li>\n          <li>Full file blocking functionality</li>\n          <li>Full URL processing</li>\n          <li>Up to 5 departmental policies</li>\n          <li>3 antivirus engines</li>\n          <li>Reconstruction of Word, Excel, Powerpoint, PDF, Visio & Images</li>\n          <li>7 day original archiving</li>\n          <li>Customizable end user notifications</li>\n        </ul>\n      </div>\n      <div flex=\"33\" layout-align=\"start start\"  class=\"plan-list\">\n        <ul>\n          <li>Unlimited users</li>\n          <li>Full file blocking functionality</li>\n          <li>Full URL processing</li>\n          <li>Unlimited policies</li>\n          <li>5 antivirus engines</li>\n          <li>Reconstruction of Word, Excel, Powerpoint, PDF, Visio & Images</li>\n          <li>30 day original archiving</li>\n          <li>Customizable end user notifications</li>\n          <li>Self-serve end-user portal</li>\n          <li>Full AD integration</li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"row justify-content-center mt-5 pt-4\">\n      <button class=\"btn btn-action-yellow-big hvr-glow\" (click)=\"saveAccountPlan()\">UPDATE MY PLAN</button>\n    </div>\n  </div>\n</div>\n\n\n<style>\n  .section-border {\n    border-bottom: solid 1px #B3B3B3;\n    width: 100%;\n  }\n  #plan-container{\n    width: 100%;\n  }\n  .plan-list > ul {\n    font-size: 13px !important;\n    color: #666666 !important;\n  }\n\n</style>\n"
 
 /***/ }),
 
-/***/ 993:
+/***/ 992:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-12 \">\n  <div id=\"admin\" class=\"white frame col mb-2\">\n    <div class=\"title-section\">\n      <p class=\"pt-3 pb-3 section-header\">ADMINISTRATOR NOTIFICATIONS</p>\n    </div>\n    <div class=\"pt-3 pb-5 mt-3 \">\n      <div class=\"row mb-3\">\n        <div class=\"col-3 mr-3\">\n          <p class=\"textBold\">Blocked Emails</p>\n          <small class=\"notification-small\">We'll send an email in lieu of the email that was meant to be sent, when the\n            email is blocked.\n          </small>\n        </div>\n        <md-slide-toggle [(ngModel)]=\"adminSettings.AdminBlockedEmailNotification\"></md-slide-toggle>\n      </div>\n      <div class=\"row mb-3\">\n        <div class=\"col-3 mr-3\">\n          <p class=\"textBold\">Blocked Attachments</p>\n          <small class=\"notification-small\">We'll send an email notifying the users that an attachment has been blocked\n            with a reason.\n          </small>\n        </div>\n        <!-- <md-slide-toggle [(ngModel)]=\"adminSettings.AdminAttachedEmailNotification\"></md-slide-toggle>-->\n        <div id=\"coming-soon\" layout=\"column\" layout-align=\"center center\" class=\"coming-soon-notification\">\n          <p>Coming<br> Soon</p>\n        </div>\n      </div>\n\n    </div>\n  </div>\n\n  <div id=\"accountOwner\" class=\"white frame col mb-2\">\n    <div class=\"title-section\">\n      <p class=\"pt-3 pb-3 section-header\">WEEKLY STATUS REPORT</p>\n    </div>\n    <div class=\"pt-3 pb-5 mt-3 \">\n\n      <div class=\"row\">\n        <div class=\"col-3 mr-3\">\n          <p class=\"textBold\">Sent Report To</p>\n          <small class=\"notification-small\">Once a week, we'll send you a summary of the activity taking place.</small>\n        </div>\n        <div id=\"coming-soon\" layout=\"column\" layout-align=\"center center\" class=\"coming-soon-notification\">\n          <p>Coming<br> Soon</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div id=\"emailStamp\" class=\"white frame col mb-2\">\n    <div class=\"title-section\">\n      <p class=\"pt-3 pb-3 section-header\">SECURITY EMAIL STAMP</p>\n    </div>\n    <div class=\"pt-3 pb-5 mt-3\">\n      <small class=\"cust-not-small col-3 mb-3 pl-0\">To make change to this section,<br> please update your plan here.\n      </small>\n\n      <div class=\"row mt-3 mb-4\">\n        <div class=\"col-3\">\n          <label for=\"coming-soon\" class=\"pl-0 col-12 col-form-label textBold\">\n            Display Stamp</label><br>\n          <small>The stamp will appear at the bottom of each email.</small>\n        </div>\n        <div id=\"coming-soon\" layout=\"column\" layout-align=\"center center\" class=\"coming-soon-notification ml-3\">\n          <p>Coming<br> Soon</p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"m-5 d-flex justify-content-center\">\n    <button class=\"btn btn-action-yellow-big hvr-glow\" (click)=\"postSettings()\">APPLY</button>\n  </div>\n</div>\n\n<style>\n  .notification-small {\n    font-size: 11px !important;\n  }\n\n  .cust-not-small {\n    font-size: 13px !important;\n    color: #666666 !important;\n  }\n</style>\n\n"
 
 /***/ }),
 
-/***/ 994:
+/***/ 993:
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ }),
 
-/***/ 995:
+/***/ 994:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-12 animated fadeInRight pl-0 pr-0\" *ngIf=\"dataHasLoaded\">\n  <div class=\"row justify-content-end mb-5 mt-5\">\n    <button class=\"btn btn-transparent hvr-glow\" (click)=\"changeTimeFrame(7)\"\n            [ngClass]=\"{'selectedTimeFrame': timeFrame==7}\">Last 7 Days\n    </button>\n    <button class=\"btn btn-transparent hvr-glow\" (click)=\"changeTimeFrame(30)\"\n            [ngClass]=\"{'selectedTimeFrame': timeFrame==30}\">Last 30 Days\n    </button>\n    <button class=\"btn btn-transparent hvr-glow\" (click)=\"changeTimeFrame(90)\"\n            [ngClass]=\"{'selectedTimeFrame': timeFrame==90}\">Last 90 Days\n    </button>\n  </div>\n  <div>\n    <app-dashboard-top-totals [totals]=\"totals\" (onTotalSelected)='showAllGraphs($event)'></app-dashboard-top-totals>\n    <div>\n      <div class=\"graph-container ml-0 mr-0\" layout=\"row\" layout-md=\"column\" layout-sm=\"column\" layout-margin\n           layout-align=\"space-between start\">\n        <div class=\"ml-0 mt-0 mr-0\" style=\"height: 229px\" id=\"graph-selector\">\n          <app-dashboard-graph-selector [totals]=\"allData\"\n                                        (onGraphChanged)=\"selectedGraphChanged($event)\">\n          </app-dashboard-graph-selector>\n        </div>\n        <div class=\"mr-0 mt-0 ml-3 white frame\" flex style=\"height: 229px\">\n          <app-dashboard-graph [graphData]='graphData' [graphColor]=\"graphColor\"></app-dashboard-graph>\n        </div>\n      </div>\n    </div>\n    <div class=\"ml-0 mr-0\" layout=\"row\" layout-align=\"space-between start\" layout-margin>\n      <app-dashboard-pie-charts [pieData]='pieData' [colorScheme]='colorScheme' flex=\"50\"\n                                [title]='pieChartTitle' class=\"ml-0\"\n                                [selectedGraphHasNoData]=\"selectedGraphHasNoData\"></app-dashboard-pie-charts>\n      <app-email-section flex [recipients]='recipients' [senders]=\"senders\"\n                         [title]='pieChartTitle' [recipientValueColor]=\"recipientValueColor\"\n                         class='mr-0'></app-email-section>\n    </div>\n  </div>\n</div>\n<div>\n  <app-dashboard-news-feed [feeds]=\"feeds\"></app-dashboard-news-feed>\n</div>\n<style>\n  .selectedTimeFrame {\n    background-color: white !important;\n    color: #333333;\n  }\n</style>\n<!--\n<style>\n  @media screen and (min-width: 1000px) and (max-width: 1150px) {\n    #graph-selector {\n      width: 55%;\n    }\n  }\n  @media screen and (min-width: 1151px) and (max-width: 1250px) {\n    #graph-selector {\n      width: 45%;\n    }\n  }\n  @media screen and (min-width: 1251px) and (max-width: 1375px) {\n    #graph-selector {\n      width: 40%;\n    }\n  }\n  @media screen and (min-width: 1376px) and (max-width: 2000px) {\n    #graph-selector {\n      width: 35%;\n    }\n  }\n</style>\n-->\n"
 
 /***/ }),
 
-/***/ 996:
+/***/ 995:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"white frame \" style=\"height: 400px\">\n  <div layout=\"column\" class=\"p-3\">\n    <div layout=\"row\" id=\"top-section\" layout-align=\"space-between center\">\n      <div layout=\"column\" flex=\"60\">\n        <p class=\"bold light-gray\">{{title}}</p>\n        <p>Top End Users</p>\n      </div>\n      <div layout=\"row\">\n        <button class=\"btn btn-transparent\" [ngClass]=\"{'selectedTimeFrame': displayingRecipients}\"\n                (click)=\"displayRecipients()\">Recipients\n        </button>\n        <button class=\"btn btn-transparent\" [ngClass]=\"{'selectedTimeFrame': displayingSenders}\"\n                (click)=\"displaySenders()\">Senders\n        </button>\n      </div>\n    </div>\n    <div id=\"emails\" layout=\"column\" layout-align=\"start center\"\n         style=\"overflow: auto;  height: 310px\" layout-margin>\n      <md-list *ngIf=\"displayingSenders\" style=\"width: 70%\">\n        <md-list-item *ngFor='let sender of senders' (click)=\"seeAllRelatedMails('sender', sender.Key)\"\n                      style=\"cursor:pointer\">\n          <p md-line style=\"color: #666666; font-size: 13px\">{{sender.Key}}</p>\n          <p [style.color]=\"recipientValueColor\">{{sender.Value}}</p>\n        </md-list-item>\n      </md-list>\n      <md-list *ngIf=\"displayingRecipients\" style=\"width: 70%\">\n        <md-list-item *ngFor='let recipient of recipients' (click)=\"seeAllRelatedMails('recipient', recipient.Key)\"\n                      style=\"cursor:pointer\">\n          <p md-line style=\"color: #666666; font-size: 13px\">{{recipient.Key}}</p>\n          <p [style.color]=\"recipientValueColor\">{{recipient.Value}}</p>\n        </md-list-item>\n      </md-list>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
-/***/ 997:
+/***/ 996:
 /***/ (function(module, exports) {
 
 module.exports = "<div layout=\"row\" flex=\"100\" layout-align=\"space-between start\" class=\"ml-0 mr-0 graph-selector-line\">\n  <div  (click)=\"changeTheCurrentLine($event, 'totals.totalCleanReplicaByCdr')\" class=\"white frame graph-selector-box hvr-glow graph-id\"\n        layout-align=\"space-between center\">\n    <div layout=\"row\" layout-align=\"end start\" flex=\"100\">\n      <div id=\"triangle-blue\">\n      </div>\n    </div>\n    <div style=\"height: 67%\" layout=\"row\" class=\"pl-3 pr-3\">\n      <p class=\"graph-selector-title\" flex=\"55\">Clean<br> Replica<br> By CDR</p>\n      <div flex=\"45\" layout=\"column\">\n        <p class=\"total-top\">{{totals.TotalModified.TotalResult}}</p>\n        <p class=\"selector-totals\">\n          {{totals.TotalModified.TotalResult | getPercentage : totals.TotalAttachmentProcessed.TotalResult}}\n          <span class=\"percentage\">%</span></p>\n      </div>\n    </div>\n  </div>\n  <div  (click)=\"changeTheCurrentLine($event, 'totals.attachmentOk')\" class=\"white frame graph-selector-box hvr-glow graph-id\"\n       layout-align=\"space-between center\">\n    <div layout=\"row\" layout-align=\"end start\" flex=\"100\">\n      <div id=\"triangle-green\">\n      </div>\n    </div>\n    <div style=\"height: 67%\" layout=\"row\" class=\"pl-3 pr-3\">\n      <p class=\"graph-selector-title\" flex=\"55\">Original<br> Attachment<br> OK</p>\n      <div flex=\"45\" layout=\"column\">\n        <p class=\"total-top\">{{totals.TotalPassed.TotalResult}}</p>\n        <p class=\"selector-totals\">\n          {{totals.TotalPassed.TotalResult | getPercentage : totals.TotalAttachmentProcessed.TotalResult}}\n          <span class=\"percentage\">%</span></p>\n      </div>\n    </div>\n  </div>\n</div>\n<div layout=\"row\" flex=\"100\" layout-align=\"space-between start\" class=\"ml-0 mr-0 mt-3 graph-selector-line\">\n  <div  (click)=\"changeTheCurrentLine($event, 'totals.blockedByPolicy')\"\n       class=\"white frame graph-selector-box mr-3 hvr-glow graph-id\" layout-align=\"space-between center\">\n    <div layout=\"row\" layout-align=\"end start\" flex=\"100\">\n      <div id=\"triangle-yellow\"></div>\n    </div>\n    <div style=\"height: 67%\" layout=\"row\" class=\"pl-3 pr-3\">\n      <p class=\"graph-selector-title\" flex=\"55\">Attachment<br> Blocked <br>by Policy</p>\n      <div flex=\"45\" layout=\"column\">\n        <p class=\"total-top\">{{totals.TotalBlockedByPolicy.TotalResult}}</p>\n        <p class=\"selector-totals\">\n          {{totals.TotalBlockedByPolicy.TotalResult | getPercentage : totals.TotalAttachmentProcessed.TotalResult}}\n          <span class=\"percentage\">%</span></p>\n      </div>\n\n    </div>\n  </div>\n  <div  (click)=\"changeTheCurrentLine($event, 'totals.attachmentBlockedByAntivirus')\"\n       class=\"white frame graph-selector-box hvr-glow graph-id\" layout-align=\"space-between center\">\n    <div layout=\"row\" layout-align=\"end start\" flex=\"100\">\n      <div id=\"triangle-orange\"></div>\n    </div>\n    <div style=\"height: 67%\" layout=\"row\" class=\"pl-3 pr-3\">\n      <p class=\"graph-selector-title\" flex=\"55\">Attachment<br> Blocked <br>by Antivirus</p>\n      <div flex=\"45\" layout=\"column\">\n        <p class=\"total-top\">{{totals.TotalBlockedByAntivirus.TotalResult}}</p>\n        <p class=\"selector-totals\">\n          {{totals.TotalBlockedByAntivirus.TotalResult | getPercentage : totals.TotalAttachmentProcessed.TotalResult}}\n          <span class=\"percentage\">%</span></p>\n      </div>\n\n    </div>\n  </div>\n</div>\n\n<style>\n  #triangle-blue {\n    width: 0;\n    height: 0;\n    border-top: 20px solid #A5CDED;\n    border-left: 20px solid transparent;\n  }\n\n  #triangle-green {\n    width: 0;\n    height: 0;\n    border-top: 20px solid #A4DCD2;\n    border-left: 20px solid transparent;\n  }\n\n  #triangle-yellow {\n    width: 0;\n    height: 0;\n    border-top: 20px solid #F7D399;\n    border-left: 20px solid transparent;\n  }\n\n  #triangle-orange {\n    width: 0;\n    height: 0;\n    border-top: 20px solid #F5AF91;\n    border-left: 20px solid transparent;\n  }\n  .graph-id{\n    width: 196px !important;\n  }\n\n\n</style>\n"
 
 /***/ }),
 
-/***/ 998:
+/***/ 997:
 /***/ (function(module, exports) {
 
 module.exports = "<div style=\"height: 100%\" flex>\n  <ngx-charts-line-chart\n    [scheme]=\"graphColor\"\n    [schemeType]=\"schemeType\"\n    [results]=\"graphData\"\n    [gradient]=\"false\"\n    [xAxis]=\"showXAxis\"\n    [yAxis]=\"showYAxis\"\n    [legend]=\"showLegend\"\n    [showGridLines]=\"showGridLines\"\n    [showXAxisLabel]=\"showXAxisLabel\"\n    [showYAxisLabel]=\"showYAxisLabel\"\n    [xAxisLabel]=\"xAxisLabel\"\n    [yAxisLabel]=\"yAxisLabel\"\n    [schemeType]='schemeType'\n    [curve]=\"curving\"\n    [autoScale]=\"true\">\n  </ngx-charts-line-chart>\n\n</div>\n"
 
 /***/ }),
 
-/***/ 999:
+/***/ 998:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mt-5 mb-5 white frame ml-0 mr-0\" layout=\"column\" layout-margin>\n  <div class=\"news-header\">\n    <h4 class=\"section-title\">\n      NEWS\n    </h4>\n  </div>\n  <div layout=\"row\" layout-align=\"space-between start\" layout-margin>\n    <div *ngIf=\"!feeds\" flex=\"100\" layout=\"row\" class=\"mt-4\">\n      <p class=\"mr-3\">Loading News... </p>\n      <div class=\"ld ld-hourglass ld-spin-fast\" style=\"font-size:30px;color:#8da\"></div>\n    </div>\n    <div *ngFor=\"let feed of feeds\" layout-padding layout=\"column\">\n      <div style=\"width: 70%\">\n        <p class=\"feed-title\">{{feed.title}}</p>\n        <p class=\"mt-3 subtitle\">Posted: {{feed.date}}</p>\n        <p style=\"font-size: 13px\" id=\"lim\">{{feed.description}}</p>\n        <a href=\"{{feed.url}}\" target=\"_blank\" class=\"link-btn\" role=\"button\">Read Full Article</a>\n      </div>\n    </div>\n  </div>\n</div>\n\n<style>\n  .feed-title {\n    font-size: 20px !important;\n    color: #666666;\n  }\n\n\n  .subtitle {\n    color: #999999 !important;\n  }\n  .news-header{\n    border-bottom: solid 1px lightsteelblue;\n  }\n  .section-title{\n    color: #666666;\n    font-weight: 600;\n    padding: 1em;\n  }\n</style>\n"
 
+/***/ }),
+
+/***/ 999:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"white frame p-3 ml-0\" style=\"height: 400px\">\n  <div layout=\"column\" style=\"height: 100%\">\n    <p class=\"bold light-gray\">{{title}}</p>\n    <p>Top Attachment Type</p>\n    <div id=\"graph-holder\" style=\"height: 100%; \">\n      <ngx-charts-pie-chart *ngIf=\"!selectedGraphHasNoData; else noDataTemplate\"\n                            [scheme]=\"colorScheme\"\n                            [results]=\"pieData\"\n                            [legend]=\"true\"\n                            [explodeSlices]=\"true\"\n                            [labels]=\"showLabels\"\n                            [doughnut]=\"true\"\n                            [gradient]=\"false\"\n                            [arcWidth]=\"0.1\">\n      </ngx-charts-pie-chart>\n      <ng-template #noDataTemplate>\n        <ngx-charts-pie-chart\n          [scheme]=\"NoDatacolorScheme\"\n          [results]=\"NoDatapieData\"\n          [legend]=\"true\"\n          [explodeSlices]=\"true\"\n          [labels]=\"false\"\n          [doughnut]=\"true\"\n          [gradient]=\"false\"\n          [arcWidth]=\"0.1\">\n        </ngx-charts-pie-chart>\n      </ng-template>\n    </div>\n  </div>\n</div>\n\n<style>\n\n</style>\n"
+
 /***/ })
 
-},[1260]);
+},[1259]);
 //# sourceMappingURL=main.bundle.js.map

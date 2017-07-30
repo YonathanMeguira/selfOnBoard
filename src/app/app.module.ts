@@ -59,7 +59,8 @@ import {
   MdSelectModule,
   MdIconModule,
   MdRadioModule,
-  MdInputModule
+  MdInputModule,
+  MdTooltipModule
 } from '@angular/material';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -73,7 +74,6 @@ import {
   CovalentLoadingModule,
   CovalentFileModule
 } from '@covalent/core';
-import {TagInputModule} from 'ng2-tag-input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {default as reducer} from './store/app-store';
@@ -170,6 +170,7 @@ import {WrongBrowserComponent} from './wrong-browser/wrong-browser.component';
     MdProgressSpinnerModule,
     MdDialogModule,
     MdSelectModule,
+    MdTooltipModule,
     MdRadioModule,
     MdInputModule,
     FlexLayoutModule,
@@ -183,7 +184,6 @@ import {WrongBrowserComponent} from './wrong-browser/wrong-browser.component';
     DatePickerModule,
     NgxDatatableModule,
     NgbModule.forRoot(),
-    TagInputModule,
     NgxChartsModule,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension({

@@ -21,7 +21,7 @@ export class UpdatePlanComponent {
 
   constructor(public dialogRef: MdDialogRef<UpdatePlanComponent>, private rd: Renderer2, private accountService: AccountService) {
     this.currentRd = rd;
-    this.config = this.dialogRef._containerInstance.dialogConfig.data;
+    this.config = this.dialogRef.componentInstance.config.data;
     this.currentPlan = this.config.accountData.CurrentPlan;
     this.selectedPlan = this.currentPlan;
     this.stripeSubscriptionToken = this.config.accountData.StripeSubscriptionToken;
